@@ -42,7 +42,7 @@ Robotic Motion Phantom is an open source software for performing quality assuran
     - S. Alnaghy et al., Phys. Med. Biol. 64 105021 (2019).
     - Shi K. et al., Med Phys. 2020 Sep 30. doi: 10.1002/mp.14502. Epub ahead of print. PMID: 32997820.
 
-## Licenses
+## Licence
 
 Content is released under [this licence](https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/a5fb87378eb501c1a9539277ff3f0080b794489e/Copyright%20Notice%20and%20Licence.pdf) that includes attribution guidelines, contribution terms, and software and third-party licenses and permissions.
 
