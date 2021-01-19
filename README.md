@@ -24,7 +24,7 @@ Robotic Motion Phantom is an open source software for performing quality assuran
 
     - Open PhantomControl.sln in Visual Studio and add all the five external libraries listed above using the References tab in the Solution Explorer. 
     - Build the solution in Debug mode (or in Release mode).
-    - This will create the application PhantomControl\bin\Debug(or Release)\PhantomControl.exe which can then be operated using [this guideline](https://github.com  /ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/Documentation/Software%20GUI%20Guide.pdf) when connected to a six-axis robot.
+    - This will create the application PhantomControl\bin\Debug(or Release)\PhantomControl.exe which can then be operated using [this guideline](https://github.com  /ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/Documentation/Software%20GUI%20Guide.pdf) when connected to a six-axis robotic system.
 
 ## Key Features
 
@@ -44,4 +44,8 @@ Robotic Motion Phantom is an open source software for performing quality assuran
 
 ## Licenses
 
-Content is released under [this link](https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/a5fb87378eb501c1a9539277ff3f0080b794489e/Copyright%20Notice%20and%20Licence.pdf) that includes attribution guidelines, contribution terms, and software and third-party licenses and permissions.
+Content is released under [this licence](https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/a5fb87378eb501c1a9539277ff3f0080b794489e/Copyright%20Notice%20and%20Licence.pdf) that includes attribution guidelines, contribution terms, and software and third-party licenses and permissions.
+
+## Acknowledgements
+
+The authors thank all the contributors, Dr. Andre Kyme, Dr. Vincent Caillet, Dr. Doan Trang Nguyen, Dr. Ricky O'Brien, Dr. Jeremy T. Booth and Prof. Paul J Keall for lending their valuable input and expertise leading up to the initial release, and, thanks to Dr. Melissa Mail and Dr. Sara Tomka for their help in producing the licence of this software.
