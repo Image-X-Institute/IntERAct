@@ -35,7 +35,7 @@ Robotic Motion Phantom is an open source software for quality assurance of real-
 
 ## Documentation
 
-[Documentation folder] (https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/main/Documentation) provides relevant information related to the latest release of this software and the instructions to operate the robotic phantom.
+[Documentation folder](https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/main/Documentation) provides relevant information related to the latest release of this software and the instructions to operate the robotic phantom.
 
 ## Publications
 
