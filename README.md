@@ -37,4 +37,4 @@ See Documentation/README.md.
 
 ## Licenses
 
-Content is released under XXXX. See the link [https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/a5fb87378eb501c1a9539277ff3f0080b794489e/Copyright%20Notice%20and%20Licence.pdf] for complete details, including attribution guidelines, contribution terms, and software and third-party licenses and permissions.
+Content is released under [this link](https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/a5fb87378eb501c1a9539277ff3f0080b794489e/Copyright%20Notice%20and%20Licence.pdf) for complete details, including attribution guidelines, contribution terms, and software and third-party licenses and permissions.
