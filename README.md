@@ -1,6 +1,6 @@
 # 6 DoF Robotic Motion Phantom
 ## Introduction
-Robotic Motion Phantom is an open source software for quality assurance of real-time image-guided radiotherapy systems. The Robotic Motion Phantom application provides methods to implement the appropriate sequence of transformations to accurately reproduce the full range and rate of patient-measured tumour motion using a robotically controlled phantom to provide precise geometric quality assurance for advanced radiotherapy approaches. The set-up and motion trace repeatability of the robotic motion system was evaluated against the Calypso system and was shown to have sub-mm and sub-degree accuracy and precision in translational and rotational degrees of freedom respectively.
+Robotic Motion Phantom is an open source software for performing quality assurance tests of real-time image-guided radiotherapy systems. The Robotic Motion Phantom application provides methods to implement the appropriate sequence of transformations to accurately reproduce the full range and rate of patient-measured tumour motion using a robotically controlled phantom to provide precise geometric quality assurance for advanced radiotherapy approaches. The set-up and motion trace repeatability of the robotic motion system was evaluated against the Calypso system and was shown to have sub-mm and sub-degree accuracy and precision in translational and rotational degrees of freedom respectively.
 
 ## Requirements
   
@@ -24,7 +24,7 @@ Robotic Motion Phantom is an open source software for quality assurance of real-
 
     - Open PhantomControl.sln in Visual Studio and add all the five external libraries listed above using the References tab in the Solution Explorer. 
     - Build the solution in Debug mode (or in Release mode).
-    - This will create the application PhantomControl\bin\Debug(or Release)\PhantomControl.exe which can then be operated using [this guideline](https://github.com  /ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/Documentation/Software%20GUI%20Guide.pdf).
+    - This will create the application PhantomControl\bin\Debug(or Release)\PhantomControl.exe which can then be operated using [this guideline](https://github.com  /ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/Documentation/Software%20GUI%20Guide.pdf) when connected to a six-axis robot.
 
 ## Key Features
 
