@@ -5,12 +5,12 @@ Robotic Motion Phantom is an open source software for quality assurance of real-
 ## Requirements
   
   * Software 
-    - C# and Visual Studio 
-    - Winforms
+     - C# and Visual Studio 
+     - Winforms
     
   * Hardware
-    - A six-axis robot
-    - A phantom
+     - A six-axis robot
+     - A phantom
 
 ## Third-party libraries
 
@@ -22,9 +22,9 @@ Robotic Motion Phantom is an open source software for quality assurance of real-
 
 ## Building the Robotic Motion Phantom
 
-   - Open PhantomControl.sln in Visual Studio and add all the five external libraries listed above using the References tab in the Solution Explorer. 
-   - Build the solution in Debug mode (or in Release mode).
-   - This will create the application PhantomControl\bin\Debug(or Release)\PhantomControl.exe which can then be operated using [this guideline](https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/Documentation/Software%20GUI%20Guide.pdf).
+    - Open PhantomControl.sln in Visual Studio and add all the five external libraries listed above using the References tab in the Solution Explorer. 
+    - Build the solution in Debug mode (or in Release mode).
+    - This will create the application PhantomControl\bin\Debug(or Release)\PhantomControl.exe which can then be operated using [this guideline](https://github.com  /ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/Documentation/Software%20GUI%20Guide.pdf).
 
 ## Key Features
 
@@ -35,12 +35,12 @@ Robotic Motion Phantom is an open source software for quality assurance of real-
 
 ## Documentation
 
-See Documentation/README.md.
+[Documentation folder] (https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/main/Documentation) provides relevant information related to the latest release of this software and the instructions to operate the robotic phantom.
 
 ## Publications
 
-    S. Alnaghy et al., Phys. Med. Biol. 64 105021 (2019).
-    Shi K. et al., Med Phys. 2020 Sep 30. doi: 10.1002/mp.14502. Epub ahead of print. PMID: 32997820.
+    - S. Alnaghy et al., Phys. Med. Biol. 64 105021 (2019).
+    - Shi K. et al., Med Phys. 2020 Sep 30. doi: 10.1002/mp.14502. Epub ahead of print. PMID: 32997820.
 
 ## Licenses
 
