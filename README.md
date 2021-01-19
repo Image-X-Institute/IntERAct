@@ -46,7 +46,7 @@ The software was written and tested in Visual Studio 2019 with .NET Framework 4.
 
 ## Licence
 
-Content is released under [this licence](https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/a5fb87378eb501c1a9539277ff3f0080b794489e/Copyright%20Notice%20and%20Licence.pdf) that includes attribution guidelines, contribution terms, and software and third-party licenses and permissions.
+Content is released under [this licence](https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/a5fb87378eb501c1a9539277ff3f0080b794489e/Copyright%20Notice%20and%20Licence.pdf) that includes attribution guidelines, contribution terms, and software and third-party licences and permissions.
 
 ## Acknowledgements
 
