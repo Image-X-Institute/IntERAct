@@ -2,6 +2,13 @@
 ## Introduction
 Robotic Motion Phantom is an open source software for performing quality assurance tests of real-time image-guided radiotherapy systems. The Robotic Motion Phantom application provides methods to implement the appropriate sequence of transformations to accurately reproduce the full range and rate of patient-measured tumour motion using a robotically controlled phantom to provide precise geometric quality assurance for advanced radiotherapy approaches. The set-up and motion trace repeatability of the robotic motion system was evaluated against the Calypso system and was shown to have sub-mm and sub-degree accuracy and precision in translational and rotational degrees of freedom respectively.
 
+## Key Features
+
+    - Accurate motion reproducibility for safer radiotherapy imaging systems.
+    - A user-friendly GUI interface that is ease of use.
+    - Design compactness.
+    - Easy workflow.
+
 ## Requirements
   
   * Software 
@@ -11,6 +18,8 @@ Robotic Motion Phantom is an open source software for performing quality assuran
   * Hardware
      - A six-axis robot
      - A phantom
+     
+The software was written and tested in Visual Studio 2019 with .NET Framework 4.0 in Windows 10 operating system, but, expected to work in other versions of Visual Studio.     
 
 ## Third-party libraries
 
@@ -26,13 +35,6 @@ Robotic Motion Phantom is an open source software for performing quality assuran
     - Build the solution in Debug mode (or in Release mode).
     - This will create the application PhantomControl\bin\Debug(or Release)\PhantomControl.exe which can then be operated using [this guideline](https://github.com  /ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/Documentation/Software%20GUI%20Guide.pdf) when connected to a six-axis robotic system.
 
-## Key Features
-
-    - Accurate motion reproducibility for safer radiotherapy imaging systems.
-    - A user-friendly GUI interface that is ease of use.
-    - Design compactness.
-    - Easy workflow.
-
 ## Documentation
 
 [Documentation folder](https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/main/Documentation) provides relevant information related to the latest release of this software and the instructions to operate the robotic phantom.
@@ -40,7 +42,7 @@ Robotic Motion Phantom is an open source software for performing quality assuran
 ## Publications
 
     - S. Alnaghy et al., Phys. Med. Biol. 64 105021 (2019).
-    - Shi K. et al., Med Phys. 2020 Sep 30. doi: 10.1002/mp.14502. Epub ahead of print. PMID: 32997820.
+    - Shi K. et al., Med Phys. 47(12):6068-6076 (2020).
 
 ## Licence
 
