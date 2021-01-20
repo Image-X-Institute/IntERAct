@@ -9,11 +9,12 @@ Robotic Motion Phantom is an open source software for performing quality assuran
 - Design compactness.
 - Easy workflow.
 
+
 ## Getting Started
 ### Requirements
     
   * Hardware
-     - A six-axis robot
+     - A six-axis robot (Tested on a Universal Robot, UR3) and its associated hardware
      - A phantom
   
   * Software 
@@ -31,8 +32,8 @@ The software was written and tested in C# using Visual Studio 2019 with .NET Fra
 
 ### Building the Robotic Motion Phantom
 
-1. Open `PhantomControl.sln` in Visual Studio 
-2. add all the five external libraries listed above using the References tab in the Solution Explorer. 
+1. Open `PhantomControl.sln` in Visual Studio.
+2. Add all the five external libraries listed above using the References tab in the Solution Explorer. 
 3. Build the solution in Debug mode (or in Release mode).
 4. This will create the application `PhantomControl\bin\Debug(or Release)\PhantomControl.exe` which can then be operated using [this guide](https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/Documentation/Software%20GUI%20Guide.pdf) when connected to a six-axis robotic system.
 
@@ -43,7 +44,7 @@ Please see the [documentation](https://github.com/ACRF-Image-X-Institute/6-DoF-R
 ## Publications
 
 - S. Alnaghy et al., Phys. Med. Biol. 64 105021 (2019), [doi:10.1088/1361-6560/ab1935](https://doi.org/10.1088/1361-6560/ab1935)
-- Shi K. et al., Med Phys. 47(12):6068-6076 (2020).
+- Shi K. et al., Med Phys. 47(12):6068-6076 (2020), [doi: 10.1002/mp.14502](https://aapm.onlinelibrary.wiley.com/doi/full/10.1002/mp.14502)
 
 ## Licence
 
@@ -55,4 +56,4 @@ Dr. Saree Alnaghy, Dr. Chandrima Sengupta, Kuldeep Makhija.
 
 ## Acknowledgements
 
-The authors thank all the contributors, Dr. Andre Kyme, Dr. Vincent Caillet, Dr. Doan Trang Nguyen, Dr. Ricky O'Brien, Dr. Jeremy T. Booth and Prof. Paul J Keall for lending their valuable input and expertise leading up to the initial release, and, thanks to Dr. Melissa Mail and Dr. Sara Tomka for their help in producing the licence of this software.
+The authors thank all the contributors, Dr. Andre Kyme, Dr. Vincent Caillet, Dr. Doan Trang Nguyen, Dr. Ricky O'Brien, Dr. Jeremy T. Booth and Prof. Paul J Keall for lending their valuable input and expertise leading up to the initial release. Thanks to Dr. Melissa Mail and Dr. Sara Tomka for their help in producing the licence of this software and to Dr. Lars Mejnertsen for providing valuable input in developing this repository.
