@@ -4,7 +4,7 @@ Robotic Motion Phantom is an open source software for performing quality assuran
 
 ## Key Features
 
-- Accurate motion reproducibility for safer radiotherapy imaging systems.
+- Accurate motion reproducibility for 6DoF tumour motion.
 - A user-friendly GUI interface.
 - Design compactness.
 - Easy workflow.
