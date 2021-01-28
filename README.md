@@ -39,12 +39,17 @@ The software was written and tested in C# using Visual Studio 2019 with .NET Fra
 
 ## Documentation
 
-Please see the [documentation](https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/main/Documentation) for  instructions on operating the robotic phantom and relevant information related to the latest release of this software.
+Please see the [documentation](https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/main/Documentation) for  instructions on operating the robotic phantom and relevant information related to the latest release of this software. 
 
 ## Publications
 
 - S. Alnaghy et al., Phys. Med. Biol. 64 105021 (2019), [doi:10.1088/1361-6560/ab1935](https://doi.org/10.1088/1361-6560/ab1935)
 - Shi K. et al., Med Phys. 47(12):6068-6076 (2020), [doi: 10.1002/mp.14502](https://aapm.onlinelibrary.wiley.com/doi/full/10.1002/mp.14502)
+
+## Clinical Trials
+
+- Liver Ablative Radiotherapy utilizing KIM, [TROG 17.03 LARK trial](https://www.trog.com.au/1703-LARK) 
+- Novel Integration of New prostate radiation therapy schedules with adJuvant Androgen deprivation, [TROG 18.01 NINJA trial](https://www.trog.com.au/1801-NINJA)
 
 ## Licence
 
