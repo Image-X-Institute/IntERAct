@@ -14,7 +14,7 @@ Robotic Motion Phantom is an open source software for performing quality assuran
 ### Requirements
     
   * Hardware
-     - A six-axis robot (Tested on a Universal Robot, UR3) and its associated hardware
+     - A six-axis robot (Tested on a commercially available Universal Robot, UR3) and its associated hardware
      - A phantom
   
   * Software 
