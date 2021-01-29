@@ -37,22 +37,22 @@
   <ItemGroup>
     <Reference Include="EasyModbus, Version=4.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\EasyModbusTCP .NET Package V4.2\EasyModbusLibrary for .NET (DLL)\EasyModbus.dll</HintPath>
+      <HintPath>..\..\External Libraries\EasyModbus.dll</HintPath>
     </Reference>
     <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\LiveCharts.0.9.7\lib\net40\LiveCharts.dll</HintPath>
+      <HintPath>..\..\External Libraries\LiveCharts.dll</HintPath>
     </Reference>
     <Reference Include="LiveCharts.WinForms, Version=0.9.7.1, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\LiveCharts.WinForms.0.9.7.1\lib\net40\LiveCharts.WinForms.dll</HintPath>
+      <HintPath>..\..\External Libraries\LiveCharts.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\LiveCharts.Wpf.0.9.7\lib\net40\LiveCharts.Wpf.dll</HintPath>
+      <HintPath>..\..\External Libraries\LiveCharts.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="MathNet.Numerics, Version=4.12.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\MathNet.Numerics.4.12.0\lib\net40\MathNet.Numerics.dll</HintPath>
+      <HintPath>..\..\External Libraries\MathNet.Numerics.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="PresentationCore" />
@@ -172,6 +172,11 @@
     <Folder Include="Utilities\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+    <PropertyGroup>
+    <PostBuildEvent>copy /y $(ProjectDir)\settings.txt $(TargetDir)
+md  $(ProjectDir)\Resources
+xcopy /I /E $(ProjectDir)\Resources $(TargetDir)\Resources</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
