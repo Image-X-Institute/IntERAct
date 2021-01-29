@@ -28,9 +28,11 @@ Robotic Motion Phantom is an open source software for performing quality assuran
      - LiveCharts.Wpf v0.9.7
      - Math.Net Numerics v4.12.0
      
-The software was written and tested in C# using Visual Studio 2019 with .NET Framework 4.0 using Windows 10, but may work with other versions of Visual Studio.
+
 
 ### Building the Robotic Motion Phantom
+
+The software was written and tested in C# using Visual Studio 2019 with .NET Framework 4.0 using Windows 10, but may work with other versions of Visual Studio.
 
 1. Open `PhantomControl.sln` in Visual Studio.
 2. Add all the five external libraries listed above using the References tab in the Solution Explorer. 
