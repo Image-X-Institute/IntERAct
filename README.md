@@ -59,7 +59,7 @@ Please see the [documentation](https://github.com/ACRF-Image-X-Institute/6-DoF-R
 
 Content is released under [this licence](https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/a5fb87378eb501c1a9539277ff3f0080b794489e/Copyright%20Notice%20and%20Licence.pdf) which includes attribution guidelines, contribution terms, and software and third-party licences and permissions.
 
-## Limitations and safety of the robotic motion phantom
+## Limitations and safety 
 
 The UR3 robot has automated tasks up to 3 kg (6.6 lbs). It has reach radius of up to 500 mm (19.7 in) with 0.1 mm repeatability. For all other safety related issues, please visit the [Universal Robot website](https://www.universal-robots.com/articles/).
 
