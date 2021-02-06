@@ -59,6 +59,18 @@ Please see the [documentation](https://github.com/ACRF-Image-X-Institute/6-DoF-R
 
 Content is released under [this licence](https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/a5fb87378eb501c1a9539277ff3f0080b794489e/Copyright%20Notice%20and%20Licence.pdf) which includes attribution guidelines, contribution terms, and software and third-party licences and permissions.
 
+## Limitations and safety of the robotic motion phantom
+
+The UR3 robot has automated tasks up to 3 kg (6.6 lbs). It has reach radius of up to 500 mm (19.7 in) with 0.1 mm repeatability. For all other safety related issues, please visit the [Universal Robot website](https://www.universal-robots.com/articles/).
+
+## Future work
+
+Future works planned to be done with this project:
+
+- Phantoms with lung insert for quality assurance of the markerless tracking systems.
+- Concurrent geometric and dosimetric quality assurance with a radiation detector or films. 
+- QA other real-time tracking systems such as depth sensors or a face phantom as used in the [Remove Mask Project](https://image-x.sydney.edu.au/home/remove-the-mask/).
+
 ## Authors
 
 Dr. Saree Alnaghy, Dr. Chandrima Sengupta, Kuldeep Makhija.
