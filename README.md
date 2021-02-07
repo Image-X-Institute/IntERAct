@@ -61,7 +61,7 @@ Content is released under [this licence](https://github.com/ACRF-Image-X-Institu
 
 ## Limitations and safety 
 
-The UR3 robot has automated tasks up to 3 kg (6.6 lbs). It has reach radius of up to 500 mm (19.7 in) with 0.1 mm repeatability. For all other safety related issues, please visit the [Universal Robot website](https://www.universal-robots.com/articles/).
+The UR3 robot has automated tasks up to 3 kg (6.6 lbs). It has reach radius of up to 500 mm (19.7 in) with 0.1 mm and 0.2 deg repeatability. For all other safety related issues, please visit the [Universal Robot website](https://www.universal-robots.com/articles/).
 
 ## Future work
 
