@@ -43,7 +43,7 @@ The software was written and tested in C# using Visual Studio 2019 with .NET Fra
 
 ## Documentation
 
-Please see the [documentation](https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/main/Documentation) for instructions on operating the robotic phantom and relevant information related to the latest release of this software. 
+Please see the [documentation](https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/main/Documentation) for instructions on operating the robotic phantom and relevant information related to the hardware and the latest release of the software. 
 
 ## Publications
 
