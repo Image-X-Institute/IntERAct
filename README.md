@@ -1,6 +1,6 @@
 # 6 DoF Robotic Motion Phantom
 
-The 6 DoF Robotic Motion Phantom software has been developed to perform quality assurance tests for real-time image-guided radiotherapy systems. The Robotic Motion Phantom application provides methods to implement the appropriate sequence of transformations to accurately reproduce the full range (6 DoF translational and rotational motion in the IEC coordinate system) and rate of patient-measured tumour motion using a robotically controlled phantom to provide precise geometric quality assurance for advanced radiotherapy approaches. The set-up and motion trace repeatability of the robotic motion system was evaluated against the Calypso system and was shown to have sub-mm and sub-degree accuracy and precision in translational and rotational degrees of freedom respectively. For more details, please see [this publication](https://doi.org/10.1088/1361-6560/ab1935).
+The 6 DoF Robotic Motion Phantom application has been developed to perform quality assurance tests for real-time image-guided radiotherapy systems. The 6 DoF system consists of a six-axis robotic arm (Universal Robot, UR3), an acrylic phantom, a custom-base plate to mount the robotic phantom onto the treatment couch and a software application which controls the robotic phantom to reproduce the patient-measured tumor motion. The software provides methods to implement the appropriate sequence of transformations to accurately reproduce the full range (6 DoF translational and rotational motion) and rate of patient-measured tumour motion using the robotically controlled phantom. The set-up and motion trace repeatability of the robotic system was evaluated against the Calypso system and was shown to provide sub-mm and sub-degree accuracy and precision in translational and rotational degrees of freedom respectively. For more details, please see [this publication](https://doi.org/10.1088/1361-6560/ab1935).
 
 ## Key Features
 
@@ -69,7 +69,7 @@ Future works planned to be done with this project:
 
 - Phantoms with lung insert for quality assurance of the markerless tracking systems.
 - Concurrent geometric and dosimetric quality assurance with a radiation detector or films. 
-- QA other real-time tracking systems such as depth sensors or a face phantom as used in the [Remove Mask Project](https://image-x.sydney.edu.au/home/remove-the-mask/).
+- QA other real-time tracking systems such as depth sensors as used in the [Remove Mask Project](https://image-x.sydney.edu.au/home/remove-the-mask/).
 
 ## Authors
 
