@@ -28,6 +28,9 @@ The 6 DoF Robotic Motion Phantom application has been developed to perform quali
      - LiveCharts.Wpf v0.9.7
      - Math.Net Numerics v4.12.0
      
+## Documentation
+
+The [Documentation folder](https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/main/Documentation) contains required information to assemble a similar 6-DoF system: Bill of materials, CAD files for the phantom and hardware tools, robot specifications, documentation, a user-guide to operate the system, and, step-by-step QA procedure for a real-time image-guided radiotherapy technology, Kilovolatge Intrafraction Monitoring (KIM) using the robotic phantom. 
 
 ### Setting up the Robotic Motion Phantom
 
@@ -40,10 +43,6 @@ The software was written and tested in C# using Visual Studio 2019 with .NET Fra
 1. Open `PhantomControl.sln` in Visual Studio.
 2. Build the solution in Debug mode.
 3. This will create the application `PhantomControl\bin\Debug\PhantomControl.exe` which can then be operated using [this guide](https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/Documentation/Software%20GUI%20Guide.pdf) when connected to a six-axis robotic system.
-
-## Documentation
-
-Please see the [documentation](https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/main/Documentation) for instructions on operating the robotic phantom and relevant information related to the hardware and the latest release of the software. 
 
 ## Publications
 
