@@ -68,7 +68,7 @@ Future works planned to be done with this project:
 
 - Phantoms with lung insert for quality assurance of the markerless tracking systems.
 - Concurrent geometric and dosimetric quality assurance with a radiation detector or films. 
-- QA other real-time tracking systems such as depth sensors as used in the [Remove Mask Project](https://image-x.sydney.edu.au/home/remove-the-mask/).
+- QA other real-time tracking systems such as depth sensors as used in the [Remove the Mask Project](https://image-x.sydney.edu.au/home/remove-the-mask/).
 
 ## Authors
 
