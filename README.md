@@ -18,7 +18,7 @@ The 6 DoF Robotic Motion Phantom application has been developed to perform quali
      - A phantom
   
   * Software 
-     - Microsoft Visual Studio 2019 with .NET desktop development workload
+     - Microsoft Visual Studio 2019 with .NET framework 4.5 (tested). May work on other versions too.  
      - Winforms
   
   * Third-party libraries (located in `External Libraries/`)
