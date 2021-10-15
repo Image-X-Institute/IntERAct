@@ -53,6 +53,7 @@ The software was written and tested in C# using Visual Studio 2019 with .NET Fra
 
 - Liver Ablative Radiotherapy utilizing KIM, [TROG 17.03 LARK trial](https://www.trog.com.au/1703-LARK) 
 - Novel Integration of New prostate radiation therapy schedules with adJuvant Androgen deprivation, [TROG 18.01 NINJA trial](https://www.trog.com.au/1801-NINJA)
+- Surface Monitoring technology to Remove The mask, [SMART trial](https://image-x.sydney.edu.au/home/clinical-trials/).
 
 ## Licence
 
