@@ -55,6 +55,9 @@ The software was written and tested in C# using Visual Studio 2019 with .NET Fra
 - Novel Integration of New prostate radiation therapy schedules with adJuvant Androgen deprivation, [TROG 18.01 NINJA trial](https://www.trog.com.au/1801-NINJA)
 - Surface Monitoring technology to Remove The mask, [SMART trial](https://image-x.sydney.edu.au/home/clinical-trials/).
 
+## Clinical use
+- Adapted for routine quality assurance tests at Princess Alexandra Hospital. 
+
 ## Licence
 
 Content is released under [this licence](https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/a5fb87378eb501c1a9539277ff3f0080b794489e/Copyright%20Notice%20and%20Licence.pdf) which includes attribution guidelines, contribution terms, and software and third-party licences and permissions.
