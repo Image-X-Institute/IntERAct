@@ -1843,13 +1843,13 @@ namespace PhantomControl
                             var finalSleeptime = (int)(timeshift - newx);
                             if (finalSleeptime < 0)
                             {
-                                finalSleeptime = 0;
+                                finalSleeptime = 01111;
                             }
                             else
                             {
                                 finalSleeptime = (int)(timeshift - newx);
                             }
-                            Thread.Sleep(20);
+                            Thread.Sleep(finalSleeptime);
                             /*Console.WriteLine($"Sleep Time: {finalSleeptime}. New x: {newx}");*/
                             
                             previous = now;
@@ -1859,7 +1859,7 @@ namespace PhantomControl
                             var timepassed = (196 - (DateTime.Now - now).Milliseconds);
                             var timeshift = (timepassed > 0) ? timepassed : 0;
 
-                            Thread.Sleep(20);
+                            Thread.Sleep(timeshift);
                             /*Console.WriteLine($"time shift: {timeshift}");*/
                             previous = now;
                         }
