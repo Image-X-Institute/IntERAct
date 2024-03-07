@@ -144,6 +144,15 @@ namespace PhantomControl
             this.panel46 = new System.Windows.Forms.Panel();
             this.panel47 = new System.Windows.Forms.Panel();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.dropdownContainer = new System.Windows.Forms.FlowLayoutPanel();
+            this.robotSelect = new System.Windows.Forms.Button();
+            this.select6DOF = new System.Windows.Forms.Button();
+            this.selected1D = new System.Windows.Forms.Button();
+            this.selectBoth = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel50 = new System.Windows.Forms.Panel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label20 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -192,6 +201,7 @@ namespace PhantomControl
             this.panel46.SuspendLayout();
             this.panel47.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            this.dropdownContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtBox_TCPx
@@ -202,7 +212,7 @@ namespace PhantomControl
             this.txtBox_TCPx.Location = new System.Drawing.Point(0, 0);
             this.txtBox_TCPx.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtBox_TCPx.Name = "txtBox_TCPx";
-            this.txtBox_TCPx.Size = new System.Drawing.Size(139, 30);
+            this.txtBox_TCPx.Size = new System.Drawing.Size(139, 26);
             this.txtBox_TCPx.TabIndex = 1;
             this.txtBox_TCPx.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBox_TCPx.TextChanged += new System.EventHandler(this.txtBox_TCPx_TextChanged);
@@ -214,7 +224,7 @@ namespace PhantomControl
             this.label_TCPx.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_TCPx.Location = new System.Drawing.Point(0, 0);
             this.label_TCPx.Name = "label_TCPx";
-            this.label_TCPx.Size = new System.Drawing.Size(44, 22);
+            this.label_TCPx.Size = new System.Drawing.Size(36, 20);
             this.label_TCPx.TabIndex = 4;
             this.label_TCPx.Text = "    x:";
             this.label_TCPx.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -225,7 +235,7 @@ namespace PhantomControl
             this.bunifuCustomLabel7.Font = new System.Drawing.Font("Century Gothic", 12.9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bunifuCustomLabel7.Location = new System.Drawing.Point(60, 247);
             this.bunifuCustomLabel7.Name = "bunifuCustomLabel7";
-            this.bunifuCustomLabel7.Size = new System.Drawing.Size(237, 25);
+            this.bunifuCustomLabel7.Size = new System.Drawing.Size(195, 21);
             this.bunifuCustomLabel7.TabIndex = 11;
             this.bunifuCustomLabel7.Text = "     Origin of Motion    ";
             this.bunifuCustomLabel7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -237,7 +247,7 @@ namespace PhantomControl
             this.txtBox_TCPy.Location = new System.Drawing.Point(0, 0);
             this.txtBox_TCPy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtBox_TCPy.Name = "txtBox_TCPy";
-            this.txtBox_TCPy.Size = new System.Drawing.Size(139, 30);
+            this.txtBox_TCPy.Size = new System.Drawing.Size(139, 26);
             this.txtBox_TCPy.TabIndex = 2;
             this.txtBox_TCPy.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBox_TCPy.TextChanged += new System.EventHandler(this.txtBox_TCPy_TextChanged);
@@ -249,7 +259,7 @@ namespace PhantomControl
             this.label_TCPy.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_TCPy.Location = new System.Drawing.Point(0, 0);
             this.label_TCPy.Name = "label_TCPy";
-            this.label_TCPy.Size = new System.Drawing.Size(46, 22);
+            this.label_TCPy.Size = new System.Drawing.Size(37, 20);
             this.label_TCPy.TabIndex = 4;
             this.label_TCPy.Text = "    y:";
             this.label_TCPy.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -262,7 +272,7 @@ namespace PhantomControl
             this.txtBox_TCPrx.Location = new System.Drawing.Point(0, 0);
             this.txtBox_TCPrx.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtBox_TCPrx.Name = "txtBox_TCPrx";
-            this.txtBox_TCPrx.Size = new System.Drawing.Size(139, 30);
+            this.txtBox_TCPrx.Size = new System.Drawing.Size(139, 26);
             this.txtBox_TCPrx.TabIndex = 4;
             this.txtBox_TCPrx.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBox_TCPrx.TextChanged += new System.EventHandler(this.txtBox_TCPrx_TextChanged);
@@ -274,7 +284,7 @@ namespace PhantomControl
             this.label_TCPrx.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_TCPrx.Location = new System.Drawing.Point(0, 0);
             this.label_TCPrx.Name = "label_TCPrx";
-            this.label_TCPrx.Size = new System.Drawing.Size(45, 22);
+            this.label_TCPrx.Size = new System.Drawing.Size(37, 20);
             this.label_TCPrx.TabIndex = 4;
             this.label_TCPrx.Text = "   rx:";
             this.label_TCPrx.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -286,7 +296,7 @@ namespace PhantomControl
             this.txtBox_TCPz.Location = new System.Drawing.Point(0, 0);
             this.txtBox_TCPz.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtBox_TCPz.Name = "txtBox_TCPz";
-            this.txtBox_TCPz.Size = new System.Drawing.Size(139, 30);
+            this.txtBox_TCPz.Size = new System.Drawing.Size(139, 26);
             this.txtBox_TCPz.TabIndex = 3;
             this.txtBox_TCPz.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBox_TCPz.TextChanged += new System.EventHandler(this.txtBox_TCPz_TextChanged);
@@ -298,7 +308,7 @@ namespace PhantomControl
             this.label_TCPz.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_TCPz.Location = new System.Drawing.Point(0, 0);
             this.label_TCPz.Name = "label_TCPz";
-            this.label_TCPz.Size = new System.Drawing.Size(43, 22);
+            this.label_TCPz.Size = new System.Drawing.Size(35, 20);
             this.label_TCPz.TabIndex = 4;
             this.label_TCPz.Text = "    z:";
             this.label_TCPz.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -310,7 +320,7 @@ namespace PhantomControl
             this.txtBox_TCPrz.Location = new System.Drawing.Point(0, 0);
             this.txtBox_TCPrz.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtBox_TCPrz.Name = "txtBox_TCPrz";
-            this.txtBox_TCPrz.Size = new System.Drawing.Size(139, 30);
+            this.txtBox_TCPrz.Size = new System.Drawing.Size(139, 26);
             this.txtBox_TCPrz.TabIndex = 6;
             this.txtBox_TCPrz.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBox_TCPrz.TextChanged += new System.EventHandler(this.txtBox_TCPrz_TextChanged);
@@ -322,7 +332,7 @@ namespace PhantomControl
             this.label_TCPrz.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_TCPrz.Location = new System.Drawing.Point(0, 0);
             this.label_TCPrz.Name = "label_TCPrz";
-            this.label_TCPrz.Size = new System.Drawing.Size(44, 22);
+            this.label_TCPrz.Size = new System.Drawing.Size(36, 20);
             this.label_TCPrz.TabIndex = 4;
             this.label_TCPrz.Text = "   rz:";
             this.label_TCPrz.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -334,7 +344,7 @@ namespace PhantomControl
             this.txtBox_TCPry.Location = new System.Drawing.Point(0, 0);
             this.txtBox_TCPry.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtBox_TCPry.Name = "txtBox_TCPry";
-            this.txtBox_TCPry.Size = new System.Drawing.Size(139, 30);
+            this.txtBox_TCPry.Size = new System.Drawing.Size(139, 26);
             this.txtBox_TCPry.TabIndex = 5;
             this.txtBox_TCPry.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBox_TCPry.TextChanged += new System.EventHandler(this.txtBox_TCPry_TextChanged);
@@ -346,7 +356,7 @@ namespace PhantomControl
             this.label_TCPry.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_TCPry.Location = new System.Drawing.Point(0, 0);
             this.label_TCPry.Name = "label_TCPry";
-            this.label_TCPry.Size = new System.Drawing.Size(47, 22);
+            this.label_TCPry.Size = new System.Drawing.Size(38, 20);
             this.label_TCPry.TabIndex = 4;
             this.label_TCPry.Text = "   ry:";
             this.label_TCPry.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -357,7 +367,7 @@ namespace PhantomControl
             this.bunifuCustomLabel1.Font = new System.Drawing.Font("Century Gothic", 12.9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bunifuCustomLabel1.Location = new System.Drawing.Point(500, 81);
             this.bunifuCustomLabel1.Name = "bunifuCustomLabel1";
-            this.bunifuCustomLabel1.Size = new System.Drawing.Size(253, 25);
+            this.bunifuCustomLabel1.Size = new System.Drawing.Size(208, 21);
             this.bunifuCustomLabel1.TabIndex = 19;
             this.bunifuCustomLabel1.Text = "            Payload             ";
             this.bunifuCustomLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -370,7 +380,7 @@ namespace PhantomControl
             this.txtBox_Payload.Location = new System.Drawing.Point(0, 0);
             this.txtBox_Payload.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtBox_Payload.Name = "txtBox_Payload";
-            this.txtBox_Payload.Size = new System.Drawing.Size(125, 30);
+            this.txtBox_Payload.Size = new System.Drawing.Size(125, 26);
             this.txtBox_Payload.TabIndex = 7;
             this.txtBox_Payload.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBox_Payload.TextChanged += new System.EventHandler(this.txtBox_Payload_TextChanged);
@@ -382,7 +392,7 @@ namespace PhantomControl
             this.label_mass.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_mass.Location = new System.Drawing.Point(0, 0);
             this.label_mass.Name = "label_mass";
-            this.label_mass.Size = new System.Drawing.Size(59, 22);
+            this.label_mass.Size = new System.Drawing.Size(50, 20);
             this.label_mass.TabIndex = 4;
             this.label_mass.Text = "Mass:";
             this.label_mass.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -391,9 +401,9 @@ namespace PhantomControl
             // 
             this.bunifuCustomLabel2.AutoSize = true;
             this.bunifuCustomLabel2.Font = new System.Drawing.Font("Century Gothic", 12.9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuCustomLabel2.Location = new System.Drawing.Point(482, 533);
+            this.bunifuCustomLabel2.Location = new System.Drawing.Point(481, 533);
             this.bunifuCustomLabel2.Name = "bunifuCustomLabel2";
-            this.bunifuCustomLabel2.Size = new System.Drawing.Size(253, 25);
+            this.bunifuCustomLabel2.Size = new System.Drawing.Size(211, 21);
             this.bunifuCustomLabel2.TabIndex = 20;
             this.bunifuCustomLabel2.Text = "            Outputs              ";
             this.bunifuCustomLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -448,7 +458,7 @@ namespace PhantomControl
             this.label_logfileSwitch.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_logfileSwitch.Location = new System.Drawing.Point(0, 0);
             this.label_logfileSwitch.Name = "label_logfileSwitch";
-            this.label_logfileSwitch.Size = new System.Drawing.Size(68, 22);
+            this.label_logfileSwitch.Size = new System.Drawing.Size(57, 20);
             this.label_logfileSwitch.TabIndex = 5;
             this.label_logfileSwitch.Text = "Logfile";
             this.label_logfileSwitch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -460,7 +470,7 @@ namespace PhantomControl
             this.label_UrScriptSwitch.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_UrScriptSwitch.Location = new System.Drawing.Point(0, 0);
             this.label_UrScriptSwitch.Name = "label_UrScriptSwitch";
-            this.label_UrScriptSwitch.Size = new System.Drawing.Size(78, 22);
+            this.label_UrScriptSwitch.Size = new System.Drawing.Size(65, 20);
             this.label_UrScriptSwitch.TabIndex = 5;
             this.label_UrScriptSwitch.Text = "UrScript";
             this.label_UrScriptSwitch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -471,7 +481,7 @@ namespace PhantomControl
             this.bunifuCustomLabel3.Font = new System.Drawing.Font("Century Gothic", 12.9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bunifuCustomLabel3.Location = new System.Drawing.Point(60, 81);
             this.bunifuCustomLabel3.Name = "bunifuCustomLabel3";
-            this.bunifuCustomLabel3.Size = new System.Drawing.Size(251, 25);
+            this.bunifuCustomLabel3.Size = new System.Drawing.Size(211, 21);
             this.bunifuCustomLabel3.TabIndex = 26;
             this.bunifuCustomLabel3.Text = "         Connection          ";
             this.bunifuCustomLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -483,7 +493,7 @@ namespace PhantomControl
             this.txtBox_IP.Location = new System.Drawing.Point(35, 0);
             this.txtBox_IP.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtBox_IP.Name = "txtBox_IP";
-            this.txtBox_IP.Size = new System.Drawing.Size(170, 30);
+            this.txtBox_IP.Size = new System.Drawing.Size(170, 26);
             this.txtBox_IP.TabIndex = 7;
             this.txtBox_IP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBox_IP.TextChanged += new System.EventHandler(this.textbox_IP_TextChanged);
@@ -495,7 +505,7 @@ namespace PhantomControl
             this.label_IP.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_IP.Location = new System.Drawing.Point(0, 0);
             this.label_IP.Name = "label_IP";
-            this.label_IP.Size = new System.Drawing.Size(31, 22);
+            this.label_IP.Size = new System.Drawing.Size(27, 20);
             this.label_IP.TabIndex = 4;
             this.label_IP.Text = "IP:";
             this.label_IP.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -506,7 +516,7 @@ namespace PhantomControl
             this.bunifuCustomLabel6.Font = new System.Drawing.Font("Century Gothic", 12.9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bunifuCustomLabel6.Location = new System.Drawing.Point(489, 376);
             this.bunifuCustomLabel6.Name = "bunifuCustomLabel6";
-            this.bunifuCustomLabel6.Size = new System.Drawing.Size(254, 25);
+            this.bunifuCustomLabel6.Size = new System.Drawing.Size(210, 21);
             this.bunifuCustomLabel6.TabIndex = 29;
             this.bunifuCustomLabel6.Text = "           Kinematics          ";
             this.bunifuCustomLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -519,7 +529,7 @@ namespace PhantomControl
             this.dropdown_motionType.Location = new System.Drawing.Point(496, 321);
             this.dropdown_motionType.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
             this.dropdown_motionType.Name = "dropdown_motionType";
-            this.dropdown_motionType.Size = new System.Drawing.Size(211, 30);
+            this.dropdown_motionType.Size = new System.Drawing.Size(211, 28);
             this.dropdown_motionType.TabIndex = 30;
             // 
             // label_motionType
@@ -528,7 +538,7 @@ namespace PhantomControl
             this.label_motionType.Font = new System.Drawing.Font("Century Gothic", 12.9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_motionType.Location = new System.Drawing.Point(489, 257);
             this.label_motionType.Name = "label_motionType";
-            this.label_motionType.Size = new System.Drawing.Size(255, 25);
+            this.label_motionType.Size = new System.Drawing.Size(210, 21);
             this.label_motionType.TabIndex = 31;
             this.label_motionType.Text = "          Motion Type        ";
             this.label_motionType.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -540,7 +550,7 @@ namespace PhantomControl
             this.txtBox_time.Location = new System.Drawing.Point(0, 0);
             this.txtBox_time.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtBox_time.Name = "txtBox_time";
-            this.txtBox_time.Size = new System.Drawing.Size(94, 30);
+            this.txtBox_time.Size = new System.Drawing.Size(94, 26);
             this.txtBox_time.TabIndex = 7;
             this.txtBox_time.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBox_time.TextChanged += new System.EventHandler(this.textbox_time_TextChanged);
@@ -552,7 +562,7 @@ namespace PhantomControl
             this.label_time.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_time.Location = new System.Drawing.Point(0, 0);
             this.label_time.Name = "label_time";
-            this.label_time.Size = new System.Drawing.Size(125, 22);
+            this.label_time.Size = new System.Drawing.Size(100, 20);
             this.label_time.TabIndex = 4;
             this.label_time.Text = "Sample rate:";
             this.label_time.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -565,7 +575,7 @@ namespace PhantomControl
             this.label_Data.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_Data.Location = new System.Drawing.Point(0, 0);
             this.label_Data.Name = "label_Data";
-            this.label_Data.Size = new System.Drawing.Size(57, 22);
+            this.label_Data.Size = new System.Drawing.Size(45, 20);
             this.label_Data.TabIndex = 5;
             this.label_Data.Text = "Data";
             this.label_Data.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -592,7 +602,7 @@ namespace PhantomControl
             this.txtBox_AlignedPos_rz.Location = new System.Drawing.Point(0, 0);
             this.txtBox_AlignedPos_rz.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtBox_AlignedPos_rz.Name = "txtBox_AlignedPos_rz";
-            this.txtBox_AlignedPos_rz.Size = new System.Drawing.Size(99, 30);
+            this.txtBox_AlignedPos_rz.Size = new System.Drawing.Size(99, 26);
             this.txtBox_AlignedPos_rz.TabIndex = 6;
             this.txtBox_AlignedPos_rz.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBox_AlignedPos_rz.TextChanged += new System.EventHandler(this.txtBox_AlignedPos_rz_TextChanged);
@@ -604,7 +614,7 @@ namespace PhantomControl
             this.bunifuCustomLabel4.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bunifuCustomLabel4.Location = new System.Drawing.Point(0, 0);
             this.bunifuCustomLabel4.Name = "bunifuCustomLabel4";
-            this.bunifuCustomLabel4.Size = new System.Drawing.Size(39, 22);
+            this.bunifuCustomLabel4.Size = new System.Drawing.Size(32, 20);
             this.bunifuCustomLabel4.TabIndex = 4;
             this.bunifuCustomLabel4.Text = "  rz:";
             this.bunifuCustomLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -617,7 +627,7 @@ namespace PhantomControl
             this.txtBox_AlignedPos_rx.Location = new System.Drawing.Point(0, 0);
             this.txtBox_AlignedPos_rx.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtBox_AlignedPos_rx.Name = "txtBox_AlignedPos_rx";
-            this.txtBox_AlignedPos_rx.Size = new System.Drawing.Size(99, 30);
+            this.txtBox_AlignedPos_rx.Size = new System.Drawing.Size(99, 26);
             this.txtBox_AlignedPos_rx.TabIndex = 4;
             this.txtBox_AlignedPos_rx.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBox_AlignedPos_rx.TextChanged += new System.EventHandler(this.txtBox_AlignedPos_rx_TextChanged);
@@ -629,7 +639,7 @@ namespace PhantomControl
             this.bunifuCustomLabel5.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bunifuCustomLabel5.Location = new System.Drawing.Point(0, 0);
             this.bunifuCustomLabel5.Name = "bunifuCustomLabel5";
-            this.bunifuCustomLabel5.Size = new System.Drawing.Size(45, 22);
+            this.bunifuCustomLabel5.Size = new System.Drawing.Size(37, 20);
             this.bunifuCustomLabel5.TabIndex = 4;
             this.bunifuCustomLabel5.Text = "   rx:";
             this.bunifuCustomLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -641,7 +651,7 @@ namespace PhantomControl
             this.txtBox_AlignedPos_ry.Location = new System.Drawing.Point(0, 0);
             this.txtBox_AlignedPos_ry.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtBox_AlignedPos_ry.Name = "txtBox_AlignedPos_ry";
-            this.txtBox_AlignedPos_ry.Size = new System.Drawing.Size(93, 30);
+            this.txtBox_AlignedPos_ry.Size = new System.Drawing.Size(93, 26);
             this.txtBox_AlignedPos_ry.TabIndex = 5;
             this.txtBox_AlignedPos_ry.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBox_AlignedPos_ry.TextChanged += new System.EventHandler(this.txtBox_AlignedPos_ry_TextChanged);
@@ -653,7 +663,7 @@ namespace PhantomControl
             this.bunifuCustomLabel8.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bunifuCustomLabel8.Location = new System.Drawing.Point(0, 0);
             this.bunifuCustomLabel8.Name = "bunifuCustomLabel8";
-            this.bunifuCustomLabel8.Size = new System.Drawing.Size(47, 22);
+            this.bunifuCustomLabel8.Size = new System.Drawing.Size(38, 20);
             this.bunifuCustomLabel8.TabIndex = 4;
             this.bunifuCustomLabel8.Text = "   ry:";
             this.bunifuCustomLabel8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -665,7 +675,7 @@ namespace PhantomControl
             this.txtBox_AlignedPos_y.Location = new System.Drawing.Point(0, 0);
             this.txtBox_AlignedPos_y.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtBox_AlignedPos_y.Name = "txtBox_AlignedPos_y";
-            this.txtBox_AlignedPos_y.Size = new System.Drawing.Size(93, 30);
+            this.txtBox_AlignedPos_y.Size = new System.Drawing.Size(93, 26);
             this.txtBox_AlignedPos_y.TabIndex = 2;
             this.txtBox_AlignedPos_y.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBox_AlignedPos_y.TextChanged += new System.EventHandler(this.txtBox_AlignedPos_y_TextChanged);
@@ -677,7 +687,7 @@ namespace PhantomControl
             this.bunifuCustomLabel9.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bunifuCustomLabel9.Location = new System.Drawing.Point(0, 0);
             this.bunifuCustomLabel9.Name = "bunifuCustomLabel9";
-            this.bunifuCustomLabel9.Size = new System.Drawing.Size(46, 22);
+            this.bunifuCustomLabel9.Size = new System.Drawing.Size(37, 20);
             this.bunifuCustomLabel9.TabIndex = 4;
             this.bunifuCustomLabel9.Text = "    y:";
             this.bunifuCustomLabel9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -689,7 +699,7 @@ namespace PhantomControl
             this.txtBox_AlignedPos_z.Location = new System.Drawing.Point(0, 0);
             this.txtBox_AlignedPos_z.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtBox_AlignedPos_z.Name = "txtBox_AlignedPos_z";
-            this.txtBox_AlignedPos_z.Size = new System.Drawing.Size(99, 30);
+            this.txtBox_AlignedPos_z.Size = new System.Drawing.Size(99, 26);
             this.txtBox_AlignedPos_z.TabIndex = 3;
             this.txtBox_AlignedPos_z.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBox_AlignedPos_z.TextChanged += new System.EventHandler(this.txtBox_AlignedPos_z_TextChanged);
@@ -701,7 +711,7 @@ namespace PhantomControl
             this.bunifuCustomLabel10.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bunifuCustomLabel10.Location = new System.Drawing.Point(0, 0);
             this.bunifuCustomLabel10.Name = "bunifuCustomLabel10";
-            this.bunifuCustomLabel10.Size = new System.Drawing.Size(43, 22);
+            this.bunifuCustomLabel10.Size = new System.Drawing.Size(35, 20);
             this.bunifuCustomLabel10.TabIndex = 4;
             this.bunifuCustomLabel10.Text = "    z:";
             this.bunifuCustomLabel10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -712,7 +722,7 @@ namespace PhantomControl
             this.bunifuCustomLabel11.Font = new System.Drawing.Font("Century Gothic", 12.9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bunifuCustomLabel11.Location = new System.Drawing.Point(928, 81);
             this.bunifuCustomLabel11.Name = "bunifuCustomLabel11";
-            this.bunifuCustomLabel11.Size = new System.Drawing.Size(583, 25);
+            this.bunifuCustomLabel11.Size = new System.Drawing.Size(484, 21);
             this.bunifuCustomLabel11.TabIndex = 20;
             this.bunifuCustomLabel11.Text = "                                  Aligned Position                               " +
     "  ";
@@ -727,7 +737,7 @@ namespace PhantomControl
             this.txtBox_AlignedPos_x.Location = new System.Drawing.Point(0, 0);
             this.txtBox_AlignedPos_x.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtBox_AlignedPos_x.Name = "txtBox_AlignedPos_x";
-            this.txtBox_AlignedPos_x.Size = new System.Drawing.Size(99, 30);
+            this.txtBox_AlignedPos_x.Size = new System.Drawing.Size(99, 26);
             this.txtBox_AlignedPos_x.TabIndex = 1;
             this.txtBox_AlignedPos_x.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBox_AlignedPos_x.TextChanged += new System.EventHandler(this.txtBox_AlignedPos_x_TextChanged);
@@ -739,7 +749,7 @@ namespace PhantomControl
             this.bunifuCustomLabel12.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bunifuCustomLabel12.Location = new System.Drawing.Point(0, 0);
             this.bunifuCustomLabel12.Name = "bunifuCustomLabel12";
-            this.bunifuCustomLabel12.Size = new System.Drawing.Size(44, 22);
+            this.bunifuCustomLabel12.Size = new System.Drawing.Size(36, 20);
             this.bunifuCustomLabel12.TabIndex = 4;
             this.bunifuCustomLabel12.Text = "    x:";
             this.bunifuCustomLabel12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -776,9 +786,9 @@ namespace PhantomControl
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Right;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(210, 0);
+            this.label1.Location = new System.Drawing.Point(219, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 22);
+            this.label1.Size = new System.Drawing.Size(35, 20);
             this.label1.TabIndex = 12;
             this.label1.Text = "mm";
             // 
@@ -816,9 +826,9 @@ namespace PhantomControl
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Right;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(210, 0);
+            this.label2.Location = new System.Drawing.Point(219, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 22);
+            this.label2.Size = new System.Drawing.Size(35, 20);
             this.label2.TabIndex = 12;
             this.label2.Text = "mm";
             // 
@@ -857,9 +867,9 @@ namespace PhantomControl
             this.label8.AutoSize = true;
             this.label8.Dock = System.Windows.Forms.DockStyle.Right;
             this.label8.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(212, 0);
+            this.label8.Location = new System.Drawing.Point(220, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(42, 22);
+            this.label8.Size = new System.Drawing.Size(34, 20);
             this.label8.TabIndex = 14;
             this.label8.Text = "rad";
             // 
@@ -870,7 +880,7 @@ namespace PhantomControl
             this.label3.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(254, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(0, 22);
+            this.label3.Size = new System.Drawing.Size(0, 20);
             this.label3.TabIndex = 12;
             // 
             // panel6
@@ -907,9 +917,9 @@ namespace PhantomControl
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Right;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(210, 0);
+            this.label4.Location = new System.Drawing.Point(219, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 22);
+            this.label4.Size = new System.Drawing.Size(35, 20);
             this.label4.TabIndex = 12;
             this.label4.Text = "mm";
             // 
@@ -948,9 +958,9 @@ namespace PhantomControl
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Right;
             this.label10.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(212, 0);
+            this.label10.Location = new System.Drawing.Point(220, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(42, 22);
+            this.label10.Size = new System.Drawing.Size(34, 20);
             this.label10.TabIndex = 15;
             this.label10.Text = "rad";
             // 
@@ -961,7 +971,7 @@ namespace PhantomControl
             this.label5.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(254, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(0, 22);
+            this.label5.Size = new System.Drawing.Size(0, 20);
             this.label5.TabIndex = 12;
             // 
             // panel14
@@ -999,9 +1009,9 @@ namespace PhantomControl
             this.label9.AutoSize = true;
             this.label9.Dock = System.Windows.Forms.DockStyle.Right;
             this.label9.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(212, 0);
+            this.label9.Location = new System.Drawing.Point(220, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(42, 22);
+            this.label9.Size = new System.Drawing.Size(34, 20);
             this.label9.TabIndex = 15;
             this.label9.Text = "rad";
             // 
@@ -1012,7 +1022,7 @@ namespace PhantomControl
             this.label6.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(254, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(0, 22);
+            this.label6.Size = new System.Drawing.Size(0, 20);
             this.label6.TabIndex = 12;
             // 
             // panel17
@@ -1049,9 +1059,9 @@ namespace PhantomControl
             this.label7.AutoSize = true;
             this.label7.Dock = System.Windows.Forms.DockStyle.Right;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(178, 0);
+            this.label7.Location = new System.Drawing.Point(184, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(33, 22);
+            this.label7.Size = new System.Drawing.Size(27, 20);
             this.label7.TabIndex = 12;
             this.label7.Text = "kg";
             // 
@@ -1077,7 +1087,7 @@ namespace PhantomControl
             // 
             this.panel22.Controls.Add(this.label_logfileSwitch);
             this.panel22.Controls.Add(this.switch_LogFile);
-            this.panel22.Location = new System.Drawing.Point(488, 591);
+            this.panel22.Location = new System.Drawing.Point(487, 591);
             this.panel22.Name = "panel22";
             this.panel22.Size = new System.Drawing.Size(220, 50);
             this.panel22.TabIndex = 24;
@@ -1086,7 +1096,7 @@ namespace PhantomControl
             // 
             this.panel23.Controls.Add(this.label_UrScriptSwitch);
             this.panel23.Controls.Add(this.switch_UrScript);
-            this.panel23.Location = new System.Drawing.Point(488, 692);
+            this.panel23.Location = new System.Drawing.Point(487, 692);
             this.panel23.Name = "panel23";
             this.panel23.Size = new System.Drawing.Size(220, 50);
             this.panel23.TabIndex = 25;
@@ -1143,7 +1153,7 @@ namespace PhantomControl
             // 
             this.panel38.Controls.Add(this.label_Data);
             this.panel38.Controls.Add(this.switch_Data);
-            this.panel38.Location = new System.Drawing.Point(488, 792);
+            this.panel38.Location = new System.Drawing.Point(487, 792);
             this.panel38.Name = "panel38";
             this.panel38.Size = new System.Drawing.Size(220, 50);
             this.panel38.TabIndex = 32;
@@ -1167,7 +1177,7 @@ namespace PhantomControl
             this.label11.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.Location = new System.Drawing.Point(154, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(42, 22);
+            this.label11.Size = new System.Drawing.Size(34, 20);
             this.label11.TabIndex = 15;
             this.label11.Text = "rad";
             // 
@@ -1178,7 +1188,7 @@ namespace PhantomControl
             this.label12.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.Location = new System.Drawing.Point(190, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(0, 22);
+            this.label12.Size = new System.Drawing.Size(0, 20);
             this.label12.TabIndex = 12;
             // 
             // panel27
@@ -1218,7 +1228,7 @@ namespace PhantomControl
             this.label13.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.Location = new System.Drawing.Point(153, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(42, 22);
+            this.label13.Size = new System.Drawing.Size(34, 20);
             this.label13.TabIndex = 14;
             this.label13.Text = "rad";
             // 
@@ -1229,7 +1239,7 @@ namespace PhantomControl
             this.label14.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.Location = new System.Drawing.Point(207, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(0, 22);
+            this.label14.Size = new System.Drawing.Size(0, 20);
             this.label14.TabIndex = 12;
             // 
             // panel30
@@ -1269,7 +1279,7 @@ namespace PhantomControl
             this.label15.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.Location = new System.Drawing.Point(149, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(42, 22);
+            this.label15.Size = new System.Drawing.Size(34, 20);
             this.label15.TabIndex = 15;
             this.label15.Text = "rad";
             // 
@@ -1280,7 +1290,7 @@ namespace PhantomControl
             this.label16.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.Location = new System.Drawing.Point(177, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(0, 22);
+            this.label16.Size = new System.Drawing.Size(0, 20);
             this.label16.TabIndex = 12;
             // 
             // panel33
@@ -1319,7 +1329,7 @@ namespace PhantomControl
             this.label17.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.Location = new System.Drawing.Point(149, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(27, 22);
+            this.label17.Size = new System.Drawing.Size(22, 20);
             this.label17.TabIndex = 12;
             this.label17.Text = "m";
             // 
@@ -1359,7 +1369,7 @@ namespace PhantomControl
             this.label18.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.Location = new System.Drawing.Point(154, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(27, 22);
+            this.label18.Size = new System.Drawing.Size(22, 20);
             this.label18.TabIndex = 12;
             this.label18.Text = "m";
             // 
@@ -1399,7 +1409,7 @@ namespace PhantomControl
             this.label19.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.Location = new System.Drawing.Point(153, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(27, 22);
+            this.label19.Size = new System.Drawing.Size(22, 20);
             this.label19.TabIndex = 12;
             this.label19.Text = "m";
             // 
@@ -1421,11 +1431,102 @@ namespace PhantomControl
             this.panel47.Size = new System.Drawing.Size(54, 68);
             this.panel47.TabIndex = 13;
             // 
+            // dropdownContainer
+            // 
+            this.dropdownContainer.BackColor = System.Drawing.Color.Transparent;
+            this.dropdownContainer.Controls.Add(this.robotSelect);
+            this.dropdownContainer.Controls.Add(this.select6DOF);
+            this.dropdownContainer.Controls.Add(this.selected1D);
+            this.dropdownContainer.Controls.Add(this.selectBoth);
+            this.dropdownContainer.Controls.Add(this.flowLayoutPanel1);
+            this.dropdownContainer.Location = new System.Drawing.Point(932, 591);
+            this.dropdownContainer.MaximumSize = new System.Drawing.Size(200, 177);
+            this.dropdownContainer.MinimumSize = new System.Drawing.Size(200, 46);
+            this.dropdownContainer.Name = "dropdownContainer";
+            this.dropdownContainer.Size = new System.Drawing.Size(200, 46);
+            this.dropdownContainer.TabIndex = 37;
+            // 
+            // robotSelect
+            // 
+            this.robotSelect.Location = new System.Drawing.Point(3, 3);
+            this.robotSelect.Name = "robotSelect";
+            this.robotSelect.Size = new System.Drawing.Size(194, 38);
+            this.robotSelect.TabIndex = 0;
+            this.robotSelect.Text = "Select";
+            this.robotSelect.UseVisualStyleBackColor = true;
+            this.robotSelect.Click += new System.EventHandler(this.robotSelect_Click);
+            // 
+            // select6DOF
+            // 
+            this.select6DOF.Location = new System.Drawing.Point(3, 47);
+            this.select6DOF.Name = "select6DOF";
+            this.select6DOF.Size = new System.Drawing.Size(194, 38);
+            this.select6DOF.TabIndex = 1;
+            this.select6DOF.Text = "6DOF ";
+            this.select6DOF.UseVisualStyleBackColor = true;
+            this.select6DOF.Click += new System.EventHandler(this.select6DOF_Click);
+            // 
+            // selected1D
+            // 
+            this.selected1D.Location = new System.Drawing.Point(3, 91);
+            this.selected1D.Name = "selected1D";
+            this.selected1D.Size = new System.Drawing.Size(194, 38);
+            this.selected1D.TabIndex = 2;
+            this.selected1D.Text = "1D";
+            this.selected1D.UseVisualStyleBackColor = true;
+            this.selected1D.Click += new System.EventHandler(this.select1D_Click);
+            // 
+            // selectBoth
+            // 
+            this.selectBoth.Location = new System.Drawing.Point(3, 135);
+            this.selectBoth.Name = "selectBoth";
+            this.selectBoth.Size = new System.Drawing.Size(194, 38);
+            this.selectBoth.TabIndex = 3;
+            this.selectBoth.Text = "BOTH";
+            this.selectBoth.UseVisualStyleBackColor = true;
+            this.selectBoth.Click += new System.EventHandler(this.selectBoth_Click);
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 179);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(200, 100);
+            this.flowLayoutPanel1.TabIndex = 4;
+            // 
+            // panel50
+            // 
+            this.panel50.Location = new System.Drawing.Point(932, 637);
+            this.panel50.Margin = new System.Windows.Forms.Padding(0);
+            this.panel50.Name = "panel50";
+            this.panel50.Size = new System.Drawing.Size(200, 137);
+            this.panel50.TabIndex = 0;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Century Gothic", 12.9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(900, 557);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(280, 21);
+            this.label20.TabIndex = 38;
+            this.label20.Text = "            Robot Selection              ";
+            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Settings_tab
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
+            this.AutoScrollMargin = new System.Drawing.Size(40, 40);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Gainsboro;
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.dropdownContainer);
             this.Controls.Add(this.flatButton_MoveToAliPos);
             this.Controls.Add(this.panel25);
             this.Controls.Add(this.panel38);
@@ -1454,10 +1555,12 @@ namespace PhantomControl
             this.Controls.Add(this.panel10);
             this.Controls.Add(this.bunifuCustomLabel7);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel50);
             this.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Settings_tab";
-            this.Size = new System.Drawing.Size(1651, 1705);
+            this.Size = new System.Drawing.Size(1701, 918);
+            this.Load += new System.EventHandler(this.Settings_tab_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel8.ResumeLayout(false);
@@ -1552,6 +1655,7 @@ namespace PhantomControl
             this.panel47.ResumeLayout(false);
             this.panel47.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            this.dropdownContainer.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1728,5 +1832,14 @@ namespace PhantomControl
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Panel panel46;
         private System.Windows.Forms.Panel panel47;
+        private FlowLayoutPanel dropdownContainer;
+        private Panel panel50;
+        private Button robotSelect;
+        private Button selectBoth;
+        private Button selected1D;
+        private Button select6DOF;
+        private Timer timer1;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private Label label20;
     }
 }

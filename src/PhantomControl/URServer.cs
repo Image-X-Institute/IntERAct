@@ -9,6 +9,7 @@ using System.Windows.Media.Media3D;
 using System.Windows.Forms;
 using System.Threading;
 using MathNet.Numerics.LinearAlgebra;
+using static PhantomControl.MotionControl_tab;
 
 /* This is the URServer class, the methods in this class control connection via TCP to the controller for the primary client and dashboard server. 
  * URScript functions are implemented in this class. When data is loaded into the software this class handles conversion to URScript language and sets
@@ -258,7 +259,7 @@ namespace PhantomControl
                     IPAddress ipAddress = IPAddress.Parse(UrSettings.hostIPAddress);
                     db.Connect(ipAddress, PORT_29999);
                 }
-                catch (Exception excep)
+                catch
                 {
                     UpdateStatusBarMessage.ShowStatusMessage("Error faild to connect on port " + PORT_29999.ToString());
                     Logger.addToLogFile("Error faild to connect on port " + PORT_29999.ToString());

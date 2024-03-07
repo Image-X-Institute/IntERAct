@@ -8,13 +8,17 @@ using System.Text;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static PhantomControl.MotionControl_tab;
+using System.Security.Cryptography.X509Certificates;
 
 namespace PhantomControl
 {
     public partial class Settings_tab : UserControl
     {
         URServer urServer = new URServer();
-
+        public MotionControl_tab motionTabPub;
+        MotionControl_tab mct = new MotionControl_tab();
+        
         public Settings_tab()
         {
             if (!this.DesignMode)
@@ -25,9 +29,11 @@ namespace PhantomControl
                 LoadDefaultMotionTypes();
 
                 loadSettings();
-                updateUISettings();            
+                updateUISettings();
+                motionTabPub = mct;
             }
         }
+
 
         /// <summary>
         /// KM - added default motion types - movej & movel
@@ -451,6 +457,96 @@ namespace PhantomControl
         }
 
         private void label_time_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label20_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox_1dSR_TextChanged(object sender, EventArgs e)
+        {
+            if (txtBox_time.Text != "" || txtBox_time.Text != "0")
+            {
+                int value;
+            }
+        }
+
+        bool expand = false;
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (expand == false)
+            {
+                dropdownContainer.Height += 131;
+                if(dropdownContainer.Height >=  dropdownContainer.MaximumSize.Height)
+                {
+                    timer1.Stop();
+                        expand = true;
+                }
+            }
+            else
+            {
+                dropdownContainer.Height -= 131;
+                if(dropdownContainer.Height <= dropdownContainer.MinimumSize.Height)
+                {
+                    timer1.Stop();
+                    expand = false;
+                }
+            }
+        }
+
+        private void robotSelect_Click(object sender, EventArgs e)
+        {
+            timer1.Start();
+        }
+
+        public static bool sixSelected = false;
+        public static bool oneSelected = false;
+        public static bool bothSelected = false;
+        public void select6DOF_Click(object sender, EventArgs e)
+        {
+            sixSelected = true;
+            oneSelected = false;
+            bothSelected = false;
+
+            selected1D.Enabled = true;
+            select6DOF.Enabled = false;
+            selectBoth.Enabled = true;
+        }
+
+        private void select1D_Click(object sender, EventArgs e)
+        {
+            sixSelected = false;
+            oneSelected = true;
+            bothSelected = false;
+
+            selected1D.Enabled = false;
+            select6DOF.Enabled = true;
+            selectBoth.Enabled = true;
+            
+        }
+
+        private void selectBoth_Click(object sender, EventArgs e)
+        {
+            sixSelected = false;
+            oneSelected = false;
+            bothSelected = true;
+
+            selected1D.Enabled = true;
+            select6DOF.Enabled = true;
+            selectBoth.Enabled = false;
+
+        }
+
+        private void flowLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Settings_tab_Load(object sender, EventArgs e)
         {
 
         }

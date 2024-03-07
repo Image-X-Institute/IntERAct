@@ -11,6 +11,7 @@ using System.Threading;
 using System.IO;
 using EasyModbus;
 using System.Reflection;
+using static PhantomControl.MotionControl_tab;
 
 namespace PhantomControl
 {
@@ -29,6 +30,12 @@ namespace PhantomControl
             motionControl_tab.Show();
             settings_tab.Hide();
             log_tab.Hide();
+
+            if (!Settings_tab.bothSelected && !Settings_tab.oneSelected && !Settings_tab.sixSelected)
+            {
+                
+                MessageBox.Show("Please Select Robot in the Settings Tab Before Continuing!");
+            }
         }     
 
         private void flatButton_Close_Click(object sender, EventArgs e)
@@ -44,7 +51,7 @@ namespace PhantomControl
 
         private void flatButton_motionControl_Click(object sender, EventArgs e)
         {
-            label_heading.Text = "Motion Control";
+            label_heading.Text = "MOTION CONTROL";
             var ipath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Resources\\Icons\\gamepad_Black.png");
             //picContainer.Image = Image.FromFile(iconPath + "gamepad_Black.png");
             picContainer.Image = Image.FromFile(ipath);
@@ -52,12 +59,16 @@ namespace PhantomControl
             motionControl_tab.Show();
             settings_tab.Hide();
             log_tab.Hide();
-         
+
+            if (!Settings_tab.bothSelected && !Settings_tab.oneSelected && !Settings_tab.sixSelected)
+            {
+                MessageBox.Show("Please Select Robot in the Settings Tab Before Continuing!");
+            }
         }
 
         private void flatButton_settings_Click(object sender, EventArgs e)
         {
-            label_heading.Text = "Settings";
+            label_heading.Text = "SETTINGS";
             var ipath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Resources\\Icons\\settings_Black.png");
             //picContainer.Image = Image.FromFile(iconPath + "settings_Black.png");
             picContainer.Image = Image.FromFile(ipath);
@@ -70,7 +81,7 @@ namespace PhantomControl
 
         private void flatButton_log_Click(object sender, EventArgs e)
         {
-            label_heading.Text = "Log";
+            label_heading.Text = "LOG";
             picContainer.Image = Image.FromFile(iconPath + "edit_Black.png");
 
             motionControl_tab.Hide();
@@ -98,6 +109,21 @@ namespace PhantomControl
         private void log_tab_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void ApplicationGUI_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/README.md");
         }
     }
 

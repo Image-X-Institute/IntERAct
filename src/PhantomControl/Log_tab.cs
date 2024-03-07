@@ -32,6 +32,10 @@ namespace PhantomControl
             Invoke(del);
         }
 
+        private void textbox_Log_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public delegate void AddStatusMessageDelegate(string strMessage);

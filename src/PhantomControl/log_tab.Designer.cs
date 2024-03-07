@@ -47,6 +47,7 @@ namespace PhantomControl
             this.textbox_Log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textbox_Log.Size = new System.Drawing.Size(2741, 1705);
             this.textbox_Log.TabIndex = 0;
+            this.textbox_Log.TextChanged += new System.EventHandler(this.textbox_Log_TextChanged);
             // 
             // Log_tab
             // 
