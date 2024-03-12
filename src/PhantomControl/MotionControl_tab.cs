@@ -1022,6 +1022,8 @@ namespace PhantomControl
                 }
             }
         }
+
+        // Function that begins thread to run 1D robot
         private void run1DRobot()
         {
             flatButton_LoadTraces1D.Enabled = false;
@@ -1029,7 +1031,6 @@ namespace PhantomControl
             {
                 Console.WriteLine("Running Trace...");
 
-                
                 Thread Start1DMotion = new Thread(Start1D);
                 Start1DMotion.Start();
 
@@ -1045,6 +1046,7 @@ namespace PhantomControl
             }
         }
 
+        // This function reads the file, shifts the displacement, calculates velocity and send calls the SendvoltageValues function
         public void Start1D()
         {
             List<double> displacementValues = ReadDisplacementValues(_filePath);
@@ -1066,6 +1068,7 @@ namespace PhantomControl
             SendVoltageValues(velocityValues, newDisplacementValues);
         }
 
+        // This function checks if the first position of the motion trace is non-zero, if it is, it will move the motor to that position before playing the motion
         public void ShiftToStartPos(double startPos)
         {
             AllocConsole();
@@ -1688,7 +1691,6 @@ namespace PhantomControl
                 clearPlot("all");
             }
 
-
             // Initialise a new Open File Dialog, this will open a window for the user to select a .txt trace file
             using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Text Documents|*.txt", ValidateNames = true, Multiselect = false })
             {
@@ -1739,12 +1741,9 @@ namespace PhantomControl
             get { return _filePath; }
         }
 
-
-        
-
         private string _filePath;
 
-
+        // This function will read the .txt file and parse all the displacment values
         static List<double> ReadDisplacementValues(string _filePath)
         {
             List<double> displacementValues = new List<double>();
@@ -1789,6 +1788,7 @@ namespace PhantomControl
             return displacementValues;
         }
         
+        // This function is responsible for sending the final voltage value, up bool and delay value to the arduino in order to move the motor. Takes velocity as an input
         public void SendVoltageValues(List<double> velocityValues, List<double>displacementValues)
         {
             AllocConsole();
@@ -1806,7 +1806,7 @@ namespace PhantomControl
                     double newVoltage = (result.voltageValue < 45 && result.voltageValue != 0) ? 45 : result.voltageValue;
                     string voltageSend = newVoltage.ToString("0.0");
                     string delaySend = delayResult.ToString("0.0");
-                    string voltageString = $"{voltageSend},{result.isGoingUp},{delaySend}";
+                    string voltageString = $"{velocityValues[i]},{result.isGoingUp},{delaySend}";
                     serialPort.WriteLine(voltageString);
 
                     /*string received = serialPort.ReadLine();*/
@@ -1820,7 +1820,7 @@ namespace PhantomControl
 
                     //plotting optical feedback
                     string data = serialPort.ReadLine();
-/*                    string dataCut = data.Trim(new Char[] { '\r' });
+/*                  string dataCut = data.Trim(new Char[] { '\r' });
                     double position = double.Parse(dataCut);*/
                     Console.WriteLine(data);
                     /*plotData1D(currentTime, position);*/
@@ -1849,7 +1849,7 @@ namespace PhantomControl
                             {
                                 finalSleeptime = (int)(timeshift - newx);
                             }
-                            Thread.Sleep(finalSleeptime);
+                            Thread.Sleep(5);
                             /*Console.WriteLine($"Sleep Time: {finalSleeptime}. New x: {newx}");*/
                             
                             previous = now;
@@ -1859,11 +1859,11 @@ namespace PhantomControl
                             var timepassed = (196 - (DateTime.Now - now).Milliseconds);
                             var timeshift = (timepassed > 0) ? timepassed : 0;
 
-                            Thread.Sleep(timeshift);
+                            Thread.Sleep(5);
                             /*Console.WriteLine($"time shift: {timeshift}");*/
                             previous = now;
                         }
-                }
+                    }
                     else
                     {
                         System.Windows.MessageBox.Show($"Arduino was disconnected! Please reboot the program and establish serial port connection!");
@@ -1911,10 +1911,9 @@ namespace PhantomControl
             double position = double.Parse(dataCut);
             
             plotData1D(currentTime, position);
-            
-            /*currentTime += 0.2;*/
         }
 
+        // This function will send a "Home" string to the Arduino in order to move the motor back to base position
         public void Home1DPlatform()
         {
            if (serialPort != null || serialPort.IsOpen == true)
@@ -1937,6 +1936,7 @@ namespace PhantomControl
             }
         }
 
+        // This function will calculate the necessary time to move the motor in case the voltage is too low to make the motor move. e.g. if the voltage to move the motor is less that ~50mV, the motor wont move as expected. This function simply adjusts the voltage to an amount that will guarantee movement but adjust the time needed to move to achieve the same displacement
         static double CalculateDelayValue(double voltage2, double speed)
         {
             double delayValue = 195;
@@ -1969,9 +1969,10 @@ namespace PhantomControl
             }
             return delayValue;
         }
+
+        // This function takes velocity as an input and returns a voltage and int (up or down)
         private static (double voltageValue, int isGoingUp) CalculateVoltagePair(double v1)
         {
-            // Initialise List of Voltage Values
             double voltageValue = 0;
             double speed = v1;
             int isGoingUp = 1;
@@ -1993,53 +1994,8 @@ namespace PhantomControl
 
             return (voltageValue, isGoingUp);
         }
-
-        public double ReverseToVelocity(double voltageValue, bool isGoingUp)
-        {
-            double velocity = 0;
-
-            
-            if (isGoingUp)
-            {
-                velocity = (0.2229 * (voltageValue) - 3.9812);
-            }
-            else
-            {
-                velocity = -(0.2265 * (voltageValue) - 2.5726);
-            }
-            return velocity;
-        }
-
-        public List<double> ReverseToDisplacement(List<double> velocityValues, bool isGoingUp)
-        {
-            List<double> displacementValues = new List<double>();
-
-            // Initialize the first displacement value as 0
-            displacementValues.Add(0);
-
-            // Start calculating displacement from the second velocity value
-            for (int i = 1; i < velocityValues.Count; i++)
-            {
-                // Calculate displacement using the velocity and add it to the previous displacement
-                double displacement = velocityValues[i] * 0.195;
-                double previousDisplacement = displacementValues[i - 1];
-
-                if (velocityValues[i] > 0)
-                {
-                    displacementValues.Add(displacement + previousDisplacement);
-                }
-                else
-                {
-                    displacementValues.Add(previousDisplacement - displacement);
-                }
-                    
-
-            }
-
-            return displacementValues;
-        }
-
-
+        
+        // This function takes the displacements read and shifts the minimum value to 0
         static List<double> ShiftDisplacementToZero(List<double> displacementValues)
         {
             // Find the minimum value in the array
@@ -2056,6 +2012,8 @@ namespace PhantomControl
             string data = serialPort.ReadLine();
             Console.WriteLine($"Received from Arduino: {data}");
         }
+
+        // This function takes a list of displacement values and converts them to a list of velocity values. This will be eventually be inputted into a velocity to voltage conversion file
         static List<double> CalculateVelocityfromDisplacement(List<double> displacementValues)
         {
             List<double> velocityValues = new List<double>();
@@ -2068,6 +2026,7 @@ namespace PhantomControl
             return velocityValues;
         }
 
+        // This function updates the UI depending on the selected robot
         private void robotChanged(object sender, EventArgs e)
         {
             updateLabel();
@@ -2093,7 +2052,7 @@ namespace PhantomControl
             }
         }
 
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////END OF 1D INTEGRATION CODE//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // This class holds the settings for the robot and software interface, the class is accessed by calling URSettings. The settings.txt file can be modified and will automaticly take values from the file into the varaibles
         public static class UrSettings

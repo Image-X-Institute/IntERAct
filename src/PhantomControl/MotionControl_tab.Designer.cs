@@ -916,6 +916,7 @@ namespace PhantomControl
             this.moveToStartPos.TabIndex = 8;
             this.moveToStartPos.Text = "START POS";
             this.moveToStartPos.UseVisualStyleBackColor = false;
+            this.moveToStartPos.Visible = false;
             this.moveToStartPos.Click += new System.EventHandler(this.moveToStartPos_Click);
             // 
             // toggle6D
