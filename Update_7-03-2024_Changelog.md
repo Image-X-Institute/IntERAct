@@ -16,13 +16,13 @@ Before:
 After:
 ![image](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/assets/152374331/9902e453-fcb0-4e7d-9f27-b6479b43400e)
 
-- Added range slider which will adjust how far from the start the user wants to view the trace. This is most useful when playing the motion trace and viewing the real time output plots.
+- Added range slider which will adjust how far from the start the user wants to view the trace. This is most useful when playing the motion trace and viewing the real time output plots
 
 - Added Reset Zoom button. Since zooming and panning is also implemented (with click and drag, scroll wheel etc), the user may want to reset the plot zoom
 
 - Implemented 1D robot input plots and real-time feedback/output plots on the same translation chart
 
-- Allow to toggle between the 6DOF trace, 1D trace or both traces. (COMPLETED: Implemented buttons to toggle between 6DOF, 1D or Both traces)
+- Allow to toggle between the 6DOF trace, 1D trace or both traces
 
 Both:
 ![image](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/assets/152374331/32db6489-ab57-4597-a690-264ed46658c1)
