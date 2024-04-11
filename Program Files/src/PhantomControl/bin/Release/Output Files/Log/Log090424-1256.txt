@@ -1,0 +1,8 @@
+[  09/04/24 12:56:07  ]    CURRENT ROBOT SELECTED: BOTH
+[  09/04/24 12:56:07  ]    1D Robot Connected: Serial port ({portInput}) opened successfully.
+[  09/04/24 12:56:07  ]    Opening IP address: 192.168.94.11
+[  09/04/24 12:56:08  ]    1D Robot to Home
+[  09/04/24 12:56:08  ]    Opening IP address: 192.168.94.11
+[  09/04/24 12:56:29  ]    Error faild to connect on port 30001
+[  09/04/24 12:56:29  ]    Error faild to connect on port 30001
+[  09/04/24 12:56:30  ]    MODBUS connection attempt via 192.168.94.11 failed.

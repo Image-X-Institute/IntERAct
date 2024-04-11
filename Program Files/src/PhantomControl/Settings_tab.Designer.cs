@@ -1439,7 +1439,7 @@ namespace PhantomControl
             this.dropdownContainer.Controls.Add(this.selected1D);
             this.dropdownContainer.Controls.Add(this.selectBoth);
             this.dropdownContainer.Controls.Add(this.flowLayoutPanel1);
-            this.dropdownContainer.Location = new System.Drawing.Point(881, 577);
+            this.dropdownContainer.Location = new System.Drawing.Point(881, 567);
             this.dropdownContainer.MaximumSize = new System.Drawing.Size(200, 177);
             this.dropdownContainer.MinimumSize = new System.Drawing.Size(200, 46);
             this.dropdownContainer.Name = "dropdownContainer";
@@ -1495,7 +1495,7 @@ namespace PhantomControl
             // 
             // panel50
             // 
-            this.panel50.Location = new System.Drawing.Point(881, 623);
+            this.panel50.Location = new System.Drawing.Point(881, 613);
             this.panel50.Margin = new System.Windows.Forms.Padding(0);
             this.panel50.Name = "panel50";
             this.panel50.Size = new System.Drawing.Size(200, 137);
@@ -1510,7 +1510,7 @@ namespace PhantomControl
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Century Gothic", 12.9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(849, 543);
+            this.label20.Location = new System.Drawing.Point(849, 533);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(280, 21);
             this.label20.TabIndex = 38;

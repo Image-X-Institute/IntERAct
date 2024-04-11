@@ -1,0 +1,4 @@
+[  13/03/24 12:14:38  ]    CURRENT ROBOT SELECTED: 1D
+[  13/03/24 12:14:38  ]    1D Robot Connected: Serial port ({portInput}) opened successfully.
+[  13/03/24 12:14:39  ]    1D Robot to Home
+[  13/03/24 12:14:39  ]    1D Robot to Home

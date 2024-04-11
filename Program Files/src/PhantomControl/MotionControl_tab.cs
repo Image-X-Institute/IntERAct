@@ -1074,7 +1074,7 @@ namespace PhantomControl
             AllocConsole();
             if (serialPort.IsOpen == true)
             {
-                string voltageString2 = $"{20},{1},{200}";
+                string voltageString2 = $"{50},{1},{200}";
                 serialPort.WriteLine(voltageString2);
                 return;
             }
@@ -1095,14 +1095,10 @@ namespace PhantomControl
             flatButton_SetStartPos.Enabled = false;
             flatButton_Home.Enabled = true;
             flatButton_LoadTraces.Enabled = true;
-
-
         }
 
         /* This function runs the motion. MODBUS connection is setup and another thread is created to listen to the robot and stream data back into the software. TCP/IP connection is called from URServer class and 
-         * motion traces are transformed form the CoordinateTransformtion class and send to the robot controller. 
-         */
-
+         * motion traces are transformed form the CoordinateTransformtion class and send to the robot controller. */
         private void runMotion()
         {
             modbusClient = new ModbusClient(UrSettings.hostIPAddress, 502);
@@ -1145,7 +1141,6 @@ namespace PhantomControl
         }
 
         // This function is called in runMotion(), it is run on a separate thread and is responsible for connecting to MODBUS and streaming back data to the software to display and save in a txt file
-
         private void monitorData()
         {
             int sampleRate = 10;// (int)(UrSettings.timeKinematics * 1000) - 10;
@@ -1455,7 +1450,6 @@ namespace PhantomControl
         }
 
         // This function runs on a separate thread, it sets up a MODBUS connection to the robot controller to get starting pose of the robot. Before doing so it will set the tool center point (TCP) value (defult is [0 0 0 0 0 0] or based on the settings.txt values)
-
         private void threadSetStartPos()
         {
             if (UrScriptProgram.urList.Count != 0)
@@ -1803,10 +1797,11 @@ namespace PhantomControl
                     DateTime now2 = DateTime.Now;
                     var result = CalculateVoltagePair(velocityValues[i]);
                     var delayResult = CalculateDelayValue(result.voltageValue, velocityValues[i]);
-                    double newVoltage = (result.voltageValue < 45 && result.voltageValue != 0) ? 45 : result.voltageValue;
+                    double newVoltage = (result.voltageValue < 45 && result.voltageValue != 0) ? 60 : result.voltageValue;
                     string voltageSend = newVoltage.ToString("0.0");
                     string delaySend = delayResult.ToString("0.0");
-                    string voltageString = $"{velocityValues[i]},{result.isGoingUp},{delaySend}";
+                    string voltageString = $"{voltageSend},{result.isGoingUp},{delayResult}";
+
                     serialPort.WriteLine(voltageString);
 
                     /*string received = serialPort.ReadLine();*/
@@ -1818,12 +1813,12 @@ namespace PhantomControl
                         previous2 = now2;
                     }*/
 
-                    //plotting optical feedback
+/*                    //plotting optical feedback
                     string data = serialPort.ReadLine();
-/*                  string dataCut = data.Trim(new Char[] { '\r' });
-                    double position = double.Parse(dataCut);*/
+*//*                  string dataCut = data.Trim(new Char[] { '\r' });
+                    double position = double.Parse(dataCut);*//*
                     Console.WriteLine(data);
-                    /*plotData1D(currentTime, position);*/
+                    *//*plotData1D(currentTime, position);*/
 
                     /*Thread feedback = new Thread(new ThreadStart(feedBack1D));*/
                     currentTime += (now - previous).Milliseconds * 0.001;
@@ -1835,31 +1830,31 @@ namespace PhantomControl
                         var x = timepassed_iteration.TotalMilliseconds;
                         /*Console.WriteLine($"Time2:{x}Sent Data: {voltageSend},{result.isGoingUp}, {delaySend}");*/
 
-                        if (x > 196)
+                        if (x > 400)
                         {
-                            var newx = x - 196;
-                            var timepassed = (196 - (DateTime.Now - now).Milliseconds);
+                            var newx = x - 400;
+                            var timepassed = (400 - (DateTime.Now - now).Milliseconds);
                             var timeshift = (timepassed > 0) ? timepassed : 0;
                             var finalSleeptime = (int)(timeshift - newx);
                             if (finalSleeptime < 0)
                             {
-                                finalSleeptime = 01111;
+                                finalSleeptime = 0;
                             }
                             else
                             {
                                 finalSleeptime = (int)(timeshift - newx);
                             }
-                            Thread.Sleep(5);
-                            /*Console.WriteLine($"Sleep Time: {finalSleeptime}. New x: {newx}");*/
-                            
+                            Thread.Sleep(finalSleeptime);
+                           /* Console.WriteLine($"Sleep Time: {finalSleeptime}. New x: {newx}");*/
+
                             previous = now;
                         }
                         else
                         {
-                            var timepassed = (196 - (DateTime.Now - now).Milliseconds);
+                            var timepassed = (400 - (DateTime.Now - now).Milliseconds);
                             var timeshift = (timepassed > 0) ? timepassed : 0;
 
-                            Thread.Sleep(5);
+                            Thread.Sleep(timeshift);
                             /*Console.WriteLine($"time shift: {timeshift}");*/
                             previous = now;
                         }
@@ -1939,12 +1934,12 @@ namespace PhantomControl
         // This function will calculate the necessary time to move the motor in case the voltage is too low to make the motor move. e.g. if the voltage to move the motor is less that ~50mV, the motor wont move as expected. This function simply adjusts the voltage to an amount that will guarantee movement but adjust the time needed to move to achieve the same displacement
         static double CalculateDelayValue(double voltage2, double speed)
         {
-            double delayValue = 195;
-            double displacement = Math.Abs(speed) * 0.2;
-            double Voltage = 55;
+            double delayValue = 400;
+            double displacement = Math.Abs(speed) * 0.400;
+            double Voltage = 60;
             if (voltage2 > 45)
             {
-                delayValue = 195;
+                delayValue = 400;
 
             }
             else if (voltage2 < 45)
@@ -1956,14 +1951,14 @@ namespace PhantomControl
 
                 if (speed == 0)
                 {
-                    delayValue = 195;
+                    delayValue = 400;
                 }
                 if (speed < 0)
                 {
                     delayValue = displacement/(Voltage * 0.2229 - 3.9812) * 1000;
                 }
             }
-            if (delayValue > 195)
+            if (delayValue > 400)
             {
                 Console.WriteLine("delay:" + delayValue + " displacement:" + displacement+" speed: "+speed);
             }
@@ -2017,12 +2012,20 @@ namespace PhantomControl
         static List<double> CalculateVelocityfromDisplacement(List<double> displacementValues)
         {
             List<double> velocityValues = new List<double>();
-
-            for (int i = 0; i < displacementValues.Count - 1; i++)
+            List<double> processedPosition = new List<double>();
+            int increment = 2;
+            for (int i = 0; i < displacementValues.Count - increment; i += increment)
             {
-                velocityValues.Add((displacementValues[i + 1] - displacementValues[i]) / 0.195);
+                processedPosition.Add((displacementValues[i]));
             }
-
+            for (int i = 0; i < processedPosition.Count - 1; i ++)
+            {
+                double it = processedPosition[i];
+                double it2 = processedPosition[1 + 1];
+                velocityValues.Add((processedPosition[i + 1] - processedPosition[i]) / (increment * 0.2));
+            }
+            string path = "C:\\Users\\Robot\\Documents\\Processed Traces\\trace.txt";
+            File.WriteAllLines(path, processedPosition.Select(d => d.ToString()));
             return velocityValues;
         }
 
@@ -2323,7 +2326,7 @@ namespace PhantomControl
             cartesianChart_rotation.AxisX[0].MinValue = 0;
             cartesianChart_translation.AxisX[0].MaxValue = chartRange;
             cartesianChart_rotation.AxisX[0].MaxValue = chartRange;
-
+            rangeNo.Text = rangeBar.Value.ToString();
 
         }
 
@@ -2403,6 +2406,11 @@ namespace PhantomControl
 
         private void moveToStartPos_Click(object sender, EventArgs e)
         {
+        }
+
+        private void rangeNo_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

@@ -94,6 +94,7 @@ namespace PhantomControl
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5_PlotControl = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.rangeNo = new System.Windows.Forms.Label();
             this.moveToStartPos = new System.Windows.Forms.Button();
             this.toggle6D = new System.Windows.Forms.Button();
             this.resetZoom = new System.Windows.Forms.Button();
@@ -889,6 +890,7 @@ namespace PhantomControl
             this.panel5.AutoSize = true;
             this.panel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel5.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel5.Controls.Add(this.rangeNo);
             this.panel5.Controls.Add(this.moveToStartPos);
             this.panel5.Controls.Add(this.toggle6D);
             this.panel5.Controls.Add(this.resetZoom);
@@ -901,6 +903,19 @@ namespace PhantomControl
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(135, 723);
             this.panel5.TabIndex = 7;
+            // 
+            // rangeNo
+            // 
+            this.rangeNo.AutoSize = true;
+            this.rangeNo.Font = new System.Drawing.Font("Century Gothic", 10.9F);
+            this.rangeNo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.rangeNo.Location = new System.Drawing.Point(54, 452);
+            this.rangeNo.Name = "rangeNo";
+            this.rangeNo.Size = new System.Drawing.Size(17, 20);
+            this.rangeNo.TabIndex = 9;
+            this.rangeNo.Text = "0";
+            this.rangeNo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rangeNo.Click += new System.EventHandler(this.rangeNo_Click);
             // 
             // moveToStartPos
             // 
@@ -1296,5 +1311,6 @@ namespace PhantomControl
         private Label arduinoConnect;
         private Button toggle6D;
         private Button moveToStartPos;
+        private Label rangeNo;
     }
 }
