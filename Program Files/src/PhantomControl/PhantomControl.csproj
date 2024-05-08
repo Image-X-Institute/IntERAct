@@ -155,7 +155,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="Arduino_V3.ino" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
