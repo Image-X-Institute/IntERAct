@@ -136,6 +136,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Log_tab.resx">
       <DependentUpon>Log_tab.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MotionControl_tab.resx">
       <DependentUpon>MotionControl_tab.cs</DependentUpon>
@@ -154,6 +155,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Arduino_V3.ino" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -205,9 +207,11 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy /y $(ProjectDir)\settings.txt $(TargetDir)
-md  $(ProjectDir)\Resources
-xcopy /I /E $(ProjectDir)\Resources $(TargetDir)\Resources</PostBuildEvent>
+    <PostBuildEvent>copy /y $(ProjectDir)settings.txt $(TargetDir)
+
+md $(ProjectDir)Resources
+\
+xcopy /I /E $(ProjectDir)Resources\ $(TargetDir)Resources\</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
