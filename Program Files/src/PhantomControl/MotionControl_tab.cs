@@ -23,6 +23,9 @@ using System.Runtime.InteropServices;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 using LiveCharts.Definitions.Charts;
 using System.Windows;
+using System.Security.Policy;
+using System.Security.Cryptography;
+using System.Runtime.InteropServices.ComTypes;
 
 // This class is where most of the functions and other classes are called. The GUI MotionControl is run controlled through this class. 
 
@@ -80,6 +83,7 @@ namespace PhantomControl
         private string iconPath = "Resources\\Icons\\";
 
         bool _keepMonitoring = false;
+        bool _keep1D = false;
         bool _firstRun = true;
 
         private object monitorDataLock = new object();
@@ -707,14 +711,40 @@ namespace PhantomControl
 
                     if (Settings_tab.sixSelected)
                     {
+                        textBox_filename.Text = System.IO.Path.GetFileName(ofd.FileName);
+                        _filePath6D = textBox_filename.Text;
+                        Logger.RenameLogFile("6D", textBox_filename.Text);
+                        Logger.addToLogFile("The 6D input file " + textBox_filename.Text + " has been selected");
+
                         clearPlot("all");
                     }
+
+                    if (Settings_tab.bothSelected)
+                    {
+                        textBox_filename.Text = System.IO.Path.GetFileName(ofd.FileName);
+                        _filePath6D = textBox_filename.Text;
+
+
+                        if (Logger.LogFileNameBOTHBool)
+                        {
+                            Logger.addToLogFile("The 6D input file " + textBox_filename.Text + " has been selected - BOTH PLATFORMS");
+                        }
+                        else
+                        {
+                            Logger.RenameLogFileBOTH("BOTH",textBox_filename.Text);
+                            Logger.addToLogFile("The 6D input file " + textBox_filename.Text + " has been selected - BOTH PLATFORMS");
+
+                        }
+                    }
+
 
 
                     //char filename = OpenFileDialog.SafeFileName;
                     var FileName = System.IO.Path.GetFileName(ofd.FileName);
 
                     textBox_filename.Text = System.IO.Path.GetFileName(ofd.FileName);
+
+                    _filePath6D = textBox_filename.Text;
 
                     int columnNum = getColNumber(ofd);
 
@@ -764,11 +794,21 @@ namespace PhantomControl
                             drawInputTrace();
 
                         }
+                        
                         if (columnNum <= 5 || columnNum > 7)
                         {
-                            UpdateStatusBarMessage.ShowStatusMessage("Error: Invaild format, format needed: [t  X  Y  Z  Rx  Ry  Rz] or [t  X  Y  Z]");
-                            Logger.addToLogFile("Error: Invaild format, format needed: [t  X  Y  Z  Rx  Ry  Rz] or [t  X  Y  Z]");
-                            System.Windows.MessageBox.Show("Error: Invaild input file format, format needed: [t  X  Y  Z  Rx  Ry  Rz] or [t  X  Y  Z]");
+                            UpdateStatusBarMessage.ShowStatusMessage("Error: Invalid format, format needed: [t  X  Y  Z  Rx  Ry  Rz] or [t  X  Y  Z]");
+                            Logger.addToLogFile("Error: Invalid format, format needed: [t  X  Y  Z  Rx  Ry  Rz] or [t  X  Y  Z]");
+                            System.Windows.MessageBox.Show("Error: Invalid input file format, format needed: [t  X  Y  Z  Rx  Ry  Rz] or [t  X  Y  Z]");
+                        }
+
+                        if (UrSettings.TimeKinematics < 0.2)
+                        {
+                            _playstopmotionclicked = false;
+                            UpdateStatusBarMessage.ShowStatusMessage("Error: Sampling rate in the input file is lower than 0.2s");
+                            Logger.addToLogFile("Error: Sampling rate in the input file is lower than 0.2s");
+                            System.Windows.MessageBox.Show("Error: The sample rate in the input file is lower than 0.2s");
+                            return;
                         }
 
                         if (UrSettings.TimeKinematics != Math.Abs(MotionTraces.t[1] - MotionTraces.t[2]))
@@ -877,11 +917,13 @@ namespace PhantomControl
         }
 
         // Button that will run the motion and stop the motion
-        bool hasClickedPlay;
-        bool selectedPlay = false;
-        bool isStopped = false;
+        private static bool hasClickedPlay = false;
+        private static bool selectedPlay = false;
+        private static bool isStopped = false;
         private void flatButton_PlayStopMotion_Click(object sender, EventArgs e)
         {
+            DateTime play6Dmotion_time = DateTime.Now;
+            string play6Dmotion_string;
             bool selectedPlay = true;
             if (_playstopmotionclicked == true)
             {
@@ -918,6 +960,7 @@ namespace PhantomControl
                         runMotion();
                         // Commented out this function in order to disable the Send Motion Function
                         return;
+
                     }
 
                     if (UrSettings.motionPlay == true)
@@ -929,25 +972,24 @@ namespace PhantomControl
 
                 else if (Settings_tab.oneSelected)
                 {
-                    hasClickedPlay = false;
                     if (!hasClickedPlay)
                     {
                         // Code here for playing 1DOF motion
-                        flatButton_Home.Enabled = false;
                         flatButton_PlayStopMotion.Text = " Stop Motion";
                         hasClickedPlay = true;
                         selectedPlay = false;
+                        flatButton_Home.Enabled = false;
                         AllocConsole();
                         /* Thread run1D = new Thread(new ThreadStart(run1DRobot));*/
                         run1DRobot();
-
-
+                        return;
                     }
-                    else if (hasClickedPlay)
+                    if (hasClickedPlay)
                     {
                         isStopped = true;
                         Stop1DPlatform();
                         isStopped = false;
+
                         return;
 
                     }
@@ -983,9 +1025,15 @@ namespace PhantomControl
 
                         urServer.generateUrScript(UrSettings.TimeKinematics, UrSettings.TCP, UrSettings.PayLoad);
                         runMotion();
-                        // Commented out this function in order to disable the Send Motion Function
 
+                        //// Commented out this function in order to disable the Send Motion Function                  
 
+                        //while (!File.Exists(TimeStamp6DStartWriteorGet(@"C:\Users\Robot\source\repos\Image-X-Institute\Multi-tracking", "g")))
+                        //{
+                        //   Console.WriteLine("test");
+                        //}
+
+                        
                         run1DRobot();
 
                         return;
@@ -1007,7 +1055,10 @@ namespace PhantomControl
         {
             if (serialPort != null)
             {
+                flatButton_PlayStopMotion.Text = " Play motion";
+                _keep1D = false;
                 serialPort.WriteLine("Stop");
+                Console.WriteLine("Stop"); 
             }
             else if (serialPort == null)
             {
@@ -1026,30 +1077,35 @@ namespace PhantomControl
         // Function that begins thread to run 1D robot
         private void run1DRobot()
         {
-            flatButton_LoadTraces1D.Enabled = false;
-            if (_filePath != null)
-            {
-                Console.WriteLine("Running Trace...");
+            flatButton_LoadTraces1D.Enabled = false;        
 
-                Thread Start1DMotion = new Thread(Start1D);
-                Start1DMotion.Start();
+            if (_filePath1D != null)
+                {
+                    Console.WriteLine("Running Trace...");
+                    //_keep1D = true;
+                    Thread Start1DMotion = new Thread(Start1D);
 
-                flatButton_PlayStopMotion.Text = "Play Motion";
+                    Start1DMotion.Start();
+
+
+                flatButton_PlayStopMotion.Text = " Stop Motion";
                 flatButton_LoadTraces1D.Enabled = true;
                 flatButton_Home.Enabled = true;
-
-            }
-            else if (_filePath == null)
+                    
+                }
+            else if (_filePath1D == null)
             {
-                System.Windows.MessageBox.Show("Please Load a Trace for the 1D Robot!");
-                return;
+                    System.Windows.MessageBox.Show("Please Load a Trace for the 1D Robot!");
+                    return;
             }
+
+
         }
 
         // This function reads the file, shifts the displacement, calculates velocity and send calls the SendvoltageValues function
         public void Start1D()
         {
-            List<double> displacementValues = ReadDisplacementValues(_filePath);
+            List<double> displacementValues = ReadDisplacementValues(_filePath1D);
             List<double> newDisplacementValues = ShiftDisplacementToZero(displacementValues);
 
             List<double> velocityValues = CalculateVelocityfromDisplacement(newDisplacementValues);
@@ -1060,15 +1116,32 @@ namespace PhantomControl
                 double voltage2 = 50;
                 double speed2 = (voltage2 * 0.2229) - 3.9812;
                 double timetoMove = ((startPos) / speed2) * 1000;
+                //int delayAndTimetoMove = (int)(4600 - timetoMove - 50);
+                //Thread.Sleep(delayAndTimetoMove);
                 ShiftToStartPos(newDisplacementValues[0]);
+
+                //---------Couch tracking measurement
                 Thread.Sleep((int)timetoMove + 50);
+                //AllocConsole();
+                //if (serialPort.IsOpen == true)
+                //{
+                //    string voltageString2 = $"{0},{1},{200}";
+                //    serialPort.WriteLine(voltageString2);
+                //}
+                //Thread.Sleep(30000);
+
                 newDisplacementValues.RemoveAt(0);
                 SendVoltageValues(velocityValues, newDisplacementValues);
+
                 Console.WriteLine("dont start at 0");
             }
+            else
+            {
+                //Thread.Sleep(5000);
+                SendVoltageValues(velocityValues, newDisplacementValues);
+                Console.WriteLine("start at 0");
+            }
 
-            SendVoltageValues(velocityValues, newDisplacementValues);
-            Console.WriteLine("start at 0");
         }
 
         // This function checks if the first position of the motion trace is non-zero, if it is, it will move the motor to that position before playing the motion
@@ -1083,7 +1156,15 @@ namespace PhantomControl
             }
 
         }
+        //private void resetRun1D()
+        //{
+        //    flatButton_PlayStopMotion.Text = " Play Motion";
+        //    hasClickedPlay = false;
+        //    flatButton_SetStartPos.Enabled = false;
+        //    flatButton_Home.Enabled = true;
+        //    flatButton_LoadTraces.Enabled = true;
 
+        //}
         // Function clears variables and resets values before another motion run performed
         private void resetRun()
         {
@@ -1125,6 +1206,7 @@ namespace PhantomControl
 
                 Thread getDataFromControlerThread = new Thread(monitorData);
                 getDataFromControlerThread.Start();
+
             }
 
             if (string.IsNullOrWhiteSpace(UrSettings.hostIPAddress))
@@ -1143,9 +1225,20 @@ namespace PhantomControl
             urServer.sendUrScript(UrScriptProgram.urList);
         }
 
+        private void TimeStamp6DStart(string directoryPath)
+        {
+            string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+            string fileName = $"Log_{timestamp}.txt";
+            string filePath = Path.Combine(directoryPath, fileName);
+            StreamWriter writer6D = new StreamWriter(filePath);
+            writer6D.WriteLine((DateTime.Now).ToString("HH:mm:ss:fff"));
+            writer6D.Close();
+        }
+
         // This function is called in runMotion(), it is run on a separate thread and is responsible for connecting to MODBUS and streaming back data to the software to display and save in a txt file
         private void monitorData()
         {
+            string file_path_start6D;
             int sampleRate = 10;// (int)(UrSettings.timeKinematics * 1000) - 10;
             double absoluteTime = 0;
             double currentTime = 0;
@@ -1155,7 +1248,7 @@ namespace PhantomControl
 
             if (UrSettings.writeDataFile == true)
             {
-                Logger.initialiseDataFile();
+                Logger.initialiseDataFile(_filePath6D);
             }
 
             while (_keepMonitoring)
@@ -1189,14 +1282,18 @@ namespace PhantomControl
 
                 if (isMoving())
                 {
+                    DateTime play6Dmotion_time = DateTime.Now;
                     if (_firstRun == true)
                     {
+
+                        TimeStamp6DStart(@"C:\Users\Robot\source\repos\Image-X-Institute\Multi-tracking");
                         absoluteTime = getTime(_holdingRegTime);
                         _firstRun = false;
-                    }
 
+                    }
                     currentTime = getTime(_holdingRegTime);
                     time = currentTime - absoluteTime;
+
                 }
 
                 if (this.InvokeRequired)
@@ -1340,6 +1437,7 @@ namespace PhantomControl
                 }
 
             }
+            Logger.addToLogFile("6D trace is complete");
 
             disconnectModbus();
             ledBulb_Connected.On = false;
@@ -1682,30 +1780,62 @@ namespace PhantomControl
 
         private void flatButton_LoadTraces1D_Click(object sender, EventArgs e)
         {
-            if (Settings_tab.oneSelected)
-            {
-                // Clear the current plot in case a new file has been loaded
-                clearPlot("all");
-            }
 
             // Initialise a new Open File Dialog, this will open a window for the user to select a .txt trace file
             using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Text Documents|*.txt", ValidateNames = true, Multiselect = false })
             {
-                if (ofd.ShowDialog() == DialogResult.OK)
+                if (Settings_tab.oneSelected)
                 {
+                    // Clear the current plot in case a new file has been loaded
+
+                    clearPlot("all");
+                }
+
+
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+                {
+
+                    // Assign the file path name to a string variable _filePath
+
                     // Initiate a integer columnNum this will use the getColNumber function to check how many colum are in the trace file
                     int columnNum = getColNumber(ofd);
 
                     // For 1D motion traces there should only be two columns, Time and Displacement. If columnNum = 2 then continue to read the file
                     if (columnNum == 2)
                     {
-                        // Assign the file path name to a string variable _filePath
-                        _filePath = ofd.FileName;
-                        // Display the file path in the text box - visual indicator
+                        _filePath1D = ofd.FileName;
                         textBox_filename.Text = System.IO.Path.GetFileName(ofd.FileName);
+                        if (Settings_tab.oneSelected)
+                        {
+                            Logger.RenameLogFile("1D", textBox_filename.Text);
+                            Logger.addToLogFile("The 1D input file " + textBox_filename.Text + " has been selected");
+
+                        }
+
+                        if (Settings_tab.bothSelected)
+                        {
+                            _filePath1D = ofd.FileName;
+                            Console.WriteLine(_filePath1D);
+                            textBox_filename.Text = System.IO.Path.GetFileName(ofd.FileName);
+                            if (Logger.LogFileNameBOTHBool)
+                            {
+                                Logger.addToLogFile("The 1D input file " + textBox_filename.Text + " has been selected - BOTH PLATFORMS");
+                            }
+                            else
+                            {
+                                Logger.RenameLogFileBOTH("BOTH",textBox_filename.Text);
+                                Logger.addToLogFile("The 1D input file " + textBox_filename.Text + " has been selected - BOTH PLATFORMS");
+
+                            }
+
+                        }
+
+
+                        // Display the file path in the text box - visual indicator
 
                         // Read the displacement values
-                        List<double> displacementValues = ReadDisplacementValues(_filePath);
+                        List<double> displacementValues = ReadDisplacementValues(_filePath1D);
 
                         // Shift the displacement values by the minimum value to ensure the new minimum is now 0
                         List<double> newdisplacementValues = ShiftDisplacementToZero(displacementValues);
@@ -1714,7 +1844,7 @@ namespace PhantomControl
 
 
                         // Update button availability
-                        if (_filePath != null)
+                        if (_filePath1D != null)
                         {
                             flatButton_LoadTraces1D.Enabled = true;
                             flatButton_PlayStopMotion.Enabled = true;
@@ -1725,30 +1855,36 @@ namespace PhantomControl
                     // If the no. of columns are less or greater than 2, then the file is not compatible and the user should reselect.
                     if (columnNum > 2 || columnNum < 2)
                     {
-                        UpdateStatusBarMessage.ShowStatusMessage("Error: Invaild format, format needed: [t  Y]");
-                        Logger.addToLogFile("Error: Invaild format, format needed: [t  Y]");
-                        System.Windows.MessageBox.Show("Error: Invaild input file format, format needed: [t  Y]");
+                        UpdateStatusBarMessage.ShowStatusMessage("Error: Invalid format, format needed: [t  Y]");
+                        Logger.addToLogFile("Error: Invalid format, format needed: [t  Y]");
+                        System.Windows.MessageBox.Show("Error: Invalidd input file format, format needed: [t  Y]");
                     }
                 }
             }
         }
 
-        public string FilePath
+        public string FilePath1D
         {
-            get { return _filePath; }
+            get { return _filePath1D; }
         }
 
-        private string _filePath;
+        public string FilePath6D
+        {
+            get { return _filePath6D; }
+        }
+
+        private string _filePath6D;
+        private string _filePath1D;
 
         // This function will read the .txt file and parse all the displacment values
-        static List<double> ReadDisplacementValues(string _filePath)
+        static List<double> ReadDisplacementValues(string _filePath1D)
         {
             List<double> displacementValues = new List<double>();
 
             try
             {
                 // Read all lines from the file
-                string[] lines = File.ReadAllLines(_filePath);
+                string[] lines = File.ReadAllLines(_filePath1D);
 
                 // Process each line
                 foreach (string line in lines)
@@ -1800,148 +1936,156 @@ namespace PhantomControl
         // This function is responsible for sending the final voltage value, up bool and delay value to the arduino in order to move the motor. Takes velocity as an input
         public void SendVoltageValues(List<double> velocityValues, List<double> displacementValues)
         {
-            
-            AllocConsole();
-            DateTime previous = DateTime.Now;
-            DateTime previous2 = DateTime.Now;
-            DateTime playmotionTime = DateTime.Now;
-            //string maxVoltageSend = SendMaximumVoltageValue(velocityValues);
-            string timefile = @"C:\Users\Robot\source\repos\Image-X-Institute\RealSense\timestamp_play_motion.txt";
-            string voltagefile = @"C:\Users\Robot\source\repos\Image-X-Institute\RealSense\voltagesendtoarduino.txt";
-            string ackfile = @"C:\Users\Robot\source\repos\Image-X-Institute\RealSense\ackfile.txt";
-            StreamWriter writer = new StreamWriter(timefile);
-            StreamWriter writer2 = new StreamWriter(voltagefile);
-            
-            writer.WriteLine(playmotionTime.ToString("HH:mm:ss:fff"));
-            writer.Close();
-            Stopwatch stopwatch = Stopwatch.StartNew();
-            string data;
-            File.CreateText(ackfile).Close();
-            async void writeAckLogs(string writedata,string filepath)
-            {
-                using (StreamWriter writeAckLog = File.AppendText(filepath))
-                {
-                    await writeAckLog.WriteAsync(writedata);
-                }
-            }
+                AllocConsole();
+                DateTime previous = DateTime.Now;
+                DateTime previous2 = DateTime.Now;
+                DateTime playmotionTime = DateTime.Now;
+                //string maxVoltageSend = SendMaximumVoltageValue(velocityValues);
+                //string timefile = @"OutputFiles\1DPlatform\Timestamps\timestamp1D" + "_" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
+                //string voltagefile = @"OutputFiles\1DPlatform\Arduino\Send\voltagesendtoarduino" + "_" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
+                //string ackfile = @"OutputFiles\1DPlatform\Arduino\Get\ackfile" + "_" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
+                string timefile = @"C:\Users\Robot\source\repos\Image-X-Institute\RealSense\timestamp_play_motion.txt";
+                string voltagefile = @"C:\Users\Robot\source\repos\Image-X-Institute\RealSense\voltagesendtoarduino.txt";
+                string ackfile = @"C:\Users\Robot\source\repos\Image-X-Institute\RealSense\ackfile.txt";
 
-            
+                StreamWriter writer = new StreamWriter(timefile);
+                StreamWriter writer2 = new StreamWriter(voltagefile);
 
-            for (int i = 0; i < velocityValues.Count; i++)
-            {
-                
-                var timeThreshold = i * 200;
-                while (stopwatch.ElapsedMilliseconds < timeThreshold)
+                writer.WriteLine(playmotionTime.ToString("HH:mm:ss:fff"));
+                writer.Close();
+                Stopwatch stopwatch = Stopwatch.StartNew();
+                string data;
+                File.CreateText(ackfile).Close();
+                async void writeAckLogs(string writedata, string filepath)
                 {
-                    string tempdata = "";
-                    tempdata = serialPort.ReadExisting();
-                    
-                    if (tempdata.Contains("ack"))
+                    using (StreamWriter writeAckLog = File.AppendText(filepath))
                     {
-                        tempdata = stopwatch.ElapsedMilliseconds.ToString() + ',' + tempdata;
-                        Console.WriteLine(tempdata);
-                        writeAckLogs(tempdata,ackfile);
+                        await writeAckLog.WriteAsync(writedata);
                     }
-                    else
+                }
+
+
+
+                for (int i = 0; i < velocityValues.Count; i++)
+                {
+                    var timeThreshold = i * 200;
+                    while (stopwatch.ElapsedMilliseconds < timeThreshold)
                     {
-                        if (tempdata.Length >= 1)
+                        string tempdata = "";
+                        tempdata = serialPort.ReadExisting();
+
+                        if (tempdata.Contains("ack"))
                         {
                             tempdata = stopwatch.ElapsedMilliseconds.ToString() + ',' + tempdata;
                             Console.WriteLine(tempdata);
-                        }
-                    }
-                }
-                if (stopwatch.ElapsedMilliseconds >= timeThreshold)
-                {
-                    if (serialPort.IsOpen == true)
-                    {
-                        DateTime now = DateTime.Now;
-                        DateTime now2 = DateTime.Now;
-                        var result = CalculateVoltagePair(velocityValues[i]);
-                        var delayResult = CalculateDelayValue(result.voltageValue, velocityValues[i]);
-                        double newVoltage = (result.voltageValue < 45 && result.voltageValue != 0) ? 60 : result.voltageValue;
-                        string voltageSend = newVoltage.ToString("0.0");
-                        string delaySend = delayResult.ToString("0.0");
-                        string voltageString = $"{voltageSend},{result.isGoingUp},{delayResult}";
-                        writer2.WriteLine($"{result.voltageValue},{result.isGoingUp},{delayResult} ");
-                        var teststring = voltageString + "," + displacementValues[i+1];
-                        serialPort.WriteLine(teststring);
-                        Console.WriteLine("total time: "+stopwatch.ElapsedMilliseconds+" "+teststring);
-
-                        currentTime += (now - previous).Milliseconds * 0.001;
-
-
-                        if (serialPort != null || serialPort.IsOpen == true)
-                        {
+                            writeAckLogs(tempdata, ackfile);
                         }
                         else
                         {
+                            if (tempdata.Length >= 1)
+                            {
+                                tempdata = stopwatch.ElapsedMilliseconds.ToString() + ',' + tempdata;
+                                Console.WriteLine(tempdata);
+                            }
+                        }
+                    }
+                    if (stopwatch.ElapsedMilliseconds >= timeThreshold)
+                    {
+                        if (serialPort.IsOpen == true)
+                        {
+                            DateTime now = DateTime.Now;
+                            DateTime now2 = DateTime.Now;
+                            var result = CalculateVoltagePair(velocityValues[i]);
+                            var delayResult = CalculateDelayValue(result.voltageValue, velocityValues[i]);
+                            double newVoltage = (result.voltageValue < 45 && result.voltageValue != 0) ? 60 : result.voltageValue;
+                            string voltageSend = newVoltage.ToString("0.0");
+                            string delaySend = delayResult.ToString("0.0");
+                            string voltageString = $"{voltageSend},{result.isGoingUp},{delayResult}";
+                            writer2.WriteLine($"{result.voltageValue},{result.isGoingUp},{delayResult} ");
+                            var teststring = voltageString + "," + displacementValues[i + 1];
+                            serialPort.WriteLine(teststring);
+                            Console.WriteLine("total time: " + stopwatch.ElapsedMilliseconds + " " + teststring);
+
+                            currentTime += (now - previous).Milliseconds * 0.001;
+
+
+                            if (serialPort != null || serialPort.IsOpen == true)
+                            {
+                            }
+                            else
+                            {
+                                System.Windows.MessageBox.Show($"Arduino was disconnected! Please reboot the program and establish serial port connection!");
+                                return;
+                            }
+                        }
+                        else if (serialPort.IsOpen == false)
+                        {
                             System.Windows.MessageBox.Show($"Arduino was disconnected! Please reboot the program and establish serial port connection!");
+                            if (UrSettings.motionPlay == true)
+                            {
+                                _keepMonitoring = false;
+                                urServer.stopRobot();
+
+
+                                UpdateStatusBarMessage.ShowStatusMessage(Environment.NewLine);
+                                UrSettings.motionPlay = false;
+                            }
+
+                            // Home the 6DOF robot so it remembers previous home location
+                            if (UrScriptProgram.home.Count() != 0)
+                            {
+                                UrScriptProgram.home.Clear();
+                            }
+
+                            UrScriptProgram.home.Add("def goHome():");
+                            UrScriptProgram.home.Add("movej(p[" + (MotionTraces.startingPose[0] / 1000).ToString() + ", " + (MotionTraces.startingPose[1] / 1000).ToString() + ", " + (MotionTraces.startingPose[2] / 1000).ToString() + ", " + MotionTraces.startingPose[3].ToString() + ", " + MotionTraces.startingPose[4].ToString() + ", " + MotionTraces.startingPose[5].ToString() + "]" + ", " + "a = " + "0.2" + ", " + "v = " + "0.2" + ")");
+                            UrScriptProgram.home.Add("end");
+
+                            urServer.sendUrScript(UrScriptProgram.home);
+
                             return;
                         }
                     }
-                    else if (serialPort.IsOpen == false)
+                }
+                //data = serialPort.ReadLine();
+                //Console.WriteLine("pos: " + data);
+                Stopwatch stopwatchLast = Stopwatch.StartNew();
+                while (stopwatchLast.ElapsedMilliseconds < 300)
+                {
+
+                    try
                     {
-                        System.Windows.MessageBox.Show($"Arduino was disconnected! Please reboot the program and establish serial port connection!");
-                        if (UrSettings.motionPlay == true)
+                        string tempdata = serialPort.ReadExisting();
+                        if (tempdata.Contains("ack"))
                         {
-                            _keepMonitoring = false;
-                            urServer.stopRobot();
-
-
-                            UpdateStatusBarMessage.ShowStatusMessage(Environment.NewLine);
-                            UrSettings.motionPlay = false;
+                            tempdata = stopwatch.ElapsedMilliseconds.ToString() + ',' + tempdata;
+                            Console.WriteLine(tempdata);
+                            writeAckLogs(tempdata, ackfile);
                         }
-
-                        // Home the 6DOF robot so it remembers previous home location
-                        if (UrScriptProgram.home.Count() != 0)
-                        {
-                            UrScriptProgram.home.Clear();
-                        }
-
-                        UrScriptProgram.home.Add("def goHome():");
-                        UrScriptProgram.home.Add("movej(p[" + (MotionTraces.startingPose[0] / 1000).ToString() + ", " + (MotionTraces.startingPose[1] / 1000).ToString() + ", " + (MotionTraces.startingPose[2] / 1000).ToString() + ", " + MotionTraces.startingPose[3].ToString() + ", " + MotionTraces.startingPose[4].ToString() + ", " + MotionTraces.startingPose[5].ToString() + "]" + ", " + "a = " + "0.2" + ", " + "v = " + "0.2" + ")");
-                        UrScriptProgram.home.Add("end");
-
-                        urServer.sendUrScript(UrScriptProgram.home);
-
-                        return;
+                    }
+                    catch
+                    {
+                        break;
                     }
                 }
-            }
-            //data = serialPort.ReadLine();
-            //Console.WriteLine("pos: " + data);
-            Stopwatch stopwatchLast = Stopwatch.StartNew();
-            while (stopwatchLast.ElapsedMilliseconds<300)
-            {
-                
-                try
-                {
-                    string tempdata = serialPort.ReadExisting();
-                    if (tempdata.Contains("ack"))
-                    {
-                        tempdata = stopwatch.ElapsedMilliseconds.ToString() + ',' + tempdata;
-                        Console.WriteLine(tempdata);
-                        writeAckLogs(tempdata, ackfile);
-                    }
-                }
-                catch
-                {
-                    break;
-                }
-            }
 
-            stopwatchLast.Stop();
-            writer2.Close();
-            currentTime = 0;
-            string finalString = $"{0},{false},{2000}";
-            serialPort.WriteLine(finalString);
-            DateTime endTime = DateTime.Now;
-            System.Windows.MessageBox.Show("Trace is Complete");
-            string time_end_file = @"C:\Users\Robot\source\repos\Image-X-Institute\RealSense\timestamp_end_of_trace.txt";
-            StreamWriter writer3 = new StreamWriter(time_end_file);
-            writer3.WriteLine(endTime.ToString("HH:mm:ss:fff"));
-            writer3.Close();
+                stopwatchLast.Stop();
+                writer2.Close();
+                currentTime = 0;
+                string finalString = $"{0},{false},{2000}";
+                serialPort.WriteLine(finalString);
+                DateTime endTime = DateTime.Now;
+                string time_end_file = @"C:\Users\Robot\source\repos\Image-X-Institute\RealSense\timestamp_end_of_trace.txt";
+
+                //string time_end_file = @"OutputFiles\1DPlatform\Timestamps\end_timestamp1D" + "_" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
+                StreamWriter writer3 = new StreamWriter(time_end_file);
+                writer3.WriteLine(endTime.ToString("HH:mm:ss:fff"));
+                writer3.Close();
+                System.Windows.MessageBox.Show("Trace is Complete");
+                _keep1D = false;
+                Logger.addToLogFile("1D trace is complete");
+                //Logger.CreateNewLogFile();
+
         }
 
 
@@ -2052,7 +2196,7 @@ namespace PhantomControl
             List<double> processedPosition = new List<double>();
             int increment = 1;
             //WARNING
-            for (int i = 0; i < displacementValues.Count; i += increment)
+            for (int i = 0; i < displacementValues.Count-1; i += increment)
             {
                 processedPosition.Add((displacementValues[i]));
             }

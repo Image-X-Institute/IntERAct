@@ -5,17 +5,13 @@ float conNum = 0.508;
 int RPWM = 10;  //connect Arduino pin 10 to IBT-2 pin RPWM
 int LPWM = 9;  //connect Arduino pin 9 to IBT-2 pin LPWM
 float speedInput;
-int trigDelay = 1750;        
-
+int trigDelay = 2000;        
 
 volatile float voltage;  //Initialise voltage float
 volatile float delay_time; //Initialise delay float (how long the motor will be moved for given voltage)
 volatile bool up;  // Initialise bool to check if motor should move up or down
-
-volatile long prevpos = 0;
+volatile long motionStartTime = 0;
 volatile long pos = 0; 
-volatile float posInmm = 0;                  // Actuator Position in Pulses
-
 volatile unsigned long lastStepTime = 0; // Time stamp of last pulse
 
 volatile bool reached = false;  //self-calibration of movement
@@ -42,20 +38,15 @@ void setup() {
   analogWrite(RPWM, 0);
   analogWrite(LPWM, 0);
   delay(100);
-  pos=0;
+  pos=-1;
   up=true;
-  while(pos<10){
+  while(pos<0){
     analogWrite(LPWM,165);
     analogWrite(RPWM,0);
   }
-  
-  
+  // Serial.println("initpos:"+String(pos));
   analogWrite(LPWM,0);
-  
-  pos=0;
-  posInmm=0;
-  
-
+  pos=0;  
 }
 
 void loop() {
@@ -104,9 +95,9 @@ void loop() {
       
       
       analogWrite(LPWM, 0); // Stop LPWM
-      pos=0;
+      pos=-1;
       up=true;
-      while(pos<10){
+      while(pos<0){
         analogWrite(LPWM,165);
         analogWrite(RPWM,0);
       }
@@ -115,7 +106,7 @@ void loop() {
       analogWrite(LPWM,0);
       
       pos = 0; //Reset position and steps to 0
-      posInmm = 0; //Reset position and steps to 0
+      
       lastStepTime = 0; //Reset position and steps to 0
       newData = false; // Reset newData flag
       newrun = true;
@@ -132,12 +123,15 @@ void loop() {
     //if use encoder
 
     if (up){
-      reached = (posInmm>destinationPosition-0.25);
+      reached = (posInmm()>=destinationPosition);
     }else{
-      reached = (posInmm<destinationPosition+0.25); 
+      reached = (posInmm()<=destinationPosition); 
     }
-    
+
+    motionStartTime = micros();
+
     while(reached==false){
+
         if (up == true) { //if Up is true, move motor up with given voltage and delay
           analogWrite(RPWM, 0);
           analogWrite(LPWM, voltage);
@@ -145,14 +139,20 @@ void loop() {
           analogWrite(RPWM, voltage);
           analogWrite(LPWM, 0);
         }
+      if(micros()-motionStartTime>=delay_time*1000){
+        if (destinationPosition<=0.5){
+          pos = -1;
+        }
+        break;
+      }
         
     }
     
     analogWrite(LPWM, 0);
     analogWrite(RPWM, 0);
 
-    Serial.println("ack:"+String(destinationPosition)+","+String(posInmm)+","+reached); // Send acknowledgment of received data
-
+    // Serial.println("ack:"+String(destinationPosition)+","+String(posInmm)+","+reached); // Send acknowledgment of received data
+    // Serial.println("ack:" + String(posInmm)); // Send acknowledgment of received data
     newData = false; //Once data has been processed, flag newData as false to allow receival of data again.
   }
 }
@@ -164,14 +164,15 @@ void countSteps() { // This function counts steps by pulses detected in interrup
     } else if (up == false) {
       pos --;
     }
-    posInmm= conNum*pos;
-
     if (up){
-      reached = (posInmm>=destinationPosition-0.25);
+      reached = (posInmm()>=destinationPosition);
     }else{
-      reached = (posInmm<=destinationPosition+0.25);
+      reached = (posInmm()<=destinationPosition);
     }
     lastStepTime = micros();
   }
 }
 
+float posInmm(){
+  return pos*conNum;
+}

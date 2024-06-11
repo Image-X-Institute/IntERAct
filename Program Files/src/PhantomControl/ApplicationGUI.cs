@@ -20,12 +20,14 @@ namespace PhantomControl
         private string iconPath = "Resources\\Icons\\";
 
         URServer urServer = new URServer();
+        
         Settings_tab settingsTab = new Settings_tab();
 
         public ApplicationGUI()
         {
+            //Logger.initialiseLogger();
             InitializeComponent();
-            Logger.initialiseLogger();
+
 
             motionControl_tab.Show();
             settings_tab.Hide();
@@ -130,15 +132,14 @@ namespace PhantomControl
     public static class Logger
     {
         private static string logFilename = "/Log" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
-        private static string logFilePath = "Output Files/Log";
-        public static string logFullPath = string.Empty;
+        private static string logFilePath = "Output Files/Log/Log" + DateTime.Now.ToString("ddMMyy-hhmm");
+        private static string logFullPath = string.Empty;
 
         private static string urScriptName = "/urScript" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
         private static string urScriptPath = "Output Files/GeneratedUrScripts";
         public static string urScriptFullPath = string.Empty;
-
+        public static bool LogFileNameBOTHBool = false;
         public static TextWriter wrireFile;
-
         // NEW LOG FILE
         // new log file is run everytime this class is called
         public static void initialiseLogger()
@@ -155,16 +156,86 @@ namespace PhantomControl
 
             logFullPath = logFilePath + logFilename;
             urScriptFullPath = urScriptPath + urScriptName;
+
+        }
+        private static void CreateNewLogFile()
+        {
+            logFilename = "/Log" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
+            logFullPath = logFilePath + logFilename;
         }
 
-        public static void initialiseDataFile()
+        private static void CreateNewLogFile(string Robot, string filename)
         {
-            wrireFile = new StreamWriter("Output Files/MotionData_" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt");
+            logFilename = "/Log_" + Robot + "_" + filename + "_" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
+            logFullPath = logFilePath + logFilename;
+        }
+
+
+        public static void RenameLogFileBOTH(string Robot, string filename)
+        {
+
+            try
+            {
+
+                if (File.Exists(logFullPath))
+                {
+                    CreateNewLogFile(Robot, filename);
+                }
+                
+                LogFileNameBOTHBool = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Can not rename the log file: " + ex.Message);
+            }
+        }
+
+        //public static void RenameLogFile(string Robot, string filename)
+        //{
+        //    try
+        //    {
+        //        if (File.Exists(logFullPath))
+        //        {
+
+        //            string newFileName = "/Log_" + Robot + "_" + filename + "_" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
+        //            string newFilePath = logFilePath + newFileName;
+        //            File.Move(logFullPath, newFilePath);
+        //            logFullPath = newFilePath;
+        //        }
+        //        CreateNewLogFile();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine("Can not rename the log file: " + ex.Message);
+        //    }
+        //}
+
+        public static void RenameLogFile(string Robot, string filename)
+        {
+            try
+            {
+                if (File.Exists(logFullPath))
+                {
+                    CreateNewLogFile(Robot, filename);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Can not rename the log file: " + ex.Message);
+            }
+        }
+
+
+        public static void initialiseDataFile(string filename)
+        {
+            string filename2 = filename.Substring(0, filename.Length - 4);
+            wrireFile = new StreamWriter("Output Files/6DPlatform/MotionData_" + filename2 + "_" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt");
             TextWriter.Synchronized(wrireFile).WriteLine("Time(s)" + " " + "x(mm)" + " " + "y(mm)" + " " + "z(mm)" + " " + "rx(deg)" + " " + "ry(deg)" + " " + "rz(deg)");
         }
 
         // ADD SOMETHING TO LOG
-        public static void addToLogFile(string text)
+
+    public static void addToLogFile(string text)
         {
             if (UrSettings.writeLogFile == true)
             {
@@ -182,8 +253,7 @@ namespace PhantomControl
 
                 if (filesize > 1 * 1024 * 1024)
                 {
-                    logFilename = "Log" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
-                    logFullPath = logFilePath + logFilename;
+                    CreateNewLogFile();
                 }
             }
         }

@@ -18,12 +18,20 @@ namespace PhantomControl
         URServer urServer = new URServer();
         public MotionControl_tab motionTabPub;
         MotionControl_tab mct = new MotionControl_tab();
+        private static bool calledLogger = false;
         
         public Settings_tab()
         {
             if (!this.DesignMode)
             {
+                if (calledLogger == false)
+                {
+                    Logger.initialiseLogger();
+                    calledLogger = true;
+                }
+                
                 InitializeComponent();
+
 
                 //setup MotionType combo-box
                 LoadDefaultMotionTypes();
@@ -85,6 +93,7 @@ namespace PhantomControl
 
         private void loadSettings()
         {
+            
             if (File.Exists("settings.txt"))
             {
                 try
@@ -112,6 +121,7 @@ namespace PhantomControl
                     UrSettings.alingedPos[3] = Convert.ToDouble(dictionary["Aligned PositionRx [rad]"]);
                     UrSettings.alingedPos[4] = Convert.ToDouble(dictionary["Aligned PositionRy [rad]"]);
                     UrSettings.alingedPos[5] = Convert.ToDouble(dictionary["Aligned PositionRz [rad]"]);
+                    Logger.addToLogFile("Loading payloadMass from settings.txt = " + UrSettings.payLoadMass);
                 }
                 catch (Exception excep)
                 {
@@ -240,6 +250,8 @@ namespace PhantomControl
                 if (Double.TryParse(txtBox_Payload.Text, out value))
                 {
                     UrSettings.payLoadMass = value;
+                    Logger.addToLogFile("User changed the payloadMass = " + UrSettings.payLoadMass);
+
                 }            
             }
         }
