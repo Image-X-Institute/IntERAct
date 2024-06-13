@@ -1057,6 +1057,7 @@ namespace PhantomControl
             {
                 flatButton_PlayStopMotion.Text = " Play motion";
                 _keep1D = false;
+                hasClickedPlay = false;
                 serialPort.WriteLine("Stop");
                 Console.WriteLine("Stop"); 
             }
@@ -1811,6 +1812,7 @@ namespace PhantomControl
                             Logger.RenameLogFile("1D", textBox_filename.Text);
                             Logger.addToLogFile("The 1D input file " + textBox_filename.Text + " has been selected");
 
+
                         }
 
                         if (Settings_tab.bothSelected)
@@ -1940,29 +1942,26 @@ namespace PhantomControl
                 DateTime previous = DateTime.Now;
                 DateTime previous2 = DateTime.Now;
                 DateTime playmotionTime = DateTime.Now;
-                //string maxVoltageSend = SendMaximumVoltageValue(velocityValues);
-                //string timefile = @"OutputFiles\1DPlatform\Timestamps\timestamp1D" + "_" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
-                //string voltagefile = @"OutputFiles\1DPlatform\Arduino\Send\voltagesendtoarduino" + "_" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
-                //string ackfile = @"OutputFiles\1DPlatform\Arduino\Get\ackfile" + "_" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
-                string timefile = @"C:\Users\Robot\source\repos\Image-X-Institute\RealSense\timestamp_play_motion.txt";
-                string voltagefile = @"C:\Users\Robot\source\repos\Image-X-Institute\RealSense\voltagesendtoarduino.txt";
+            //string maxVoltageSend = SendMaximumVoltageValue(velocityValues);
+            //string ackfile = @"OutputFiles\1DPlatform\Arduino\Get\ackfile" + "_" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
                 string ackfile = @"C:\Users\Robot\source\repos\Image-X-Institute\RealSense\ackfile.txt";
 
-                StreamWriter writer = new StreamWriter(timefile);
-                StreamWriter writer2 = new StreamWriter(voltagefile);
+                Logger.Timestamps1DFullPath = "Output Files/1DPlatform/Timestamps/" + Path.GetFileName(_filePath1D) + "_" +  DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
+                Logger.addToTimestamps1DFile(Path.GetFileName(_filePath1D) + '\n'+ "1D starting time : " + playmotionTime.ToString("HH:mm:ss:fff"));
+                Logger.ArduinoSendFullPath = "Output Files/1DPlatform/Arduino/Send/" + Path.GetFileName(_filePath1D) + "_" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
+                Logger.ArduinoGetFullPath = "Output Files/1DPlatform/Arduino/Get/" + Path.GetFileName(_filePath1D) + "_" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
 
-                writer.WriteLine(playmotionTime.ToString("HH:mm:ss:fff"));
-                writer.Close();
                 Stopwatch stopwatch = Stopwatch.StartNew();
                 string data;
-                File.CreateText(ackfile).Close();
-                async void writeAckLogs(string writedata, string filepath)
-                {
-                    using (StreamWriter writeAckLog = File.AppendText(filepath))
-                    {
-                        await writeAckLog.WriteAsync(writedata);
-                    }
-                }
+                //File.CreateText(ackfile).Close();
+
+                //async void writeAckLogs(string writedata, string filepath)
+                //{
+                //    using (StreamWriter writeAckLog = File.AppendText(filepath))
+                //    {
+                //        await writeAckLog.WriteAsync(writedata);
+                //    }
+                //}
 
 
 
@@ -1977,8 +1976,7 @@ namespace PhantomControl
                         if (tempdata.Contains("ack"))
                         {
                             tempdata = stopwatch.ElapsedMilliseconds.ToString() + ',' + tempdata;
-                            Console.WriteLine(tempdata);
-                            writeAckLogs(tempdata, ackfile);
+                            Logger.addToArduinoGetFile(tempdata);
                         }
                         else
                         {
@@ -2001,7 +1999,7 @@ namespace PhantomControl
                             string voltageSend = newVoltage.ToString("0.0");
                             string delaySend = delayResult.ToString("0.0");
                             string voltageString = $"{voltageSend},{result.isGoingUp},{delayResult}";
-                            writer2.WriteLine($"{result.voltageValue},{result.isGoingUp},{delayResult} ");
+                            Logger.addToArduinoSendFile($"{result.voltageValue},{result.isGoingUp},{delayResult}");
                             var teststring = voltageString + "," + displacementValues[i + 1];
                             serialPort.WriteLine(teststring);
                             Console.WriteLine("total time: " + stopwatch.ElapsedMilliseconds + " " + teststring);
@@ -2060,7 +2058,7 @@ namespace PhantomControl
                         {
                             tempdata = stopwatch.ElapsedMilliseconds.ToString() + ',' + tempdata;
                             Console.WriteLine(tempdata);
-                            writeAckLogs(tempdata, ackfile);
+                            Logger.addToArduinoGetFile(tempdata);
                         }
                     }
                     catch
@@ -2070,21 +2068,14 @@ namespace PhantomControl
                 }
 
                 stopwatchLast.Stop();
-                writer2.Close();
                 currentTime = 0;
                 string finalString = $"{0},{false},{2000}";
                 serialPort.WriteLine(finalString);
                 DateTime endTime = DateTime.Now;
-                string time_end_file = @"C:\Users\Robot\source\repos\Image-X-Institute\RealSense\timestamp_end_of_trace.txt";
-
-                //string time_end_file = @"OutputFiles\1DPlatform\Timestamps\end_timestamp1D" + "_" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
-                StreamWriter writer3 = new StreamWriter(time_end_file);
-                writer3.WriteLine(endTime.ToString("HH:mm:ss:fff"));
-                writer3.Close();
+                Logger.addToTimestamps1DFile("1D end time : " + endTime.ToString("HH:mm:ss:fff") + '\n');
                 System.Windows.MessageBox.Show("Trace is Complete");
                 _keep1D = false;
                 Logger.addToLogFile("1D trace is complete");
-                //Logger.CreateNewLogFile();
 
         }
 
@@ -2248,6 +2239,9 @@ namespace PhantomControl
             public static double timeKinematics = 0;
             public static bool writeLogFile = true;
             public static bool writeUrScriptFile = true;
+            public static bool writeTimestamps1DFile = true;
+            public static bool writeArduinoGetFile = true;
+            public static bool writeArduinoSendFile = true;
             public static bool writeDataFile = true;
             public static bool motionPlay = false;
             public static bool isConnected = false;
@@ -2318,6 +2312,23 @@ namespace PhantomControl
             {
                 get { return writeLogFile; }
                 set { writeLogFile = value; }
+            }
+
+            public static bool WriteTimestamp1DFile
+            {
+                get { return WriteTimestamp1DFile; }
+                set { WriteTimestamp1DFile = value; }
+            }
+
+            public static bool WriteArduinoGetFile
+            {
+                get { return WriteArduinoGetFile; }
+                set { WriteArduinoGetFile = value; }
+            }
+            public static bool WriteArduinoSendFile
+            {
+                get { return WriteArduinoSendFile; }
+                set { WriteArduinoSendFile = value; }
             }
 
             public static bool WriteUrScriptFile
