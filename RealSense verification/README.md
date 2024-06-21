@@ -1,5 +1,5 @@
 # RealSense camera 
-
+This README file is written to help users to set up the RealSense camera which could be useful to measure reproducibility, accuracy and behaviour of 1D and/or 6D motions. 
 ## Pre-requirements
   - RealSense LiDAR L515
   - USB port 3.0
