@@ -1,4 +1,4 @@
-#Pre-requirements
+# Pre-requirements
   - RealSense LiDAR L515
   - USB port 3.0
   - Python 3.11.8 (new versions do not support pyrealsense2 library of RealSense package)
@@ -23,7 +23,7 @@
 ROI size : 30x30 pixels
 
 
-Pre-processing steps for measurement experiment
+## Pre-processing steps for measurement experiment
 
 -Plug the camera to the pc with the USBC to USBA cable
 -If measurements need to be done on only one of the platforms, run the code "1ROI_RealSense.py" and it will open a display camera viewer.  
