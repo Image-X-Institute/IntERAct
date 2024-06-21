@@ -16,5 +16,5 @@ MatLab post-processing code: https://github.com/Image-X-Institute/6-DoF-Robotic-
 
 The difference between the two optimal shifts is the latency of the combined system. 
 
-Once the optimal shift is found, the difference between interpolated input and optimal shifted output can be calculated -> mean, std, 1st et 99th percentile for each test, then for each trace and finally for all the traces.  
+Once the optimal shift is found, the difference between interpolated input and optimal shifted output can be calculated -> mean, std, 1st and 99th percentile for each test, then for each trace and finally for all the traces.  
 
