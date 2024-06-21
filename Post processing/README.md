@@ -8,11 +8,11 @@ MatLab post-processing code: https://github.com/Image-X-Institute/6-DoF-Robotic-
 
 - For each iteration: 
 
-  Subtract the testing shift to the output timestamps and get rid of the output values before 0s and after 299.8s (length of the trace). 
-  Shifted output data between 0 and 299.8s are used to interpolate input data. 
-  Calculation of the RMSE between interpolated input data and shifted output data and save that value in a list 
-  Find the minimal RMSE from the RMSE list 
-  The index of the min RMSE gives the index of the optimal shift in the list of shifts initialized at the beginning.  
+  - Subtract the testing shift to the output timestamps and get rid of the output values before 0s and after 299.8s (length of the trace). 
+  - Shifted output data between 0 and 299.8s are used to interpolate input data. 
+  - Calculation of the RMSE between interpolated input data and shifted output data and save that value in a list 
+  - Find the minimal RMSE from the RMSE list 
+  - The index of the min RMSE gives the index of the optimal shift in the list of shifts initialized at the beginning.  
 
 The difference between the two optimal shifts is the latency of the combined system. 
 
