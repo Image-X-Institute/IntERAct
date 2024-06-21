@@ -4,9 +4,6 @@ import time
 from datetime import datetime
 # import pandas as pd
 from realsense_depth_1ROI import DepthCamera
-import matplotlib.pyplot as plt
-from scipy.interpolate import interp1d
-import pyrealsense2 as rs
  
 def get_time():
     Now = datetime.now()
