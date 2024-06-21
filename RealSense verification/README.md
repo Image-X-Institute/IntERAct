@@ -15,12 +15,12 @@ This README file is written to help users to set up the RealSense camera which c
 
 ## Current RealSense camera parameters :
 Depth Stream Configuration :
--Resolution : 1024x720 pixels.
+- Resolution : 1024x720 pixels.
 - Format of the depth stream : 16-bit z-depth
 - Frame rate per second : 30
 Color Stream Configuration : 
 - Resolution : 1280x720 pixels
--  8-bit BGR
+- 8-bit BGR
 - Frame rate per second : 30
 
 ROI size : 30x30 pixels
