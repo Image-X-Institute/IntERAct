@@ -18,7 +18,8 @@ Depth Stream Configuration :
 - Resolution : 1024x720 pixels.
 - Format of the depth stream : 16-bit z-depth
 - Frame rate per second : 30
-Color Stream Configuration : 
+
+Color Stream Configuration :
 - Resolution : 1280x720 pixels
 - 8-bit BGR
 - Frame rate per second : 30
