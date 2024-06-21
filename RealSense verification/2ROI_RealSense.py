@@ -1,12 +1,8 @@
 import cv2
 import numpy as np
-import socket
-import struct
 import time
 from realsense_depth import DepthCamera
-import matplotlib.pyplot as plt
 from datetime import datetime
-import os
  
 def substract_secondes(hour1, hour2):
     h1, minutes1, secondes1, millisecondes1 = map(int, hour1.split(':'))
@@ -16,13 +12,6 @@ def substract_secondes(hour1, hour2):
     difference_secondes = total_secondes1 - total_secondes2
     return difference_secondes
 
-import cv2
-import numpy as np
-import socket
-import struct
-import time
-from realsense_depth import DepthCamera
- 
 # Function to get average distance from a specified ROI in the depth frame
 def get_average_distance(roi, depth_frame):
     x, y, w, h = roi
@@ -128,41 +117,22 @@ for k in range(len(time_array)):
     time_array[k] = time_array[k] - time_reference
 
 
-#Read the file that aknowledge the starting of the 1D motion
-with open('starting_timestamp1D.txt', 'r') as file1D:
-    time_motion1D = file1D.readline().strip()
-
-
-#Read the file that aknowledge the starting of the 6D motion
-directory_path = r"C:\Users\Robot\source\repos\Image-X-Institute\Multi-tracking"
-filename = max([f for f in os.listdir(directory_path) if f.startswith("Log_")], key=lambda x: os.path.getmtime(os.path.join(directory_path, x)))
-file_path = os.path.join(directory_path, filename)
-with open(file_path, 'r') as file:
-    time_motion6D = file.read()
-
-delta_time = substract_secondes(time_motion6D, time_motion1D)
-print(delta_time)
-
-
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
-filename_time_array1 = f"time_array{timestamp}.txt"
-filename_dist_array1D = f"dist_array1D{timestamp}.txt"
-filename_dist_array6D = f"dist_array6D{timestamp}.txt"
+filename_time_array = f"time_array{timestamp}.txt"
+filename_dist1D_array = f"dist_array1D{timestamp}.txt"
+filename_dist6D_array = f"dist_array6D{timestamp}.txt"
 
-
- 
-
-with open(filename_time_array1, 'w') as file:
+with open(filename_time_array, 'w') as file:
     for k in range(len(time_array)):
         file.write(str(time_array[k]) + "\n")  
   
 
-with open(filename_dist_array1D, 'w') as file:
+with open(filename_dist1D_array, 'w') as file:
     for k in range(len(time_array)):
         file.write(str(dist_array_1[k]) + "\n")  
 
-with open(filename_dist_array6D, 'w') as file:
+with open(filename_dist6D_array, 'w') as file:
     for k in range(len(time_array)):
         file.write(str(dist_array_2[k]) + "\n")  
 
