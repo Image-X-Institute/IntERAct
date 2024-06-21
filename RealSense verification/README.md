@@ -27,7 +27,6 @@ ROI size : 30x30 pixels
 
 
 ## Pre-processing steps for measurement experiment :
-
 -Plug the camera to the pc with the USBC to USBA cable
 -If measurements need to be done on only one of the platforms, run the code "1ROI_RealSense.py" and it will open a display camera viewer.  
 -Position the cursor where the region of interest should be (tracking marker) and click. 
