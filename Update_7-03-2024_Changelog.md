@@ -16,11 +16,16 @@ Motion Phantom). In this version, more information is recorded in the log files 
     - High Current DC Motor Drive (commercially available [https://www.firgelliauto.com/products/high-current-dc-motor-drice-43a])
     - 12V DC power supply
     - Wiring equipment (breadboard, wires etc).
+  * RealSense Camera
+    - LiDAR L515 (https://store.intelrealsense.com/buy-intel-realsense-lidar-camera-l515.html)
+    - Pre-processing codes used for experiments : https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/update-21-06-2024/RealSense%20verification
   
   * Software 
      - Microsoft Visual Studio 2019 with .NET framework 4.5 (tested). May work on other versions too.  
      - Winforms
      - Arduino IDE
+     - MatLab
+     - Microsoft Visual Studio Code 1.90.2 (tested). May work on other versions as well. 
   
   * Third-party libraries (located in `External Libraries/`)
      - EasyModbusTCP v4.2
@@ -29,30 +34,4 @@ Motion Phantom). In this version, more information is recorded in the log files 
      - LiveCharts.Wpf v0.9.7
      - Math.Net Numerics v4.12.0
 
-
-
-### Updated Requirements
-    
-  * Hardware 6D
-     - A six-axis robot (Tested on a commercially available [UR3 Universal Robot](https://www.universal-robots.com/products/ur3-robot/)) and its associated hardware
-     - A phantom
-  * Hardware 1D
-    - Optical Linear Actuator - 35lb, 4 inch stroke length (commercially available [https://www.firgelliauto.com.au/products/os-series])
-    - Arduino Uno - (commercially available [https://store.arduino.cc/products/arduino-uno-rev3]
-    - Optical Base Mounting Bracket for vertical applications (commercially available [https://www.firgelliauto.com.au/products/mb-pb-premium-base-mounting-bracket])
-    - High Current DC Motor Drive (commercially available [https://www.firgelliauto.com/products/high-current-dc-motor-drice-43a])
-    - 12V DC power supply
-    - Wiring equipment (breadboard, wires etc).
-  
-  * Software 
-     - Microsoft Visual Studio 2019 with .NET framework 4.5 (tested). May work on other versions too.  
-     - Winforms
-     - Arduino IDE
-  
-  * Third-party libraries (located in `External Libraries/`)
-     - EasyModbusTCP v4.2
-     - LiveCharts v0.9.7
-     - LiveCharts.WinForms v0.9.7.1
-     - LiveCharts.Wpf v0.9.7
-     - Math.Net Numerics v4.12.0
      
