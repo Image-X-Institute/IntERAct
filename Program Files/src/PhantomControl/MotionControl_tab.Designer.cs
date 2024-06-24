@@ -32,6 +32,8 @@ namespace PhantomControl
         {
             this.flatButton_LoadTraces = new System.Windows.Forms.Button();
             this.flatButton_PlayStopMotion = new System.Windows.Forms.Button();
+            this.flatButton_StopResumeMotion = new System.Windows.Forms.Button();
+            this.flatButton_ResumeMotion = new System.Windows.Forms.Button();
             this.bunifuElipse1 = new System.Windows.Forms.Button();
             this.bunifuElipse2 = new System.Windows.Forms.Button();
             this.flatButton_SetStartPos = new System.Windows.Forms.Button();
@@ -178,6 +180,38 @@ namespace PhantomControl
             this.flatButton_PlayStopMotion.Text = "Play Motion";
             this.flatButton_PlayStopMotion.UseVisualStyleBackColor = false;
             this.flatButton_PlayStopMotion.Click += new System.EventHandler(this.flatButton_PlayStopMotion_Click);
+            // 
+            // flatButton_StopResumeMotion
+            // 
+            this.flatButton_StopResumeMotion.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.flatButton_StopResumeMotion.BackColor = System.Drawing.Color.Silver;
+            this.flatButton_StopResumeMotion.FlatAppearance.BorderSize = 0;
+            this.flatButton_StopResumeMotion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.flatButton_StopResumeMotion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.flatButton_StopResumeMotion.ForeColor = System.Drawing.Color.White;
+            this.flatButton_StopResumeMotion.Location = new System.Drawing.Point(14, 260);
+            this.flatButton_StopResumeMotion.Name = "flatButton_StopResumeMotion";
+            this.flatButton_StopResumeMotion.Size = new System.Drawing.Size(104, 29);
+            this.flatButton_StopResumeMotion.TabIndex = 5;
+            this.flatButton_StopResumeMotion.Text = "Stop 1D motion";
+            this.flatButton_StopResumeMotion.UseVisualStyleBackColor = false;
+            this.flatButton_StopResumeMotion.Click += new System.EventHandler(this.flatButton_StopResumeMotion_Click);
+            // 
+            // flatButton_ResumeMotion
+            // 
+            this.flatButton_ResumeMotion.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.flatButton_ResumeMotion.BackColor = System.Drawing.Color.Silver;
+            this.flatButton_ResumeMotion.FlatAppearance.BorderSize = 0;
+            this.flatButton_ResumeMotion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.flatButton_ResumeMotion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.flatButton_ResumeMotion.ForeColor = System.Drawing.Color.White;
+            this.flatButton_ResumeMotion.Location = new System.Drawing.Point(14, 225);
+            this.flatButton_ResumeMotion.Name = "flatButton_ResumeMotion";
+            this.flatButton_ResumeMotion.Size = new System.Drawing.Size(104, 29);
+            this.flatButton_ResumeMotion.TabIndex = 5;
+            this.flatButton_ResumeMotion.Text = "Resume 1D motion";
+            this.flatButton_ResumeMotion.UseVisualStyleBackColor = false;
+            this.flatButton_ResumeMotion.Click += new System.EventHandler(this.flatButton_ResumeMotion_Click);
             // 
             // bunifuElipse1
             // 
@@ -893,6 +927,8 @@ namespace PhantomControl
             this.panel5.Controls.Add(this.rangeNo);
             this.panel5.Controls.Add(this.moveToStartPos);
             this.panel5.Controls.Add(this.toggle6D);
+            this.panel5.Controls.Add(this.flatButton_StopResumeMotion);
+            this.panel5.Controls.Add(this.flatButton_ResumeMotion);
             this.panel5.Controls.Add(this.resetZoom);
             this.panel5.Controls.Add(this.toggle1D);
             this.panel5.Controls.Add(this.label7_PlotControl);
@@ -1184,6 +1220,8 @@ namespace PhantomControl
         #region Bunifu_ReplacedLElements
         private Button flatButton_LoadTraces;
         private Button flatButton_PlayStopMotion;
+        private Button flatButton_StopResumeMotion;
+        private Button flatButton_ResumeMotion;
         private Button bunifuElipse1;
         private Button bunifuElipse2;
         private Button flatButton_SetStartPos;

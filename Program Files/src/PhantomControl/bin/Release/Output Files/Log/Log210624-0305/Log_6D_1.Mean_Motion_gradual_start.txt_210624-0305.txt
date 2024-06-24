@@ -1,0 +1,6 @@
+[  21/06/24 03:05:28  ]    The 6D input file 1.Mean_Motion_gradual_start.txt has been selected
+[  21/06/24 03:05:34  ]    MODBUS connection via 192.168.94.11 established.
+[  21/06/24 03:05:34  ]    Opening IP address: 192.168.94.11
+[  21/06/24 03:10:52  ]    6D trace is complete
+[  21/06/24 03:10:52  ]    MODBUS disconected from controler
+[  21/06/24 03:10:54  ]    Opening IP address: 192.168.94.11
