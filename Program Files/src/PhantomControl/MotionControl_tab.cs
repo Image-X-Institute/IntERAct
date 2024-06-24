@@ -922,8 +922,6 @@ namespace PhantomControl
         private static bool isStopped = false;
         private void flatButton_PlayStopMotion_Click(object sender, EventArgs e)
         {
-            DateTime play6Dmotion_time = DateTime.Now;
-            string play6Dmotion_string;
             bool selectedPlay = true;
             if (_playstopmotionclicked == true)
             {
@@ -1026,12 +1024,7 @@ namespace PhantomControl
                         urServer.generateUrScript(UrSettings.TimeKinematics, UrSettings.TCP, UrSettings.PayLoad);
                         runMotion();
 
-                        //// Commented out this function in order to disable the Send Motion Function                  
-
-                        //while (!File.Exists(TimeStamp6DStartWriteorGet(@"C:\Users\Robot\source\repos\Image-X-Institute\Multi-tracking", "g")))
-                        //{
-                        //   Console.WriteLine("test");
-                        //}
+                        //// Commented out this function in order to disable the Send Motion Function                 
 
                         
                         run1DRobot();
@@ -1226,16 +1219,6 @@ namespace PhantomControl
             urServer.sendUrScript(UrScriptProgram.urList);
         }
 
-        private void TimeStamp6DStart(string directoryPath)
-        {
-            string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-            string fileName = $"Log_{timestamp}.txt";
-            string filePath = Path.Combine(directoryPath, fileName);
-            StreamWriter writer6D = new StreamWriter(filePath);
-            writer6D.WriteLine((DateTime.Now).ToString("HH:mm:ss:fff"));
-            writer6D.Close();
-        }
-
         // This function is called in runMotion(), it is run on a separate thread and is responsible for connecting to MODBUS and streaming back data to the software to display and save in a txt file
         private void monitorData()
         {
@@ -1287,7 +1270,6 @@ namespace PhantomControl
                     if (_firstRun == true)
                     {
 
-                        TimeStamp6DStart(@"C:\Users\Robot\source\repos\Image-X-Institute\Multi-tracking");
                         absoluteTime = getTime(_holdingRegTime);
                         _firstRun = false;
 
