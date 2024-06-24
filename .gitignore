@@ -5,3 +5,6 @@
 /Program Files/src/PhantomControl/bin/Debug/Output Files
 /Program Files/.vs/
 /.vs
+**/bin/**
+**/obj/**
+**/.vs/**
