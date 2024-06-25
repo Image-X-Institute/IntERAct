@@ -919,15 +919,18 @@ namespace PhantomControl
         }
 
         // Button that will run the motion and stop the motion
-        private static bool hasClickedPlay = false;
-        private static bool selectedPlay = false;
-        private static bool isStopped = false;
+        private static bool motionPlay1D = false;
+        private static bool isStopped = true;
         private static bool isResumed = false;
         private static int StopIndex;
 
+
+
         private void flatButton_ResumeMotion_Click(object sender, EventArgs e)
         {
+            
             Console.WriteLine("resume 1d");
+            resumeMotion1D();
             flatButton_ResumeMotion.Enabled = false;
             
         }
@@ -990,21 +993,32 @@ namespace PhantomControl
 
                 else if (Settings_tab.oneSelected)
                 {
-                    // Code here for playing 1DOF motion
-                    //flatButton_PlayStopMotion.Text = " Stop Motion";
-                    hasClickedPlay = true;
-                    selectedPlay = false;
-                    isStopped = false;
-                    flatButton_Home.Enabled = false;
-                    AllocConsole();
-                    /* Thread run1D = new Thread(new ThreadStart(run1DRobot));*/
-                    run1DRobot();
-                    return;
+                    if (motionPlay1D==false)
+                    {
+                        // Code here for playing 1DOF motion
+                        flatButton_PlayStopMotion.Text = " Stop Motion";
+                        motionPlay1D = true;
+                        selectedPlay = false;
+                        flatButton_Home.Enabled = false;
+                        flatButton_SetStartPos.Enabled = false;
+                        AllocConsole();
+                        /* Thread run1D = new Thread(new ThreadStart(run1DRobot));*/
+                        run1DRobot();
+                        return;
+                    }
+
+                    if (motionPlay1D == true)
+                    {
+                        Stop1DPlatform();
+                        flatButton_ResumeMotion.Enabled = true;
+                        return;
+                    }
+
                 }
 
                 else if (Settings_tab.bothSelected)
                 {
-                    if (UrSettings.motionPlay == false)
+                    if (UrSettings.motionPlay == false && motionPlay1D == false)
                     {
                         AllocConsole();
                         /*clearPlot("output");*/
@@ -1013,6 +1027,7 @@ namespace PhantomControl
                         // flatButton_PlayStopMotion.Iconimage = Image.FromFile(iconPath + "stop.png");
                         flatButton_PlayStopMotion.Text = " Stop Motion";
                         UrSettings.motionPlay = true;
+                        motionPlay1D = true;
                         flatButton_Home.Enabled = false;
                         flatButton_SetStartPos.Enabled = false;
 
@@ -1041,12 +1056,11 @@ namespace PhantomControl
                         return;
                     }
 
-                    if (UrSettings.motionPlay == true)
+                    if (UrSettings.motionPlay == true && motionPlay1D == true)
                     {
-                        isStopped = true;
                         Stop1DPlatform();
+                        flatButton_ResumeMotion.Enabled = true;
                         resetRun();
-                        isStopped = false;
                         return;
                     }
                 }
@@ -1057,10 +1071,11 @@ namespace PhantomControl
         {
             if (serialPort != null)
             {
-                flatButton_PlayStopMotion.Text = " Play motion";
-                _keep1D = false;
-                isStopped = true;
-                hasClickedPlay = false;
+                flatButton_PlayStopMotion.Text = " Play Motion";
+                motionPlay1D = false;
+                flatButton_SetStartPos.Enabled = false;
+                flatButton_Home.Enabled = true;
+                flatButton_LoadTraces.Enabled = false;
                 serialPort.WriteLine("Stop");
                 Console.WriteLine("Stop");
             }
@@ -1108,7 +1123,6 @@ namespace PhantomControl
             {
                 Console.WriteLine("Running Trace...");
                 //_keep1D = true;
-                isStopped = false;
                 Thread Start1DMotion = new Thread(Start1D);
 
                 Start1DMotion.Start();
@@ -1192,7 +1206,7 @@ namespace PhantomControl
             }
             else
             {
-                Thread.Sleep(4600);
+                //Thread.Sleep(4600);
                 SendVoltageValues(velocityValues, newDisplacementValues);
                 Console.WriteLine("start at 0");
             }
@@ -1212,15 +1226,18 @@ namespace PhantomControl
             }
 
         }
-        //private void resetRun1D()
-        //{
-        //    flatButton_PlayStopMotion.Text = " Play Motion";
-        //    hasClickedPlay = false;
-        //    flatButton_SetStartPos.Enabled = false;
-        //    flatButton_Home.Enabled = true;
-        //    flatButton_LoadTraces.Enabled = true;
-
-        //}
+        private void resumeMotion1D()
+        {
+            List<double> displacementValues = ReadDisplacementValues(_filePath1D);
+            List<double> newDisplacementValues = ShiftDisplacementToZero(displacementValues);
+            List<double> velocityValues = CalculateVelocityfromDisplacement(newDisplacementValues);
+            if (StopIndex < velocityValues.Count)
+            {
+                List<double> slicedVelocityValues = velocityValues.GetRange(StopIndex, velocityValues.Count- StopIndex);
+                motionPlay1D = true;
+                SendVoltageValues(slicedVelocityValues, newDisplacementValues);
+            }
+        }
         // Function clears variables and resets values before another motion run performed
         private void resetRun()
         {
@@ -1284,7 +1301,6 @@ namespace PhantomControl
         // This function is called in runMotion(), it is run on a separate thread and is responsible for connecting to MODBUS and streaming back data to the software to display and save in a txt file
         private void monitorData()
         {
-            string file_path_start6D;
             int sampleRate = 10;// (int)(UrSettings.timeKinematics * 1000) - 10;
             double absoluteTime = 0;
             double currentTime = 0;
@@ -1328,7 +1344,6 @@ namespace PhantomControl
 
                 if (isMoving())
                 {
-                    DateTime play6Dmotion_time = DateTime.Now;
                     if (_firstRun == true)
                     {
 
@@ -1990,7 +2005,7 @@ namespace PhantomControl
             DateTime playmotionTime = DateTime.Now;
             //string maxVoltageSend = SendMaximumVoltageValue(velocityValues);
             //string ackfile = @"OutputFiles\1DPlatform\Arduino\Get\ackfile" + "_" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
-            string ackfile = @"C:\Users\Robot\source\repos\Image-X-Institute\RealSense\ackfile.txt";
+            //string ackfile = @"C:\Users\Robot\source\repos\Image-X-Institute\RealSense\ackfile.txt";
 
             Logger.Timestamps1DFullPath = "Output Files/1DPlatform/Timestamps/" + Path.GetFileName(_filePath1D) + "_" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
             Logger.addToTimestamps1DFile(Path.GetFileName(_filePath1D) + '\n' + "1D starting time : " + playmotionTime.ToString("HH:mm:ss:fff"));
@@ -2011,7 +2026,7 @@ namespace PhantomControl
 
             for (int i = 0; i < velocityValues.Count; i++)
             {
-                if (isStopped == true)
+                if (motionPlay1D == false)
                 {
                     StopIndex = i;
                     return;
@@ -2122,7 +2137,7 @@ namespace PhantomControl
             DateTime endTime = DateTime.Now;
             Logger.addToTimestamps1DFile("1D end time : " + endTime.ToString("HH:mm:ss:fff") + '\n');
             System.Windows.MessageBox.Show("Trace is Complete");
-            isStopped = true;
+            motionPlay1D = false;
             Logger.addToLogFile("1D trace is complete");
         }
 

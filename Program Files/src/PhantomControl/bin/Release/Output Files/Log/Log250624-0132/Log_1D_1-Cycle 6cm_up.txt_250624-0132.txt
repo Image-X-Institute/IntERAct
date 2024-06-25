@@ -1,0 +1,8 @@
+[  25/06/24 01:32:42  ]    The 1D input file 1-Cycle 6cm_up.txt has been selected
+[  25/06/24 01:32:53  ]    1D trace is complete
+[  25/06/24 01:32:56  ]    1D Robot to Home
+[  25/06/24 01:33:03  ]    1D trace is complete
+[  25/06/24 01:33:05  ]    1D Robot to Home
+[  25/06/24 01:33:18  ]    1D trace is complete
+[  25/06/24 01:33:20  ]    1D Robot to Home
+[  25/06/24 01:33:32  ]    1D trace is complete
