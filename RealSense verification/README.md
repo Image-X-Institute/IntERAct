@@ -1,6 +1,6 @@
 # RealSense camera 
 This README file is written to help users to set up the RealSense camera which could be useful to measure reproducibility, accuracy and behaviour of 1D and/or 6D motions. 
-[RealSense verification](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/edit/update-21-06-2024/RealSense%20verification/)
+RealSense verification
 ## Pre-requirements
   - RealSense LiDAR L515
   - USB port 3.0
