@@ -9,7 +9,6 @@ Motion Phantom). In this version, more information is recorded in the log files 
   * Hardware 6D
      - A six-axis robot (Tested on a commercially available [UR3 Universal Robot](https://www.universal-robots.com/products/ur3-robot/)) and its associated hardware
      - A phantom
-     - Getting started : 
   * Hardware 1D
     - Optical Linear Actuator - 35lb, 4 inch stroke length (commercially available [https://www.firgelliauto.com.au/products/os-series])
     - Arduino Uno - (commercially available [https://store.arduino.cc/products/arduino-uno-rev3]
