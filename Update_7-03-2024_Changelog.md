@@ -19,7 +19,7 @@ Motion Phantom). In this version, more information is recorded in the log files 
     - Wiring equipment (breadboard, wires etc).
   * RealSense Camera
     - LiDAR L515 (https://store.intelrealsense.com/buy-intel-realsense-lidar-camera-l515.html)
-    - Pre-processing codes used for experiments : https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/update-21-06-2024/RealSense%20verification
+    - Pre-processing codes used for experiments : [https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/update-21-06-2024/RealSense%20verification](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/79de5281301065528f1e2daf2de6a9732bbf00b4/RealSense%20verification)
   
   * Software 
      - Microsoft Visual Studio 2019 with .NET framework 4.5 (tested). May work on other versions too.  
