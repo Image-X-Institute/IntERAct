@@ -930,8 +930,11 @@ namespace PhantomControl
         {
             
             Console.WriteLine("resume 1d");
-            resumeMotion1D();
+            Resume1DRobot();
+            flatButton_PlayStopMotion.Text = " Stop Motion";
             flatButton_ResumeMotion.Enabled = false;
+            flatButton_PlayStopMotion.Enabled = true;
+            motionPlay1D = true;
             
         }
 
@@ -1095,13 +1098,12 @@ namespace PhantomControl
 
         private void Resume1DRobot()
         {
+
             
             if (_filePath1D != null)
             {
                 Console.WriteLine("Resume trace");
-                isStopped = false;
-                isResumed = true;
-                Thread Resume1DMotion = new Thread(Start1D);
+                Thread Resume1DMotion = new Thread(resumeMotion1D);
 
                 Resume1DMotion.Start();
 
@@ -1142,25 +1144,6 @@ namespace PhantomControl
 
         }
 
-        public List<T> Slice<T>(List<T> list, int start, int length)
-        {
-            if (list == null)
-                throw new ArgumentNullException(nameof(list));
-            if (start < 0 || start >= list.Count)
-                throw new ArgumentOutOfRangeException(nameof(start));
-            if (length < 0 || (start + length) > list.Count)
-                throw new ArgumentOutOfRangeException(nameof(length));
-
-            List<T> slice = new List<T>();
-
-            for (int i = start; i < start + length; i++)
-            {
-                slice.Add(list[i]);
-            }
-
-            return slice;
-        }
-
         // This function reads the file, shifts the displacement, calculates velocity and send calls the SendvoltageValues function
         public void Start1D()
         {
@@ -1180,7 +1163,7 @@ namespace PhantomControl
             ShiftToStartPos(newDisplacementValues[0]);
 
             //---------Couch tracking measurement
-            Thread.Sleep((int)timetoMove + 50);
+            //Thread.Sleep((int)timetoMove + 50);
             //AllocConsole();
             //if (serialPort.IsOpen == true)
             //{
@@ -1197,19 +1180,9 @@ namespace PhantomControl
         }
         else
         {
-            if (isResumed==true)
-            {
-                
-                ///*SendVoltageValues*/(velocityValues.Skip(StopIndex), newDisplacementValues);
-                Console.WriteLine("resume motion");
-                isResumed = false;
-            }
-            else
-            {
-                //Thread.Sleep(4600);
-                SendVoltageValues(velocityValues, newDisplacementValues);
-                Console.WriteLine("start at 0");
-            }
+            //Thread.Sleep(4600);
+            SendVoltageValues(velocityValues, newDisplacementValues);
+            Console.WriteLine("start at 0");
         }
 
         }
