@@ -9,6 +9,7 @@ This README file is written to help users to set up the RealSense camera which c
   - USBC to USBA cable
   - Tutorial to run python codes on Visual Studio : https://code.visualstudio.com/docs/python/python-tutorial
   - Install opencv-python, numpy, datetime and time libraries
+  - Install 2.54.2.5684 (most recent version does not work)
   - "1ROI_RealSense.py" used the header file "realsense_depth_1ROI.py"
   - "2ROI_RealSense.py"used the header file "realsense_depth_2ROI.py"
   - Tracking marker(s)
