@@ -26,6 +26,7 @@ using System.Windows;
 using System.Security.Policy;
 using System.Security.Cryptography;
 using System.Runtime.InteropServices.ComTypes;
+using System.Runtime.CompilerServices;
 
 // This class is where most of the functions and other classes are called. The GUI MotionControl is run controlled through this class. 
 
@@ -923,19 +924,90 @@ namespace PhantomControl
         private static bool isStopped = true;
         private static bool isResumed = false;
         private static int StopIndex;
-
-
-
         private void flatButton_ResumeMotion_Click(object sender, EventArgs e)
         {
-            
-            Console.WriteLine("resume 1d");
-            Resume1DRobot();
-            flatButton_PlayStopMotion.Text = " Stop Motion";
-            flatButton_ResumeMotion.Enabled = false;
-            flatButton_PlayStopMotion.Enabled = true;
-            motionPlay1D = true;
-            
+            Console.WriteLine("resume 6d");
+            List<double>  timeTemp = new List<double>();
+            List<double> XTemp = new List<double>();
+            List<double> YTemp = new List<double>();
+            List<double> ZTemp = new List<double>();
+            List<double> RxTemp = new List<double>();
+            List<double> RyTemp = new List<double>();
+            List<double> RzTemp = new List<double>();
+            if (Settings_tab.bothSelected)
+            {
+                int indexResume6D = findNext6DPosition()+1;
+
+                timeTemp = MotionTraces.t.ToList();
+                XTemp = MotionTraces.X.ToList();
+                YTemp = MotionTraces.Y.ToList();
+                ZTemp = MotionTraces.Z.ToList();
+                RxTemp = MotionTraces.Rx.ToList();
+                RyTemp = MotionTraces.Ry.ToList();
+                RzTemp = MotionTraces.Rz.ToList();
+
+                int MotionTracesSize = timeTemp.Count() - indexResume6D;
+
+                MotionTraces.t.Clear();
+                MotionTraces.X.Clear();
+                MotionTraces.Y.Clear();
+                MotionTraces.Z.Clear();
+                MotionTraces.Rx.Clear();
+                MotionTraces.Ry.Clear();
+                MotionTraces.Rz.Clear();
+
+                //MotionTraces.t.Add(0);
+                //MotionTraces.X.Add(0);
+                //MotionTraces.Y.Add(0);
+                //MotionTraces.Z.Add(0);
+                //MotionTraces.Rx.Add(0);
+                //MotionTraces.Ry.Add(0);
+                //MotionTraces.Rz.Add(0);
+
+                for (int i = 0; i < MotionTracesSize; i++)
+                {
+
+                    MotionTraces.t.Add(i * UrSettings.TimeKinematics);
+                    MotionTraces.X.Add(XTemp[i + indexResume6D]);
+                    MotionTraces.Y.Add(YTemp[i + indexResume6D]);
+                    MotionTraces.Z.Add(ZTemp[i + indexResume6D]);
+                    MotionTraces.Rx.Add(RxTemp[i + indexResume6D]);
+                    MotionTraces.Ry.Add(RyTemp[i + indexResume6D]);
+                    MotionTraces.Rz.Add(RzTemp[i + indexResume6D]);
+                }
+
+                MotionTraces.Size = MotionTracesSize;
+                clearPlot("output");
+                lblProgressVal.Text = progressbar_Motion.Value.ToString();
+                // flatButton_PlayStopMotion.Iconimage = Image.FromFile(iconPath + "stop.png");
+                flatButton_PlayStopMotion.Text = " Stop Motion";
+                flatButton_Home.Enabled = false;
+                flatButton_SetStartPos.Enabled = false;
+
+                Array.Clear(poseSpeedArray, 0, poseSpeedArray.Length);
+                Array.Clear(poseArray, 0, poseArray.Length);
+
+                if (MotionTraces.Size == 1)
+                {
+                    //progressbar_Motion.MaxValue = 1;
+                    progressbar_Motion.Maximum = 1;
+                }
+                else
+                {
+                    // progressbar_Motion.MaxValue = (int)(MotionTraces.Size * UrSettings.timeKinematics);
+                    progressbar_Motion.Maximum = 100;
+                }
+
+                urServer.generateUrScript(UrSettings.TimeKinematics, UrSettings.TCP, UrSettings.PayLoad);
+
+                runMotion();
+                // Commented out this function in order to disable the Send Motion Function
+                Console.WriteLine("resume 1d");
+                Resume1DRobot();
+                motionPlay1D = true;
+                UrSettings.motionPlay = true;
+
+            }
         }
 
         private void flatButton_StopResumeMotion_Click(object sender, EventArgs e)
@@ -990,6 +1062,7 @@ namespace PhantomControl
                     if (UrSettings.motionPlay == true)
                     {
                         resetRun();
+                        flatButton_ResumeMotion.Enabled = true;
                         return;
                     }
                 }
@@ -1098,8 +1171,7 @@ namespace PhantomControl
 
         private void Resume1DRobot()
         {
-
-            
+                    
             if (_filePath1D != null)
             {
                 Console.WriteLine("Resume trace");
@@ -1111,7 +1183,7 @@ namespace PhantomControl
 
             else if (_filePath1D == null)
             {
-                System.Windows.MessageBox.Show("Please Load a Trace for the 1D Robot!");
+                System.Windows.MessageBox.Show("Impossible to resume the motion - Please Load a Trace for the 1D Robot!");
                 return;
             }
         }
@@ -1219,6 +1291,7 @@ namespace PhantomControl
 
             _keepMonitoring = false;
             urServer.stopRobot();
+            Console.WriteLine(Index6DMonitoring);
 
             UpdateStatusBarMessage.ShowStatusMessage(Environment.NewLine);
             UrSettings.motionPlay = false;
@@ -1266,11 +1339,35 @@ namespace PhantomControl
             tcpServerRunThread.Start();
         }
 
+
+
+        //this function finds the new first position to reach when the user wants to start the robot from where it stops (click on "Stop motion" during trace). 
+        public static int findNext6DPosition()
+        {
+            int index = 0;
+            Console.WriteLine(MotionTraces.t.Count());
+            for (int i = 0; i < MotionTraces.Size; i++)
+            {
+                if ((Index6DMonitoring - MotionTraces.t[i]) < 0)
+                {
+                    index = i;
+                    break;
+                }
+
+                else
+                {
+                    index = -1;
+                }
+            }
+            return index;
+        }
         private void tcpServerRun()
         {
             urServer.sendUrScript(UrScriptProgram.urList);
+
         }
 
+        private static double Index6DMonitoring;
         // This function is called in runMotion(), it is run on a separate thread and is responsible for connecting to MODBUS and streaming back data to the software to display and save in a txt file
         private void monitorData()
         {
@@ -1326,7 +1423,7 @@ namespace PhantomControl
                     }
                     currentTime = getTime(_holdingRegTime);
                     time = currentTime - absoluteTime;
-
+                    Index6DMonitoring = time;
                 }
 
                 if (this.InvokeRequired)
@@ -1371,7 +1468,7 @@ namespace PhantomControl
                                 {
                                     time_check_plot = time;
                                     plotData(time, sixParamArray[0], sixParamArray[1], sixParamArray[2], sixParamArray[3], sixParamArray[4], sixParamArray[5]);
-
+                                    //Console.WriteLine(time_check_plot);
                                 }
 
                                 //To make that the robot does not go above 5 mm limit from its maximum/minimum magnitude.
@@ -2062,6 +2159,7 @@ namespace PhantomControl
                             urServer.stopRobot();
 
 
+
                             UpdateStatusBarMessage.ShowStatusMessage(Environment.NewLine);
                             UrSettings.motionPlay = false;
                         }
@@ -2383,6 +2481,7 @@ namespace PhantomControl
 
         public static class MotionTraces
         {
+            
             public static double[] startingPose = new double[6];
 
             public static List<double> t = new List<double>();

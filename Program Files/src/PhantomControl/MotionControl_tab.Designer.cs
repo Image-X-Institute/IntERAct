@@ -209,7 +209,7 @@ namespace PhantomControl
             this.flatButton_ResumeMotion.Name = "flatButton_ResumeMotion";
             this.flatButton_ResumeMotion.Size = new System.Drawing.Size(104, 29);
             this.flatButton_ResumeMotion.TabIndex = 5;
-            this.flatButton_ResumeMotion.Text = "Resume 1D motion";
+            this.flatButton_ResumeMotion.Text = "Resume motion";
             this.flatButton_ResumeMotion.UseVisualStyleBackColor = false;
             this.flatButton_ResumeMotion.Click += new System.EventHandler(this.flatButton_ResumeMotion_Click);
             // 

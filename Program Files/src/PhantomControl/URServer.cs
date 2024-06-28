@@ -166,6 +166,7 @@ namespace PhantomControl
             UrScriptProgram.urList.Add(setPayLoad(mass));
             UrScriptProgram.urList.Add(setTPC(TCP));
 
+
             /* UrSettings class is called to generate the selected motion type; movep, movej, or movel. TranslationList, and axisAngleList vectors which store the transformed and calibrated motion poses
              * are converted into a string and converted into the UrScript move command format e.g. movej(x,y,z,Rx,Ry,Rz, velocity, accelration, time) --> Units (m,rad [Axis Angle]).
              */
@@ -272,6 +273,7 @@ namespace PhantomControl
             db.Send(sendPackage);
 
             db.Close();
+            
         }
 
         /* This method is the last method called in the MotionControl class to run the motion on the robot. The fucntion takes one input variable List<string> that contains the URScript program. This method creates 
