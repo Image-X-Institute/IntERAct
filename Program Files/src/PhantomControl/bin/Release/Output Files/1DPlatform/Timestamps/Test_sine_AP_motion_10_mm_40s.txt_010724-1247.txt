@@ -1,0 +1,2 @@
+Test_sine_AP_motion_10_mm_40s.txt
+1D starting time : 12:47:04:023

@@ -1,0 +1,11 @@
+[  01/07/24 02:29:24  ]    The 6D input file 1.Mean_Motion_gradual_start.txt has been selected
+[  01/07/24 02:29:28  ]    MODBUS connection via 192.168.94.11 established.
+[  01/07/24 02:29:28  ]    Start 6D motion
+[  01/07/24 02:29:29  ]    Opening IP address: 192.168.94.11
+[  01/07/24 02:29:40  ]    Stop 6D motion
+[  01/07/24 02:29:40  ]    MODBUS disconected from controler
+[  01/07/24 02:29:44  ]    MODBUS connection via 192.168.94.11 established.
+[  01/07/24 02:29:44  ]    Resume 6D motion time = 6.64900000000125s from the input file
+[  01/07/24 02:29:44  ]    Opening IP address: 192.168.94.11
+[  01/07/24 02:30:12  ]    Stop 6D motion
+[  01/07/24 02:30:12  ]    MODBUS disconected from controler

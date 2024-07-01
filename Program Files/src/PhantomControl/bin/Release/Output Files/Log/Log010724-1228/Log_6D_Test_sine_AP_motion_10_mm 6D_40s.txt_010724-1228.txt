@@ -1,0 +1,18 @@
+[  01/07/24 12:28:25  ]    The 6D input file Test_sine_AP_motion_10_mm 6D_40s.txt has been selected
+[  01/07/24 12:28:29  ]    MODBUS connection via 192.168.94.11 established.
+[  01/07/24 12:28:29  ]    Start 6D motion
+[  01/07/24 12:28:29  ]    Opening IP address: 192.168.94.11
+[  01/07/24 12:28:36  ]    Stop 6D motion
+[  01/07/24 12:28:36  ]    MODBUS disconected from controler
+[  01/07/24 12:28:39  ]    MODBUS connection via 192.168.94.11 established.
+[  01/07/24 12:28:39  ]    Resume 6D motion time = 6.6239999999998s from the input file
+[  01/07/24 12:28:40  ]    Opening IP address: 192.168.94.11
+[  01/07/24 12:28:54  ]    Stop 6D motion
+[  01/07/24 12:28:54  ]    MODBUS disconected from controler
+[  01/07/24 12:28:59  ]    MODBUS connection via 192.168.94.11 established.
+[  01/07/24 12:28:59  ]    Resume 6D motion time = 14.232s from the input file
+[  01/07/24 12:28:59  ]    Opening IP address: 192.168.94.11
+[  01/07/24 12:29:22  ]    Stop 6D motion
+[  01/07/24 12:29:22  ]    MODBUS disconected from controler
+[  01/07/24 12:29:24  ]    Opening IP address: 192.168.94.11
+[  01/07/24 12:30:03  ]    Opening IP address: 192.168.94.11

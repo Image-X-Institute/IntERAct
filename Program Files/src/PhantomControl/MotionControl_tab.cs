@@ -927,10 +927,10 @@ namespace PhantomControl
 
         private void flatButton_ResumeMotion6D_Click(object sender, EventArgs e)
         {
-            isResumed6D = true;
-            Index6DMonitoringPlot = Index6DMonitoring;
+
             if (Settings_tab.sixSelected)
             {
+                isResumed6D = true;
                 Console.WriteLine("resume 6d");
                 List<double> timeTemp = new List<double>();
                 List<double> XTemp = new List<double>();
@@ -973,7 +973,8 @@ namespace PhantomControl
                 }
 
                 MotionTraces.Size = MotionTracesSize;
-                clearPlot("output");
+                clearPlot("all");
+                drawInputTrace();
                 lblProgressVal.Text = progressbar_Motion.Value.ToString();
                 flatButton_PlayStopMotion.Text = " Stop Motion";
                 flatButton_Home.Enabled = false;
@@ -990,7 +991,6 @@ namespace PhantomControl
                 {
                     progressbar_Motion.Maximum = 100;
                 }
-
                 urServer.generateUrScript(UrSettings.TimeKinematics, UrSettings.TCP, UrSettings.PayLoad);
                 UrSettings.motionPlay = true;
                 runMotion();
@@ -1348,8 +1348,10 @@ namespace PhantomControl
             {
                 Logger.addToLogFile("Resume 6D motion time = " + Index6DMonitoring + "s from the input file");
             }
+
             Thread tcpServerRunThread = new Thread(new ThreadStart(tcpServerRun));
             tcpServerRunThread.Start();
+
         }
 
 
@@ -1387,6 +1389,7 @@ namespace PhantomControl
         // This function is called in runMotion(), it is run on a separate thread and is responsible for connecting to MODBUS and streaming back data to the software to display and save in a txt file
         private void monitorData()
         {
+
             int sampleRate = 10;// (int)(UrSettings.timeKinematics * 1000) - 10;
             double absoluteTime = 0;
             double currentTime = 0;
@@ -1472,6 +1475,11 @@ namespace PhantomControl
 
                             if (isMoving())
                             {
+                                if (isResumed6D)
+                                {
+                                    Thread.Sleep(150);
+                                }
+                                isResumed6D = false;
                                 //Matrix absPose = coordTransform.getAbsoultePose(poseArray, MotionTraces.startingPose);
                                 Matrix<double> absPose = coordTransform.getAbsoultePose(poseArray, MotionTraces.startingPose);
                                 double[] sixParamArray = coordTransform.getSixParameterPose(absPose);
@@ -1483,10 +1491,6 @@ namespace PhantomControl
 
                                 if (time == 0 || time > time_check_plot + 0.1)
                                 {
-                                    if (isResumed6D)
-                                    {
-                                        time = time + Index6DMonitoringPlot;
-                                    }
                                     time_check_plot = time;
                                     plotData(time, sixParamArray[0], sixParamArray[1], sixParamArray[2], sixParamArray[3], sixParamArray[4], sixParamArray[5]);
 
@@ -1528,10 +1532,6 @@ namespace PhantomControl
 
                                 if (time == 0 || time > time_check_display + 0.5)
                                 {
-                                    if (isResumed6D)
-                                    {
-                                        time = time + Index6DMonitoringPlot;
-                                    }
                                     time_check_display = time;
                                     displayValues(sixParamArray);
                                 }
@@ -1592,7 +1592,10 @@ namespace PhantomControl
                 }
 
             }
-            Logger.addToLogFile("6D trace is complete");
+            if (progressbar_Motion.Value ==  100)
+            {
+                Logger.addToLogFile("6D trace is complete");
+            }
 
             disconnectModbus();
             ledBulb_Connected.On = false;
@@ -1880,6 +1883,7 @@ namespace PhantomControl
                 UrScriptProgram.home.Add("end");
 
                 urServer.sendUrScript(UrScriptProgram.home);
+                Logger.addToLogFile("6D Robot to home");
             }
             //Check if Both is selected in settings
             if (Settings_tab.bothSelected)
@@ -1897,6 +1901,7 @@ namespace PhantomControl
                 UrScriptProgram.home.Add("movej(p[" + (MotionTraces.startingPose[0] / 1000).ToString() + ", " + (MotionTraces.startingPose[1] / 1000).ToString() + ", " + (MotionTraces.startingPose[2] / 1000).ToString() + ", " + MotionTraces.startingPose[3].ToString() + ", " + MotionTraces.startingPose[4].ToString() + ", " + MotionTraces.startingPose[5].ToString() + "]" + ", " + "a = " + "0.2" + ", " + "v = " + "0.2" + ")");
                 UrScriptProgram.home.Add("end");
                 urServer.sendUrScript(UrScriptProgram.home);
+                Logger.addToLogFile("6D Robot to home");
             }
         }
 
