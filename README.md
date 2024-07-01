@@ -33,13 +33,13 @@ The association of 6DoF and 1DoF application has been developed to perform quali
      
 ## Documentation
 
-The [1D Documentation folder](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/6639bfc80bd9f7605cc3b0b8b9e0a0618c6042e4/1D%20Documentation%20%2B%20Arduino%20IDE%20Code) contains required information to assemble a similar 1DoF system. 
-The [Documentation folder](https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/main/Documentation) contains required information to assemble a similar 6-DoF system: Bill of materials, CAD files for the phantom and hardware tools, robot specifications, documentation, a user-guide to operate the system, and, step-by-step QA procedure for a real-time image-guided radiotherapy technology, Kilovoltage Intrafraction Monitoring (KIM) using the robotic phantom. 
-The [Combined system documentation folder](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/6639bfc80bd9f7605cc3b0b8b9e0a0618c6042e4/Combined%20system%20documentation) contains required information to run the combined system. 
+    - The [1D Documentation folder](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/6639bfc80bd9f7605cc3b0b8b9e0a0618c6042e4/1D%20Documentation%20%2B%20Arduino%20IDE%20Code) contains required information to assemble a similar 1DoF system. 
+    - The [Documentation folder](https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/main/Documentation) contains required information to assemble a similar 6-DoF system: Bill of materials, CAD files for the phantom and hardware tools, robot specifications, documentation, a user-guide to operate the system, and, step-by-step QA procedure for a real-time image-guided radiotherapy technology, Kilovoltage Intrafraction Monitoring (KIM) using the robotic phantom. 
+    - The [Combined system documentation folder](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/6639bfc80bd9f7605cc3b0b8b9e0a0618c6042e4/Combined%20system%20documentation) contains required information to run the combined system. 
 
 ### Setting up the system
 
-1DoF : See the [Combined system documentation](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/6639bfc80bd9f7605cc3b0b8b9e0a0618c6042e4/Combined%20system%20documentation).
+See the [Combined system documentation](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/6639bfc80bd9f7605cc3b0b8b9e0a0618c6042e4/Combined%20system%20documentation).
 
 ### Building the Robotic Motion Phantom software
 
