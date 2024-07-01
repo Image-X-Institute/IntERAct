@@ -922,11 +922,13 @@ namespace PhantomControl
         // Buttons that will resume the 1D OR 6D motions
         private static bool motionPlay1D = false;
         private static bool isStopped = true;
-        private static bool isResumed = false;
+        private static bool isResumed6D = false;
         private static int StopIndex;
 
         private void flatButton_ResumeMotion6D_Click(object sender, EventArgs e)
         {
+            isResumed6D = true;
+            Index6DMonitoringPlot = Index6DMonitoring;
             if (Settings_tab.sixSelected)
             {
                 Console.WriteLine("resume 6d");
@@ -1015,9 +1017,11 @@ namespace PhantomControl
             {
                 if (Settings_tab.sixSelected)
                 {
+                    flatButton_ResumeMotion1D.Enabled = false;
                     // Code here for playing 6DOF Motion
                     if (UrSettings.motionPlay == false)
                     {
+                        isResumed6D = false;
                         clearPlot("output");
                         progressbar_Motion.Value = 0;
                         lblProgressVal.Text = progressbar_Motion.Value.ToString();
@@ -1063,6 +1067,7 @@ namespace PhantomControl
                 {
                     if (motionPlay1D == false)
                     {
+                        flatButton_ResumeMotion6D.Enabled = false;
                         // Code here for playing 1DOF motion
                         flatButton_PlayStopMotion.Text = " Stop Motion";
                         motionPlay1D = true;
@@ -1098,6 +1103,8 @@ namespace PhantomControl
                         motionPlay1D = true;
                         flatButton_Home.Enabled = false;
                         flatButton_SetStartPos.Enabled = false;
+                        flatButton_ResumeMotion6D.Enabled = false;
+                        flatButton_ResumeMotion1D.Enabled = false;
 
                         Array.Clear(poseSpeedArray, 0, poseSpeedArray.Length);
                         Array.Clear(poseArray, 0, poseArray.Length);
@@ -1126,6 +1133,8 @@ namespace PhantomControl
 
                     if (UrSettings.motionPlay == true && motionPlay1D == true)
                     {
+                        flatButton_ResumeMotion6D.Enabled = false;
+                        flatButton_ResumeMotion1D.Enabled = false;
                         Stop1DPlatform();
                         resetRun();
                         return;
@@ -1248,7 +1257,7 @@ namespace PhantomControl
             }
             else
             {
-                //Thread.Sleep(4600);
+                Thread.Sleep(4600);
                 SendVoltageValues(velocityValues, newDisplacementValues);
                 Console.WriteLine("start at 0");
             }
@@ -1370,7 +1379,11 @@ namespace PhantomControl
         {
             urServer.sendUrScript(UrScriptProgram.urList);
         }
+
+        //Index6DMonitoring saves the last time value from the 6D robot feedback. 
         private static double Index6DMonitoring;
+        private double Index6DMonitoringPlot;
+
         // This function is called in runMotion(), it is run on a separate thread and is responsible for connecting to MODBUS and streaming back data to the software to display and save in a txt file
         private void monitorData()
         {
@@ -1470,6 +1483,10 @@ namespace PhantomControl
 
                                 if (time == 0 || time > time_check_plot + 0.1)
                                 {
+                                    if (isResumed6D)
+                                    {
+                                        time = time + Index6DMonitoringPlot;
+                                    }
                                     time_check_plot = time;
                                     plotData(time, sixParamArray[0], sixParamArray[1], sixParamArray[2], sixParamArray[3], sixParamArray[4], sixParamArray[5]);
 
@@ -1511,6 +1528,10 @@ namespace PhantomControl
 
                                 if (time == 0 || time > time_check_display + 0.5)
                                 {
+                                    if (isResumed6D)
+                                    {
+                                        time = time + Index6DMonitoringPlot;
+                                    }
                                     time_check_display = time;
                                     displayValues(sixParamArray);
                                 }
