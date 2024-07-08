@@ -26,6 +26,7 @@ using System.Windows;
 using System.Security.Policy;
 using System.Security.Cryptography;
 using System.Runtime.InteropServices.ComTypes;
+using System.Runtime.CompilerServices;
 
 
 // This class is where most of the functions and other classes are called. The GUI MotionControl is run controlled through this class. 
@@ -1012,6 +1013,7 @@ namespace PhantomControl
 
         private void flatButton_PlayStopMotion_Click(object sender, EventArgs e)
         {
+             
             bool selectedPlay = true;
             if (_playstopmotionclicked == true)
             {
@@ -1048,6 +1050,7 @@ namespace PhantomControl
                         urServer.generateUrScript(UrSettings.TimeKinematics, UrSettings.TCP, UrSettings.PayLoad);
 
                         runMotion();
+
                         // Commented out this function in order to disable the Send Motion Function
                         return;
 
@@ -1179,7 +1182,7 @@ namespace PhantomControl
             if (_filePath1D != null)
             {
                 Console.WriteLine("Resume trace");
-                Logger.addToLogFile("Resume 1D motion line n° " + StopIndex + " from the input file");
+                Logger.addToLogFile("Resume 1D motion line n° " + StopIndex + " (sliced input file)");
                 Thread Resume1DMotion = new Thread(resumeMotion1D);
 
                 Resume1DMotion.Start();
@@ -1199,11 +1202,10 @@ namespace PhantomControl
             flatButton_LoadTraces1D.Enabled = false;
             if (_filePath1D != null)
             {
-                Console.WriteLine("Running Trace...");
+                Console.WriteLine("Running 1D Trace...");
                 Logger.addToLogFile("Start 1D motion");
-                //_keep1D = true;
-                Thread Start1DMotion = new Thread(Start1D);
 
+                Thread Start1DMotion = new Thread(Start1D);
                 Start1DMotion.Start();
 
 
@@ -1235,8 +1237,12 @@ namespace PhantomControl
                 double voltage2 = 50;
                 double speed2 = (voltage2 * 0.2229) - 3.9812;
                 double timetoMove = ((startPos) / speed2) * 1000;
-                int delayAndTimetoMove = (int)(4600 - timetoMove - 50);
-                Thread.Sleep(delayAndTimetoMove);
+                if (Settings_tab.bothSelected)
+                {
+                    int delayAndTimetoMove = (int)(4600 - timetoMove - 50);
+                    Thread.Sleep(delayAndTimetoMove);
+                }
+
                 ShiftToStartPos(newDisplacementValues[0]);
 
                 //---------Couch tracking measurement
@@ -1257,7 +1263,11 @@ namespace PhantomControl
             }
             else
             {
-                Thread.Sleep(4600);
+                if (Settings_tab.bothSelected)
+                {
+                    //Thread.Sleep(4600);
+                    eventSync1D6D.WaitOne(); //wait the first data received by the 6DoF controller to move the 1DoF platform
+                }
                 SendVoltageValues(velocityValues, newDisplacementValues);
                 Console.WriteLine("start at 0");
             }
@@ -1280,13 +1290,12 @@ namespace PhantomControl
         private void resumeMotion1D()
         {
             List<double> displacementValues = ReadDisplacementValues(_filePath1D);
-            List<double> newDisplacementValues = ShiftDisplacementToZero(displacementValues);
-            List<double> velocityValues = CalculateVelocityfromDisplacement(newDisplacementValues);
-            if (StopIndex < velocityValues.Count)
+            List<double> velocityValues = CalculateVelocityfromDisplacement(displacementValues);
+            if (StopIndex  < velocityValues.Count)
             {
-                List<double> slicedVelocityValues = velocityValues.GetRange(StopIndex, velocityValues.Count - StopIndex);
+                List<double> slicedVelocityValues = velocityValues.GetRange(StopIndex , velocityValues.Count - StopIndex);
                 motionPlay1D = true;
-                SendVoltageValues(slicedVelocityValues, newDisplacementValues);
+                SendVoltageValues(slicedVelocityValues, displacementValues);
             }
         }
         // Function clears variables and resets values before another motion run performed
@@ -1346,7 +1355,7 @@ namespace PhantomControl
             }
             else
             {
-                Logger.addToLogFile("Resume 6D motion time = " + Index6DMonitoring + "s from the input file");
+                Logger.addToLogFile("Resume 6D motion time = " + Index6DMonitoring + "s (sliced input file)");
             }
 
             Thread tcpServerRunThread = new Thread(new ThreadStart(tcpServerRun));
@@ -1354,8 +1363,7 @@ namespace PhantomControl
 
         }
 
-
-
+        static ManualResetEvent eventSync1D6D = new ManualResetEvent(false);
         //this function finds the new first position to reach when the user wants to start the 6D robot from where it stops (click on "Stop motion" during trace). 
         public static int findNext6DPosition()
         {
@@ -1365,6 +1373,7 @@ namespace PhantomControl
             {
                 if ((Index6DMonitoring - MotionTraces.t[i]) < 0)
                 {
+                    Index6DTimeTravel = (int)(1000*Math.Round(-(Index6DMonitoring - MotionTraces.t[i]), 2));
                     index = i;
                     break;
                 }
@@ -1384,12 +1393,12 @@ namespace PhantomControl
 
         //Index6DMonitoring saves the last time value from the 6D robot feedback. 
         private static double Index6DMonitoring;
+        private static int Index6DTimeTravel;
         private double Index6DMonitoringPlot;
 
         // This function is called in runMotion(), it is run on a separate thread and is responsible for connecting to MODBUS and streaming back data to the software to display and save in a txt file
         private void monitorData()
         {
-
             int sampleRate = 10;// (int)(UrSettings.timeKinematics * 1000) - 10;
             double absoluteTime = 0;
             double currentTime = 0;
@@ -1435,7 +1444,7 @@ namespace PhantomControl
                 {
                     if (_firstRun == true)
                     {
-
+                        eventSync1D6D.Set();
                         absoluteTime = getTime(_holdingRegTime);
                         _firstRun = false;
 
@@ -1443,6 +1452,7 @@ namespace PhantomControl
                     currentTime = getTime(_holdingRegTime);
                     time = currentTime - absoluteTime;
                     Index6DMonitoring = time;
+
 
                 }
 
@@ -1477,7 +1487,7 @@ namespace PhantomControl
                             {
                                 if (isResumed6D)
                                 {
-                                    Thread.Sleep(150);
+                                    Thread.Sleep(Index6DTimeTravel);
                                 }
                                 isResumed6D = false;
                                 //Matrix absPose = coordTransform.getAbsoultePose(poseArray, MotionTraces.startingPose);
@@ -2121,10 +2131,14 @@ namespace PhantomControl
                     {
                         if (tempdata.Length >= 1)
                         {
+                            string CurrentPosition = tempdata;
                             tempdata = stopwatch.ElapsedMilliseconds.ToString() + ',' + tempdata;
-                            Console.WriteLine(tempdata);
+                            Console.WriteLine(CurrentPosition);
+                            if (CurrentPosition.Contains("Pos"))
+                                Logger.addToArduinoGetFile(CurrentPosition);
                         }
                     }
+
                 }
                 if (stopwatch.ElapsedMilliseconds >= timeThreshold)
                 {
@@ -2142,7 +2156,6 @@ namespace PhantomControl
                         var teststring = voltageString + "," + displacementValues[i + 1];
                         serialPort.WriteLine(teststring);
                         Console.WriteLine("total time: " + stopwatch.ElapsedMilliseconds + " " + teststring);
-
                         currentTime += (now - previous).Milliseconds * 0.001;
 
 
@@ -2184,6 +2197,8 @@ namespace PhantomControl
                     }
                 }
             }
+
+
             Stopwatch stopwatchLast = Stopwatch.StartNew();
             while (stopwatchLast.ElapsedMilliseconds < 300)
             {
@@ -2203,6 +2218,7 @@ namespace PhantomControl
                     break;
                 }
             }
+
             stopwatchLast.Stop();
             currentTime = 0;
             string finalString = $"{0},{false},{2000}";
@@ -2210,7 +2226,7 @@ namespace PhantomControl
             DateTime endTime = DateTime.Now;
             Logger.addToTimestamps1DFile("1D end time : " + endTime.ToString("HH:mm:ss:fff") + '\n');
             System.Windows.MessageBox.Show("Trace is Complete");
-            motionPlay1D = false;
+            //motionPlay1D = false;
             Logger.addToLogFile("1D trace is complete");
         }
 

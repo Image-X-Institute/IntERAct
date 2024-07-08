@@ -1,0 +1,4 @@
+[  08/07/24 03:19:19  ]    The 6D input file Test_sine_AP_motion_10_mm 6D_40s.txt has been selected - BOTH PLATFORMS
+[  08/07/24 03:19:24  ]    The 1D input file Test_sine_AP_motion_10_mm.txt has been selected - BOTH PLATFORMS
+[  08/07/24 03:19:28  ]    MODBUS connection via 192.168.94.11 established.
+[  08/07/24 03:19:28  ]    Start 6D motion

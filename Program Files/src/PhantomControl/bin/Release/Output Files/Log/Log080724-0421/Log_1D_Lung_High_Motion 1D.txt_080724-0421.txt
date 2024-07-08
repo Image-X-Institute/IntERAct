@@ -1,0 +1,4 @@
+[  08/07/24 04:21:40  ]    The 1D input file Lung_High_Motion 1D.txt has been selected
+[  08/07/24 04:21:41  ]    Start 1D motion
+[  08/07/24 04:23:31  ]    1D trace is complete
+[  08/07/24 04:23:37  ]    1D Robot to Home

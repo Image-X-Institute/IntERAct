@@ -1,0 +1,10 @@
+[  03/07/24 11:35:05  ]    The 1D input file 6cm_peak_250s.txt has been selected
+[  03/07/24 11:35:06  ]    Start 1D motion
+[  03/07/24 11:35:13  ]    Stop 1D motion
+[  03/07/24 11:35:15  ]    Resume 1D motion line n° 13 (sliced input file)
+[  03/07/24 11:35:17  ]    Stop 1D motion
+[  03/07/24 11:35:19  ]    Resume 1D motion line n° 13 (sliced input file)
+[  03/07/24 11:35:27  ]    Stop 1D motion
+[  03/07/24 11:35:29  ]    Resume 1D motion line n° 39 (sliced input file)
+[  03/07/24 11:35:35  ]    Stop 1D motion
+[  03/07/24 11:35:41  ]    1D Robot to Home

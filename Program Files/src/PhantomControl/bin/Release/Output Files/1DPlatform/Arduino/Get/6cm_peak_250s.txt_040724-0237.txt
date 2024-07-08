@@ -1,0 +1,115 @@
+1,Current Position: 0
+: 0
+Current Position: 0
+
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+Current Position: 0
+
+204,Current Pos
+609,Current Position: 46
+
+810,Current Position: 59
+
+1011,Current Position: 75
+
+1211,Current Position:
+1412,Current P
+1617,Current Position: 126
+
+1818,Current Position: 145
+
+2018,Current Position: 159
+
+2219,Current Position: 168
+2420,Current Pos
+2825,Current Position: 231
+
+3026,Current Position: 247
+
+3227,Current Position: 237
+
+3427,Current Position
+3628,Current
+3833,Current Position: 204
+
+4034,Current Position: 193
+
+4234,Current Position: 181
+
+4435,Current Position: 168
+4636,Current Posit
+5041,Current Position: 134
+
+5242,Current Position: 120
+
+5443,Current Position: 111
+
+5644,Current Position: 10
+5844,Current Posi
+6250,Current Position: 67
+

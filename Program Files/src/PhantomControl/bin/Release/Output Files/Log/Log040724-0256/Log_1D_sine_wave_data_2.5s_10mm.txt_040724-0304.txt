@@ -1,0 +1,3 @@
+[  04/07/24 03:04:05  ]    The 1D input file sine_wave_data_2.5s_10mm.txt has been selected
+[  04/07/24 03:05:24  ]    Stop 1D motion
+[  04/07/24 03:05:27  ]    Start 1D motion

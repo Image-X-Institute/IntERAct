@@ -478,7 +478,8 @@ namespace PhantomControl
             this.cartesianChart_rotation.MinimumSize = new System.Drawing.Size(680, 343);
             this.cartesianChart_rotation.Name = "cartesianChart_rotation";
             this.cartesianChart_rotation.Size = new System.Drawing.Size(719, 343);
-            this.cartesianChart_rotation.TabIndex = 7;
+            this.cartesianChart_rotation.TabIndex = 
+                7;
             this.cartesianChart_rotation.Text = "cartesianChart";
             this.cartesianChart_rotation.ChildChanged += new System.EventHandler<System.Windows.Forms.Integration.ChildChangedEventArgs>(this.cartesianChart_rotation_ChildChanged);
             // 

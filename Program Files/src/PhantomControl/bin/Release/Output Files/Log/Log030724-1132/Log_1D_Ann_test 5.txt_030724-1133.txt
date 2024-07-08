@@ -1,0 +1,5 @@
+[  03/07/24 11:33:27  ]    The 1D input file Ann_test 5.txt has been selected
+[  03/07/24 11:33:29  ]    Start 1D motion
+[  03/07/24 11:33:38  ]    Stop 1D motion
+[  03/07/24 11:33:41  ]    Resume 1D motion line n° 22 (sliced input file)
+[  03/07/24 11:33:44  ]    Stop 1D motion
