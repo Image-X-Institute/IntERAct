@@ -122,6 +122,7 @@ namespace PhantomControl
                 flatButton_PlayStopMotion.Enabled = false;
                 flatButton_ResumeMotion1D.Enabled = false;
                 flatButton_ResumeMotion6D.Enabled = false;
+                flatButton_ResumeMotions.Enabled = false;
 
             }
         }
@@ -926,75 +927,110 @@ namespace PhantomControl
         private static bool isResumed6D = false;
         private static int StopIndex;
 
+        private void ResumeMotion6D_Process()
+        {
+            isResumed6D = true;
+            Console.WriteLine("resume 6d");
+            List<double> timeTemp = new List<double>();
+            List<double> XTemp = new List<double>();
+            List<double> YTemp = new List<double>();
+            List<double> ZTemp = new List<double>();
+            List<double> RxTemp = new List<double>();
+            List<double> RyTemp = new List<double>();
+            List<double> RzTemp = new List<double>();
+
+            int indexResume6D = findNext6DPosition() + 1;
+
+            timeTemp = MotionTraces.t.ToList();
+            XTemp = MotionTraces.X.ToList();
+            YTemp = MotionTraces.Y.ToList();
+            ZTemp = MotionTraces.Z.ToList();
+            RxTemp = MotionTraces.Rx.ToList();
+            RyTemp = MotionTraces.Ry.ToList();
+            RzTemp = MotionTraces.Rz.ToList();
+
+            int MotionTracesSize = timeTemp.Count() - indexResume6D;
+
+            MotionTraces.t.Clear();
+            MotionTraces.X.Clear();
+            MotionTraces.Y.Clear();
+            MotionTraces.Z.Clear();
+            MotionTraces.Rx.Clear();
+            MotionTraces.Ry.Clear();
+            MotionTraces.Rz.Clear();
+
+            for (int i = 0; i < MotionTracesSize; i++)
+            {
+
+                MotionTraces.t.Add(i * UrSettings.TimeKinematics);
+                MotionTraces.X.Add(XTemp[i + indexResume6D]);
+                MotionTraces.Y.Add(YTemp[i + indexResume6D]);
+                MotionTraces.Z.Add(ZTemp[i + indexResume6D]);
+                MotionTraces.Rx.Add(RxTemp[i + indexResume6D]);
+                MotionTraces.Ry.Add(RyTemp[i + indexResume6D]);
+                MotionTraces.Rz.Add(RzTemp[i + indexResume6D]);
+            }
+
+            MotionTraces.Size = MotionTracesSize;
+            clearPlot("all");
+            drawInputTrace();
+            lblProgressVal.Text = progressbar_Motion.Value.ToString();
+            flatButton_PlayStopMotion.Text = " Stop Motion";
+            flatButton_Home.Enabled = false;
+            flatButton_SetStartPos.Enabled = false;
+
+            Array.Clear(poseSpeedArray, 0, poseSpeedArray.Length);
+            Array.Clear(poseArray, 0, poseArray.Length);
+
+            if (MotionTraces.Size == 1)
+            {
+                progressbar_Motion.Maximum = 1;
+            }
+            else
+            {
+                progressbar_Motion.Maximum = 100;
+            }
+            urServer.generateUrScript(UrSettings.TimeKinematics, UrSettings.TCP, UrSettings.PayLoad);
+            UrSettings.motionPlay = true;
+            runMotion();
+        }
+
+        private void ResumeMotion1D_Process()
+        {
+            flatButton_PlayStopMotion.Text = " Stop Motion";
+            flatButton_Home.Enabled = false;
+            flatButton_SetStartPos.Enabled = false;
+            Console.WriteLine("resume 1d");
+            Resume1DRobot();
+            motionPlay1D = true;
+        }
+
+        private void flatButton_ResumeMotions_Click(object sender, EventArgs e)
+        {
+            if (Settings_tab.sixSelected)
+            {
+                ResumeMotion6D_Process();
+            }
+
+            if (Settings_tab.oneSelected)
+            {
+                ResumeMotion1D_Process();
+
+            }
+
+            if (Settings_tab.bothSelected)
+            {
+                ResumeMotion6D_Process();
+                ResumeMotion1D_Process();
+            }
+        }
+
         private void flatButton_ResumeMotion6D_Click(object sender, EventArgs e)
         {
 
             if (Settings_tab.sixSelected)
             {
-                isResumed6D = true;
-                Console.WriteLine("resume 6d");
-                List<double> timeTemp = new List<double>();
-                List<double> XTemp = new List<double>();
-                List<double> YTemp = new List<double>();
-                List<double> ZTemp = new List<double>();
-                List<double> RxTemp = new List<double>();
-                List<double> RyTemp = new List<double>();
-                List<double> RzTemp = new List<double>();
-
-                int indexResume6D = findNext6DPosition() + 1;
-
-                timeTemp = MotionTraces.t.ToList();
-                XTemp = MotionTraces.X.ToList();
-                YTemp = MotionTraces.Y.ToList();
-                ZTemp = MotionTraces.Z.ToList();
-                RxTemp = MotionTraces.Rx.ToList();
-                RyTemp = MotionTraces.Ry.ToList();
-                RzTemp = MotionTraces.Rz.ToList();
-
-                int MotionTracesSize = timeTemp.Count() - indexResume6D;
-
-                MotionTraces.t.Clear();
-                MotionTraces.X.Clear();
-                MotionTraces.Y.Clear();
-                MotionTraces.Z.Clear();
-                MotionTraces.Rx.Clear();
-                MotionTraces.Ry.Clear();
-                MotionTraces.Rz.Clear();
-
-                for (int i = 0; i < MotionTracesSize; i++)
-                {
-
-                    MotionTraces.t.Add(i * UrSettings.TimeKinematics);
-                    MotionTraces.X.Add(XTemp[i + indexResume6D]);
-                    MotionTraces.Y.Add(YTemp[i + indexResume6D]);
-                    MotionTraces.Z.Add(ZTemp[i + indexResume6D]);
-                    MotionTraces.Rx.Add(RxTemp[i + indexResume6D]);
-                    MotionTraces.Ry.Add(RyTemp[i + indexResume6D]);
-                    MotionTraces.Rz.Add(RzTemp[i + indexResume6D]);
-                }
-
-                MotionTraces.Size = MotionTracesSize;
-                clearPlot("all");
-                drawInputTrace();
-                lblProgressVal.Text = progressbar_Motion.Value.ToString();
-                flatButton_PlayStopMotion.Text = " Stop Motion";
-                flatButton_Home.Enabled = false;
-                flatButton_SetStartPos.Enabled = false;
-
-                Array.Clear(poseSpeedArray, 0, poseSpeedArray.Length);
-                Array.Clear(poseArray, 0, poseArray.Length);
-
-                if (MotionTraces.Size == 1)
-                {
-                    progressbar_Motion.Maximum = 1;
-                }
-                else
-                {
-                    progressbar_Motion.Maximum = 100;
-                }
-                urServer.generateUrScript(UrSettings.TimeKinematics, UrSettings.TCP, UrSettings.PayLoad);
-                UrSettings.motionPlay = true;
-                runMotion();
+                ResumeMotion6D_Process();
             }
         }
 
@@ -1002,12 +1038,7 @@ namespace PhantomControl
         {
             if (Settings_tab.oneSelected)
             {
-                flatButton_PlayStopMotion.Text = " Stop Motion";
-                flatButton_Home.Enabled = false;
-                flatButton_SetStartPos.Enabled = false;
-                Console.WriteLine("resume 1d");
-                Resume1DRobot();
-                motionPlay1D = true;
+                ResumeMotion1D_Process();
             }
         }
 
@@ -1059,7 +1090,7 @@ namespace PhantomControl
                     if (UrSettings.motionPlay == true)
                     {
                         resetRun();
-
+                        flatButton_ResumeMotions.Enabled = true;
                         flatButton_ResumeMotion6D.Enabled = true;
 
                         return;
@@ -1087,6 +1118,7 @@ namespace PhantomControl
                     {
                         Stop1DPlatform();
                         flatButton_ResumeMotion1D.Enabled = true;
+                        flatButton_ResumeMotions.Enabled = true;
                         return;
                     }
 
@@ -1108,6 +1140,7 @@ namespace PhantomControl
                         flatButton_SetStartPos.Enabled = false;
                         flatButton_ResumeMotion6D.Enabled = false;
                         flatButton_ResumeMotion1D.Enabled = false;
+                        flatButton_ResumeMotions.Enabled = false; 
 
                         Array.Clear(poseSpeedArray, 0, poseSpeedArray.Length);
                         Array.Clear(poseArray, 0, poseArray.Length);
@@ -1138,6 +1171,7 @@ namespace PhantomControl
                     {
                         flatButton_ResumeMotion6D.Enabled = false;
                         flatButton_ResumeMotion1D.Enabled = false;
+                        flatButton_ResumeMotions.Enabled = true;
                         Stop1DPlatform();
                         resetRun();
                         return;
@@ -1234,16 +1268,12 @@ namespace PhantomControl
             if (newDisplacementValues[0] > 0)
             {
                 double startPos = newDisplacementValues[0];
-                double voltage2 = 50;
-                double speed2 = (voltage2 * 0.2229) - 3.9812;
-                double timetoMove = ((startPos) / speed2) * 1000;
-                if (Settings_tab.bothSelected)
-                {
-                    int delayAndTimetoMove = (int)(4600 - timetoMove - 50);
-                    Thread.Sleep(delayAndTimetoMove);
-                }
-
-                ShiftToStartPos(newDisplacementValues[0]);
+                double speed2 = startPos / 200;
+                double voltage2 = (speed2 + 3.9812)/0.2229;
+                //double timetoMove = ((startPos) / speed2) * 1000;
+                //int delayAndTimetoMove = (int)(4600 - timetoMove - 50);
+                //Thread.Sleep(delayAndTimetoMove);
+                ShiftToStartPos(voltage2);
 
                 //---------Couch tracking measurement
                 //Thread.Sleep((int)timetoMove + 50);
@@ -1256,6 +1286,12 @@ namespace PhantomControl
                 //Thread.Sleep(30000);
 
                 newDisplacementValues.RemoveAt(0);
+
+                if (Settings_tab.bothSelected)
+                {
+                    //Thread.Sleep(4600);
+                    eventSync1D6D.WaitOne(); //wait the first data received by the 6DoF controller to move the 1DoF platform
+                }
 
                 SendVoltageValues(velocityValues, newDisplacementValues);
 
@@ -1275,13 +1311,14 @@ namespace PhantomControl
         }
 
         // This function checks if the first position of the motion trace is non-zero, if it is, it will move the motor to that position before playing the motion
-        public void ShiftToStartPos(double startPos)
+        public void ShiftToStartPos(double voltage2)
         {
             AllocConsole();
             if (serialPort.IsOpen == true)
             {
-                string voltageString2 = $"{50},{1},{200}";
+                string voltageString2 = $"{voltage2},{1},{200}";
                 serialPort.WriteLine(voltageString2);
+                serialPort.WriteLine($"{0},{1},{200}");
                 return;
             }
 
@@ -1295,6 +1332,11 @@ namespace PhantomControl
             {
                 List<double> slicedVelocityValues = velocityValues.GetRange(StopIndex , velocityValues.Count - StopIndex);
                 motionPlay1D = true;
+                if (Settings_tab.bothSelected)
+                {
+                    Console.WriteLine("sync");
+                    eventSync1D6D.WaitOne();
+                }
                 SendVoltageValues(slicedVelocityValues, displacementValues);
             }
         }
@@ -1363,7 +1405,12 @@ namespace PhantomControl
 
         }
 
-        static ManualResetEvent eventSync1D6D = new ManualResetEvent(false);
+
+
+        //This event is initalize to sync the 1D and the 6D platforms. Once the code received the first data from the robot controller, the 1D is triggered to move. 
+        static AutoResetEvent eventSync1D6D = new AutoResetEvent(false);
+
+
         //this function finds the new first position to reach when the user wants to start the 6D robot from where it stops (click on "Stop motion" during trace). 
         public static int findNext6DPosition()
         {

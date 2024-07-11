@@ -34,6 +34,7 @@ namespace PhantomControl
             this.flatButton_PlayStopMotion = new System.Windows.Forms.Button();
             this.flatButton_ResumeMotion1D = new System.Windows.Forms.Button();
             this.flatButton_ResumeMotion6D = new System.Windows.Forms.Button();
+            this.flatButton_ResumeMotions = new System.Windows.Forms.Button();
             this.bunifuElipse1 = new System.Windows.Forms.Button();
             this.bunifuElipse2 = new System.Windows.Forms.Button();
             this.flatButton_SetStartPos = new System.Windows.Forms.Button();
@@ -181,7 +182,7 @@ namespace PhantomControl
             this.flatButton_PlayStopMotion.UseVisualStyleBackColor = false;
             this.flatButton_PlayStopMotion.Click += new System.EventHandler(this.flatButton_PlayStopMotion_Click);
             // 
-            // flatButton_StopResumeMotion
+            // flatButton_ResumeMotion1D
             // 
             this.flatButton_ResumeMotion1D.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.flatButton_ResumeMotion1D.BackColor = System.Drawing.Color.Silver;
@@ -197,7 +198,7 @@ namespace PhantomControl
             this.flatButton_ResumeMotion1D.UseVisualStyleBackColor = false;
             this.flatButton_ResumeMotion1D.Click += new System.EventHandler(this.flatButton_ResumeMotion1D_Click);
             // 
-            // flatButton_ResumeMotion
+            // flatButton_ResumeMotion6D
             // 
             this.flatButton_ResumeMotion6D.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.flatButton_ResumeMotion6D.BackColor = System.Drawing.Color.Silver;
@@ -212,6 +213,22 @@ namespace PhantomControl
             this.flatButton_ResumeMotion6D.Text = "Resume 6D motion";
             this.flatButton_ResumeMotion6D.UseVisualStyleBackColor = false;
             this.flatButton_ResumeMotion6D.Click += new System.EventHandler(this.flatButton_ResumeMotion6D_Click);
+            // 
+            // flatButton_ResumeMotions
+            // 
+            this.flatButton_ResumeMotions.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.flatButton_ResumeMotions.BackColor = System.Drawing.Color.Silver;
+            this.flatButton_ResumeMotions.FlatAppearance.BorderSize = 0;
+            this.flatButton_ResumeMotions.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.flatButton_ResumeMotions.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.flatButton_ResumeMotions.ForeColor = System.Drawing.Color.White;
+            this.flatButton_ResumeMotions.Location = new System.Drawing.Point(14, 190);
+            this.flatButton_ResumeMotions.Name = "flatButton_ResumeMotions";
+            this.flatButton_ResumeMotions.Size = new System.Drawing.Size(104, 29);
+            this.flatButton_ResumeMotions.TabIndex = 5;
+            this.flatButton_ResumeMotions.Text = "Resume motion";
+            this.flatButton_ResumeMotions.UseVisualStyleBackColor = false;
+            this.flatButton_ResumeMotions.Click += new System.EventHandler(this.flatButton_ResumeMotions_Click);
             // 
             // bunifuElipse1
             // 
@@ -930,6 +947,7 @@ namespace PhantomControl
             this.panel5.Controls.Add(this.toggle6D);
             this.panel5.Controls.Add(this.flatButton_ResumeMotion1D);
             this.panel5.Controls.Add(this.flatButton_ResumeMotion6D);
+            this.panel5.Controls.Add(this.flatButton_ResumeMotions);
             this.panel5.Controls.Add(this.resetZoom);
             this.panel5.Controls.Add(this.toggle1D);
             this.panel5.Controls.Add(this.label7_PlotControl);
@@ -1223,6 +1241,7 @@ namespace PhantomControl
         private Button flatButton_PlayStopMotion;
         private Button flatButton_ResumeMotion1D;
         private Button flatButton_ResumeMotion6D;
+        private Button flatButton_ResumeMotions;
         private Button bunifuElipse1;
         private Button bunifuElipse2;
         private Button flatButton_SetStartPos;

@@ -1,0 +1,26 @@
+[  11/07/24 11:42:08  ]    The 6D input file 1.Mean_Motion_gradual_start.txt has been selected - BOTH PLATFORMS
+[  11/07/24 11:42:11  ]    The 1D input file 1.Mean_Motion_resp_shifted_rescaled_gradual_start.txt has been selected - BOTH PLATFORMS
+[  11/07/24 11:42:13  ]    MODBUS connection via 192.168.94.11 established.
+[  11/07/24 11:42:13  ]    Start 6D motion
+[  11/07/24 11:42:13  ]    Start 1D motion
+[  11/07/24 11:42:13  ]    Opening IP address: 192.168.94.11
+[  11/07/24 11:42:28  ]    Stop 1D motion
+[  11/07/24 11:42:28  ]    Stop 6D motion
+[  11/07/24 11:42:28  ]    MODBUS disconected from controler
+[  11/07/24 11:42:30  ]    MODBUS connection via 192.168.94.11 established.
+[  11/07/24 11:42:30  ]    Resume 6D motion time = 10.384s (sliced input file)
+[  11/07/24 11:42:30  ]    Resume 1D motion line n° 54 (sliced input file)
+[  11/07/24 11:42:31  ]    Opening IP address: 192.168.94.11
+[  11/07/24 11:42:44  ]    Stop 1D motion
+[  11/07/24 11:42:44  ]    Stop 6D motion
+[  11/07/24 11:42:44  ]    MODBUS disconected from controler
+[  11/07/24 11:42:48  ]    MODBUS connection via 192.168.94.11 established.
+[  11/07/24 11:42:48  ]    Resume 6D motion time = 8.96000000000004s (sliced input file)
+[  11/07/24 11:42:48  ]    Resume 1D motion line n° 46 (sliced input file)
+[  11/07/24 11:42:48  ]    Opening IP address: 192.168.94.11
+[  11/07/24 11:42:59  ]    Stop 1D motion
+[  11/07/24 11:42:59  ]    Stop 6D motion
+[  11/07/24 11:42:59  ]    MODBUS disconected from controler
+[  11/07/24 11:43:01  ]    1D Robot to Home
+[  11/07/24 11:43:01  ]    Opening IP address: 192.168.94.11
+[  11/07/24 11:43:02  ]    6D Robot to home
