@@ -1,0 +1,3 @@
+[  11/07/24 12:41:23  ]    The 1D input file 1-Cycle 6cm.txt has been selected
+[  11/07/24 12:41:24  ]    Start 1D motion
+[  11/07/24 12:41:26  ]    Stop 1D motion

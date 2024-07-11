@@ -1,32 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Threading;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.IO;
-using EasyModbus;
-using MathNet.Numerics.LinearAlgebra;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using EasyModbus;
 using LiveCharts;
-using LiveCharts.Defaults;
-using LiveCharts.Wpf;
 using LiveCharts.Configurations;
-using LiveCharts.WinForms;
-using System.IO.Ports;
-using Microsoft.VisualBasic.ApplicationServices;
+using LiveCharts.Wpf;
+using MathNet.Numerics.LinearAlgebra;
+using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
+using System.Drawing;
+using System.IO;
+using System.IO.Ports;
+using System.Linq;
 using System.Runtime.InteropServices;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
-using LiveCharts.Definitions.Charts;
+using System.Threading;
 using System.Windows;
-using System.Security.Policy;
-using System.Security.Cryptography;
-using System.Runtime.InteropServices.ComTypes;
-using System.Runtime.CompilerServices;
+using System.Windows.Forms;
 
 
 // This class is where most of the functions and other classes are called. The GUI MotionControl is run controlled through this class. 
@@ -921,8 +909,12 @@ namespace PhantomControl
             }));
         }
 
+        //true -> 1D platform setup is vertical. 
+        //false -> 1D platform setup is horizontal.
+        private static bool bool1DConfiguration = true;
+
         // Buttons that will resume the 1D OR 6D motions
-        private static bool motionPlay1D = false;
+        private static bool motionPlay1D = false;   
         private static bool isStopped = true;
         private static bool isResumed6D = false;
         private static int StopIndex;
@@ -1003,6 +995,19 @@ namespace PhantomControl
             Console.WriteLine("resume 1d");
             Resume1DRobot();
             motionPlay1D = true;
+        }
+
+        private void flatButton_1D_Configuration_Click(object sender, EventArgs e)
+        {
+            bool1DConfiguration = !bool1DConfiguration;
+            if (bool1DConfiguration == true)
+            {
+                flatButton_1D_Configuration.Text = "Horizontal";
+            }
+            else
+            {
+                flatButton_1D_Configuration.Text = "Vertical";
+            }
         }
 
         private void flatButton_ResumeMotions_Click(object sender, EventArgs e)
@@ -1404,7 +1409,6 @@ namespace PhantomControl
             tcpServerRunThread.Start();
 
         }
-
 
 
         //This event is initalize to sync the 1D and the 6D platforms. Once the code received the first data from the robot controller, the 1D is triggered to move. 
@@ -2316,7 +2320,17 @@ namespace PhantomControl
             {
                 if (speed > 0)
                 {
-                    delayValue = displacement / (Voltage * 0.2265 - 2.5726) * 1000;
+                    //delayValue = displacement / (Voltage * 0.2265 - 2.5726) * 1000;
+                    if (bool1DConfiguration)
+                    {
+                        Console.WriteLine("vertical");
+                        delayValue = displacement / (Voltage * 0.2265 - 2.5726) * 1000;
+                    }
+                    else
+                    {
+                        Console.WriteLine("horizontal");
+                        delayValue = displacement / (Voltage * 0.2441 - 2.8574) * 1000;
+                    }
                 }
 
                 if (speed == 0)
@@ -2325,7 +2339,16 @@ namespace PhantomControl
                 }
                 if (speed < 0)
                 {
-                    delayValue = displacement / (Voltage * 0.2229 - 3.9812) * 1000;
+                    //delayValue = displacement / (Voltage * 0.2229 - 3.9812) * 1000;
+                    if (bool1DConfiguration)
+                    {
+                        delayValue = displacement / (Voltage * 0.2229 - 3.9812) * 1000;
+                    }
+                    else
+                    {
+                        delayValue = displacement / (Voltage * 0.2595 - 4.4522) * 1000;
+                    }
+
                 }
             }
             if (delayValue > 200)
@@ -2344,12 +2367,29 @@ namespace PhantomControl
 
             if (speed > 0)
             {
-                voltageValue = (speed + 3.9812) / 0.2229;
+                //voltageValue = (speed + 3.9812) / 0.2229;
+                if (bool1DConfiguration)
+                {
+                    voltageValue = (speed + 3.9812) / 0.2229;
+                }
+                else
+                {
+                    voltageValue = (speed + 4.4522) / 0.2595;
+                }
                 isGoingUp = 1;
             }
             if (speed < 0)
             {
-                voltageValue = (Math.Abs(speed) + 2.5726) / 0.2265;
+                //voltageValue = (Math.Abs(speed) + 2.5726) / 0.2265;
+
+                if (bool1DConfiguration)
+                {
+                    voltageValue = (Math.Abs(speed) + 2.5726) / 0.2265;
+                }
+                else
+                {
+                    voltageValue = (Math.Abs(speed) + 2.8574) / 0.2441;
+                }
                 isGoingUp = 0;
             }
             if (speed == 0)
