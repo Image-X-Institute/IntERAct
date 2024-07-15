@@ -129,6 +129,11 @@ namespace PhantomControl
                     Logger.addToLogFile("Error loading settings from settings.txt");
                 }
             }
+            else
+            {
+                UpdateStatusBarMessage.ShowStatusMessage("Error: settings.txt file does not exist");
+                Logger.addToLogFile("Error: settings.txt file does not exist");
+            }
         }
 
         public void SaveSettings()

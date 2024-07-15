@@ -1,0 +1,2 @@
+[  11/07/24 04:14:32  ]    The 6D input file TEST prostate.txt has been selected
+[  11/07/24 04:14:32  ]    Error: Sampling rate in the input file is lower than 0.2s

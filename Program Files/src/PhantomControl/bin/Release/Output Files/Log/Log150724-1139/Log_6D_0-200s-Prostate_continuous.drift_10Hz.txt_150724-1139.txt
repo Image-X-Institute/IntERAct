@@ -1,0 +1,2 @@
+[  15/07/24 11:39:17  ]    The 6D input file 0-200s-Prostate_continuous.drift_10Hz.txt has been selected
+[  15/07/24 11:39:17  ]    Warning: Sampling rate in the input file is lower than 0.2s

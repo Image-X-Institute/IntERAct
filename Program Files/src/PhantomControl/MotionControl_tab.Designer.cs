@@ -903,7 +903,7 @@ namespace PhantomControl
             this.robotSelectLabel.TabIndex = 39;
             this.robotSelectLabel.Text = "CURRENT ROBOT: NONE";
             this.robotSelectLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //  
             // panel2
             // 
             this.panel2.Controls.Add(this.robotSelectLabel);

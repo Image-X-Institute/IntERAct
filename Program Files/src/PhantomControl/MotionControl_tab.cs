@@ -677,7 +677,7 @@ namespace PhantomControl
         private void flatButton_LoadTraces_Click(object sender, EventArgs e)
         {
 
-
+            double timeKinematics_temp = UrSettings.TimeKinematics;
             if (_homebuttonclicked != true)
             {
 
@@ -731,7 +731,6 @@ namespace PhantomControl
                     }
 
 
-
                     //char filename = OpenFileDialog.SafeFileName;
                     var FileName = System.IO.Path.GetFileName(ofd.FileName);
 
@@ -783,6 +782,10 @@ namespace PhantomControl
 
                                 counter++;
                             }
+
+                            UrSettings.TimeKinematics = MotionTraces.t[1] - MotionTraces.t[0];           //Read the frequency from the input file 
+                            Settings_tab.txtBox_time.Text = Convert.ToString(UrSettings.TimeKinematics);
+                            Logger.addToLogFile("The sample rate from the input file is " + UrSettings.TimeKinematics + "s.");
                             MotionTraces.Size = counter;
                             drawInputTrace();
 
@@ -798,25 +801,23 @@ namespace PhantomControl
                         if (UrSettings.TimeKinematics < 0.2)
                         {
                             _playstopmotionclicked = false;
-                            UpdateStatusBarMessage.ShowStatusMessage("Error: Sampling rate in the input file is lower than 0.2s");
-                            Logger.addToLogFile("Error: Sampling rate in the input file is lower than 0.2s");
-                            System.Windows.MessageBox.Show("Error: The sample rate in the input file is lower than 0.2s");
-                            return;
+                            UpdateStatusBarMessage.ShowStatusMessage("Warning: Sampling rate in the input file is lower than 0.2s");
+                            Logger.addToLogFile("Warning: Sampling rate in the input file is lower than 0.2s");
+                            System.Windows.MessageBox.Show("Warning: The sample rate in the input file is lower than 0.2s");
+
                         }
 
-                        if (UrSettings.TimeKinematics != Math.Abs(MotionTraces.t[1] - MotionTraces.t[2]))
+                        if (UrSettings.TimeKinematics != timeKinematics_temp)
                         {
                             _playstopmotionclicked = false;
-                            UpdateStatusBarMessage.ShowStatusMessage("Error: Sampling rate in the input file and in the settings file are not the same");
-                            Logger.addToLogFile("Error: Sampling rate in the input file and in the settings file are not the same");
-                            System.Windows.MessageBox.Show("Error: The sample rate in the input file and in the settings are different");
-                            return;
+                            UpdateStatusBarMessage.ShowStatusMessage("Warning: Sampling rates in the input file and in the settings file are not the same");
+                            Logger.addToLogFile("Warning: Sampling rates in the input file and in the settings file are not the same");
+                            System.Windows.MessageBox.Show("Warning: The sample rates in the input file and in the settings are different");
                         }
                         if (UrSettings.TimeKinematics == Math.Abs(MotionTraces.t[1] - MotionTraces.t[2]))
                         {
                             _playstopmotionclicked = true;
                         }
-
 
                         //Finds the maximum value 
                         double maxx = 0;
@@ -1965,7 +1966,7 @@ namespace PhantomControl
                 Logger.addToLogFile("6D Robot to home");
             }
         }
-
+        
         private void txtBox_LR_TextChanged(object sender, EventArgs e)
         {
 

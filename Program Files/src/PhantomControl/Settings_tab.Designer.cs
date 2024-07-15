@@ -58,7 +58,7 @@ namespace PhantomControl
             this.bunifuCustomLabel6 = new System.Windows.Forms.Label();
             this.dropdown_motionType = new System.Windows.Forms.ComboBox();
             this.label_motionType = new System.Windows.Forms.Label();
-            this.txtBox_time = new System.Windows.Forms.TextBox();
+            txtBox_time = new System.Windows.Forms.TextBox();
             this.label_time = new System.Windows.Forms.Label();
             this.label_Data = new System.Windows.Forms.Label();
             this.switch_Data = new System.Windows.Forms.CheckBox();
@@ -544,15 +544,15 @@ namespace PhantomControl
             // 
             // txtBox_time
             // 
-            this.txtBox_time.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBox_time.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBox_time.Location = new System.Drawing.Point(0, 0);
-            this.txtBox_time.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtBox_time.Name = "txtBox_time";
-            this.txtBox_time.Size = new System.Drawing.Size(94, 26);
-            this.txtBox_time.TabIndex = 7;
-            this.txtBox_time.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtBox_time.TextChanged += new System.EventHandler(this.textbox_time_TextChanged);
+            txtBox_time.Dock = System.Windows.Forms.DockStyle.Fill;
+            txtBox_time.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            txtBox_time.Location = new System.Drawing.Point(0, 0);
+            txtBox_time.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtBox_time.Name = "txtBox_time";
+            txtBox_time.Size = new System.Drawing.Size(94, 26);
+            txtBox_time.TabIndex = 7;
+            txtBox_time.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            txtBox_time.TextChanged += new System.EventHandler(this.textbox_time_TextChanged);
             // 
             // label_time
             // 
@@ -1132,7 +1132,7 @@ namespace PhantomControl
             // 
             // panel36
             // 
-            this.panel36.Controls.Add(this.txtBox_time);
+            this.panel36.Controls.Add(txtBox_time);
             this.panel36.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel36.Location = new System.Drawing.Point(126, 0);
             this.panel36.Name = "panel36";
@@ -1697,7 +1697,7 @@ namespace PhantomControl
 
         private ComboBox dropdown_motionType;
         private Label label_motionType;
-        private TextBox txtBox_time;
+        public static TextBox txtBox_time;
         private Label label_time;
         private Label label_Data;     
 
