@@ -56,30 +56,88 @@ hold off;
 
 
 
-function shift = findClosestSI(dataHexaTimestamps, dataHexaY, dataKIMTimestamps, dataKIMYCent)
+function [timeShift, amplitudeShift, stats] = findOptimalShift(dataHexaTimestamps, dataHexaY, dataKIMTimestamps, dataKIMYCent)
+    [uniqueHexaTimestamps, uniqueIndices] = unique(dataHexaTimestamps);
+    uniqueHexaY = dataHexaY(uniqueIndices);
+    % Define the range of time shifts to test
+    timeShiftValues = 6:0.01:7;
+    numTimeShifts = length(timeShiftValues);
+    
+    % Initialize RMSE values for time and amplitude shifts
+    rmseValues = inf(numTimeShifts, 1);
+    optimalAmplitudeShifts = zeros(numTimeShifts, 1);
+    
+    % Initialize statistics
+    meanDiff = zeros(numTimeShifts, 1);
+    stdDiff = zeros(numTimeShifts, 1);
+    perc1Diff = zeros(numTimeShifts, 1);
+    perc99Diff = zeros(numTimeShifts, 1);
 
-    shiftValues = 0:0.01:40;
-    rmseValues = ones(1, length(shiftValues));;
+    for i = 1:numTimeShifts
+        % Apply time shift
+        shiftedKIMTimestamps = dataKIMTimestamps - timeShiftValues(i);
+        validIndices = find(shiftedKIMTimestamps >= min(dataHexaTimestamps) & shiftedKIMTimestamps <= max(dataHexaTimestamps));
+        
+        if isempty(validIndices)
+            continue;
+        end
+        
+        shiftedKIMTimestamps = shiftedKIMTimestamps(validIndices);
+        shiftedKIMYCent = dataKIMYCent(validIndices);
 
-    for n = 1:length(shiftValues)
-        B = dataKIMTimestamps - shiftValues(n);
-        validIndices = find(B >= 0 & B <= 299.8);
+        % Interpolate dataHexaY at shiftedKIMTimestamps
+        interpHexaY = interp1(uniqueHexaTimestamps, uniqueHexaY, shiftedKIMTimestamps, 'linear', 'extrap');
 
-        dataKIMTimestampsShifted = B(validIndices);
-        dataKIMYCentShifted = dataKIMYCent(validIndices);
+        % Find the optimal amplitude shift for this time shift
+        minAmplitudeShift = min(shiftedKIMYCent - interpHexaY);
+        maxAmplitudeShift = max(shiftedKIMYCent - interpHexaY);
+        amplitudeShiftRange = minAmplitudeShift:0.01:maxAmplitudeShift;
 
-        interpHexaY = interp1(dataHexaTimestamps, dataHexaY, dataKIMTimestampsShifted);
-        rmseValues(n) = rmse(dataKIMYCentShifted, interpHexaY);
-
-
+        rmseAmplitude = inf;
+        for amplitudeShift = amplitudeShiftRange
+            adjustedKIMYCent = shiftedKIMYCent - amplitudeShift;
+            tempRmse = sqrt(mean((interpHexaY - adjustedKIMYCent).^2));
+            
+            if tempRmse < rmseAmplitude
+                rmseAmplitude = tempRmse;
+                optimalAmplitudeShifts(i) = amplitudeShift;
+            end
+        end
+        
+        % Store the minimum RMSE for this time shift
+        rmseValues(i) = rmseAmplitude;
+        
+        % Calculate statistics for the best amplitude shift at this time shift
+        bestAmplitudeShift = optimalAmplitudeShifts(i);
+        adjustedKIMYCent = shiftedKIMYCent - bestAmplitudeShift;
+        difference = adjustedKIMYCent - interpHexaY;
+        
+        meanDiff(i) = mean(difference);
+        stdDiff(i) = std(difference);
+        perc1Diff(i) = prctile(difference, 1);
+        perc99Diff(i) = prctile(difference, 99);
     end
-    [min_rmse, indice_min] = min(rmseValues);
-    shift = shiftValues(indice_min);
-    disp("mean : " +  meanDiff(indice_min));
-    disp("std : " + stdDiff(indice_min));
-    disp("1st perc : " + perc1Diff(indice_min));    
-    disp("99th perc : " + perc99Diff(indice_min));
+
+    % Find the optimal time shift
+    [~, optimalIndex] = min(rmseValues);
+    timeShift = timeShiftValues(optimalIndex);
+    amplitudeShift = optimalAmplitudeShifts(optimalIndex);
+
+    % Output statistics for the optimal shift
+    stats.meanDiff = meanDiff(optimalIndex);
+    stats.stdDiff = stdDiff(optimalIndex);
+    stats.perc1Diff = perc1Diff(optimalIndex);
+    stats.perc99Diff = perc99Diff(optimalIndex);
+
+    % Display the results
+    disp(['Optimal Time Shift: ', num2str(timeShift)]);
+    disp(['Optimal Amplitude Shift: ', num2str(amplitudeShift)]);
+    disp(['Mean Difference: ', num2str(stats.meanDiff)]);
+    disp(['Standard Deviation: ', num2str(stats.stdDiff)]);
+    disp(['1st Percentile Difference: ', num2str(stats.perc1Diff)]);
+    disp(['99th Percentile Difference: ', num2str(stats.perc99Diff)]);
 end
+
 
 function result = rmse(x, y)
     result = sqrt(sum((x - y) .^ 2) / length(x));
