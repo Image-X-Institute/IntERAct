@@ -21,8 +21,10 @@ traces6DRealSenseDist1 = readDistFile("6DDisplacementOututPathFile", 0);
 %motion traces. The algorithm minimises the RMSE between interpolated input
 %and output.
 
-shift1D = findClosestSI(tracesx, tracesy,traces1DRealSenseTime1, traces1DRealSenseDist1);
-shift6D = findClosestSI(traces6DTimeInput, traces6DAPInput, traces6DRealSenseTime1, traces6DRealSenseDist1);
+
+
+[shift1D, shift1D_y] = findOptimalShift(tracesx, tracesy,traces1DRealSenseTime1, traces1DRealSenseDist1);
+[shift6D, shift6D_y] = findOptimalShift(traces6DTimeInput, traces6DAPInput, traces6DRealSenseTime1, traces6DRealSenseDist1);
 latency = shift6D - shift1D;
 disp("latency : " + latency);
 
@@ -30,11 +32,11 @@ figure;
 subplot(2,1,1)
 hold on;
 plot(tracesx, tracesy,'DisplayName', '1DoF platform input' );
-scatter(traces1DRealSenseTime2 - shift1D2, traces1DRealSenseDist2, 'filled', 'DisplayName', '1DoF platform output');
+scatter(traces1DRealSenseTime1 - shift1D, traces1DRealSenseDist1 - shift1D_y , 'filled', 'DisplayName', '1DoF platform output');
 xlabel('Time (s)');
 ylabel('Displacement (mm)');
 legend show;
-title('1DoF Platform Aligned ');
+title('1DoF Platform Motion');
 grid on;
 set(gca, 'FontSize', 12, 'LineWidth', 1.5);
 
@@ -43,11 +45,11 @@ hold off;
 subplot(2,1,2)
 hold on;
 plot(traces6DTimeInput, traces6DAPInput,'DisplayName', '6DoF platform input');
-scatter(traces6DRealSenseTime2 - shift6D2, traces6DRealSenseDist2, 'filled', 'DisplayName', '6DoF platform output');
+scatter(traces6DRealSenseTime1 - shift6D, traces6DRealSenseDist1 - shift6D_y, 'filled', 'DisplayName', '6DoF platform output');
 xlabel('Time (s)');
 ylabel('Displacement (mm)');
 legend show;
-title('6DoF Platform Aligned ');
+title('6DoF Platform Motion');
 grid on;
 set(gca, 'FontSize', 12, 'LineWidth', 1.5);
 
