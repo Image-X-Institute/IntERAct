@@ -173,6 +173,7 @@ namespace PhantomControl
 
             if (UrSettings.MotionType == "movej")
             {
+                Console.WriteLine(MotionTraces.Size.ToString());
                 for (int i = 0; i < MotionTraces.Size; i++)
                 {
                     UrScriptProgram.urList.Add("movej(p[" + translationList[i].X.ToString() + ", " + translationList[i].Y.ToString() + ", " + translationList[i].Z.ToString() + ", " + axisAngleList[i].X.ToString() + ", " + axisAngleList[i].Y.ToString() + ", " + axisAngleList[i].Z.ToString() + "]" + ", " + "a = " + "0.2" + ", " + "v = " + "0.2" + ", " + "t = " + time.ToString() + ")");

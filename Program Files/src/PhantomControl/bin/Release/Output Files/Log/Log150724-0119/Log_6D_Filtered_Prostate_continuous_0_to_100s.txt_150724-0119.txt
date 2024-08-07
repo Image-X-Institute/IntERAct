@@ -1,0 +1,4 @@
+[  15/07/24 01:19:29  ]    The 6D input file Filtered_Prostate_continuous_0_to_100s.txt has been selected
+[  15/07/24 01:19:29  ]    Warning: Sampling rates in the input file and in the settings file are not the same
+[  15/07/24 01:19:49  ]    The sample rate from the input file is 0.100000000000023s.
+[  15/07/24 01:19:49  ]    Warning: Sampling rate in the input file is lower than 0.2s

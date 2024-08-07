@@ -1,0 +1,15 @@
+[  30/07/24 12:53:35  ]    The 6D input file 1.Mean_Motion_gradual_start_2227s.txt has been selected
+[  30/07/24 12:53:35  ]    The sample rate from the input file is 0.2s.
+[  30/07/24 12:53:35  ]    Warning: The number of lines from the input file exceeds the limit capacity. The 6DoF robot will stop and resume the motion after 10 minutes
+[  30/07/24 12:53:42  ]    MODBUS connection via 192.168.94.11 established.
+[  30/07/24 12:53:42  ]    Start 6D motion
+[  30/07/24 12:53:45  ]    Opening IP address: 192.168.94.11
+[  30/07/24 12:53:47  ]    6D trace is complete
+[  30/07/24 12:53:47  ]    MODBUS disconected from controler
+[  30/07/24 12:53:48  ]    MODBUS connection via 192.168.94.11 established.
+[  30/07/24 12:53:48  ]    Start 6D motion
+[  30/07/24 12:53:51  ]    Opening IP address: 192.168.94.11
+[  30/07/24 12:54:34  ]    Stop 6D motion
+[  30/07/24 12:54:34  ]    MODBUS disconected from controler
+[  30/07/24 12:54:37  ]    Opening IP address: 192.168.94.11
+[  30/07/24 12:54:38  ]    6D Robot to home

@@ -13,6 +13,8 @@ using System.IO.Ports;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Web.UI.Design;
 using System.Windows;
 using System.Windows.Forms;
 
@@ -441,7 +443,6 @@ namespace PhantomControl
         // Plots input motion data
 
 
-
         private void drawInputTrace()
         {
 
@@ -672,11 +673,14 @@ namespace PhantomControl
             return ColumnsCount;
         }
 
+
+        //Boolean which alert if input file lines are greater than maximum capacity
+        private static bool boolExceedMemory = false;
         // Function loads motion data for robot to executed, data is stored in a global class names MotionTraces. Format of txt file is t x y z rx ry rz, that is for each value seprated by space followed by new line after rz
 
         private void flatButton_LoadTraces_Click(object sender, EventArgs e)
         {
-
+            int MaximumInputLines = 1501;
             double timeKinematics_temp = UrSettings.TimeKinematics;
             if (_homebuttonclicked != true)
             {
@@ -742,7 +746,6 @@ namespace PhantomControl
 
                     using (StreamReader sr = new StreamReader(ofd.FileName))
                     {
-
                         if (columnNum == 6)
                         {
                             string line;
@@ -787,8 +790,19 @@ namespace PhantomControl
                             Settings_tab.txtBox_time.Text = Convert.ToString(UrSettings.TimeKinematics);
                             Logger.addToLogFile("The sample rate from the input file is " + UrSettings.TimeKinematics + "s.");
                             MotionTraces.Size = counter;
-                            drawInputTrace();
-
+                            if (MotionTraces.Size > MaximumInputLines)
+                            {
+                                boolExceedMemory = true;
+                                UpdateStatusBarMessage.ShowStatusMessage("Warning: The number of lines from the input file exceeds the limit capacity. The 6DoF robot will stop and resume the motion after 5 minutes");
+                                Logger.addToLogFile("Warning: The number of lines from the input file exceeds the limit capacity. The 6DoF robot will stop and resume the motion after 5 minutes");
+                                System.Windows.MessageBox.Show("Warning: The number of lines from the input file exceeds the limit capacity. The 6DoF robot will stop and resume the motion after 5 minutes");
+                                drawInputTrace();
+                            }
+                            else
+                            {
+                                Console.WriteLine("else");
+                                drawInputTrace();
+                            }
                         }
 
                         if (columnNum <= 5 || columnNum > 7)
@@ -1047,6 +1061,85 @@ namespace PhantomControl
                 ResumeMotion1D_Process();
             }
         }
+        
+        private async Task RestartingProcess6D()
+        {
+            Console.WriteLine("Exceed memory");
+            int MaxLines = 1501;
+            int CurrentLines = MotionTraces.Size;
+            int NbRestart = (int)(CurrentLines / MaxLines);
+            int remainder = CurrentLines - (NbRestart * MaxLines);
+            List<double> timeTemp = new List<double>();
+            List<double> XTemp = new List<double>();
+            List<double> YTemp = new List<double>();
+            List<double> ZTemp = new List<double>();
+            List<double> RxTemp = new List<double>();
+            List<double> RyTemp = new List<double>();
+            List<double> RzTemp = new List<double>();
+
+            timeTemp = MotionTraces.t.ToList();
+            XTemp = MotionTraces.X.ToList();
+            YTemp = MotionTraces.Y.ToList();
+            ZTemp = MotionTraces.Z.ToList();
+            RxTemp = MotionTraces.Rx.ToList();
+            RyTemp = MotionTraces.Ry.ToList();
+            RzTemp = MotionTraces.Rz.ToList();
+
+            MotionTraces.t.Clear();
+            MotionTraces.X.Clear();
+            MotionTraces.Y.Clear();
+            MotionTraces.Z.Clear();
+            MotionTraces.Rx.Clear();
+            MotionTraces.Ry.Clear();
+            MotionTraces.Rz.Clear();
+
+            Console.WriteLine(NbRestart);
+            for (int i = 1; i <= NbRestart; i++)
+            {
+                Console.WriteLine("iteration number: " + i);
+                int first_index = (i - 1) * MaxLines;
+                int last_index = (i * MaxLines);
+                int MotionTracesSlicedSize = last_index - first_index;
+                MotionTraces.X = XTemp.GetRange(first_index, MotionTracesSlicedSize);
+                for (int k = 0; k < MotionTraces.X.Count; k++)
+                {
+                    MotionTraces.t.Add(k * UrSettings.TimeKinematics);
+                }
+                MotionTraces.Y = YTemp.GetRange(first_index, MotionTracesSlicedSize);
+                MotionTraces.Z = ZTemp.GetRange(first_index, MotionTracesSlicedSize);
+                MotionTraces.Rx = RxTemp.GetRange(first_index, MotionTracesSlicedSize);
+                MotionTraces.Ry = RyTemp.GetRange(first_index, MotionTracesSlicedSize);
+                MotionTraces.Rz = RzTemp.GetRange(first_index, MotionTracesSlicedSize);
+                MotionTraces.Size = MotionTracesSlicedSize;
+                drawInputTrace();
+                urServer.generateUrScript(UrSettings.TimeKinematics, UrSettings.TCP, UrSettings.PayLoad);
+                await runMotionAsync();
+
+                if (UrSettings.MotionPlay == false)
+                {
+                    return;
+                }
+
+                clearPlot("all");
+                Console.WriteLine("next 10min");
+            }
+            MotionTraces.X = XTemp.GetRange(NbRestart * MaxLines, remainder);
+            for (int k = 0; k < MotionTraces.X.Count; k++)
+            {
+                MotionTraces.t.Add(k * UrSettings.TimeKinematics);
+            }
+            MotionTraces.Y = YTemp.GetRange(NbRestart * MaxLines, remainder);
+            MotionTraces.Z = ZTemp.GetRange(NbRestart * MaxLines, remainder);
+            MotionTraces.Rx = RxTemp.GetRange(NbRestart * MaxLines, remainder);
+            MotionTraces.Ry = RyTemp.GetRange(NbRestart * MaxLines, remainder);
+            MotionTraces.Rz = RzTemp.GetRange(NbRestart * MaxLines, remainder);
+            MotionTraces.Size = remainder;
+            drawInputTrace();
+            boolExceedMemory = false;
+            urServer.generateUrScript(UrSettings.TimeKinematics, UrSettings.TCP, UrSettings.PayLoad);
+            runMotion();
+
+        }
 
         private void flatButton_PlayStopMotion_Click(object sender, EventArgs e)
         {
@@ -1084,12 +1177,33 @@ namespace PhantomControl
                             progressbar_Motion.Maximum = 100;
                         }
 
-                        urServer.generateUrScript(UrSettings.TimeKinematics, UrSettings.TCP, UrSettings.PayLoad);
+                        if (boolExceedMemory)  // If the lines are greater than the capacity limit -> restart the motion every 5 min
+                        {
+                            clearPlot("all");
+                            Console.WriteLine("memory");
+                            RestartingProcess6D().ContinueWith(task =>
+                            {
+                                if (task.IsFaulted)
+                                {
+                                    
+                                    Console.WriteLine("An error occurred: " + task.Exception?.Message);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("All motions have been processed.");
+                                }
+                            });
+                            return;
+                        }
+                        else if (!boolExceedMemory)
+                        {
+                            Console.WriteLine("not exceeding the memory");
+                            urServer.generateUrScript(UrSettings.TimeKinematics, UrSettings.TCP, UrSettings.PayLoad);
 
-                        runMotion();
+                            runMotion();
+                            return;
+                        }
 
-                        // Commented out this function in order to disable the Send Motion Function
-                        return;
 
                     }
 
@@ -1276,10 +1390,18 @@ namespace PhantomControl
                 double startPos = newDisplacementValues[0];
                 double speed2 = startPos / 200;
                 double voltage2 = (speed2 + 3.9812)/0.2229;
+                double voltage3 = (speed2 + 7.7634) / 0.2778;
                 //double timetoMove = ((startPos) / speed2) * 1000;
                 //int delayAndTimetoMove = (int)(4600 - timetoMove - 50);
                 //Thread.Sleep(delayAndTimetoMove);
-                ShiftToStartPos(voltage2);
+                if (bool1DConfiguration)
+                {
+                    ShiftToStartPos(voltage2);
+                }
+                else
+                {
+                    ShiftToStartPos(voltage3);
+                }
 
                 //---------Couch tracking measurement
                 //Thread.Sleep((int)timetoMove + 50);
@@ -1411,6 +1533,64 @@ namespace PhantomControl
 
         }
 
+        /* This function runs the motion. The definition of this function is based on the runMotion() function but enables the restarting motion after 10min for very long traces. It has to be an async task because we need to wait until the motion is over to run the next 10min motion without blocking the application */
+        private async Task runMotionAsync()
+        {
+            modbusClient = new ModbusClient(UrSettings.hostIPAddress, 502);
+
+            try
+            {
+                modbusClient.Connect();
+                UpdateStatusBarMessage.ShowStatusMessage("MODBUS connection via " + UrSettings.hostIPAddress + " established.");
+                Logger.addToLogFile("MODBUS connection via " + UrSettings.hostIPAddress + " established.");
+            }
+            catch (Exception excep)
+            {
+                UpdateStatusBarMessage.ShowStatusMessage("MODBUS connection attempt via " + UrSettings.hostIPAddress + " failed.");
+                Logger.addToLogFile("MODBUS connection attempt via " + UrSettings.hostIPAddress + " failed.");
+                return; // Quitter si la connexion échoue
+            }
+
+            if (string.IsNullOrWhiteSpace(UrSettings.hostIPAddress))
+            {
+                UpdateStatusBarMessage.ShowStatusMessage("Error: No IP Address Selected");
+                Logger.addToLogFile("Error: No IP Address Selected");
+                return;
+            }
+
+            _keepMonitoring = true;
+
+            if (Index6DMonitoring == 0)
+            {
+                Logger.addToLogFile("Start 6D motion");
+            }
+            else
+            {
+                Logger.addToLogFile("Resume 6D motion time = " + Index6DMonitoring + "s (sliced input file)");
+            }
+
+            try
+            {
+                var getDataTask = Task.Run(() => monitorData());
+                var tcpServerRunTask = Task.Run(() => tcpServerRun());
+
+                // Await both tasks to complete
+                Console.WriteLine("test");
+                await Task.WhenAll(getDataTask, tcpServerRunTask);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred: " + ex.Message);
+                Logger.addToLogFile("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                Console.WriteLine("test1"); // Cette ligne s'affiche lorsque toutes les tâches sont terminées
+            }
+        }
+
+
+
 
         //This event is initalize to sync the 1D and the 6D platforms. Once the code received the first data from the robot controller, the 1D is triggered to move. 
         static AutoResetEvent eventSync1D6D = new AutoResetEvent(false);
@@ -1441,6 +1621,8 @@ namespace PhantomControl
         private void tcpServerRun()
         {
             urServer.sendUrScript(UrScriptProgram.urList);
+            Console.WriteLine("TCP Over");
+
         }
 
         //Index6DMonitoring saves the last time value from the 6D robot feedback. 
@@ -1451,6 +1633,8 @@ namespace PhantomControl
         // This function is called in runMotion(), it is run on a separate thread and is responsible for connecting to MODBUS and streaming back data to the software to display and save in a txt file
         private void monitorData()
         {
+            int falseCount = 0;
+            int threshold = 800;
             int sampleRate = 10;// (int)(UrSettings.timeKinematics * 1000) - 10;
             double absoluteTime = 0;
             double currentTime = 0;
@@ -1503,9 +1687,10 @@ namespace PhantomControl
                     }
                     currentTime = getTime(_holdingRegTime);
                     time = currentTime - absoluteTime;
-                    Index6DMonitoring = time;
-
-
+                    if (!boolExceedMemory)
+                    {
+                        Index6DMonitoring = time;
+                    }
                 }
 
                 if (this.InvokeRequired)
@@ -1537,6 +1722,11 @@ namespace PhantomControl
 
                             if (isMoving())
                             {
+                                if (boolExceedMemory)
+                                {
+                                    falseCount = 0;
+                                }
+
                                 if (isResumed6D)
                                 {
                                     Thread.Sleep(Index6DTimeTravel);
@@ -1609,7 +1799,6 @@ namespace PhantomControl
                                 int _test1 = Convert.ToInt32(_test);
                                 //if (_test1 <= progressbar_Motion.Maximum)
 
-
                                 if (_test1 <= 100)
                                 {
                                     updateRange6D(time);
@@ -1620,6 +1809,20 @@ namespace PhantomControl
                                 }
 
                             }
+                            else
+                            {
+                                if (boolExceedMemory)
+                                {
+                                    falseCount++;
+                                    
+                                }
+                            }
+                            if (falseCount>=threshold & UrSettings.motionPlay == true)
+                            {
+                                _keepMonitoring = false;
+                                Console.WriteLine("monitor over");
+                                Logger.addToLogFile("6D trace is complete");
+                            }
 
                         }
 
@@ -1627,6 +1830,7 @@ namespace PhantomControl
                 }
                 else
                 {
+                    
                     lock (monitorDataLock)
                     {
 
@@ -1652,11 +1856,16 @@ namespace PhantomControl
                 {
                     Thread.Sleep(sampleRate);
                 }
+                //if (progressbar_Motion.Value == 100)
+                //{
+                //    Logger.addToLogFile("6D trace is complete");
+                //}
 
-            }
-            if (progressbar_Motion.Value ==  100)
-            {
-                Logger.addToLogFile("6D trace is complete");
+                //while (list_Progress.Count>list_Progress_Count)
+                //{
+                //    list_Progress_Count = list_Progress.Count;
+                //}
+                //Console.WriteLine("egale");
             }
 
             disconnectModbus();
@@ -2330,7 +2539,8 @@ namespace PhantomControl
                     else
                     {
                         Console.WriteLine("horizontal");
-                        delayValue = displacement / (Voltage * 0.2441 - 2.8574) * 1000;
+                        //going_up = 0.2482×voltages−3.8393
+                        delayValue = displacement / (Voltage * 0.2500 - 4.3393) * 1000;
                     }
                 }
 
@@ -2347,7 +2557,8 @@ namespace PhantomControl
                     }
                     else
                     {
-                        delayValue = displacement / (Voltage * 0.2595 - 4.4522) * 1000;
+                        //going_down = 0.2778×voltages−7.7643
+                        delayValue = displacement / (Voltage *  0.2800 - 8.2643) * 1000; 
                     }
 
                 }
@@ -2368,14 +2579,16 @@ namespace PhantomControl
 
             if (speed > 0)
             {
-                //voltageValue = (speed + 3.9812) / 0.2229;
                 if (bool1DConfiguration)
                 {
                     voltageValue = (speed + 3.9812) / 0.2229;
                 }
                 else
                 {
-                    voltageValue = (speed + 4.4522) / 0.2595;
+                    //voltageValue = (speed + 7.7643) / 0.2778; 
+                    voltageValue = (speed + 8.2643) / 0.2800; 
+
+
                 }
                 isGoingUp = 1;
             }
@@ -2389,7 +2602,7 @@ namespace PhantomControl
                 }
                 else
                 {
-                    voltageValue = (Math.Abs(speed) + 2.8574) / 0.2441;
+                    voltageValue = (Math.Abs(speed) + 4.3393) / 0.2500;
                 }
                 isGoingUp = 0;
             }

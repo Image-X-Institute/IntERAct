@@ -1,0 +1,7 @@
+[  15/07/24 02:48:08  ]    The 6D input file Prostate_continuous.drift_10Hz.txt has been selected
+[  15/07/24 02:48:08  ]    Warning: Sampling rates in the input file and in the settings file are not the same
+[  15/07/24 02:48:09  ]    The sample rate from the input file is 0.1s.
+[  15/07/24 02:48:12  ]    Warning: Sampling rate in the input file is lower than 0.2s
+[  15/07/24 02:52:19  ]    MODBUS connection via 192.168.94.11 established.
+[  15/07/24 02:52:19  ]    Start 6D motion
+[  15/07/24 02:53:03  ]    Opening IP address: 192.168.94.11

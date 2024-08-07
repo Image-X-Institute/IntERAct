@@ -1,0 +1,3 @@
+[  01/08/24 03:45:00  ]    The 1D input file 3.Mean_motion_1_092_resp_shifted_rescaled_gradual_start.txt has been selected
+[  01/08/24 03:45:03  ]    Start 1D motion
+[  01/08/24 03:45:15  ]    Error faild to connect on port 30001

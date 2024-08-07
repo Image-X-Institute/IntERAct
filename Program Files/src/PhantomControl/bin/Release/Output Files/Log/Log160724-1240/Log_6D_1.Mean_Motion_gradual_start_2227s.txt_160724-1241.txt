@@ -1,0 +1,10 @@
+[  16/07/24 12:41:10  ]    The 6D input file 1.Mean_Motion_gradual_start_2227s.txt has been selected
+[  16/07/24 12:41:11  ]    The sample rate from the input file is 0.2s.
+[  16/07/24 12:44:48  ]    MODBUS connection via 192.168.94.11 established.
+[  16/07/24 12:44:48  ]    Start 6D motion
+[  16/07/24 12:44:48  ]    Opening IP address: 192.168.94.11
+[  16/07/24 12:53:25  ]    Stop 6D motion
+[  16/07/24 12:53:30  ]    Opening IP address: 192.168.94.11
+[  16/07/24 12:53:31  ]    6D Robot to home
+[  16/07/24 12:54:06  ]    Opening IP address: 192.168.94.11
+[  16/07/24 12:54:07  ]    6D Robot to home
