@@ -1,0 +1,29 @@
+[  01/07/24 04:10:32  ]    The 1D input file Test_sine_AP_motion_10_mm_40s.txt has been selected
+[  01/07/24 04:10:34  ]    Start 1D motion
+[  01/07/24 04:11:25  ]    1D trace is complete
+[  01/07/24 04:11:30  ]    1D Robot to Home
+[  01/07/24 04:11:36  ]    Start 1D motion
+[  01/07/24 04:12:24  ]    1D trace is complete
+[  01/07/24 04:12:28  ]    Start 1D motion
+[  01/07/24 04:12:34  ]    Stop 1D motion
+[  01/07/24 04:12:35  ]    1D Robot to Home
+[  01/07/24 04:12:40  ]    Start 1D motion
+[  01/07/24 04:13:26  ]    1D trace is complete
+[  01/07/24 04:13:29  ]    1D Robot to Home
+[  01/07/24 04:13:31  ]    Start 1D motion
+[  01/07/24 04:13:38  ]    Stop 1D motion
+[  01/07/24 04:13:40  ]    Resume 1D motion line n° 12 from the input file
+[  01/07/24 04:13:45  ]    Stop 1D motion
+[  01/07/24 04:13:47  ]    Resume 1D motion line n° 26 from the input file
+[  01/07/24 04:13:52  ]    Stop 1D motion
+[  01/07/24 04:13:55  ]    Resume 1D motion line n° 30 from the input file
+[  01/07/24 04:14:03  ]    Stop 1D motion
+[  01/07/24 04:14:05  ]    Resume 1D motion line n° 42 from the input file
+[  01/07/24 04:14:19  ]    Stop 1D motion
+[  01/07/24 04:14:21  ]    Resume 1D motion line n° 70 from the input file
+[  01/07/24 04:14:49  ]    1D trace is complete
+[  01/07/24 04:14:51  ]    Start 1D motion
+[  01/07/24 04:14:52  ]    1D Robot to Home
+[  01/07/24 04:14:55  ]    Stop 1D motion
+[  01/07/24 04:15:05  ]    Resume 1D motion line n° 0 from the input file
+[  01/07/24 04:15:08  ]    Stop 1D motion

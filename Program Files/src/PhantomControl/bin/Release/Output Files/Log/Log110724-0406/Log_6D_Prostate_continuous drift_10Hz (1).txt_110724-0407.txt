@@ -1,0 +1,2 @@
+[  11/07/24 04:07:18  ]    The 6D input file Prostate_continuous drift_10Hz (1).txt has been selected
+[  11/07/24 04:07:21  ]    Error: Sampling rate in the input file is lower than 0.2s

@@ -1,0 +1,6 @@
+[  25/06/24 02:39:43  ]    The 6D input file 4.High_Complexity SI.txt has been selected - BOTH PLATFORMS
+[  25/06/24 02:39:52  ]    The 1D input file 4.High_Complexity_resp.txt has been selected - BOTH PLATFORMS
+[  25/06/24 02:39:54  ]    MODBUS connection via 192.168.94.11 established.
+[  25/06/24 02:39:55  ]    Opening IP address: 192.168.94.11
+[  25/06/24 02:41:25  ]    1D Robot to Home
+[  25/06/24 02:41:25  ]    Opening IP address: 192.168.94.11

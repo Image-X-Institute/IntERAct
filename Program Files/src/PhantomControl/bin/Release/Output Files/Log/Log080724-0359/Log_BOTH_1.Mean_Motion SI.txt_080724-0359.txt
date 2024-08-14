@@ -1,0 +1,5 @@
+[  08/07/24 03:59:25  ]    The 6D input file 1.Mean_Motion SI.txt has been selected - BOTH PLATFORMS
+[  08/07/24 03:59:28  ]    The 1D input file 1.Mean_Motion SI 1D.txt has been selected - BOTH PLATFORMS
+[  08/07/24 03:59:29  ]    MODBUS connection via 192.168.94.11 established.
+[  08/07/24 03:59:29  ]    Start 6D motion
+[  08/07/24 03:59:29  ]    Start 1D motion

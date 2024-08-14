@@ -1,0 +1,4 @@
+1.Mean_Motion_resp_shifted_rescaled_gradual_start_700s.txt
+1D starting time : 12:54:00:073
+1D end time : 13:02:19:964
+

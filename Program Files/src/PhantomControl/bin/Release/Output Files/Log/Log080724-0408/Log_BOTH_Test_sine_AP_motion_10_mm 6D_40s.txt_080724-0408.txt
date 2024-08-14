@@ -1,0 +1,8 @@
+[  08/07/24 04:08:56  ]    The 6D input file Test_sine_AP_motion_10_mm 6D_40s.txt has been selected - BOTH PLATFORMS
+[  08/07/24 04:09:03  ]    The 1D input file Test_sine_AP_motion_10_mm_40s.txt has been selected - BOTH PLATFORMS
+[  08/07/24 04:09:04  ]    MODBUS connection via 192.168.94.11 established.
+[  08/07/24 04:09:04  ]    Start 6D motion
+[  08/07/24 04:09:04  ]    Start 1D motion
+[  08/07/24 04:09:49  ]    1D trace is complete
+[  08/07/24 04:09:49  ]    Opening IP address: 192.168.94.11
+[  08/07/24 04:09:49  ]    Error: Could not read or write data from UR controler

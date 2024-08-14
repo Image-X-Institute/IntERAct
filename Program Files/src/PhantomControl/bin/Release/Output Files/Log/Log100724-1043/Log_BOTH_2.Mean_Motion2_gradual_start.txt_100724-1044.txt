@@ -1,0 +1,14 @@
+[  10/07/24 10:44:08  ]    The 6D input file 2.Mean_Motion2_gradual_start.txt has been selected - BOTH PLATFORMS
+[  10/07/24 10:44:11  ]    The 1D input file 2.Mean_Motion2_resp_shifted_rescaled_gradual_start.txt has been selected - BOTH PLATFORMS
+[  10/07/24 10:44:27  ]    MODBUS connection via 192.168.94.11 established.
+[  10/07/24 10:44:27  ]    Start 6D motion
+[  10/07/24 10:44:27  ]    Start 1D motion
+[  10/07/24 10:44:27  ]    Opening IP address: 192.168.94.11
+[  10/07/24 10:49:40  ]    Stop 1D motion
+[  10/07/24 10:49:40  ]    Stop 6D motion
+[  10/07/24 10:49:40  ]    6D trace is complete
+[  10/07/24 10:49:40  ]    MODBUS disconected from controler
+[  10/07/24 10:49:41  ]    1D Robot to Home
+[  10/07/24 10:49:41  ]    Opening IP address: 192.168.94.11
+[  10/07/24 10:49:42  ]    6D Robot to home
+[  10/07/24 10:49:44  ]    1D trace is complete

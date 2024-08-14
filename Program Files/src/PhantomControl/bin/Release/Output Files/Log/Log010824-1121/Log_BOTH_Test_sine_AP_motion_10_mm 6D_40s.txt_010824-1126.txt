@@ -1,0 +1,17 @@
+[  01/08/24 11:26:36  ]    The 6D input file Test_sine_AP_motion_10_mm 6D_40s.txt has been selected - BOTH PLATFORMS
+[  01/08/24 11:26:36  ]    The sample rate from the input file is 0.2s.
+[  01/08/24 11:26:39  ]    The 1D input file Test_sine_AP_motion_10_mm_40s.txt has been selected - BOTH PLATFORMS
+[  01/08/24 11:26:41  ]    MODBUS connection via 192.168.94.11 established.
+[  01/08/24 11:26:41  ]    Start 6D motion
+[  01/08/24 11:26:41  ]    Start 1D motion
+[  01/08/24 11:26:41  ]    Opening IP address: 192.168.94.11
+[  01/08/24 11:26:45  ]    Stop 1D motion
+[  01/08/24 11:26:45  ]    Stop 6D motion
+[  01/08/24 11:26:45  ]    MODBUS disconected from controler
+[  01/08/24 11:27:24  ]    1D Robot to Home
+[  01/08/24 11:27:24  ]    Opening IP address: 192.168.94.11
+[  01/08/24 11:27:25  ]    6D Robot to home
+[  01/08/24 11:27:36  ]    The 6D input file 1.Mean_Motion_gradual_start.txt has been selected - BOTH PLATFORMS
+[  01/08/24 11:27:36  ]    The sample rate from the input file is 0.2s.
+[  01/08/24 11:27:36  ]    Warning: The number of lines from the input file exceeds the limit capacity. The 6DoF robot will stop and resume the motion after 5 minutes
+[  01/08/24 11:27:42  ]    The 1D input file 1.Mean_Motion_resp_shifted_rescaled_gradual_start.txt has been selected - BOTH PLATFORMS

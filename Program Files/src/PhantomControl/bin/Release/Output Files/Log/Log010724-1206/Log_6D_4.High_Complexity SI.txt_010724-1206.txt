@@ -1,0 +1,20 @@
+[  01/07/24 12:06:27  ]    The 6D input file 4.High_Complexity SI.txt has been selected
+[  01/07/24 12:06:31  ]    MODBUS connection via 192.168.94.11 established.
+[  01/07/24 12:06:31  ]    Start 6D motion
+[  01/07/24 12:06:31  ]    Opening IP address: 192.168.94.11
+[  01/07/24 12:06:49  ]    Stop 6D motion
+[  01/07/24 12:06:49  ]    6D trace is complete
+[  01/07/24 12:06:49  ]    MODBUS disconected from controler
+[  01/07/24 12:06:53  ]    MODBUS connection via 192.168.94.11 established.
+[  01/07/24 12:06:53  ]    Resume 6D motion time = 14.0410000000011s from the input file
+[  01/07/24 12:06:53  ]    Opening IP address: 192.168.94.11
+[  01/07/24 12:07:20  ]    Stop 6D motion
+[  01/07/24 12:07:20  ]    6D trace is complete
+[  01/07/24 12:07:20  ]    MODBUS disconected from controler
+[  01/07/24 12:07:25  ]    MODBUS connection via 192.168.94.11 established.
+[  01/07/24 12:07:25  ]    Resume 6D motion time = 22.4390000000003s from the input file
+[  01/07/24 12:07:25  ]    Opening IP address: 192.168.94.11
+[  01/07/24 12:07:40  ]    Stop 6D motion
+[  01/07/24 12:07:40  ]    6D trace is complete
+[  01/07/24 12:07:40  ]    MODBUS disconected from controler
+[  01/07/24 12:07:43  ]    Opening IP address: 192.168.94.11

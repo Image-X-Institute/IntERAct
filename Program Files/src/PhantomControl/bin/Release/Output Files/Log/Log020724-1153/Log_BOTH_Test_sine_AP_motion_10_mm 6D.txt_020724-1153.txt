@@ -1,0 +1,14 @@
+[  02/07/24 11:53:44  ]    The 6D input file Test_sine_AP_motion_10_mm 6D.txt has been selected - BOTH PLATFORMS
+[  02/07/24 11:53:50  ]    The 1D input file Test_sine_AP_motion_10_mm.txt has been selected - BOTH PLATFORMS
+[  02/07/24 11:54:08  ]    MODBUS connection via 192.168.94.11 established.
+[  02/07/24 11:54:08  ]    Start 6D motion
+[  02/07/24 11:54:08  ]    Start 1D motion
+[  02/07/24 11:54:08  ]    Opening IP address: 192.168.94.11
+[  02/07/24 11:59:15  ]    1D trace is complete
+[  02/07/24 11:59:17  ]    Stop 1D motion
+[  02/07/24 11:59:17  ]    Stop 6D motion
+[  02/07/24 11:59:17  ]    6D trace is complete
+[  02/07/24 11:59:17  ]    MODBUS disconected from controler
+[  02/07/24 11:59:18  ]    1D Robot to Home
+[  02/07/24 11:59:18  ]    Opening IP address: 192.168.94.11
+[  02/07/24 11:59:19  ]    6D Robot to home

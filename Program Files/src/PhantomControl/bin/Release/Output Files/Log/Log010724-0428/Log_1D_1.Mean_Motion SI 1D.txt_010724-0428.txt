@@ -1,0 +1,5 @@
+[  01/07/24 04:28:43  ]    The 1D input file 1.Mean_Motion SI 1D.txt has been selected
+[  01/07/24 04:28:59  ]    Start 1D motion
+[  01/07/24 04:34:10  ]    1D trace is complete
+[  01/07/24 04:34:14  ]    1D Robot to Home
+[  01/07/24 04:34:15  ]    Stop 1D motion

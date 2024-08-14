@@ -1,0 +1,2 @@
+[  21/06/24 03:02:25  ]    The 6D input file 1.Mean_Motion_gradual_start.txt has been selected
+[  21/06/24 03:02:31  ]    MODBUS connection via 192.168.94.11 established.

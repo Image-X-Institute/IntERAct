@@ -1,0 +1,10 @@
+[  24/07/24 02:13:09  ]    The 6D input file Prostate_continuous.drift_10Hz.txt has been selected
+[  24/07/24 02:13:09  ]    The sample rate from the input file is 0.1s.
+[  24/07/24 02:13:09  ]    Warning: The number of lines from the input file exceeds the limit capacity. The 6DoF robot will stop and resume the motion after 10 minutes
+[  24/07/24 02:13:10  ]    Warning: Sampling rate in the input file is lower than 0.2s
+[  24/07/24 02:13:11  ]    Warning: Sampling rates in the input file and in the settings file are not the same
+[  24/07/24 02:13:38  ]    The 6D input file Prostate_continuous.drift_10Hz.txt has been selected
+[  24/07/24 02:13:38  ]    The sample rate from the input file is 0.1s.
+[  24/07/24 02:13:38  ]    Warning: The number of lines from the input file exceeds the limit capacity. The 6DoF robot will stop and resume the motion after 10 minutes
+[  24/07/24 02:13:39  ]    Warning: Sampling rate in the input file is lower than 0.2s
+[  24/07/24 02:13:40  ]    Warning: Sampling rates in the input file and in the settings file are not the same

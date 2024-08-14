@@ -1,0 +1,45 @@
+[  01/08/24 11:37:59  ]    The 6D input file 1.Mean_Motion_gradual_start_2227s.txt has been selected
+[  01/08/24 11:37:59  ]    The sample rate from the input file is 0.2s.
+[  01/08/24 11:37:59  ]    Warning: The number of lines from the input file exceeds the limit capacity. The 6DoF robot will stop and resume the motion after 5 minutes
+[  01/08/24 11:38:04  ]    MODBUS connection via 192.168.94.11 established.
+[  01/08/24 11:38:04  ]    Start 6D motion
+[  01/08/24 11:38:05  ]    Opening IP address: 192.168.94.11
+[  01/08/24 11:43:09  ]    6D trace is complete
+[  01/08/24 11:43:09  ]    MODBUS disconected from controler
+[  01/08/24 11:43:09  ]    MODBUS connection via 192.168.94.11 established.
+[  01/08/24 11:43:09  ]    Start 6D motion
+[  01/08/24 11:43:10  ]    Opening IP address: 192.168.94.11
+[  01/08/24 11:48:13  ]    6D trace is complete
+[  01/08/24 11:48:13  ]    MODBUS disconected from controler
+[  01/08/24 11:48:13  ]    MODBUS connection via 192.168.94.11 established.
+[  01/08/24 11:48:13  ]    Start 6D motion
+[  01/08/24 11:48:14  ]    Opening IP address: 192.168.94.11
+[  01/08/24 11:53:17  ]    6D trace is complete
+[  01/08/24 11:53:17  ]    MODBUS disconected from controler
+[  01/08/24 11:53:18  ]    MODBUS connection via 192.168.94.11 established.
+[  01/08/24 11:53:18  ]    Start 6D motion
+[  01/08/24 11:53:18  ]    Opening IP address: 192.168.94.11
+[  01/08/24 11:58:22  ]    6D trace is complete
+[  01/08/24 11:58:22  ]    MODBUS disconected from controler
+[  01/08/24 11:58:22  ]    MODBUS connection via 192.168.94.11 established.
+[  01/08/24 11:58:22  ]    Start 6D motion
+[  01/08/24 11:58:22  ]    Opening IP address: 192.168.94.11
+[  01/08/24 12:03:48  ]    6D trace is complete
+[  01/08/24 12:03:48  ]    MODBUS disconected from controler
+[  01/08/24 12:03:49  ]    MODBUS connection via 192.168.94.11 established.
+[  01/08/24 12:03:49  ]    Start 6D motion
+[  01/08/24 12:03:49  ]    Opening IP address: 192.168.94.11
+[  01/08/24 12:08:53  ]    6D trace is complete
+[  01/08/24 12:08:53  ]    MODBUS disconected from controler
+[  01/08/24 12:08:53  ]    MODBUS connection via 192.168.94.11 established.
+[  01/08/24 12:08:53  ]    Start 6D motion
+[  01/08/24 12:08:53  ]    Opening IP address: 192.168.94.11
+[  01/08/24 12:13:57  ]    6D trace is complete
+[  01/08/24 12:13:57  ]    MODBUS disconected from controler
+[  01/08/24 12:13:57  ]    MODBUS connection via 192.168.94.11 established.
+[  01/08/24 12:13:57  ]    Start 6D motion
+[  01/08/24 12:13:57  ]    Opening IP address: 192.168.94.11
+[  01/08/24 12:16:11  ]    Stop 6D motion
+[  01/08/24 12:16:11  ]    MODBUS disconected from controler
+[  01/08/24 12:16:12  ]    Opening IP address: 192.168.94.11
+[  01/08/24 12:16:13  ]    6D Robot to home

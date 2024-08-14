@@ -1,0 +1,2 @@
+[  01/07/24 04:23:17  ]    The 1D input file Test_sine_AP_motion_10_mm_40s.txt has been selected
+[  01/07/24 04:23:18  ]    Start 1D motion

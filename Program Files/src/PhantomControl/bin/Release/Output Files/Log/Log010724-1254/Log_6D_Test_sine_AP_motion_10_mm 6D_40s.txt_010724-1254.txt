@@ -1,0 +1,8 @@
+[  01/07/24 12:54:53  ]    The 6D input file Test_sine_AP_motion_10_mm 6D_40s.txt has been selected
+[  01/07/24 12:54:55  ]    MODBUS connection via 192.168.94.11 established.
+[  01/07/24 12:54:55  ]    Start 6D motion
+[  01/07/24 12:54:55  ]    Opening IP address: 192.168.94.11
+[  01/07/24 12:55:02  ]    Stop 6D motion
+[  01/07/24 12:55:02  ]    MODBUS disconected from controler
+[  01/07/24 12:55:03  ]    Opening IP address: 192.168.94.11
+[  01/07/24 12:55:04  ]    6D Robot to home

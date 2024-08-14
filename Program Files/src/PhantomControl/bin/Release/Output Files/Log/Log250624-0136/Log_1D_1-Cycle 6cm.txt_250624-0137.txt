@@ -1,0 +1,2 @@
+[  25/06/24 01:37:31  ]    The 1D input file 1-Cycle 6cm.txt has been selected
+[  25/06/24 01:37:48  ]    1D Robot to Home

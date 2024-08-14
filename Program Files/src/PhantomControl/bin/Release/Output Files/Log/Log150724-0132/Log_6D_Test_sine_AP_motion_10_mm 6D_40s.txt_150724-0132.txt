@@ -1,0 +1,2 @@
+[  15/07/24 01:32:52  ]    The 6D input file Test_sine_AP_motion_10_mm 6D_40s.txt has been selected
+[  15/07/24 01:32:52  ]    The sample rate from the input file is 0.2s.

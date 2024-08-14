@@ -1,0 +1,2 @@
+[  01/08/24 03:03:58  ]    The 1D input file 1.Mean_Motion_resp_shifted_rescaled_gradual_start.txt has been selected
+[  01/08/24 03:04:05  ]    Start 1D motion

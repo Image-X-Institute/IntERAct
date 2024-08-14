@@ -1,0 +1,4 @@
+[  04/07/24 02:34:12  ]    The 1D input file 6cm_peak_250s.txt has been selected
+[  04/07/24 02:34:13  ]    Start 1D motion
+[  04/07/24 02:34:27  ]    Stop 1D motion
+[  04/07/24 02:34:27  ]    1D Robot to Home

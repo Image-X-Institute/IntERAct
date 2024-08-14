@@ -1,0 +1,7 @@
+[  03/07/24 11:42:57  ]    The 1D input file Test_sine_AP_motion_10_mm_40s.txt has been selected
+[  03/07/24 11:42:59  ]    Start 1D motion
+[  03/07/24 11:43:06  ]    Stop 1D motion
+[  03/07/24 11:43:08  ]    Resume 1D motion line n° 10 (sliced input file)
+[  03/07/24 11:43:12  ]    Stop 1D motion
+[  03/07/24 11:43:14  ]    Resume 1D motion line n° 19 (sliced input file)
+[  03/07/24 11:43:16  ]    Stop 1D motion

@@ -1,0 +1,28 @@
+[  18/07/24 11:18:41  ]    The 1D input file 1.Mean_Motion_resp_shifted_rescaled_gradual_start.txt has been selected
+[  18/07/24 11:18:47  ]    Start 1D motion
+[  18/07/24 11:18:58  ]    Stop 1D motion
+[  18/07/24 11:19:00  ]    1D Robot to Home
+[  18/07/24 11:19:02  ]    1D Robot to Home
+[  18/07/24 11:19:25  ]    Start 1D motion
+[  18/07/24 11:24:38  ]    1D trace is complete
+[  18/07/24 11:24:41  ]    Stop 1D motion
+[  18/07/24 11:24:42  ]    1D Robot to Home
+[  18/07/24 11:36:08  ]    Start 1D motion
+[  18/07/24 11:36:13  ]    Stop 1D motion
+[  18/07/24 11:36:14  ]    1D Robot to Home
+[  18/07/24 11:36:29  ]    Start 1D motion
+[  18/07/24 11:41:40  ]    1D trace is complete
+[  18/07/24 11:41:43  ]    Stop 1D motion
+[  18/07/24 11:41:44  ]    1D Robot to Home
+[  18/07/24 11:43:19  ]    Start 1D motion
+[  18/07/24 11:48:56  ]    1D trace is complete
+[  18/07/24 11:52:22  ]    Stop 1D motion
+[  18/07/24 11:52:23  ]    1D Robot to Home
+[  18/07/24 11:52:28  ]    Start 1D motion
+[  18/07/24 11:57:34  ]    1D trace is complete
+[  18/07/24 11:57:35  ]    Stop 1D motion
+[  18/07/24 11:57:36  ]    1D Robot to Home
+[  18/07/24 11:59:39  ]    Start 1D motion
+[  18/07/24 12:04:49  ]    1D trace is complete
+[  18/07/24 12:04:52  ]    1D Robot to Home
+[  18/07/24 12:04:54  ]    Stop 1D motion

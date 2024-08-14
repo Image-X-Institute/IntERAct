@@ -1,10 +1,11 @@
-# 6 DoF Robotic Motion Phantom
+# Combined system : 6 DoF Robotic Motion Phantom and 1DoF Motion Platform
 
-The 6 DoF Robotic Motion Phantom application has been developed to perform quality assurance tests for real-time image-guided radiotherapy systems. The 6 DoF system consists of a six-axis robotic arm (Universal Robot, UR3), an acrylic phantom, a custom-base plate to mount the robotic phantom onto the treatment couch and a software application which controls the robotic phantom to reproduce the patient-measured tumor motion. The [software](https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/PhantomControl.sln) provides methods to implement the appropriate sequence of transformations to accurately reproduce the full range (6 DoF translational and rotational motion) and rate of patient-measured tumour motion using the robotically controlled phantom. The set-up and motion trace repeatability of the robotic system was evaluated against the Calypso system and was shown to provide sub-mm and sub-degree accuracy and precision in translational and rotational degrees of freedom respectively. For more details, please see [this publication](https://doi.org/10.1088/1361-6560/ab1935).
+The association of 6DoF and 1DoF application has been developed to perform quality assurance tests for real-time image-guided radiotherapy systems. The 6 DoF system consists of a six-axis robotic arm (Universal Robot, UR3), an acrylic phantom, a custom-base plate to mount the robotic phantom onto the treatment couch and a software application which controls the robotic phantom to reproduce the patient-measured tumor motion. The [software](https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/PhantomControl.sln) provides methods to implement the appropriate sequence of transformations to accurately reproduce the full range (6 DoF translational and rotational motion) and rate of patient-measured tumour motion using the robotically controlled phantom. The set-up and motion trace repeatability of the robotic system was evaluated against the Calypso system and was shown to provide sub-mm and sub-degree accuracy and precision in translational and rotational degrees of freedom respectively. The basis of moving the 1D motion platform is the linear actuator motor, that is driven by a microcontroller. The aim of this project is to integrate a 1DoF vertical motion platform with 6DoF Robot Phantom to establish control of both robots under one software. The purpose of this goal is emulate a patient's behavior that is present during treatment such as breathing, which can make it much harder to track and target the tumor. The 6DoF robot is used to mimic the internal motion of the tumor while the 1DoF platform is intended to use the data collected from surface/external tracers on the patient to model and replicate the external motion of the tumor. For more details, please see [this publication](https://doi.org/10.1088/1361-6560/ab1935).
+
 
 ## Key Features
 
-- Accurate motion reproducibility for 6DoF tumour motion.
+- Accurate motion reproducibility for 6DoF tumour motion and 1DoF external respiratory motion.
 - A user-friendly GUI interface.
 - Design compactness.
 - Easy workflow.
@@ -16,6 +17,8 @@ The 6 DoF Robotic Motion Phantom application has been developed to perform quali
   * Hardware
      - A six-axis robot (Tested on a commercially available [UR3 Universal Robot](https://www.universal-robots.com/products/ur3-robot/)) and its associated hardware
      - A phantom
+     - A one dimensionnal linear actuator (Tested on a commercially available https://www.firgelliauto.com.au/products/os-series) and its associated hardware (Arduino board, DC Motor Drive)
+     - Acrylic pane
   
   * Software 
      - Microsoft Visual Studio 2019 with .NET framework 4.5 (tested). May work on other versions too.  
@@ -30,11 +33,11 @@ The 6 DoF Robotic Motion Phantom application has been developed to perform quali
      
 ## Documentation
 
-The [Documentation folder](https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/main/Documentation) contains required information to assemble a similar 6-DoF system: Bill of materials, CAD files for the phantom and hardware tools, robot specifications, documentation, a user-guide to operate the system, and, step-by-step QA procedure for a real-time image-guided radiotherapy technology, Kilovoltage Intrafraction Monitoring (KIM) using the robotic phantom. 
+The [1D Documentation folder](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/6639bfc80bd9f7605cc3b0b8b9e0a0618c6042e4/1D%20Documentation%20%2B%20Arduino%20IDE%20Code) contains required information to assemble a similar 1DoF system. The [Documentation folder](https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/main/Documentation) contains required information to assemble a similar 6-DoF system: Bill of materials, CAD files for the phantom and hardware tools, robot specifications, documentation, a user-guide to operate the system, and, step-by-step QA procedure for a real-time image-guided radiotherapy technology, Kilovoltage Intrafraction Monitoring (KIM) using the robotic phantom. The [Combined system documentation folder](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/6639bfc80bd9f7605cc3b0b8b9e0a0618c6042e4/Combined%20system%20documentation) contains required information to run the combined system. 
 
-### Setting up the Robotic Motion Phantom
+### Setting up the system
 
-See the [Getting Started Guide](https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/Documentation/Getting%20Started.docx).
+See the [Combined system documentation](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/6639bfc80bd9f7605cc3b0b8b9e0a0618c6042e4/Combined%20system%20documentation).
 
 ### Building the Robotic Motion Phantom software
 
@@ -42,7 +45,7 @@ The software was written and tested in C# using Visual Studio 2019 with .NET Fra
 
 1. Open `PhantomControl.sln` in Visual Studio.
 2. Build the solution in Debug mode.
-3. This will create the application `PhantomControl\bin\Debug\PhantomControl.exe` which can then be operated using [this guide](https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/Documentation/Software%20GUI%20Guide.pdf) when connected to a six-axis robotic system.
+3. This will create the application `PhantomControl\bin\Debug\PhantomControl.exe` which can then be operated using [this guide](https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/Documentation/Software%20GUI%20Guide.pdf) when connected to a six-axis robotic system or/and one dimensionnal platform.
 
 ## Publications
 
@@ -56,7 +59,7 @@ The software was written and tested in C# using Visual Studio 2019 with .NET Fra
 - Surface Monitoring technology to Remove The mask, [SMART trial](https://image-x.sydney.edu.au/home/clinical-trials/).
 
 ## Clinical use
-- Adapted for routine quality assurance tests at Princess Alexandra Hospital. 
+- Adapted for routine quality assurance tests at Princess Alexandra Hospital.
 
 ## Licence
 

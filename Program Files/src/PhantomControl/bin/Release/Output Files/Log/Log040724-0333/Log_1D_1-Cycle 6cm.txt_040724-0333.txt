@@ -1,0 +1,5 @@
+[  04/07/24 03:33:26  ]    The 1D input file 1-Cycle 6cm.txt has been selected
+[  04/07/24 03:33:27  ]    Start 1D motion
+[  04/07/24 03:33:40  ]    1D trace is complete
+[  04/07/24 03:33:45  ]    Stop 1D motion
+[  04/07/24 03:33:45  ]    1D Robot to Home
