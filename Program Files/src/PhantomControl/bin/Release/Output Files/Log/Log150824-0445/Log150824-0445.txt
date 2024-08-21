@@ -1,0 +1,7 @@
+[  15/08/24 04:45:03  ]    Loading payloadMass from settings.txt = 0
+[  15/08/24 04:45:03  ]    User changed the payloadMass = 0
+[  15/08/24 04:45:03  ]    Loading payloadMass from settings.txt = 0
+[  15/08/24 04:45:03  ]    User changed the payloadMass = 0
+[  15/08/24 04:45:14  ]    CURRENT ROBOT SELECTED: 6DOF
+[  15/08/24 04:45:14  ]    Opening IP address: 192.168.94.11
+[  15/08/24 04:45:15  ]    Start Position Set To:  -568.6 119.6 354.7 -1.232 -0.98 1.563

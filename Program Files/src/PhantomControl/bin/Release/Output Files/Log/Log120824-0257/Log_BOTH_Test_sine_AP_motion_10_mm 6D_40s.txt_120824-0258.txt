@@ -1,0 +1,29 @@
+[  12/08/24 02:58:07  ]    The 6D input file Test_sine_AP_motion_10_mm 6D_40s.txt has been selected - BOTH PLATFORMS
+[  12/08/24 02:58:07  ]    The sample rate from the input file is 0.2s.
+[  12/08/24 02:58:09  ]    The 1D input file Test_sine_AP_motion_10_mm_40s.txt has been selected - BOTH PLATFORMS
+[  12/08/24 02:58:25  ]    MODBUS connection via 192.168.94.11 established.
+[  12/08/24 02:58:25  ]    Start 6D motion
+[  12/08/24 02:58:25  ]    Start 1D motion
+[  12/08/24 02:58:25  ]    Opening IP address: 192.168.94.11
+[  12/08/24 02:58:32  ]    Stop 1D motion
+[  12/08/24 02:58:32  ]    Stop 6D motion
+[  12/08/24 02:58:32  ]    MODBUS disconected from controler
+[  12/08/24 02:58:36  ]    MODBUS connection via 192.168.94.11 established.
+[  12/08/24 02:58:36  ]    Resume 6D motion time = 5.8420000000001s (sliced input file)
+[  12/08/24 02:58:36  ]    Resume 1D motion line n° 31 (sliced input file)
+[  12/08/24 02:58:36  ]    Opening IP address: 192.168.94.11
+[  12/08/24 02:58:46  ]    Stop 1D motion
+[  12/08/24 02:58:46  ]    Stop 6D motion
+[  12/08/24 02:58:46  ]    MODBUS disconected from controler
+[  12/08/24 02:58:49  ]    MODBUS connection via 192.168.94.11 established.
+[  12/08/24 02:58:49  ]    Resume 6D motion time = 8.92200000000003s (sliced input file)
+[  12/08/24 02:58:49  ]    Resume 1D motion line n° 46 (sliced input file)
+[  12/08/24 02:58:49  ]    Opening IP address: 192.168.94.11
+[  12/08/24 02:58:55  ]    Stop 1D motion
+[  12/08/24 02:58:55  ]    Stop 6D motion
+[  12/08/24 02:58:55  ]    MODBUS disconected from controler
+[  12/08/24 02:58:57  ]    1D Robot to Home
+[  12/08/24 02:58:57  ]    Opening IP address: 192.168.94.11
+[  12/08/24 02:58:58  ]    6D Robot to home
+[  12/08/24 02:59:47  ]    The 6D input file Test_sine_AP_motion_10_mm 6D.txt has been selected - BOTH PLATFORMS
+[  12/08/24 02:59:47  ]    The sample rate from the input file is 0.2s.

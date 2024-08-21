@@ -1,0 +1,9 @@
+[  15/08/24 05:37:40  ]    The 6D input file exp_SMART4_0to5min.txt has been selected
+[  15/08/24 05:37:40  ]    The sample rate from the input file is 0.2s.
+[  15/08/24 05:37:44  ]    MODBUS connection via 192.168.94.11 established.
+[  15/08/24 05:37:44  ]    Resume 6D motion time = 300.002s (sliced input file)
+[  15/08/24 05:37:44  ]    Opening IP address: 192.168.94.11
+[  15/08/24 05:43:33  ]    Stop 6D motion
+[  15/08/24 05:43:33  ]    MODBUS disconected from controler
+[  15/08/24 05:43:36  ]    Opening IP address: 192.168.94.11
+[  15/08/24 05:43:37  ]    6D Robot to home
