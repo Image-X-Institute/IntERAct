@@ -37,15 +37,17 @@ The [1DoF Documentation folder](https://github.com/Image-X-Institute/6-DoF-Robot
 
 ### Setting up the system
 
-See the [Combined system documentation](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/6639bfc80bd9f7605cc3b0b8b9e0a0618c6042e4/Combined%20system%20documentation).
+See the [Combined system documentation](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/main/Documentation/Combined%20system).
 
 ### Building the Robotic Motion Phantom software
 
 The software was written and tested in C# using Visual Studio 2019 with .NET Framework 4.5 using Windows 10 64-bit, but may work with other versions of Visual Studio.
 
-1. Open `PhantomControl.sln` in Visual Studio.
-2. Build the solution in Debug mode.
-3. This will create the application `PhantomControl\bin\Debug\PhantomControl.exe` which can then be operated using [this guide](https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/Documentation/Software%20GUI%20Guide.pdf) when connected to a six-axis robotic system or/and one dimensionnal platform.
+
+
+1. Open `PhantomControl.sln` in Visual Studio (https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/main/Program%20Files).
+2. Build the solution in Release mode.
+3. This will create the application `PhantomControl\bin\Release\PhantomControl.exe` which can then be operated using [this guide](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/main/Documentation/Combined%20system) when connected to a six-axis robotic system or/and one dimensionnal platform.
 
 ## Publications
 
