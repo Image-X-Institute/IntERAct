@@ -1,6 +1,7 @@
 * Robotic Motion Phantom Release updates                                 -   [RoboticMotionPhantom v2.0.0 Release.pdf](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/Documentation/6DoF/RoboticMotionPhantom%20v2.0.0%20Release.pdf)
 * Bill of Materials                                                      -   [Bill of Materials.pdf](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/Documentation/6DoF/Bill%20of%20materials.pdf)
-* UR3 robot specificatons                                                -   [Robot specification](https://www.universal-robots.com/products/ur3-robot/) 
+* UR3 robot specifications                                                -   [UR3 Robot specification](https://www.universal-robots.com/products/ur3-robot/)
+* UR16 robot specifications                                               - [UR16 robot specification](https://www.universal-robots.com/products/ur16-robot/)
 * CAD drawing of the phantom and tool flange holder                      -   [CAD Drawing of the phantom](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/main/Documentation/CAD%20Drawing%20of%20the%20phantom)
 * MODBUS communication protocol                                          -   [MODBUS communication.pdf](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/Documentation/6DoF/MODBUS%20communication.pdf) and see [this link](https://www.universal-robots.com/articles/ur/modbus-server/).
 * To set up the robotic motion phantom (For a UR3 robot)                 -   [Getting Started.pdf](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/Documentation/6DoF/Getting%20Started.pdf). 
