@@ -3,4 +3,5 @@ This folder contains the documentation on how to setup the 1DoF platform. The fo
 
 
   -https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/Documentation/1DoF/1D%20Hardware%20Guide.pdf
+  -https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/Documentation/1DoF/1D%20Hardware%20Guide.pdf
   -https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/Documentation/1DoF/Arduino_V3.ino
