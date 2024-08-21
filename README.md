@@ -21,7 +21,7 @@ The association of 6DoF and 1DoF application has been developed to perform quali
      - Acrylic pane
   
   * Software 
-     - Microsoft Visual Studio 2019 with .NET framework 4.5 (tested). May work on other versions too.  
+     - Microsoft Visual Studio 2022 with .NET framework 4.5 (tested). May work on other versions too.  
      - Winforms
   
   * Third-party libraries (located in `External Libraries/`)
