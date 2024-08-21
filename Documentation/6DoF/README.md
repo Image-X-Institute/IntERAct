@@ -1,5 +1,4 @@
-* Robotic Motion Phantom Release updates                                 -   [RoboticMotionPhantom v2.0.0 Release.pdf](https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/
-Documentation/6DoF/RoboticMotionPhantom v2.0.0 Release.pdf)
+* Robotic Motion Phantom Release updates                                 -   [RoboticMotionPhantom v2.0.0 Release.pdf](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/Documentation/6DoF/RoboticMotionPhantom%20v2.0.0%20Release.pdf)
 * Bill of Materials                                                      -   [Bill of Materials.pdf](https://github.com/ACRF-Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/Documentation/Bill%20of%20materials.pdf)
 * UR3 robot specificatons                                                -   [Robot specification](https://www.universal-robots.com/products/ur3-robot/) 
 * CAD drawing of the phantom and tool flange holder                      -   /CAD Drawing of the phantom
