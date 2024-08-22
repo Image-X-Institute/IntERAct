@@ -1,4 +1,4 @@
-# Time synchronsied motion platform simulating tumour motion: 6DoF Robotic Motion Phantom reproducing internal motion and 1DoF Motion Platform simulating external surface motion
+# Time synchronised motion platform simulating tumour motion: 6DoF Robotic Motion Phantom reproducing internal motion and 1DoF Motion Platform simulating external surface motion
 
 A motion platform has been developed to reproduce internal-external motion to perform quality assurance tests for real-time image-guided radiotherapy systems. The aim of this project is to integrate the 1DoF vertical motion platform with 6DoF Robot Phantom to establish control of both robots under one software. The purpose of this goal is emulate tumour motion that is present during treatment such as breathing.
 
