@@ -35,10 +35,6 @@ The association of 6DoF and 1DoF application has been developed to perform quali
 
 The [1DoF Documentation folder](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/main/Documentation/1DoF) contains required information to assemble a similar 1DoF system. The [6DoF Documentation folder](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/main/Documentation/6DoF) contains required information to assemble a similar 6-DoF system: Bill of materials, CAD files for the phantom and hardware tools, robot specifications, documentation, a user-guide to operate the system, and, step-by-step QA procedure for a real-time image-guided radiotherapy technology, Kilovoltage Intrafraction Monitoring (KIM) using the robotic phantom.
 
-### Setting up the system
-
-See the [Combined system documentation](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/main/Documentation/Combined%20system).
-
 ### Building the Robotic Motion Phantom software
 
 The software was written and tested in C# using Visual Studio 2019 with .NET Framework 4.5 using Windows 10 64-bit, but may work with other versions of Visual Studio.
