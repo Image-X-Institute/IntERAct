@@ -43,7 +43,7 @@ The software was written and tested in C# using Visual Studio 2019 with .NET Fra
 
 1. Open `PhantomControl.sln` in Visual Studio (https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/Program%20Files/PhantomControl.sln).
 2. Build the solution in Release mode.
-3. This will create the application `PhantomControl\bin\Release\PhantomControl.exe` which can then be operated using [this guide](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/Documentation/Combined%20system/Combined%20system%20Documentation.pdf) when connected to a six-axis robotic system or/and one dimensionnal platform.
+3. This will create the application `PhantomControl\bin\Release\PhantomControl.exe` which can then be operated using [this guide](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/Documentation/6DoF/Software%20GUI%20Guide.pdf) when connected to a six-axis robotic system or/and one dimensionnal platform.
 
 ## Publications
 
