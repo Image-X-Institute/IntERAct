@@ -1,0 +1,4 @@
+[  22/08/24 03:35:11  ]    Loading payloadMass from settings.txt = 0
+[  22/08/24 03:35:11  ]    User changed the payloadMass = 0
+[  22/08/24 03:35:11  ]    Loading payloadMass from settings.txt = 0
+[  22/08/24 03:35:11  ]    User changed the payloadMass = 0

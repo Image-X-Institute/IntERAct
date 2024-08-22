@@ -19,7 +19,7 @@ namespace PhantomControl
         public MotionControl_tab motionTabPub;
         MotionControl_tab mct = new MotionControl_tab();
         private static bool calledLogger = false;
-        
+
         public Settings_tab()
         {
             if (!this.DesignMode)
@@ -29,7 +29,7 @@ namespace PhantomControl
                     Logger.initialiseLogger();
                     calledLogger = true;
                 }
-                
+
                 InitializeComponent();
 
 
@@ -72,10 +72,12 @@ namespace PhantomControl
             txtBox_AlignedPos_ry.Text = Convert.ToString(UrSettings.alingedPos[4]);
             txtBox_AlignedPos_rz.Text = Convert.ToString(UrSettings.alingedPos[5]);
 
-            if (UrSettings.MotionType == "movej"){
+            if (UrSettings.MotionType == "movej")
+            {
                 dropdown_motionType.SelectedIndex = 0;
             }
-            if (UrSettings.MotionType == "movel"){
+            if (UrSettings.MotionType == "movel")
+            {
                 dropdown_motionType.SelectedIndex = 1;
             }
 
@@ -93,7 +95,7 @@ namespace PhantomControl
 
         private void loadSettings()
         {
-            
+
             if (File.Exists("settings.txt"))
             {
                 try
@@ -122,6 +124,14 @@ namespace PhantomControl
                     UrSettings.alingedPos[4] = Convert.ToDouble(dictionary["Aligned PositionRy [rad]"]);
                     UrSettings.alingedPos[5] = Convert.ToDouble(dictionary["Aligned PositionRz [rad]"]);
                     Logger.addToLogFile("Loading payloadMass from settings.txt = " + UrSettings.payLoadMass);
+                    UrSettings.verticalMode[0] = Convert.ToDouble(dictionary["Vertical Volt-speed relationship going up : slope"]);
+                    UrSettings.verticalMode[1] = Convert.ToDouble(dictionary["Vertical Volt-speed relationship going up : y-intercept"]);
+                    UrSettings.verticalMode[2] = Convert.ToDouble(dictionary["Vertical Volt-speed relationship going down : slope"]);
+                    UrSettings.verticalMode[3] = Convert.ToDouble(dictionary["Vertical Volt-speed relationship going down : y-intercept"]);
+                    UrSettings.horizontalMode[0] = Convert.ToDouble(dictionary["Horizontal Volt-speed relationship going up : slope"]);
+                    UrSettings.horizontalMode[1] = Convert.ToDouble(dictionary["Horizontal Volt-speed relationship going up : y-intercept"]);
+                    UrSettings.horizontalMode[2] = Convert.ToDouble(dictionary["Horizontal Volt-speed relationship going down : slope"]);
+                    UrSettings.horizontalMode[3] = Convert.ToDouble(dictionary["Horizontal Volt-speed relationship going down : y-intercept"]);
                 }
                 catch (Exception excep)
                 {
@@ -203,7 +213,7 @@ namespace PhantomControl
                 if (Double.TryParse(txtBox_TCPz.Text, out value))
                 {
                     UrSettings.tcp[2] = value / 1000;
-                }              
+                }
             }
         }
 
@@ -216,7 +226,7 @@ namespace PhantomControl
                 if (Double.TryParse(txtBox_TCPrx.Text, out value))
                 {
                     UrSettings.tcp[3] = value;
-                }  
+                }
             }
         }
 
@@ -229,7 +239,7 @@ namespace PhantomControl
                 if (Double.TryParse(txtBox_TCPry.Text, out value))
                 {
                     UrSettings.tcp[4] = value;
-                }                
+                }
             }
         }
 
@@ -242,7 +252,7 @@ namespace PhantomControl
                 if (Double.TryParse(txtBox_TCPrz.Text, out value))
                 {
                     UrSettings.tcp[5] = value;
-                }    
+                }
             }
         }
 
@@ -257,7 +267,7 @@ namespace PhantomControl
                     UrSettings.payLoadMass = value;
                     Logger.addToLogFile("User changed the payloadMass = " + UrSettings.payLoadMass);
 
-                }            
+                }
             }
         }
 
@@ -269,11 +279,11 @@ namespace PhantomControl
 
             if (val == true)
             {
-                UrSettings.writeLogFile = true; 
+                UrSettings.writeLogFile = true;
             }
             if (val == false)
             {
-                UrSettings.writeLogFile = false; 
+                UrSettings.writeLogFile = false;
             }
         }
 
@@ -300,7 +310,7 @@ namespace PhantomControl
             if (val == true)
             {
                 UrSettings.writeDataFile = true;
- 
+
             }
             if (val == false)
             {
@@ -322,7 +332,7 @@ namespace PhantomControl
             }
         }
 
-       
+
 
         private void dropdown_motionType_onItemSelected(object sender, EventArgs e)
         {
@@ -449,13 +459,13 @@ namespace PhantomControl
 
         private void textbox_time_TextChanged(object sender, EventArgs e)
         {
-            if (txtBox_time.Text != "" || txtBox_time.Text !="0")
+            if (txtBox_time.Text != "" || txtBox_time.Text != "0")
             {
                 double value;
 
                 if (Double.TryParse(txtBox_time.Text, out value))
                 {
-                   UrSettings.timeKinematics = value;
+                    UrSettings.timeKinematics = value;
                 }
             }
 
@@ -498,16 +508,16 @@ namespace PhantomControl
             if (expand == false)
             {
                 dropdownContainer.Height += 131;
-                if(dropdownContainer.Height >=  dropdownContainer.MaximumSize.Height)
+                if (dropdownContainer.Height >= dropdownContainer.MaximumSize.Height)
                 {
                     timer1.Stop();
-                        expand = true;
+                    expand = true;
                 }
             }
             else
             {
                 dropdownContainer.Height -= 131;
-                if(dropdownContainer.Height <= dropdownContainer.MinimumSize.Height)
+                if (dropdownContainer.Height <= dropdownContainer.MinimumSize.Height)
                 {
                     timer1.Stop();
                     expand = false;
@@ -543,7 +553,7 @@ namespace PhantomControl
             selected1D.Enabled = false;
             select6DOF.Enabled = true;
             selectBoth.Enabled = true;
-            
+
         }
 
         private void selectBoth_Click(object sender, EventArgs e)

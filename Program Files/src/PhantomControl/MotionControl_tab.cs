@@ -110,8 +110,6 @@ namespace PhantomControl
                 flatButton_Home.Enabled = false;
                 flatButton_LoadTraces.Enabled = false;
                 flatButton_PlayStopMotion.Enabled = false;
-                flatButton_ResumeMotion1D.Enabled = false;
-                flatButton_ResumeMotion6D.Enabled = false;
                 flatButton_ResumeMotions.Enabled = false;
 
             }
@@ -127,8 +125,8 @@ namespace PhantomControl
                 robotSelectLabel.Text = $"CURRENT ROBOT: BOTH";
                 Logger.addToLogFile("CURRENT ROBOT SELECTED: BOTH");
                 UpdateStatusBarMessage.ShowStatusMessage("CURRENT ROBOT SELECTED: BOTH");
-                flatButton_LoadTraces.Enabled = true;
-                flatButton_LoadTraces1D.Enabled = true;
+                //flatButton_LoadTraces.Enabled = true;
+                //flatButton_LoadTraces1D.Enabled = true;
 
 
             }
@@ -138,7 +136,7 @@ namespace PhantomControl
                 Logger.addToLogFile("CURRENT ROBOT SELECTED: 1D");
                 UpdateStatusBarMessage.ShowStatusMessage("CURRENT ROBOT SELECTED: 1D");
                 flatButton_LoadTraces.Enabled = false;
-                flatButton_LoadTraces1D.Enabled = true;
+                //flatButton_LoadTraces1D.Enabled = true;
             }
             if (Settings_tab.sixSelected)
             {
@@ -146,7 +144,7 @@ namespace PhantomControl
                 Logger.addToLogFile("CURRENT ROBOT SELECTED: 6DOF");
                 UpdateStatusBarMessage.ShowStatusMessage("CURRENT ROBOT SELECTED: 6DOF");
                 flatButton_LoadTraces1D.Enabled = false;
-                flatButton_LoadTraces.Enabled = true;
+                //flatButton_LoadTraces.Enabled = true;
             }
         }
         private void AddLedbulbs()
@@ -929,7 +927,7 @@ namespace PhantomControl
         private static bool bool1DConfiguration = true;
 
         // Buttons that will resume the 1D OR 6D motions
-        private static bool motionPlay1D = false;   
+        private static bool motionPlay1D = false;
         private static bool isStopped = true;
         private static bool isResumed6D = false;
         private static int StopIndex;
@@ -1045,23 +1043,6 @@ namespace PhantomControl
             }
         }
 
-        private void flatButton_ResumeMotion6D_Click(object sender, EventArgs e)
-        {
-
-            if (Settings_tab.sixSelected)
-            {
-                ResumeMotion6D_Process();
-            }
-        }
-
-        private void flatButton_ResumeMotion1D_Click(object sender, EventArgs e)
-        {
-            if (Settings_tab.oneSelected)
-            {
-                ResumeMotion1D_Process();
-            }
-        }
-        
         private async Task RestartingProcess6D()
         {
             Console.WriteLine("Exceed memory");
@@ -1143,13 +1124,12 @@ namespace PhantomControl
 
         private void flatButton_PlayStopMotion_Click(object sender, EventArgs e)
         {
-             
+
             bool selectedPlay = true;
             if (_playstopmotionclicked == true)
             {
                 if (Settings_tab.sixSelected)
                 {
-                    flatButton_ResumeMotion1D.Enabled = false;
                     // Code here for playing 6DOF Motion
                     if (UrSettings.motionPlay == false)
                     {
@@ -1185,7 +1165,7 @@ namespace PhantomControl
                             {
                                 if (task.IsFaulted)
                                 {
-                                    
+
                                     Console.WriteLine("An error occurred: " + task.Exception?.Message);
                                 }
                                 else
@@ -1211,7 +1191,7 @@ namespace PhantomControl
                     {
                         resetRun();
                         flatButton_ResumeMotions.Enabled = true;
-                        flatButton_ResumeMotion6D.Enabled = true;
+
 
                         return;
                     }
@@ -1221,7 +1201,7 @@ namespace PhantomControl
                 {
                     if (motionPlay1D == false)
                     {
-                        flatButton_ResumeMotion6D.Enabled = false;
+
                         // Code here for playing 1DOF motion
                         flatButton_PlayStopMotion.Text = " Stop Motion";
                         motionPlay1D = true;
@@ -1237,7 +1217,7 @@ namespace PhantomControl
                     if (motionPlay1D == true)
                     {
                         Stop1DPlatform();
-                        flatButton_ResumeMotion1D.Enabled = true;
+
                         flatButton_ResumeMotions.Enabled = true;
                         return;
                     }
@@ -1258,9 +1238,7 @@ namespace PhantomControl
                         motionPlay1D = true;
                         flatButton_Home.Enabled = false;
                         flatButton_SetStartPos.Enabled = false;
-                        flatButton_ResumeMotion6D.Enabled = false;
-                        flatButton_ResumeMotion1D.Enabled = false;
-                        flatButton_ResumeMotions.Enabled = false; 
+                        flatButton_ResumeMotions.Enabled = false;
 
                         Array.Clear(poseSpeedArray, 0, poseSpeedArray.Length);
                         Array.Clear(poseArray, 0, poseArray.Length);
@@ -1289,8 +1267,7 @@ namespace PhantomControl
 
                     if (UrSettings.motionPlay == true && motionPlay1D == true)
                     {
-                        flatButton_ResumeMotion6D.Enabled = false;
-                        flatButton_ResumeMotion1D.Enabled = false;
+
                         flatButton_ResumeMotions.Enabled = true;
                         Stop1DPlatform();
                         resetRun();
@@ -1389,8 +1366,8 @@ namespace PhantomControl
             {
                 double startPos = newDisplacementValues[0];
                 double speed2 = startPos / 200;
-                double voltage2 = (speed2 + 3.9812)/0.2229;
-                double voltage3 = (speed2 + 7.7634) / 0.2778;
+                double voltage2 = (speed2 + UrSettings.verticalMode[1]) / UrSettings.verticalMode[0];
+                double voltage3 = (speed2 + UrSettings.horizontalMode[1]) / UrSettings.horizontalMode[0];
                 //double timetoMove = ((startPos) / speed2) * 1000;
                 //int delayAndTimetoMove = (int)(4600 - timetoMove - 50);
                 //Thread.Sleep(delayAndTimetoMove);
@@ -1456,9 +1433,9 @@ namespace PhantomControl
         {
             List<double> displacementValues = ReadDisplacementValues(_filePath1D);
             List<double> velocityValues = CalculateVelocityfromDisplacement(displacementValues);
-            if (StopIndex  < velocityValues.Count)
+            if (StopIndex < velocityValues.Count)
             {
-                List<double> slicedVelocityValues = velocityValues.GetRange(StopIndex , velocityValues.Count - StopIndex);
+                List<double> slicedVelocityValues = velocityValues.GetRange(StopIndex, velocityValues.Count - StopIndex);
                 motionPlay1D = true;
                 if (Settings_tab.bothSelected)
                 {
@@ -1605,7 +1582,7 @@ namespace PhantomControl
             {
                 if ((Index6DMonitoring - MotionTraces.t[i]) < 0)
                 {
-                    Index6DTimeTravel = (int)(1000*Math.Round(-(Index6DMonitoring - MotionTraces.t[i]), 2));
+                    Index6DTimeTravel = (int)(1000 * Math.Round(-(Index6DMonitoring - MotionTraces.t[i]), 2));
                     index = i;
                     break;
                 }
@@ -1795,6 +1772,7 @@ namespace PhantomControl
                                 //    progressbar_Motion.Value = _t;
                                 //}
                                 int progressbar_max = (int)(MotionTraces.Size * UrSettings.timeKinematics);
+
                                 double _test = ((time) / ((double)progressbar_max) * 100.0);
                                 int _test1 = Convert.ToInt32(_test);
                                 //if (_test1 <= progressbar_Motion.Maximum)
@@ -1804,7 +1782,7 @@ namespace PhantomControl
                                     updateRange6D(time);
                                     //changing _t to _test
                                     progressbar_Motion.Value = _test1;
-                                    lblProgressVal.Text = progressbar_Motion.Value.ToString() + "%";
+                                    progresstext_Motion.Text = progressbar_Motion.Value.ToString() + "%";
 
                                 }
 
@@ -1814,10 +1792,10 @@ namespace PhantomControl
                                 if (boolExceedMemory)
                                 {
                                     falseCount++;
-                                    
+
                                 }
                             }
-                            if (falseCount>=threshold & UrSettings.motionPlay == true)
+                            if (falseCount >= threshold & UrSettings.motionPlay == true)
                             {
                                 _keepMonitoring = false;
                                 Console.WriteLine("monitor over");
@@ -1830,7 +1808,7 @@ namespace PhantomControl
                 }
                 else
                 {
-                    
+
                     lock (monitorDataLock)
                     {
 
@@ -1979,7 +1957,8 @@ namespace PhantomControl
             txtBox_rAP.Text = rAP;
         }
 
-        // This function runs on a separate thread, it sets up a MODBUS connection to the robot controller to get starting pose of the robot. Before doing so it will set the tool center point (TCP) value (defult is [0 0 0 0 0 0] or based on the settings.txt values)
+        // This function runs on a separate thread, it sets up a MODBUS connection to the robot controller to get starting pose of the robot. Before doing so it will set the tool center point (TCP) value (defult is [0 0 0 0 0 0] or based on the
+        // values)
         private void threadSetStartPos()
         {
             if (UrScriptProgram.urList.Count != 0)
@@ -2006,6 +1985,7 @@ namespace PhantomControl
 
             if (modbusClient.Connected == true)
             {
+
                 int[] readHoldingRegPose = { };
                 double poseValue = 0.0;
 
@@ -2132,7 +2112,6 @@ namespace PhantomControl
         private void flatButton_Home_Click(object sender, EventArgs e)
         {
             _homebuttonclicked = true;
-
             // Check if 1D is selected in settings or both
             if (Settings_tab.oneSelected)
             {
@@ -2175,7 +2154,7 @@ namespace PhantomControl
                 Logger.addToLogFile("6D Robot to home");
             }
         }
-        
+
         private void txtBox_LR_TextChanged(object sender, EventArgs e)
         {
 
@@ -2534,13 +2513,13 @@ namespace PhantomControl
                     if (bool1DConfiguration)
                     {
                         Console.WriteLine("vertical");
-                        delayValue = displacement / (Voltage * 0.2265 - 2.5726) * 1000;
+                        delayValue = displacement / (Voltage * UrSettings.verticalMode[2] - UrSettings.verticalMode[3]) * 1000;
                     }
                     else
                     {
                         Console.WriteLine("horizontal");
                         //going_up = 0.2482×voltages−3.8393
-                        delayValue = displacement / (Voltage * 0.2500 - 4.3393) * 1000;
+                        delayValue = displacement / (Voltage * UrSettings.horizontalMode[2] - UrSettings.horizontalMode[3]) * 1000;
                     }
                 }
 
@@ -2553,12 +2532,12 @@ namespace PhantomControl
                     //delayValue = displacement / (Voltage * 0.2229 - 3.9812) * 1000;
                     if (bool1DConfiguration)
                     {
-                        delayValue = displacement / (Voltage * 0.2229 - 3.9812) * 1000;
+                        delayValue = displacement / (Voltage * UrSettings.verticalMode[0] + UrSettings.verticalMode[1]) * 1000;
                     }
                     else
                     {
                         //going_down = 0.2778×voltages−7.7643
-                        delayValue = displacement / (Voltage *  0.2800 - 8.2643) * 1000; 
+                        delayValue = displacement / (Voltage * UrSettings.horizontalMode[0] + UrSettings.horizontalMode[1]) * 1000;
                     }
 
                 }
@@ -2581,12 +2560,12 @@ namespace PhantomControl
             {
                 if (bool1DConfiguration)
                 {
-                    voltageValue = (speed + 3.9812) / 0.2229;
+                    voltageValue = (speed - UrSettings.verticalMode[1]) / UrSettings.verticalMode[0];
                 }
                 else
                 {
                     //voltageValue = (speed + 7.7643) / 0.2778; 
-                    voltageValue = (speed + 8.2643) / 0.2800; 
+                    voltageValue = (speed - UrSettings.horizontalMode[1]) / UrSettings.horizontalMode[0];
 
 
                 }
@@ -2598,11 +2577,11 @@ namespace PhantomControl
 
                 if (bool1DConfiguration)
                 {
-                    voltageValue = (Math.Abs(speed) + 2.5726) / 0.2265;
+                    voltageValue = (Math.Abs(speed) - UrSettings.verticalMode[3]) / UrSettings.verticalMode[2];
                 }
                 else
                 {
-                    voltageValue = (Math.Abs(speed) + 4.3393) / 0.2500;
+                    voltageValue = (Math.Abs(speed) - UrSettings.horizontalMode[3]) / UrSettings.horizontalMode[2];
                 }
                 isGoingUp = 0;
             }
@@ -2699,6 +2678,8 @@ namespace PhantomControl
             public static bool isConnected = false;
             public static bool singularity = false;
             public static bool movementToLarge = false;
+            public static double[] verticalMode = { 0, 0, 0, 0 };
+            public static double[] horizontalMode = { 0, 0, 0, 0 };
 
             public static bool IsConnected
             {
@@ -2752,6 +2733,18 @@ namespace PhantomControl
             {
                 get { return alingedPos; }
                 set { alingedPos = value; }
+            }
+
+            public static double[] VerticalMode
+            {
+                get { return verticalMode; }
+                set { verticalMode = value; }
+            }
+
+            public static double[] HorizontalMode
+            {
+                get { return horizontalMode; }
+                set { horizontalMode = value; }
             }
 
             public static double TimeKinematics

@@ -32,8 +32,6 @@ namespace PhantomControl
         {
             this.flatButton_LoadTraces = new System.Windows.Forms.Button();
             this.flatButton_PlayStopMotion = new System.Windows.Forms.Button();
-            this.flatButton_ResumeMotion1D = new System.Windows.Forms.Button();
-            this.flatButton_ResumeMotion6D = new System.Windows.Forms.Button();
             this.flatButton_ResumeMotions = new System.Windows.Forms.Button();
             this.flatButton_1D_Configuration = new System.Windows.Forms.Button();
             this.bunifuElipse1 = new System.Windows.Forms.Button();
@@ -42,6 +40,7 @@ namespace PhantomControl
             this.bunifuElipse3 = new System.Windows.Forms.Button();
             this.bunifuElipse4 = new System.Windows.Forms.Button();
             this.progressbar_Motion = new System.Windows.Forms.ProgressBar();
+            this.progresstext_Motion = new System.Windows.Forms.Label();
             this.txtBox_rAP = new System.Windows.Forms.TextBox();
             this.label_TCPrz = new System.Windows.Forms.Label();
             this.txtBox_rLR = new System.Windows.Forms.TextBox();
@@ -183,38 +182,7 @@ namespace PhantomControl
             this.flatButton_PlayStopMotion.UseVisualStyleBackColor = false;
             this.flatButton_PlayStopMotion.Click += new System.EventHandler(this.flatButton_PlayStopMotion_Click);
             // 
-            // flatButton_ResumeMotion1D
-            // 
-            this.flatButton_ResumeMotion1D.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.flatButton_ResumeMotion1D.BackColor = System.Drawing.Color.Silver;
-            this.flatButton_ResumeMotion1D.FlatAppearance.BorderSize = 0;
-            this.flatButton_ResumeMotion1D.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.flatButton_ResumeMotion1D.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.flatButton_ResumeMotion1D.ForeColor = System.Drawing.Color.White;
-            this.flatButton_ResumeMotion1D.Location = new System.Drawing.Point(14, 260);
-            this.flatButton_ResumeMotion1D.Name = "flatButton_ResumeMotion1D";
-            this.flatButton_ResumeMotion1D.Size = new System.Drawing.Size(104, 29);
-            this.flatButton_ResumeMotion1D.TabIndex = 5;
-            this.flatButton_ResumeMotion1D.Text = "Resume 1D motion";
-            this.flatButton_ResumeMotion1D.UseVisualStyleBackColor = false;
-            this.flatButton_ResumeMotion1D.Click += new System.EventHandler(this.flatButton_ResumeMotion1D_Click);
-            // 
-            // flatButton_ResumeMotion6D
-            // 
-            this.flatButton_ResumeMotion6D.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.flatButton_ResumeMotion6D.BackColor = System.Drawing.Color.Silver;
-            this.flatButton_ResumeMotion6D.FlatAppearance.BorderSize = 0;
-            this.flatButton_ResumeMotion6D.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.flatButton_ResumeMotion6D.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.flatButton_ResumeMotion6D.ForeColor = System.Drawing.Color.White;
-            this.flatButton_ResumeMotion6D.Location = new System.Drawing.Point(14, 225);
-            this.flatButton_ResumeMotion6D.Name = "flatButton_ResumeMotion6D";
-            this.flatButton_ResumeMotion6D.Size = new System.Drawing.Size(104, 29);
-            this.flatButton_ResumeMotion6D.TabIndex = 5;
-            this.flatButton_ResumeMotion6D.Text = "Resume 6D motion";
-            this.flatButton_ResumeMotion6D.UseVisualStyleBackColor = false;
-            this.flatButton_ResumeMotion6D.Click += new System.EventHandler(this.flatButton_ResumeMotion6D_Click);
-            // 
+            //// 
             // flatButton_ResumeMotions
             // 
             this.flatButton_ResumeMotions.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -223,7 +191,7 @@ namespace PhantomControl
             this.flatButton_ResumeMotions.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.flatButton_ResumeMotions.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatButton_ResumeMotions.ForeColor = System.Drawing.Color.White;
-            this.flatButton_ResumeMotions.Location = new System.Drawing.Point(14, 190);
+            this.flatButton_ResumeMotions.Location = new System.Drawing.Point(14, 260);
             this.flatButton_ResumeMotions.Name = "flatButton_ResumeMotions";
             this.flatButton_ResumeMotions.Size = new System.Drawing.Size(104, 29);
             this.flatButton_ResumeMotions.TabIndex = 5;
@@ -239,7 +207,7 @@ namespace PhantomControl
             this.flatButton_1D_Configuration.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.flatButton_1D_Configuration.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flatButton_1D_Configuration.ForeColor = System.Drawing.Color.White;
-            this.flatButton_1D_Configuration.Location = new System.Drawing.Point(14, 155);
+            this.flatButton_1D_Configuration.Location = new System.Drawing.Point(14, 225);
             this.flatButton_1D_Configuration.Name = "flatButton_1D_Configuration";
             this.flatButton_1D_Configuration.Size = new System.Drawing.Size(104, 29);
             this.flatButton_1D_Configuration.TabIndex = 5;
@@ -300,11 +268,21 @@ namespace PhantomControl
             this.progressbar_Motion.Location = new System.Drawing.Point(18, 275);
             this.progressbar_Motion.Margin = new System.Windows.Forms.Padding(4);
             this.progressbar_Motion.Name = "progressbar_Motion";
-            this.progressbar_Motion.Size = new System.Drawing.Size(299, 35);
+            this.progressbar_Motion.Size = new System.Drawing.Size(255, 35);
             this.progressbar_Motion.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressbar_Motion.TabIndex = 11;
             this.progressbar_Motion.Value = 1;
             this.progressbar_Motion.Click += new System.EventHandler(this.progressbar_Motion_Click);
+            // 
+            // progresstext_Motion
+            // 
+            this.progresstext_Motion = new System.Windows.Forms.Label();
+            this.progresstext_Motion.Location = new System.Drawing.Point(this.progressbar_Motion.Location.X + this.progressbar_Motion.Width + 5, this.progressbar_Motion.Location.Y + 9);
+            this.progresstext_Motion.AutoSize = true;
+            this.progresstext_Motion.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.progresstext_Motion.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.progresstext_Motion.Text = "0%";
+            this.progresstext_Motion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtBox_rAP
             // 
@@ -512,7 +490,7 @@ namespace PhantomControl
             this.cartesianChart_rotation.MinimumSize = new System.Drawing.Size(680, 343);
             this.cartesianChart_rotation.Name = "cartesianChart_rotation";
             this.cartesianChart_rotation.Size = new System.Drawing.Size(719, 343);
-            this.cartesianChart_rotation.TabIndex = 
+            this.cartesianChart_rotation.TabIndex =
                 7;
             this.cartesianChart_rotation.Text = "cartesianChart";
             this.cartesianChart_rotation.ChildChanged += new System.EventHandler<System.Windows.Forms.Integration.ChildChangedEventArgs>(this.cartesianChart_rotation_ChildChanged);
@@ -814,8 +792,8 @@ namespace PhantomControl
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.Location = new System.Drawing.Point(339, 10);
             this.splitContainer1.Margin = new System.Windows.Forms.Padding(0);
@@ -962,8 +940,6 @@ namespace PhantomControl
             this.panel5.Controls.Add(this.rangeNo);
             this.panel5.Controls.Add(this.moveToStartPos);
             this.panel5.Controls.Add(this.toggle6D);
-            this.panel5.Controls.Add(this.flatButton_ResumeMotion1D);
-            this.panel5.Controls.Add(this.flatButton_ResumeMotion6D);
             this.panel5.Controls.Add(this.flatButton_ResumeMotions);
             this.panel5.Controls.Add(this.flatButton_1D_Configuration);
             this.panel5.Controls.Add(this.resetZoom);
@@ -1188,6 +1164,7 @@ namespace PhantomControl
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.progressbar_Motion);
+            this.Controls.Add(this.progresstext_Motion);
             this.Margin = new System.Windows.Forms.Padding(1);
             this.MinimumSize = new System.Drawing.Size(1157, 723);
             this.Name = "MotionControl_tab";
@@ -1257,8 +1234,6 @@ namespace PhantomControl
         #region Bunifu_ReplacedLElements
         private Button flatButton_LoadTraces;
         private Button flatButton_PlayStopMotion;
-        private Button flatButton_ResumeMotion1D;
-        private Button flatButton_ResumeMotion6D;
         private Button flatButton_ResumeMotions;
         private Button flatButton_1D_Configuration;
         private Button bunifuElipse1;
@@ -1267,6 +1242,7 @@ namespace PhantomControl
         private Button bunifuElipse3;
         private Button bunifuElipse4;
         private System.Windows.Forms.ProgressBar progressbar_Motion;
+        private Label progresstext_Motion;
         private TextBox txtBox_rAP;
         private Label label_TCPrz;
         private TextBox txtBox_rLR;

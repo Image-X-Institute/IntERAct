@@ -82,3 +82,13 @@ C:\Users\Robot\Documents\GitHub\6-DoF-Robotic-Motion-Phantom\Program Files\src\P
 C:\Users\Robot\Documents\GitHub\6-DoF-Robotic-Motion-Phantom\Program Files\src\PhantomControl\bin\Release\Test\LiveCharts.WinForms.dll
 C:\Users\Robot\Documents\GitHub\6-DoF-Robotic-Motion-Phantom\Program Files\src\PhantomControl\bin\Release\Test\LiveCharts.Wpf.dll
 C:\Users\Robot\Documents\GitHub\6-DoF-Robotic-Motion-Phantom\Program Files\src\PhantomControl\bin\Release\Test\MathNet.Numerics.dll
+C:\Users\Robot\source\repos\6-DoF-Robotic-Motion-Phantom_v2\Program Files\src\PhantomControl\obj\Release\PhantomControl.csproj.AssemblyReference.cache
+C:\Users\Robot\source\repos\6-DoF-Robotic-Motion-Phantom_v2\Program Files\src\PhantomControl\obj\Release\PhantomControl.ApplicationGUI.resources
+C:\Users\Robot\source\repos\6-DoF-Robotic-Motion-Phantom_v2\Program Files\src\PhantomControl\obj\Release\PhantomControl.Log_tab.resources
+C:\Users\Robot\source\repos\6-DoF-Robotic-Motion-Phantom_v2\Program Files\src\PhantomControl\obj\Release\PhantomControl.MotionControl_tab.resources
+C:\Users\Robot\source\repos\6-DoF-Robotic-Motion-Phantom_v2\Program Files\src\PhantomControl\obj\Release\PhantomControl.Settings_tab.resources
+C:\Users\Robot\source\repos\6-DoF-Robotic-Motion-Phantom_v2\Program Files\src\PhantomControl\obj\Release\PhantomControl.Properties.Resources.resources
+C:\Users\Robot\source\repos\6-DoF-Robotic-Motion-Phantom_v2\Program Files\src\PhantomControl\obj\Release\PhantomControl.csproj.GenerateResource.cache
+C:\Users\Robot\source\repos\6-DoF-Robotic-Motion-Phantom_v2\Program Files\src\PhantomControl\obj\Release\PhantomControl.csproj.CoreCompileInputs.cache
+C:\Users\Robot\source\repos\6-DoF-Robotic-Motion-Phantom_v2\Program Files\src\PhantomControl\obj\Release\PhantomControl.exe
+C:\Users\Robot\source\repos\6-DoF-Robotic-Motion-Phantom_v2\Program Files\src\PhantomControl\obj\Release\PhantomControl.pdb
