@@ -243,7 +243,7 @@ namespace PhantomControl
         public static void initialiseDataFile(string filename)
         {
             string filename2 = filename.Substring(0, filename.Length - 4);
-            wrireFile = new StreamWriter("Output Files/6DPlatform/MotionData_" + filename2 + "_" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt");
+            wrireFile = new StreamWriter("Output Files/6DPlatform/_" + filename2 + "_" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt");
             TextWriter.Synchronized(wrireFile).WriteLine("Time(s)" + " " + "x(mm)" + " " + "y(mm)" + " " + "z(mm)" + " " + "rx(deg)" + " " + "ry(deg)" + " " + "rz(deg)");
         }
 
