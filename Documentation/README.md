@@ -1,5 +1,5 @@
 ## Documentation
-This folder contains the documentation about the 1DoF platform (software and hardware setup and Arduino code to download), the 6DoF platform and then how to run the combined system through the motion software. The folder [Verification](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/main/Documentation/Verification) shows the results of the combined system used in the IX laboratory but also in the clinic (Royal North Shore Hospital)
+This folder contains the documentation about the 1DoF platform (software and hardware setup and Arduino code to download), the 6DoF platform and then how to run the combined system through the motion software. The folder [Verification](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/main/Documentation/Verification) shows the results of the combined system used in the IX laboratory but also in the clinic (Royal North Shore Hospital).
 
   - [1DoF platform documentation](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/main/Documentation/1DoF)
   - [6DoF platform documentation](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/tree/main/Documentation/6DoF)
