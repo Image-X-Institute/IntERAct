@@ -1,4 +1,0 @@
-[  04/07/24 02:15:14  ]    The 1D input file Test_sine_AP_motion_10_mm_40s.txt has been selected
-[  04/07/24 02:15:15  ]    Start 1D motion
-[  04/07/24 02:15:28  ]    Stop 1D motion
-[  04/07/24 02:15:30  ]    1D Robot to Home

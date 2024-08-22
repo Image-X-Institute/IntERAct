@@ -1,3 +1,0 @@
-[  11/07/24 12:29:02  ]    The 1D input file 1.Mean_Motion SI 1D.txt has been selected
-[  11/07/24 12:29:03  ]    Start 1D motion
-[  11/07/24 12:29:13  ]    Stop 1D motion

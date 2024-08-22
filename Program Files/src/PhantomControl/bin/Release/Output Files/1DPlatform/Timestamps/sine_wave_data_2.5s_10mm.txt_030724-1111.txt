@@ -1,4 +1,0 @@
-sine_wave_data_2.5s_10mm.txt
-1D starting time : 11:11:23:153
-1D end time : 11:12:13:056
-

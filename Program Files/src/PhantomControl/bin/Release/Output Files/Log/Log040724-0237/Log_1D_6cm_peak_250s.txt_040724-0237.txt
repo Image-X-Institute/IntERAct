@@ -1,3 +1,0 @@
-[  04/07/24 02:37:25  ]    The 1D input file 6cm_peak_250s.txt has been selected
-[  04/07/24 02:37:26  ]    Start 1D motion
-[  04/07/24 02:37:37  ]    Stop 1D motion

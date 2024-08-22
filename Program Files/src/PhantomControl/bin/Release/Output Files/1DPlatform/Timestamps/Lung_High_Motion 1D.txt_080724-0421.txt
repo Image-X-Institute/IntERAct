@@ -1,4 +1,0 @@
-Lung_High_Motion 1D.txt
-1D starting time : 16:21:41:704
-1D end time : 16:22:59:404
-

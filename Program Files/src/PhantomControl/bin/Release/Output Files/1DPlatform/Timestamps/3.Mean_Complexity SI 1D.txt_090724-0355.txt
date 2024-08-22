@@ -1,2 +1,0 @@
-3.Mean_Complexity SI 1D.txt
-1D starting time : 15:55:29:632

@@ -1,4 +1,0 @@
-[  11/07/24 11:11:57  ]    The 1D input file 4.Mean_motion_2_111_resp_shifted_rescaled_gradual_start.txt has been selected
-[  11/07/24 11:12:00  ]    Start 1D motion
-[  11/07/24 11:12:03  ]    Stop 1D motion
-[  11/07/24 11:13:05  ]    1D Robot to Home

@@ -1,2 +1,0 @@
-[  10/07/24 10:35:29  ]    The 6D input file 1.Mean_Motion SI.txt has been selected - BOTH PLATFORMS
-[  10/07/24 10:35:33  ]    The 1D input file 1.Mean_Motion SI 1D.txt has been selected - BOTH PLATFORMS

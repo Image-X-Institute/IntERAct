@@ -1,9 +1,0 @@
-[  15/07/24 02:20:28  ]    The 6D input file Prostate_continuous.drift_10Hz.txt has been selected - BOTH PLATFORMS
-[  15/07/24 02:20:28  ]    Warning: Sampling rates in the input file and in the settings file are not the same
-[  15/07/24 02:20:29  ]    The sample rate from the input file is 0.1s.
-[  15/07/24 02:20:33  ]    Warning: Sampling rate in the input file is lower than 0.2s
-[  15/07/24 02:21:10  ]    The 1D input file 1.Mean_Motion_resp_shifted_rescaled_gradual_start_2227s.txt has been selected - BOTH PLATFORMS
-[  15/07/24 02:21:22  ]    MODBUS connection via 192.168.94.11 established.
-[  15/07/24 02:21:22  ]    Start 6D motion
-[  15/07/24 02:21:22  ]    Start 1D motion
-[  15/07/24 02:22:00  ]    Opening IP address: 192.168.94.11

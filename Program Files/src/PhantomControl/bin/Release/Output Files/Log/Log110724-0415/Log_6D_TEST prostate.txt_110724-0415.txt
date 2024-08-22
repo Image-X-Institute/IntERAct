@@ -1,8 +1,0 @@
-[  11/07/24 04:15:43  ]    The 6D input file TEST prostate.txt has been selected
-[  11/07/24 04:15:54  ]    MODBUS connection via 192.168.94.11 established.
-[  11/07/24 04:15:54  ]    Start 6D motion
-[  11/07/24 04:15:55  ]    Opening IP address: 192.168.94.11
-[  11/07/24 04:22:28  ]    Stop 6D motion
-[  11/07/24 04:22:28  ]    MODBUS disconected from controler
-[  11/07/24 04:22:28  ]    Opening IP address: 192.168.94.11
-[  11/07/24 04:22:29  ]    6D Robot to home

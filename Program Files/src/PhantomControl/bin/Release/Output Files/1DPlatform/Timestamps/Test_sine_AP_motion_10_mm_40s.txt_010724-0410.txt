@@ -1,4 +1,0 @@
-Test_sine_AP_motion_10_mm_40s.txt
-1D starting time : 16:10:39:121
-1D end time : 16:11:19:027
-

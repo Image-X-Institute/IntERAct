@@ -1,2 +1,0 @@
-[  16/07/24 01:17:41  ]    The 6D input file 1.Mean_Motion_gradual_start_2227s.txt has been selected
-[  16/07/24 01:17:41  ]    The sample rate from the input file is 0.2s.

@@ -1,9 +1,0 @@
-[  02/07/24 10:13:01  ]    The 6D input file 2.High_Motion SI.txt has been selected
-[  02/07/24 10:13:04  ]    MODBUS connection via 192.168.94.11 established.
-[  02/07/24 10:13:04  ]    Start 6D motion
-[  02/07/24 10:13:05  ]    Opening IP address: 192.168.94.11
-[  02/07/24 10:18:25  ]    Stop 6D motion
-[  02/07/24 10:18:25  ]    6D trace is complete
-[  02/07/24 10:18:25  ]    MODBUS disconected from controler
-[  02/07/24 10:18:26  ]    Opening IP address: 192.168.94.11
-[  02/07/24 10:18:27  ]    6D Robot to home

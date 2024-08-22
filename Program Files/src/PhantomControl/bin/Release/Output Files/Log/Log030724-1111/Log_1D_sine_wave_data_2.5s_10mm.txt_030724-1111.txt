@@ -1,6 +1,0 @@
-[  03/07/24 11:11:18  ]    The 1D input file sine_wave_data_2.5s_10mm.txt has been selected
-[  03/07/24 11:11:19  ]    Start 1D motion
-[  03/07/24 11:12:22  ]    1D trace is complete
-[  03/07/24 11:12:23  ]    1D Robot to Home
-[  03/07/24 11:12:30  ]    Stop 1D motion
-[  03/07/24 11:12:33  ]    1D Robot to Home

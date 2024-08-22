@@ -1,2 +1,0 @@
-[  02/07/24 10:12:37  ]    The 6D input file 2.High_Motion SI 1D.txt has been selected
-[  02/07/24 10:12:37  ]    Error: Invalid format, format needed: [t  X  Y  Z  Rx  Ry  Rz] or [t  X  Y  Z]

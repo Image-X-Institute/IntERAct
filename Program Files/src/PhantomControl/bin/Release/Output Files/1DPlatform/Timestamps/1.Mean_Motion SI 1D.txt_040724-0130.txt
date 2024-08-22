@@ -1,2 +1,0 @@
-1.Mean_Motion SI 1D.txt
-1D starting time : 13:30:04:047

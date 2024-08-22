@@ -1,2 +1,0 @@
-[  08/07/24 03:11:30  ]    The 6D input file sine_wave_data_2.5s_10mm.txt has been selected
-[  08/07/24 03:11:30  ]    Error: Invalid format, format needed: [t  X  Y  Z  Rx  Ry  Rz] or [t  X  Y  Z]

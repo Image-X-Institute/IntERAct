@@ -1,1 +1,0 @@
-[  05/08/24 03:10:36  ]    The 1D input file Test_sine_AP_motion_10_mm_40s.txt has been selected

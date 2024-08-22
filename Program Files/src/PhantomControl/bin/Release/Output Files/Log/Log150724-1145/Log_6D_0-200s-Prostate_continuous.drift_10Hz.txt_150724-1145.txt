@@ -1,2 +1,0 @@
-[  15/07/24 11:45:15  ]    The 6D input file 0-200s-Prostate_continuous.drift_10Hz.txt has been selected
-[  15/07/24 11:45:47  ]    The 6D input file 0-200s-Prostate_continuous.drift_10Hz.txt has been selected

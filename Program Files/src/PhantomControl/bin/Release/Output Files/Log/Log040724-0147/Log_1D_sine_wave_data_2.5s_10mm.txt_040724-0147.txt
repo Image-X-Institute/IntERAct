@@ -1,7 +1,0 @@
-[  04/07/24 01:47:46  ]    The 1D input file sine_wave_data_2.5s_10mm.txt has been selected
-[  04/07/24 01:47:47  ]    Start 1D motion
-[  04/07/24 01:47:56  ]    Stop 1D motion
-[  04/07/24 01:47:58  ]    Resume 1D motion line n° 32 (sliced input file)
-[  04/07/24 01:48:03  ]    Stop 1D motion
-[  04/07/24 01:48:07  ]    Resume 1D motion line n° 27 (sliced input file)
-[  04/07/24 01:48:09  ]    Stop 1D motion

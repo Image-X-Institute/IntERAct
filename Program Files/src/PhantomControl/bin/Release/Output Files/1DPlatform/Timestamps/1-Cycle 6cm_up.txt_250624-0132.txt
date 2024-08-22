@@ -1,8 +1,0 @@
-1-Cycle 6cm_up.txt
-1D starting time : 13:32:48:678
-1D end time : 13:32:51:582
-
-1-Cycle 6cm_up.txt
-1D starting time : 13:32:59:045
-1D end time : 13:33:01:948
-

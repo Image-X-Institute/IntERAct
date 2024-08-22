@@ -1,8 +1,0 @@
-Test_sine_AP_motion_10_mm_40s.txt
-1D starting time : 12:05:37:766
-Test_sine_AP_motion_10_mm_40s.txt
-1D starting time : 12:05:41:416
-Test_sine_AP_motion_10_mm_40s.txt
-1D starting time : 12:05:46:865
-Test_sine_AP_motion_10_mm_40s.txt
-1D starting time : 12:05:57:828

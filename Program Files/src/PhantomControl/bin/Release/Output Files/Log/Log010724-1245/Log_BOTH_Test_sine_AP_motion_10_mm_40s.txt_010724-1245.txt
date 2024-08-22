@@ -1,2 +1,0 @@
-[  01/07/24 12:45:52  ]    The 6D input file Test_sine_AP_motion_10_mm_40s.txt has been selected - BOTH PLATFORMS
-[  01/07/24 12:45:52  ]    Error: Invalid format, format needed: [t  X  Y  Z  Rx  Ry  Rz] or [t  X  Y  Z]

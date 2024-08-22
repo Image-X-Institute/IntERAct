@@ -1,3 +1,0 @@
-[  05/08/24 01:36:47  ]    The 6D input file 1.Mean_Motion_gradual_start_2227s.txt has been selected
-[  05/08/24 01:36:47  ]    The sample rate from the input file is 0.2s.
-[  05/08/24 01:36:47  ]    Warning: The number of lines from the input file exceeds the limit capacity. The 6DoF robot will stop and resume the motion after 5 minutes

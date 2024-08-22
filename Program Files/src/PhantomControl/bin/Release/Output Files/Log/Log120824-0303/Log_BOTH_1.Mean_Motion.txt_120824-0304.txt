@@ -1,3 +1,0 @@
-[  12/08/24 03:04:18  ]    The 6D input file 1.Mean_Motion.txt has been selected - BOTH PLATFORMS
-[  12/08/24 03:04:18  ]    The sample rate from the input file is 0.2s.
-[  12/08/24 03:04:24  ]    The 1D input file 1.Mean_Motion_resp.txt has been selected - BOTH PLATFORMS

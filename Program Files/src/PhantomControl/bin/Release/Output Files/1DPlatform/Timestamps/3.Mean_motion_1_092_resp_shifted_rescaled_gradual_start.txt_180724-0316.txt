@@ -1,4 +1,0 @@
-3.Mean_motion_1_092_resp_shifted_rescaled_gradual_start.txt
-1D starting time : 15:16:04:120
-1D end time : 15:21:03:833
-

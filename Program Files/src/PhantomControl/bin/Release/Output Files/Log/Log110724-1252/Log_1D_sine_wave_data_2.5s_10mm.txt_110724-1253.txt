@@ -1,4 +1,0 @@
-[  11/07/24 12:53:21  ]    The 1D input file sine_wave_data_2.5s_10mm.txt has been selected
-[  11/07/24 12:53:22  ]    Stop 1D motion
-[  11/07/24 12:53:24  ]    1D Robot to Home
-[  11/07/24 12:53:24  ]    Start 1D motion

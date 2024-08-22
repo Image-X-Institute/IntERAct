@@ -1,2 +1,0 @@
-[  21/06/24 02:58:36  ]    The 1D input file 1.Mean_Motion_resp_rescaled_gradual_start.txt has been selected
-[  21/06/24 02:58:58  ]    1D Robot to Home

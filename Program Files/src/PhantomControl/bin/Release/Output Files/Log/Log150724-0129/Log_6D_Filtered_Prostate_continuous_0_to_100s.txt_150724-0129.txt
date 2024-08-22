@@ -1,7 +1,0 @@
-[  15/07/24 01:29:33  ]    The 6D input file Filtered_Prostate_continuous_0_to_100s.txt has been selected
-[  15/07/24 01:29:33  ]    Warning: Sampling rates in the input file and in the settings file are not the same
-[  15/07/24 01:29:34  ]    The sample rate from the input file is 0.1s.
-[  15/07/24 01:29:34  ]    Warning: Sampling rate in the input file is lower than 0.2s
-[  15/07/24 01:29:43  ]    CURRENT ROBOT SELECTED: 6DOF
-[  15/07/24 01:29:43  ]    Opening IP address: 192.168.94.11
-[  15/07/24 01:29:44  ]    Start Position Set To:  449.1 58.1 346.4 -1.222 0.971 -1.041

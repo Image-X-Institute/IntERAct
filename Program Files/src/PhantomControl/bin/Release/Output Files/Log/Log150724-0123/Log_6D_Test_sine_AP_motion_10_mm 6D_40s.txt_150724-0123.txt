@@ -1,9 +1,0 @@
-[  15/07/24 01:23:54  ]    The 6D input file Test_sine_AP_motion_10_mm 6D_40s.txt has been selected
-[  15/07/24 01:23:54  ]    The sample rate from the input file is 0.2s.
-[  15/07/24 01:23:56  ]    MODBUS connection via 192.168.94.11 established.
-[  15/07/24 01:23:56  ]    Start 6D motion
-[  15/07/24 01:23:56  ]    Opening IP address: 192.168.94.11
-[  15/07/24 01:23:58  ]    Stop 6D motion
-[  15/07/24 01:23:58  ]    MODBUS disconected from controler
-[  15/07/24 01:23:59  ]    Opening IP address: 192.168.94.11
-[  15/07/24 01:24:00  ]    6D Robot to home

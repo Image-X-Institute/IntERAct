@@ -1,5 +1,0 @@
-[  01/08/24 03:45:40  ]    The 1D input file 3.Mean_motion_1_092_resp_shifted_rescaled_gradual_start.txt has been selected
-[  01/08/24 03:45:42  ]    Start 1D motion
-[  01/08/24 03:50:58  ]    1D trace is complete
-[  01/08/24 03:51:01  ]    Stop 1D motion
-[  01/08/24 03:51:01  ]    1D Robot to Home

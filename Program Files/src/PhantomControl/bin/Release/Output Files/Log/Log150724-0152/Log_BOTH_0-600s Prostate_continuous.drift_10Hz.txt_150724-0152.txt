@@ -1,5 +1,0 @@
-[  15/07/24 01:52:13  ]    The 6D input file 0-600s Prostate_continuous.drift_10Hz.txt has been selected - BOTH PLATFORMS
-[  15/07/24 01:52:13  ]    Warning: Sampling rates in the input file and in the settings file are not the same
-[  15/07/24 01:52:14  ]    The sample rate from the input file is 0.1s.
-[  15/07/24 01:52:15  ]    Warning: Sampling rate in the input file is lower than 0.2s
-[  15/07/24 01:52:20  ]    The 1D input file 0-600s Prostate_continuous.drift_10Hz_1D.txt has been selected - BOTH PLATFORMS

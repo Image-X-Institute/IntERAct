@@ -1,3 +1,0 @@
-[  04/07/24 02:40:45  ]    The 1D input file 1-Cycle 6cm.txt has been selected
-[  04/07/24 02:40:45  ]    Start 1D motion
-[  04/07/24 02:40:57  ]    1D trace is complete

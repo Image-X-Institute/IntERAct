@@ -1,2 +1,0 @@
-[  02/07/24 11:42:22  ]    The 6D input file Test_sine_AP_motion_10_mm 6D.txt has been selected - BOTH PLATFORMS
-[  02/07/24 11:42:29  ]    The 1D input file Test_sine_AP_motion_10_mm.txt has been selected - BOTH PLATFORMS

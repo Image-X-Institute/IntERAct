@@ -1,5 +1,0 @@
-[  17/07/24 10:52:36  ]    CURRENT ROBOT SELECTED: 6DOF
-[  17/07/24 10:52:36  ]    Opening IP address: 192.168.94.11
-[  17/07/24 10:52:37  ]    Start Position Set To:  394.5 219.2 326.4 -1.417 0.681 -0.692
-[  17/07/24 10:52:38  ]    Opening IP address: 192.168.94.11
-[  17/07/24 10:52:44  ]    Error: Invaild format, format needed: [t  X  Y  Z  Rx  Ry  Rz] or [t  X  Y  Z]

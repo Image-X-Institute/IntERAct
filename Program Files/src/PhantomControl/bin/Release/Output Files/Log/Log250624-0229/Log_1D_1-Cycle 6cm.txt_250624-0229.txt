@@ -1,4 +1,0 @@
-[  25/06/24 02:29:45  ]    The 1D input file 1-Cycle 6cm.txt has been selected
-[  25/06/24 02:29:53  ]    1D trace is complete
-[  25/06/24 02:29:54  ]    1D Robot to Home
-[  25/06/24 02:30:07  ]    1D Robot to Home

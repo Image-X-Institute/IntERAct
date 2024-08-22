@@ -1,4 +1,0 @@
-Ann_test 5.txt
-1D starting time : 11:33:34:294
-Ann_test 5.txt
-1D starting time : 11:33:41:180

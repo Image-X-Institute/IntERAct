@@ -1,4 +1,0 @@
-1.Mean_Motion_resp_shifted_rescaled_gradual_start_450s.txt
-1D starting time : 14:54:14:856
-1D end time : 15:01:46:559
-

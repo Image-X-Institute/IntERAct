@@ -1,7 +1,0 @@
-[  11/07/24 03:53:28  ]    The 6D input file 1.Mean_Motion_gradual_start_700s.txt has been selected - BOTH PLATFORMS
-[  11/07/24 03:53:31  ]    The 1D input file 1.Mean_Motion_resp_shifted_rescaled_gradual_start_700s.txt has been selected - BOTH PLATFORMS
-[  11/07/24 03:53:44  ]    MODBUS connection via 192.168.94.11 established.
-[  11/07/24 03:53:44  ]    Start 6D motion
-[  11/07/24 03:53:44  ]    Start 1D motion
-[  11/07/24 03:53:44  ]    Opening IP address: 192.168.94.11
-[  11/07/24 04:03:51  ]    1D trace is complete

@@ -1,3 +1,0 @@
-[  25/06/24 02:38:53  ]    The 1D input file 1-Cycle 6cm.txt has been selected - BOTH PLATFORMS
-[  25/06/24 02:38:58  ]    The 6D input file 1-Cycle 6cm_up 6D.txt has been selected - BOTH PLATFORMS
-[  25/06/24 02:38:58  ]    Error: Invalid format, format needed: [t  X  Y  Z  Rx  Ry  Rz] or [t  X  Y  Z]

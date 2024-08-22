@@ -1,3 +1,0 @@
-[  18/07/24 12:31:04  ]    The 1D input file 2.Mean_Motion2_resp_shifted_rescaled_gradual_start.txt has been selected
-[  18/07/24 12:31:19  ]    Start 1D motion
-[  18/07/24 12:32:31  ]    Stop 1D motion

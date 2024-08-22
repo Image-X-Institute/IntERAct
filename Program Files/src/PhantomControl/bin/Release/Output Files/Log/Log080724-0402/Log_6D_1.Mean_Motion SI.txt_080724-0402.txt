@@ -1,8 +1,0 @@
-[  08/07/24 04:02:37  ]    The 6D input file 1.Mean_Motion SI.txt has been selected
-[  08/07/24 04:02:39  ]    MODBUS connection via 192.168.94.11 established.
-[  08/07/24 04:02:39  ]    Start 6D motion
-[  08/07/24 04:02:39  ]    Opening IP address: 192.168.94.11
-[  08/07/24 04:02:48  ]    Stop 6D motion
-[  08/07/24 04:02:48  ]    MODBUS disconected from controler
-[  08/07/24 04:02:51  ]    Opening IP address: 192.168.94.11
-[  08/07/24 04:02:52  ]    6D Robot to home

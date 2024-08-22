@@ -1,2 +1,0 @@
-[  12/08/24 03:04:59  ]    The 6D input file 2.High_Motion_resp.txt has been selected - BOTH PLATFORMS
-[  12/08/24 03:04:59  ]    Error: Invalid format, format needed: [t  X  Y  Z  Rx  Ry  Rz] or [t  X  Y  Z]

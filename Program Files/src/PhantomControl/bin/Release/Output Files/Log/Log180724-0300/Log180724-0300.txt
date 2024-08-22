@@ -1,7 +1,0 @@
-[  18/07/24 03:00:40  ]    Loading payloadMass from settings.txt = 0
-[  18/07/24 03:00:40  ]    User changed the payloadMass = 0
-[  18/07/24 03:00:40  ]    Loading payloadMass from settings.txt = 0
-[  18/07/24 03:00:40  ]    User changed the payloadMass = 0
-[  18/07/24 03:00:47  ]    CURRENT ROBOT SELECTED: 1D
-[  18/07/24 03:00:47  ]    1D Robot Connected: Serial port ({portInput}) opened successfully.
-[  18/07/24 03:00:48  ]    1D Robot to Home

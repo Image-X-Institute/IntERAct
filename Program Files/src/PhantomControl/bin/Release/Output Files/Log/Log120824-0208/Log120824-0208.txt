@@ -1,6 +1,0 @@
-[  12/08/24 02:08:29  ]    Loading payloadMass from settings.txt = 0
-[  12/08/24 02:08:29  ]    User changed the payloadMass = 0
-[  12/08/24 02:08:29  ]    Loading payloadMass from settings.txt = 0
-[  12/08/24 02:08:29  ]    User changed the payloadMass = 0
-[  12/08/24 02:08:35  ]    CURRENT ROBOT SELECTED: 1D
-[  12/08/24 02:08:35  ]    1D Robot Couldnt Connect: Arduino: Failed to Connect

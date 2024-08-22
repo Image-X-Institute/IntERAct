@@ -1,8 +1,0 @@
-6cm_peak_250s.txt
-1D starting time : 11:35:11:289
-6cm_peak_250s.txt
-1D starting time : 11:35:15:683
-6cm_peak_250s.txt
-1D starting time : 11:35:19:809
-6cm_peak_250s.txt
-1D starting time : 11:35:29:216
