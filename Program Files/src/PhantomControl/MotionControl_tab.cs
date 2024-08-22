@@ -678,7 +678,7 @@ namespace PhantomControl
 
         private void flatButton_LoadTraces_Click(object sender, EventArgs e)
         {
-            int MaximumInputLines = 1501;
+            int MaximumInputLines = UrSettings.maximumLinesInputFile6D;
             double timeKinematics_temp = UrSettings.TimeKinematics;
             if (_homebuttonclicked != true)
             {
@@ -788,7 +788,7 @@ namespace PhantomControl
                             Settings_tab.txtBox_time.Text = Convert.ToString(UrSettings.TimeKinematics);
                             Logger.addToLogFile("The sample rate from the input file is " + UrSettings.TimeKinematics + "s.");
                             MotionTraces.Size = counter;
-                            if (MotionTraces.Size > MaximumInputLines)
+                            if (MotionTraces.Size > UrSettings.maximumLinesInputFile6D)
                             {
                                 boolExceedMemory = true;
                                 UpdateStatusBarMessage.ShowStatusMessage("Warning: The number of lines from the input file exceeds the limit capacity. The 6DoF robot will stop and resume the motion after 5 minutes");
@@ -2187,25 +2187,20 @@ namespace PhantomControl
 
         ////////////////////////////////////////////////////// 1D Robot Integration CODE HERE///////////////////////////////////////////////////////////////////////////////////////
 
-
+        public static double finalTimeInSeconds;
         private void flatButton_LoadTraces1D_Click(object sender, EventArgs e)
         {
-
             // Initialise a new Open File Dialog, this will open a window for the user to select a .txt trace file
             using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Text Documents|*.txt", ValidateNames = true, Multiselect = false })
             {
                 if (Settings_tab.oneSelected)
                 {
                     // Clear the current plot in case a new file has been loaded
-
                     clearPlot("all");
                 }
 
-
-
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
-
                     // Assign the file path name to a string variable _filePath
 
                     // Initiate a integer columnNum this will use the getColNumber function to check how many colum are in the trace file
@@ -2220,8 +2215,6 @@ namespace PhantomControl
                         {
                             Logger.RenameLogFile("1D", textBox_filename.Text);
                             Logger.addToLogFile("The 1D input file " + textBox_filename.Text + " has been selected");
-
-
                         }
 
                         if (Settings_tab.bothSelected)
@@ -2237,22 +2230,23 @@ namespace PhantomControl
                             {
                                 Logger.RenameLogFileBOTH("BOTH", textBox_filename.Text);
                                 Logger.addToLogFile("The 1D input file " + textBox_filename.Text + " has been selected - BOTH PLATFORMS");
-
                             }
-
                         }
-
 
                         // Display the file path in the text box - visual indicator
 
                         // Read the displacement values
                         List<double> displacementValues = ReadDisplacementValues(_filePath1D);
 
+                        // Read the time values and determine the final time (number of seconds)
+                        List<double> timeValues = ReadTimeValues(_filePath1D);
+                        finalTimeInSeconds = timeValues.Max();
+
                         // Shift the displacement values by the minimum value to ensure the new minimum is now 0
                         List<double> newdisplacementValues = ShiftDisplacementToZero(displacementValues);
+
                         // Plot the input trace
                         drawInputTrace1D(newdisplacementValues);
-
 
                         // Update button availability
                         if (_filePath1D != null)
@@ -2268,11 +2262,34 @@ namespace PhantomControl
                     {
                         UpdateStatusBarMessage.ShowStatusMessage("Error: Invalid format, format needed: [t  Y]");
                         Logger.addToLogFile("Error: Invalid format, format needed: [t  Y]");
-                        System.Windows.MessageBox.Show("Error: Invalidd input file format, format needed: [t  Y]");
+                        System.Windows.MessageBox.Show("Error: Invalid input file format, format needed: [t  Y]");
                     }
                 }
             }
         }
+
+        // Method to read time values from the file
+        private List<double> ReadTimeValues(string filePath)
+        {
+            List<double> timeValues = new List<double>();
+            string[] lines = System.IO.File.ReadAllLines(filePath);
+
+            foreach (string line in lines)
+            {
+                if (!string.IsNullOrWhiteSpace(line))
+                {
+                    string[] parts = line.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+                    if (parts.Length == 2)
+                    {
+                        double time = double.Parse(parts[0]);
+                        timeValues.Add(time);
+                    }
+                }
+            }
+
+            return timeValues;
+        }
+
 
         public string FilePath1D
         {
@@ -2397,6 +2414,8 @@ namespace PhantomControl
                         serialPort.WriteLine(teststring);
                         Console.WriteLine("total time: " + stopwatch.ElapsedMilliseconds + " " + teststring);
                         currentTime += (now - previous).Milliseconds * 0.001;
+                        if (Settings_tab.oneSelected)
+                            progresstext_Motion.Text = ((finalTimeInSeconds / ((i + 1) * 0.2)) * 100).ToString() + "%";
 
 
                         if (serialPort != null || serialPort.IsOpen == true)
@@ -2680,6 +2699,7 @@ namespace PhantomControl
             public static bool movementToLarge = false;
             public static double[] verticalMode = { 0, 0, 0, 0 };
             public static double[] horizontalMode = { 0, 0, 0, 0 };
+            public static int maximumLinesInputFile6D = 0;
 
             public static bool IsConnected
             {
@@ -2739,6 +2759,12 @@ namespace PhantomControl
             {
                 get { return verticalMode; }
                 set { verticalMode = value; }
+            }
+
+            public static int MaximumLinesInputFile6D
+            {
+                get { return maximumLinesInputFile6D; }
+                set { maximumLinesInputFile6D = value; }
             }
 
             public static double[] HorizontalMode

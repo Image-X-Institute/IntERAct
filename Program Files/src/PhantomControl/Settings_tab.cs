@@ -132,6 +132,7 @@ namespace PhantomControl
                     UrSettings.horizontalMode[1] = Convert.ToDouble(dictionary["Horizontal Volt-speed relationship going up : y-intercept"]);
                     UrSettings.horizontalMode[2] = Convert.ToDouble(dictionary["Horizontal Volt-speed relationship going down : slope"]);
                     UrSettings.horizontalMode[3] = Convert.ToDouble(dictionary["Horizontal Volt-speed relationship going down : y-intercept"]);
+                    UrSettings.MaximumLinesInputFile6D = Convert.ToInt32(dictionary["Maximum of 6D input lines"]);
                 }
                 catch (Exception excep)
                 {

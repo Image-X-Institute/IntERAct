@@ -25,3 +25,4 @@ Horizontal Volt-speed relationship going up : slope = 0.2800
 Horizontal Volt-speed relationship going up : y-intercept = -8.2643
 Horizontal Volt-speed relationship going down : slope = 0.2500
 Horizontal Volt-speed relationship going down : y-intercept = -4.3393
+Maximum of 6D input lines = 1501

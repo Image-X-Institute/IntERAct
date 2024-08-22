@@ -92,3 +92,12 @@ C:\Users\Robot\source\repos\6-DoF-Robotic-Motion-Phantom_v2\Program Files\src\Ph
 C:\Users\Robot\source\repos\6-DoF-Robotic-Motion-Phantom_v2\Program Files\src\PhantomControl\obj\Release\PhantomControl.csproj.CoreCompileInputs.cache
 C:\Users\Robot\source\repos\6-DoF-Robotic-Motion-Phantom_v2\Program Files\src\PhantomControl\obj\Release\PhantomControl.exe
 C:\Users\Robot\source\repos\6-DoF-Robotic-Motion-Phantom_v2\Program Files\src\PhantomControl\obj\Release\PhantomControl.pdb
+C:\Users\Robot\source\repos\6-DoF-Robotic-Motion-Phantom_v2\Program Files\src\PhantomControl\bin\Release\PhantomControl.exe.config
+C:\Users\Robot\source\repos\6-DoF-Robotic-Motion-Phantom_v2\Program Files\src\PhantomControl\bin\Release\PhantomControl.exe
+C:\Users\Robot\source\repos\6-DoF-Robotic-Motion-Phantom_v2\Program Files\src\PhantomControl\bin\Release\PhantomControl.pdb
+C:\Users\Robot\source\repos\6-DoF-Robotic-Motion-Phantom_v2\Program Files\src\PhantomControl\bin\Release\EasyModbus.dll
+C:\Users\Robot\source\repos\6-DoF-Robotic-Motion-Phantom_v2\Program Files\src\PhantomControl\bin\Release\LiveCharts.dll
+C:\Users\Robot\source\repos\6-DoF-Robotic-Motion-Phantom_v2\Program Files\src\PhantomControl\bin\Release\LiveCharts.WinForms.dll
+C:\Users\Robot\source\repos\6-DoF-Robotic-Motion-Phantom_v2\Program Files\src\PhantomControl\bin\Release\LiveCharts.Wpf.dll
+C:\Users\Robot\source\repos\6-DoF-Robotic-Motion-Phantom_v2\Program Files\src\PhantomControl\bin\Release\MathNet.Numerics.dll
+C:\Users\Robot\source\repos\6-DoF-Robotic-Motion-Phantom_v2\Program Files\src\PhantomControl\obj\Release\PhantomControl.csproj.CopyComplete
