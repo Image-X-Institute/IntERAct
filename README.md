@@ -24,7 +24,7 @@ The 6 DoF system consists of a six-axis robotic arm (Universal Robot, UR3 or UR1
     -  A one dimensionnal linear actuator (Tested on a commercially available https://www.firgelliauto.com.au/products/os-series) and its associated hardware (Arduino board, DC Motor Drive)
     -  Actuator mount - https://www.firgelliauto.com.au/products/mb-pb-premium-base-mounting-bracket?_pos=1&_sid=60fd26ad8&_ss=r.
     -  Arduno UNO R3 - https://www.auselectronicsdirect.com.au/uno-r3-development-board-with-ch340-for-arduino-pr?gclid=Cj0KCQjwgNanBhDUARIsAAeIcAv02GVcrS7k21-deq1rdCWU41KdzBT5-rFzVqCPkOj6DIDkEo4WhioaAoLSEALw_wcB.
-    -  
+    -  Motor DC Drive : https://www.phippselectronics.com/product/bts7960-43a-double-dc-stepper-motor-driver-h-bridge-pwm/?gad_source=1&gclid=EAIaIQobChMIh7eRzd-HiAMV59oWBR3aBBGWEAQYASABEgKMPvD_BwE
   
   * Software 
      - Microsoft Visual Studio 2022 with .NET framework 4.5 (tested). May work on other versions too.
