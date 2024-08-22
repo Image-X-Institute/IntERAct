@@ -1,7 +1,8 @@
-# Combined system : 6 DoF Robotic Motion Phantom and 1DoF Motion Platform
+# Time synchronsied motion platform simulating tumour motion: 6DoF Robotic Motion Phantom reproducing internal motion and 1DoF Motion Platform simulating external surface motion
 
-The association of 6DoF and 1DoF application has been developed to perform quality assurance tests for real-time image-guided radiotherapy systems. The 6 DoF system consists of a six-axis robotic arm (Universal Robot, UR3), an acrylic phantom, a custom-base plate to mount the robotic phantom onto the treatment couch and a software application which controls the robotic phantom to reproduce the patient-measured tumor motion. The [software](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/Program%20Files/PhantomControl.sln) provides methods to implement the appropriate sequence of transformations to accurately reproduce the full range (6 DoF translational and rotational motion) and rate of patient-measured tumour motion using the robotically controlled phantom. The set-up and motion trace repeatability of the robotic system was evaluated against the Calypso system and was shown to provide sub-mm and sub-degree accuracy and precision in translational and rotational degrees of freedom respectively. The basis of moving the 1D motion platform is the linear actuator motor, that is driven by a microcontroller. The aim of this project is to integrate a 1DoF vertical motion platform with 6DoF Robot Phantom to establish control of both robots under one software. The purpose of this goal is emulate a patient's behavior that is present during treatment such as breathing, which can make it much harder to track and target the tumor. The 6DoF robot is used to mimic the internal motion of the tumor while the 1DoF platform is intended to use the data collected from surface/external tracers on the patient to model and replicate the external motion of the tumor. For more details, please see [this publication](https://doi.org/10.1088/1361-6560/ab1935).
+A motion platform has been developed to reproduce internal-external motion to perform quality assurance tests for real-time image-guided radiotherapy systems. The aim of this project is to integrate the 1DoF vertical motion platform with 6DoF Robot Phantom to establish control of both robots under one software. The purpose of this goal is emulate tumour motion that is present during treatment such as breathing.
 
+The 6 DoF system consists of a six-axis robotic arm (Universal Robot, UR3 or UR16), an acrylic phantom, a custom-base plate to mount the robotic phantom onto the treatment couch and a software application which controls the robotic phantom to reproduce the patient-measured tumor motion. The [software](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/Program%20Files/PhantomControl.sln) provides methods to implement the appropriate sequence of transformations to accurately reproduce the full range (6 DoF translational and rotational motion) and rate of patient-measured tumour motion using the robotically controlled phantom. The set-up and motion trace repeatability of the robotic system was evaluated against the Calypso system and was shown to provide sub-mm and sub-degree accuracy and precision in translational and rotational degrees of freedom respectively. The basis of moving the 1D motion platform is the linear actuator motor, that is driven by a microcontroller.
 
 ## Key Features
 
@@ -14,14 +15,20 @@ The association of 6DoF and 1DoF application has been developed to perform quali
 ## Getting Started
 ### Requirements
     
-  * Hardware
-     - A six-axis robot (Tested on a commercially available [UR3 Universal Robot](https://www.universal-robots.com/products/ur3-robot/)) and its associated hardware
+  * 6DoF robotic arm hardware
+     - For 6DoF robotic operation: A six-axis robot (Tested on a commercially available [UR3 or UR16 Universal Robot](https://www.universal-robots.com/products/)) and its associated hardware
      - A phantom
-     - A one dimensionnal linear actuator (Tested on a commercially available https://www.firgelliauto.com.au/products/os-series) and its associated hardware (Arduino board, DC Motor Drive)
      - Acrylic pane
+
+ * 1DoF motion platform
+    -  A one dimensionnal linear actuator (Tested on a commercially available https://www.firgelliauto.com.au/products/os-series) and its associated hardware (Arduino board, DC Motor Drive)
+    -  Actuator mount - https://www.firgelliauto.com.au/products/mb-pb-premium-base-mounting-bracket?_pos=1&_sid=60fd26ad8&_ss=r.
+    -  Arduno UNO R3 - https://www.auselectronicsdirect.com.au/uno-r3-development-board-with-ch340-for-arduino-pr?gclid=Cj0KCQjwgNanBhDUARIsAAeIcAv02GVcrS7k21-deq1rdCWU41KdzBT5-rFzVqCPkOj6DIDkEo4WhioaAoLSEALw_wcB.
+    -  
   
   * Software 
-     - Microsoft Visual Studio 2022 with .NET framework 4.5 (tested). May work on other versions too.  
+     - Microsoft Visual Studio 2022 with .NET framework 4.5 (tested). May work on other versions too.
+     - Arduino version: Arduino 2.2.1 (tested).
      - Winforms
   
   * Third-party libraries (located in `External Libraries/`)
