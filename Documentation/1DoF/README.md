@@ -4,3 +4,5 @@ This folder contains the documentation on how to setup the 1DoF platform. The fo
 
   -https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/Documentation/1DoF/Hardware%20Guide.pdf
   -https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/Documentation/1DoF/Arduino_V3.ino
+
+The Voltage- motor speed relationship can be different depending on the payload, configuration, Firgelli model... In that case, [this Arduino code]() is used to run 1s the 1DoF platform with different voltage values. A motion acquisition system can be used ([RealSense camera] ()) to measure the displacement of the platform during one second. 
