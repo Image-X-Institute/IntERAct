@@ -95,12 +95,22 @@ namespace PhantomControl
 
         private void loadSettings()
         {
+           string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+           string programFilesIndex = "Program Files";
+           string settingsFilePath;
+           int index = appDirectory.IndexOf(programFilesIndex);
+           string baseProgramFilesPath = appDirectory.Substring(0, index + programFilesIndex.Length);
+           #if DEBUG
+               settingsFilePath = Path.Combine(baseProgramFilesPath, "src", "PhantomControl", "bin", "Debug", "settings.txt");
+           #else
+               settingsFilePath = Path.Combine(baseProgramFilesPath, "src", "PhantomControl", "bin", "Release", "settings.txt");
+           #endif
 
-            if (File.Exists("settings.txt"))
-            {
-                try
-                {
-                    var dictionary = File.ReadAllLines("settings.txt")
+           if (File.Exists(settingsFilePath)) //if that pathway does not work, put the complete file pathway in your local computer where the settings file have changed.
+               {
+                   try
+               {
+                   var dictionary = File.ReadAllLines(settingsFilePath)
                     .Select(l => l.Split(new[] { '=' }))
                     .ToDictionary(s => s[0].Trim(), s => s[1].Trim());
 
