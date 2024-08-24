@@ -2414,8 +2414,8 @@ namespace PhantomControl
                         serialPort.WriteLine(teststring);
                         Console.WriteLine("total time: " + stopwatch.ElapsedMilliseconds + " " + teststring);
                         currentTime += (now - previous).Milliseconds * 0.001;
-                        if (Settings_tab.oneSelected)
-                            progresstext_Motion.Text = ((finalTimeInSeconds / ((i + 1) * 0.2)) * 100).ToString() + "%";
+                        //if (Settings_tab.oneSelected)
+                            //progresstext_Motion.Text = ((finalTimeInSeconds / ((i + 1) * 0.2)) * 100).ToString() + "%";
 
 
                         if (serialPort != null || serialPort.IsOpen == true)
