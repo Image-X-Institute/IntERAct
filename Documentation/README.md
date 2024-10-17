@@ -13,3 +13,5 @@ md C:\Users\Robot\source\repos\6-DoF-Robotic-Motion-Phantom_v2\Program Files\src
 \
 xcopy /I /E C:\Users\Robot\source\repos\6-DoF-Robotic-Motion-Phantom_v2\Program Files\src\PhantomControl\Resources\ C:\Users\Robot\source\repos\6-DoF-Robotic-Motion-Phantom_v2\Program Files\src\PhantomControl\bin\Debug\Resources\" exited with code 4.	PhantomControl			
 ). 
+
+**Please note before running the robot software:** Upon first installation of the robot software, not all folders will be generated for the output logs to go in. This could cause an error message. Before first operation, ensure the folders with exact folder names (in the appropriate structure) are present - see related Issues page: https://github.com/Image-X-Institute/IntERAct/issues/51.
