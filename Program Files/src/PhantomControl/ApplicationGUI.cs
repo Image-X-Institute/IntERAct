@@ -153,6 +153,10 @@ namespace PhantomControl
         private static string ArduinoSendFilePath = "Output Files/1DPlatform/Arduino/Send";
         public static string ArduinoSendFullPath = string.Empty;
 
+        private static string _6DPlatform = "6DPlatform";
+        private static string _6DPlatformPath = "Output Files/6DPlatform";
+
+
         public static TextWriter wrireFile;
         // NEW LOG FILE
         // new log file is run everytime this class is called
@@ -161,6 +165,10 @@ namespace PhantomControl
             if (!Directory.Exists(logFilePath))
             {
                 Directory.CreateDirectory(logFilePath);
+            }
+            if(!Directory.Exists(_6DPlatformPath))
+            {
+                Directory.CreateDirectory(_6DPlatformPath);
             }
 
             if (!Directory.Exists(urScriptPath))
@@ -243,7 +251,7 @@ namespace PhantomControl
         public static void initialiseDataFile(string filename)
         {
             string filename2 = filename.Substring(0, filename.Length - 4);
-            wrireFile = new StreamWriter("Output Files/6DPlatform/_" + filename2 + "_" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt");
+            wrireFile = new StreamWriter("Output Files/6DPlatform/" + filename2 + "_" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt");
             TextWriter.Synchronized(wrireFile).WriteLine("Time(s)" + " " + "x(mm)" + " " + "y(mm)" + " " + "z(mm)" + " " + "rx(deg)" + " " + "ry(deg)" + " " + "rz(deg)");
         }
 
