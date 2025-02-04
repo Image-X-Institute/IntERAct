@@ -182,7 +182,6 @@ namespace PhantomControl
             this.flatButton_PlayStopMotion.UseVisualStyleBackColor = false;
             this.flatButton_PlayStopMotion.Click += new System.EventHandler(this.flatButton_PlayStopMotion_Click);
             // 
-            //// 
             // flatButton_ResumeMotions
             // 
             this.flatButton_ResumeMotions.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -214,7 +213,7 @@ namespace PhantomControl
             this.flatButton_1D_Configuration.Text = "1D config.";
             this.flatButton_1D_Configuration.UseVisualStyleBackColor = false;
             this.flatButton_1D_Configuration.Click += new System.EventHandler(this.flatButton_1D_Configuration_Click);
-            //// 
+            // 
             // bunifuElipse1
             // 
             this.bunifuElipse1.Location = new System.Drawing.Point(0, 0);
@@ -276,11 +275,13 @@ namespace PhantomControl
             // 
             // progresstext_Motion
             // 
-            this.progresstext_Motion = new System.Windows.Forms.Label();
-            this.progresstext_Motion.Location = new System.Drawing.Point(this.progressbar_Motion.Location.X + this.progressbar_Motion.Width + 5, this.progressbar_Motion.Location.Y + 9);
             this.progresstext_Motion.AutoSize = true;
             this.progresstext_Motion.Font = new System.Drawing.Font("Century Gothic", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.progresstext_Motion.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.progresstext_Motion.Location = new System.Drawing.Point(18, 275);
+            this.progresstext_Motion.Name = "progresstext_Motion";
+            this.progresstext_Motion.Size = new System.Drawing.Size(29, 20);
+            this.progresstext_Motion.TabIndex = 49;
             this.progresstext_Motion.Text = "0%";
             this.progresstext_Motion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -490,8 +491,7 @@ namespace PhantomControl
             this.cartesianChart_rotation.MinimumSize = new System.Drawing.Size(680, 343);
             this.cartesianChart_rotation.Name = "cartesianChart_rotation";
             this.cartesianChart_rotation.Size = new System.Drawing.Size(719, 343);
-            this.cartesianChart_rotation.TabIndex =
-                7;
+            this.cartesianChart_rotation.TabIndex = 7;
             this.cartesianChart_rotation.Text = "cartesianChart";
             this.cartesianChart_rotation.ChildChanged += new System.EventHandler<System.Windows.Forms.Integration.ChildChangedEventArgs>(this.cartesianChart_rotation_ChildChanged);
             // 
@@ -792,8 +792,8 @@ namespace PhantomControl
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.Location = new System.Drawing.Point(339, 10);
             this.splitContainer1.Margin = new System.Windows.Forms.Padding(0);
@@ -881,7 +881,7 @@ namespace PhantomControl
             this.robotSelectLabel.TabIndex = 39;
             this.robotSelectLabel.Text = "CURRENT ROBOT: NONE";
             this.robotSelectLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            //  
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.robotSelectLabel);
@@ -1226,6 +1226,7 @@ namespace PhantomControl
             this.panel8.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

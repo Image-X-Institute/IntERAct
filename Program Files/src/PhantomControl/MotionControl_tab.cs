@@ -1094,7 +1094,8 @@ namespace PhantomControl
                 MotionTraces.Size = MotionTracesSlicedSize;
                 drawInputTrace();
                 urServer.generateUrScript(UrSettings.TimeKinematics, UrSettings.TCP, UrSettings.PayLoad);
-                await runMotionAsync();
+
+                await runMotionAsync(first_index);
 
                 if (UrSettings.MotionPlay == false)
                 {
@@ -1511,10 +1512,14 @@ namespace PhantomControl
         }
 
         /* This function runs the motion. The definition of this function is based on the runMotion() function but enables the restarting motion after 10min for very long traces. It has to be an async task because we need to wait until the motion is over to run the next 10min motion without blocking the application */
-        private async Task runMotionAsync()
+        private async Task runMotionAsync(int first_index)
         {
+            while (Index6DMonitoring < first_index)
+            {
+                Thread.Sleep(10);
+            }
             modbusClient = new ModbusClient(UrSettings.hostIPAddress, 502);
-
+            
             try
             {
                 modbusClient.Connect();

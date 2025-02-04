@@ -1,0 +1,20 @@
+[  04/02/25 03:02:36  ]    Loading payloadMass from settings.txt = 0
+[  04/02/25 03:02:36  ]    User changed the payloadMass = 0
+[  04/02/25 03:02:36  ]    Loading payloadMass from settings.txt = 0
+[  04/02/25 03:02:36  ]    User changed the payloadMass = 0
+[  04/02/25 03:03:39  ]    CURRENT ROBOT SELECTED: 6DOF
+[  04/02/25 03:03:39  ]    Opening IP address: 192.168.94.11
+[  04/02/25 03:03:58  ]    CURRENT ROBOT SELECTED: 6DOF
+[  04/02/25 03:03:58  ]    Opening IP address: 192.168.94.11
+[  04/02/25 03:03:59  ]    CURRENT ROBOT SELECTED: 6DOF
+[  04/02/25 03:03:59  ]    Opening IP address: 192.168.94.11
+[  04/02/25 03:04:00  ]    Error faild to connect on port 30001
+[  04/02/25 03:04:01  ]    MODBUS connection attempt via 192.168.94.11 failed.
+[  04/02/25 03:04:06  ]    CURRENT ROBOT SELECTED: 6DOF
+[  04/02/25 03:04:06  ]    Opening IP address: 192.168.94.11
+[  04/02/25 03:04:19  ]    Error faild to connect on port 30001
+[  04/02/25 03:04:20  ]    MODBUS connection attempt via 192.168.94.11 failed.
+[  04/02/25 03:04:20  ]    Error faild to connect on port 30001
+[  04/02/25 03:04:22  ]    MODBUS connection attempt via 192.168.94.11 failed.
+[  04/02/25 03:04:27  ]    Error faild to connect on port 30001
+[  04/02/25 03:04:28  ]    MODBUS connection attempt via 192.168.94.11 failed.

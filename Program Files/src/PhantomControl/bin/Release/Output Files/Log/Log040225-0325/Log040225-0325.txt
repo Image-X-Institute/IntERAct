@@ -1,0 +1,11 @@
+[  04/02/25 03:25:15  ]    Loading payloadMass from settings.txt = 0
+[  04/02/25 03:25:15  ]    User changed the payloadMass = 0
+[  04/02/25 03:25:15  ]    Loading payloadMass from settings.txt = 0
+[  04/02/25 03:25:15  ]    User changed the payloadMass = 0
+[  04/02/25 03:25:30  ]    CURRENT ROBOT SELECTED: BOTH
+[  04/02/25 03:25:30  ]    1D Robot Connected: Serial port ({portInput}) opened successfully.
+[  04/02/25 03:25:30  ]    Opening IP address: 192.168.94.11
+[  04/02/25 03:25:30  ]    1D Robot Connected: Serial port ({portInput}) opened successfully.
+[  04/02/25 03:25:35  ]    1D Robot Couldnt Connect: Arduino: Failed to Connect
+[  04/02/25 03:25:51  ]    Error faild to connect on port 30001
+[  04/02/25 03:25:52  ]    MODBUS connection attempt via 192.168.94.11 failed.
