@@ -1,0 +1,14 @@
+[  09/04/25 01:47:07  ]    The 6D input file 8.LIGHT_SABR_high_complexity.txt has been selected - BOTH PLATFORMS
+[  09/04/25 01:47:07  ]    The sample rate from the input file is 0.2s.
+[  09/04/25 01:47:11  ]    The 1D input file 8.LIGHT_SABR_high_complexity_resp.txt has been selected - BOTH PLATFORMS
+[  09/04/25 01:48:11  ]    MODBUS connection via 192.168.94.11 established.
+[  09/04/25 01:48:11  ]    Start 6D motion
+[  09/04/25 01:48:11  ]    Start 1D motion
+[  09/04/25 01:48:11  ]    Opening IP address: 192.168.94.11
+[  09/04/25 01:53:17  ]    1D trace is complete
+[  09/04/25 01:53:18  ]    Stop 1D motion
+[  09/04/25 01:53:18  ]    Stop 6D motion
+[  09/04/25 01:53:18  ]    MODBUS disconected from controler
+[  09/04/25 01:53:19  ]    1D Robot to Home
+[  09/04/25 01:53:19  ]    Opening IP address: 192.168.94.11
+[  09/04/25 01:53:20  ]    6D Robot to home

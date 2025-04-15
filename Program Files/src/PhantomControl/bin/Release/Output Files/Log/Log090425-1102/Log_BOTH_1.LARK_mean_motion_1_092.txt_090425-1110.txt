@@ -1,0 +1,8 @@
+[  09/04/25 11:10:30  ]    The 6D input file 1.LARK_mean_motion_1_092.txt has been selected - BOTH PLATFORMS
+[  09/04/25 11:10:30  ]    The sample rate from the input file is 0.2s.
+[  09/04/25 11:10:34  ]    The 1D input file 1.LARK_mean_motion_1_092_resp.txt has been selected - BOTH PLATFORMS
+[  09/04/25 11:10:41  ]    MODBUS connection via 192.168.94.11 established.
+[  09/04/25 11:10:41  ]    Start 6D motion
+[  09/04/25 11:10:41  ]    Start 1D motion
+[  09/04/25 11:10:41  ]    Opening IP address: 192.168.94.11
+[  09/04/25 11:10:56  ]    Stop 1D motion

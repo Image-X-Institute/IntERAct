@@ -1,0 +1,8 @@
+[  09/04/25 11:38:16  ]    The 6D input file 2.LARK_mean_motion_2_091.txt has been selected - BOTH PLATFORMS
+[  09/04/25 11:38:16  ]    The sample rate from the input file is 0.2s.
+[  09/04/25 11:38:19  ]    The 1D input file 2.LARK_mean_motion_2_091_resp.txt has been selected - BOTH PLATFORMS
+[  09/04/25 11:39:43  ]    MODBUS connection via 192.168.94.11 established.
+[  09/04/25 11:39:43  ]    Start 6D motion
+[  09/04/25 11:39:43  ]    Start 1D motion
+[  09/04/25 11:39:44  ]    Opening IP address: 192.168.94.11
+[  09/04/25 11:40:01  ]    Error: Could not read or write data from UR controler

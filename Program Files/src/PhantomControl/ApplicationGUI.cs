@@ -257,7 +257,7 @@ namespace PhantomControl
 
         // ADD SOMETHING TO LOG
 
-    public static void addToLogFile(string text)
+        public static void addToLogFile(string text)
         {
             if (UrSettings.writeLogFile == true)
             {
