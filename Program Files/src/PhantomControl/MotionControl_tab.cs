@@ -2363,10 +2363,10 @@ namespace PhantomControl
             DateTime previous2 = DateTime.Now;
             DateTime playmotionTime = DateTime.Now;
 
-            Logger.Timestamps1DFullPath = "Output Files/1DPlatform/Timestamps/" + Path.GetFileName(_filePath1D) + "_" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
+            Logger.Timestamps1DFullPath = "Output Files/1DPlatform/Timestamps/" + Path.GetFileName(_filePath1D) + "_" + DateTime.Now.ToString("ddMMyy-HHmmssfff") + ".txt";
             Logger.addToTimestamps1DFile(Path.GetFileName(_filePath1D) + '\n' + "1D starting time : " + playmotionTime.ToString("HH:mm:ss:fff"));
-            Logger.ArduinoSendFullPath = "Output Files/1DPlatform/Arduino/Send/" + Path.GetFileName(_filePath1D) + "_" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
-            Logger.ArduinoGetFullPath = "Output Files/1DPlatform/Arduino/Get/" + Path.GetFileName(_filePath1D) + "_" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
+            Logger.ArduinoSendFullPath = "Output Files/1DPlatform/Arduino/Send/" + Path.GetFileName(_filePath1D) + "_" + DateTime.Now.ToString("ddMMyy-HHmmssfff") + ".txt";
+            Logger.ArduinoGetFullPath = "Output Files/1DPlatform/Arduino/Get/" + Path.GetFileName(_filePath1D) + "_" + DateTime.Now.ToString("ddMMyy-HHmmssfff") + ".txt";
 
             Stopwatch stopwatch = Stopwatch.StartNew();
             string data;

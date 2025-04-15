@@ -131,25 +131,25 @@ namespace PhantomControl
 
     public static class Logger
     {
-        private static string logFilename = "/Log" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
-        private static string logFilePath = "Output Files/Log/Log" + DateTime.Now.ToString("ddMMyy-hhmm");
+        private static string logFilename = "/Log" + DateTime.Now.ToString("ddMMyy-HHmmssfff") + ".txt";
+        private static string logFilePath = "Output Files/Log/Log" + DateTime.Now.ToString("ddMMyy-HHmmssfff");
         private static string logFullPath = string.Empty;
 
-        private static string urScriptName = "/urScript" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
+        private static string urScriptName = "/urScript" + DateTime.Now.ToString("ddMMyy-HHmmssfff") + ".txt";
         private static string urScriptPath = "Output Files/GeneratedUrScripts";
         public static string urScriptFullPath = string.Empty;
 
         public static bool LogFileNameBOTHBool = false;
 
-        private static string Timestamps1DFilename = "/timestamps1D" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
+        private static string Timestamps1DFilename = "/timestamps1D" + DateTime.Now.ToString("ddMMyy-HHmmssfff") + ".txt";
         private static string Timestamps1DPath = "Output Files/1DPlatform/Timestamps";
         public static string Timestamps1DFullPath = string.Empty;
 
-        private static string ArduinoGetFilename = "/Get1D" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
+        private static string ArduinoGetFilename = "/Get1D" + DateTime.Now.ToString("ddMMyy-HHmmssfff") + ".txt";
         private static string ArduinoGetFilePath = "Output Files/1DPlatform/Arduino/Get";
         public static string ArduinoGetFullPath = string.Empty;
 
-        private static string ArduinoSendFilename = "/Send1D" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
+        private static string ArduinoSendFilename = "/Send1D" + DateTime.Now.ToString("ddMMyy-HHmmssfff") + ".txt";
         private static string ArduinoSendFilePath = "Output Files/1DPlatform/Arduino/Send";
         public static string ArduinoSendFullPath = string.Empty;
 
@@ -202,14 +202,14 @@ namespace PhantomControl
         //Create a new log file for 6DoF OR 1DoF platform
         private static void CreateNewLogFile()
         {
-            logFilename = "/Log" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
+            logFilename = "/Log" + DateTime.Now.ToString("ddMMyy-HHmmssfff") + ".txt";
             logFullPath = logFilePath + logFilename;
         }
 
         //Create a new log file for the two platforms simultaneously
         private static void CreateNewLogFile(string Robot, string filename)
         {
-            logFilename = "/Log_" + Robot + "_" + filename + "_" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
+            logFilename = "/Log_" + Robot + "_" + filename + "_" + DateTime.Now.ToString("ddMMyy-HHmmssfff") + ".txt";
             logFullPath = logFilePath + logFilename;
         }
 
@@ -251,7 +251,7 @@ namespace PhantomControl
         public static void initialiseDataFile(string filename)
         {
             string filename2 = filename.Substring(0, filename.Length - 4);
-            wrireFile = new StreamWriter("Output Files/6DPlatform/" + filename2 + "_" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt");
+            wrireFile = new StreamWriter("Output Files/6DPlatform/" + filename2 + "_" + DateTime.Now.ToString("ddMMyy-HHmmssfff") + ".txt");
             TextWriter.Synchronized(wrireFile).WriteLine("Time(s)" + " " + "x(mm)" + " " + "y(mm)" + " " + "z(mm)" + " " + "rx(deg)" + " " + "ry(deg)" + " " + "rz(deg)");
         }
 
@@ -265,7 +265,7 @@ namespace PhantomControl
 
                 using (StreamWriter _Log = new StreamWriter(logFile))
                 {
-                    _Log.WriteLine(DateTime.Now.ToString("[  dd/MM/yy hh:mm:ss  ]    ") + text);
+                    _Log.WriteLine(DateTime.Now.ToString("[  dd/MM/yy HH:mm:ss:fff  ]    ") + text);
                 }
 
                 //check log file size, if it is > 1 mb, start a new file
@@ -298,7 +298,7 @@ namespace PhantomControl
 
                 if (filesize > 1 * 1024 * 1024)
                 {
-                    urScriptName = "Log" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
+                    urScriptName = "Log" + DateTime.Now.ToString("ddMMyy-HHmmssfff") + ".txt";
                     urScriptFullPath = urScriptPath + urScriptName;
                 }
             }
@@ -323,7 +323,7 @@ namespace PhantomControl
 
                 if (filesize > 1 * 1024 * 1024)
                 {
-                    Timestamps1DFilename = "timestamp1D" + "_" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
+                    Timestamps1DFilename = "timestamp1D" + "_" + DateTime.Now.ToString("ddMMyy-HHmmssfff") + ".txt";
                     Timestamps1DFullPath = Timestamps1DPath + Timestamps1DFilename;
                 }
             }
@@ -348,7 +348,7 @@ namespace PhantomControl
 
                 if (filesize > 1 * 1024 * 1024)
                 {
-                    ArduinoGetFilename = "Get" + "_" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
+                    ArduinoGetFilename = "Get" + "_" + DateTime.Now.ToString("ddMMyy-HHmmssfff") + ".txt";
                     ArduinoGetFullPath = ArduinoGetFilePath + ArduinoGetFilename;
                 }
             }
@@ -373,7 +373,7 @@ namespace PhantomControl
 
                 if (filesize > 1 * 1024 * 1024)
                 {
-                    ArduinoSendFilename = "Send" + "_" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
+                    ArduinoSendFilename = "Send" + "_" + DateTime.Now.ToString("ddMMyy-HHmmssfff") + ".txt";
                     ArduinoSendFullPath = ArduinoSendFilePath + ArduinoSendFilename;
                 }
             }
