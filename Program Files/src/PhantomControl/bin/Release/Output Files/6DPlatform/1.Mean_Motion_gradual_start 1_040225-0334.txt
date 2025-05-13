@@ -1,1 +1,0 @@
-Time(s) x(mm) y(mm) z(mm) rx(deg) ry(deg) rz(deg)

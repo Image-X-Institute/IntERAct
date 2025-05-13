@@ -41,7 +41,7 @@ namespace PhantomControl
                 motionTabPub = mct;
             }
         }
-
+        
 
         /// <summary>
         /// KM - added default motion types - movej & movel
@@ -100,13 +100,13 @@ namespace PhantomControl
            string settingsFilePath;
            int index = appDirectory.IndexOf(programFilesIndex);
            string baseProgramFilesPath = appDirectory.Substring(0, index + programFilesIndex.Length);
-           #if DEBUG
-               settingsFilePath = Path.Combine(baseProgramFilesPath, "src", "PhantomControl", "bin", "Debug", "settings.txt");
-           #else
-               settingsFilePath = Path.Combine(baseProgramFilesPath, "src", "PhantomControl", "bin", "Release", "settings.txt");
-           #endif
-
-           if (File.Exists(settingsFilePath)) //if that pathway does not work, put the complete file pathway in your local computer where the settings file have changed.
+            //#if DEBUG
+            //    settingsFilePath = Path.Combine(baseProgramFilesPath, "src", "PhantomControl", "bin", "Debug", "settings.txt");
+            //#else
+            //    settingsFilePath = Path.Combine(appDirectory, "\\settings.txt");
+            //#endif
+           settingsFilePath = Path.Combine(appDirectory, "settings.txt");
+            if (File.Exists(settingsFilePath)) //if that pathway does not work, put the complete file pathway in your local computer where the settings file have changed.
                {
                    try
                {
@@ -157,6 +157,10 @@ namespace PhantomControl
             }
         }
 
+        public void txtBoxUpdate(string input) {
+            this.txtBox_time.Text = input;
+        
+        }
         public void SaveSettings()
         {
             string[] lines = new string[19];

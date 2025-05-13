@@ -1,4 +1,0 @@
-2.LARK_mean_motion_2_091_resp.txt
-1D starting time : 13:07:21:250
-1D end time : 13:12:20:790
-

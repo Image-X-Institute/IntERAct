@@ -1,4 +1,0 @@
-7.LIGHT_SABR_mean_complexity_resp.txt
-1D starting time : 13:41:35:088
-1D end time : 13:46:34:635
-

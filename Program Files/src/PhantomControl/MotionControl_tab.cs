@@ -73,7 +73,7 @@ namespace PhantomControl
         //TestCS
 
         private string iconPath = "Resources\\Icons\\";
-
+        PhantomControl.Settings_tab settings_Tab;
         bool _keepMonitoring = false;
         bool _keep1D = false;
         bool _firstRun = true;
@@ -113,6 +113,33 @@ namespace PhantomControl
                 flatButton_ResumeMotions.Enabled = false;
 
             }
+        }
+        public MotionControl_tab(ref PhantomControl.Settings_tab settingstab)
+        {
+            if (!this.DesignMode)
+            {
+                InitializeComponent();
+
+                MotionTraces.setStartingPose();
+                maxXValue = 1;
+                initialseChart();
+
+
+
+
+                //Add Led Bulbs 
+                AddLedbulbs();
+
+                // Check which robot was selected and disable he necessary buttons
+
+                UpdateButtons();
+                flatButton_Home.Enabled = false;
+                flatButton_LoadTraces.Enabled = false;
+                flatButton_PlayStopMotion.Enabled = false;
+                flatButton_ResumeMotions.Enabled = false;
+
+            }
+            this.settings_Tab = settingstab;
         }
 
         private void UpdateButtons()
@@ -785,7 +812,9 @@ namespace PhantomControl
                             }
 
                             UrSettings.TimeKinematics = MotionTraces.t[1] - MotionTraces.t[0];           //Read the frequency from the input file 
-                            Settings_tab.txtBox_time.Text = Convert.ToString(UrSettings.TimeKinematics);
+                            
+
+                            settings_Tab.txtBox_time.Text = Convert.ToString(UrSettings.TimeKinematics);
                             Logger.addToLogFile("The sample rate from the input file is " + UrSettings.TimeKinematics + "s.");
                             MotionTraces.Size = counter;
                             if (MotionTraces.Size > UrSettings.maximumLinesInputFile6D)

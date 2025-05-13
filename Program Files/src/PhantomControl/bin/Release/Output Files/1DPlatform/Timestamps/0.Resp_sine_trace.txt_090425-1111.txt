@@ -1,4 +1,0 @@
-0.Resp_sine_trace.txt
-1D starting time : 11:11:31:729
-1D end time : 11:14:01:671
-

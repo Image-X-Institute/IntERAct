@@ -49,7 +49,8 @@ namespace PhantomControl
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.log_tab = new PhantomControl.Log_tab();
             this.settings_tab = new PhantomControl.Settings_tab();
-            this.motionControl_tab = new PhantomControl.MotionControl_tab();
+
+            this.motionControl_tab = new PhantomControl.MotionControl_tab(ref this.settings_tab);
             this.sidepanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();

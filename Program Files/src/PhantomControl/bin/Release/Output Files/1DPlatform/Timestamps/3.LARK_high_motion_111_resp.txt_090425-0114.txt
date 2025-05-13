@@ -1,4 +1,0 @@
-3.LARK_high_motion_111_resp.txt
-1D starting time : 13:14:09:616
-1D end time : 13:19:09:151
-

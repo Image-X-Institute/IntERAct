@@ -1,4 +1,0 @@
-8.LIGHT_SABR_high_complexity_resp.txt
-1D starting time : 13:48:15:719
-1D end time : 13:53:15:260
-

@@ -1,5 +1,0 @@
-[  09/04/25 11:17:40  ]    The 1D input file 1.LARK_mean_motion_1_092_resp.txt has been selected
-[  09/04/25 11:17:43  ]    Start 1D motion
-[  09/04/25 11:18:18  ]    Stop 1D motion
-[  09/04/25 11:18:19  ]    1D Robot to Home
-[  09/04/25 11:18:21  ]    1D Robot to Home

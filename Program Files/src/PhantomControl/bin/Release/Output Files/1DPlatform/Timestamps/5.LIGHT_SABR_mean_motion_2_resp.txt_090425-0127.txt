@@ -1,4 +1,0 @@
-5.LIGHT_SABR_mean_motion_2_resp.txt
-1D starting time : 13:27:47:792
-1D end time : 13:32:47:404
-
