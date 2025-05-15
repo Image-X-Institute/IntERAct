@@ -8,3 +8,6 @@
 * To operate the robot using the software package                        -   [Software GUI guide.pdf](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/Documentation/6DoF/Software%20GUI%20Guide.pdf). 
 * To perform QA tests for Kilovoltage Intrafraction Monitoring (KIM)     -   [KIM QA instructions using the robotic phantom](https://github.com/Image-X-Institute/6-DoF-Robotic-Motion-Phantom/blob/main/Documentation/6DoF/KIM%20QA%20Instructions.pdf)) and the QA analysis codes can be found here: https://github.com/ChandrimaSengupta/KIM-QA-Analysis/tree/main/KIM-QA-Analysis-master
 * Tool Configuration: TCP, orientation, payload & center of gravity      -    https://www.youtube.com/watch?v=YnC-ccytJlw
+
+**Troubleshooting**
+* As the IntERAct device (specifically, the 6DoF robot) uses TCP/IP protocol to communicate with the motion control software, Bluetooth devices (e.g. headphones, wireless mouse or keyboard) cannot be connected to the computer when motion control software is in use - this is because the motion control software code loops through all serial port connections to find the component platforms. Please ensure no devices are connected via Bluetooth when running the motion control software/IntERAct device.
