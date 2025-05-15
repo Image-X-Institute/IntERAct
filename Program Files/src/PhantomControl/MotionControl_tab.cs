@@ -474,7 +474,7 @@ namespace PhantomControl
 
             for (int i = 0; i < MotionTraces.Size; i++)
             {
-                double t = MotionTraces.t[i];
+                double t = MotionTraces.t[i]-MotionTraces.t[0];
                 double x = MotionTraces.X[i] * 1000;
                 double y = MotionTraces.Y[i] * 1000;
                 double z = MotionTraces.Z[i] * 1000;
@@ -486,7 +486,7 @@ namespace PhantomControl
                 /*                foreach (var XAxis in cartesianChart_translation.AxisX)
                                 {
                                     XAxis.MinValue = 0;
-                                    XAxis.MaxValue = MotionTraces.t[i];
+                                    XAxis.MaxValue = MotionTraces.t[i]-MotionTraces.t[0];
                                     XAxis.SetRange(XAxis.MinValue, XAxis.MaxValue);
                                 }*/
                 rangeBar.Maximum = (int)MotionTraces.t.Max();
@@ -688,7 +688,7 @@ namespace PhantomControl
                 ColumnsCount = Array.ConvertAll(stream.ReadLine().Split(' '), Double.Parse).Length;
             }
 
-            catch (Exception excep)
+            catch (Exception)
             {
                 UpdateStatusBarMessage.ShowStatusMessage("Error: Invalid file format");
                 Logger.addToLogFile("Error: Invalid file format");
@@ -1154,7 +1154,6 @@ namespace PhantomControl
 
         private void flatButton_PlayStopMotion_Click(object sender, EventArgs e)
         {
-
             bool selectedPlay = true;
             if (_playstopmotionclicked == true)
             {
@@ -1502,7 +1501,7 @@ namespace PhantomControl
             {
                 modbusClient.Connect();
             }
-            catch (Exception excep)
+            catch (Exception)
             {
                 UpdateStatusBarMessage.ShowStatusMessage("MODBUS connection attempt via " + UrSettings.hostIPAddress + " failed.");
                 Logger.addToLogFile("MODBUS connection attempt via " + UrSettings.hostIPAddress + " failed.");
@@ -1555,7 +1554,7 @@ namespace PhantomControl
                 UpdateStatusBarMessage.ShowStatusMessage("MODBUS connection via " + UrSettings.hostIPAddress + " established.");
                 Logger.addToLogFile("MODBUS connection via " + UrSettings.hostIPAddress + " established.");
             }
-            catch (Exception excep)
+            catch (Exception)
             {
                 UpdateStatusBarMessage.ShowStatusMessage("MODBUS connection attempt via " + UrSettings.hostIPAddress + " failed.");
                 Logger.addToLogFile("MODBUS connection attempt via " + UrSettings.hostIPAddress + " failed.");
@@ -1614,9 +1613,9 @@ namespace PhantomControl
             Console.WriteLine(MotionTraces.t.Count());
             for (int i = 0; i < MotionTraces.Size; i++)
             {
-                if ((Index6DMonitoring - MotionTraces.t[i]) < 0)
+                if ((Index6DMonitoring - (MotionTraces.t[i] - MotionTraces.t[0])) < 0)
                 {
-                    Index6DTimeTravel = (int)(1000 * Math.Round(-(Index6DMonitoring - MotionTraces.t[i]), 2));
+                    Index6DTimeTravel = (int)(1000 * Math.Round(-(Index6DMonitoring - (MotionTraces.t[i] - MotionTraces.t[0])), 2));
                     index = i;
                     break;
                 }
@@ -1650,6 +1649,7 @@ namespace PhantomControl
             double absoluteTime = 0;
             double currentTime = 0;
             double time = 0;
+            string abs_time = DateTime.Now.ToString("ddMMyy_HHmmssfff");
             double time_check_plot = 0;
             double time_check_display = 0;
 
@@ -1698,6 +1698,7 @@ namespace PhantomControl
                     }
                     currentTime = getTime(_holdingRegTime);
                     time = currentTime - absoluteTime;
+                    abs_time = DateTime.Now.ToString("ddMMyy_HHmmssfff");
                     if (!boolExceedMemory)
                     {
                         Index6DMonitoring = time;
@@ -1749,7 +1750,7 @@ namespace PhantomControl
 
                                 if (UrSettings.writeDataFile == true)
                                 {
-                                    Logger.saveDataToFile(time, sixParamArray[0], sixParamArray[1], sixParamArray[2], sixParamArray[3], sixParamArray[4], sixParamArray[5]);
+                                    Logger.saveDataToFile(abs_time, time, sixParamArray[0], sixParamArray[1], sixParamArray[2], sixParamArray[3], sixParamArray[4], sixParamArray[5]);
                                 }
 
                                 if (time == 0 || time > time_check_plot + 0.1)
@@ -2011,7 +2012,7 @@ namespace PhantomControl
             {
                 modbusClient.Connect();
             }
-            catch (Exception excep)
+            catch (Exception)
             {
                 UpdateStatusBarMessage.ShowStatusMessage("MODBUS connection attempt via " + UrSettings.hostIPAddress + " failed.");
                 Logger.addToLogFile("MODBUS connection attempt via " + UrSettings.hostIPAddress + " failed.");
@@ -2398,7 +2399,6 @@ namespace PhantomControl
             Logger.ArduinoGetFullPath = "Output Files/1DPlatform/Arduino/Get/" + Path.GetFileName(_filePath1D) + "_" + DateTime.Now.ToString("ddMMyy-HHmmssfff") + ".txt";
 
             Stopwatch stopwatch = Stopwatch.StartNew();
-            string data;
 
             for (int i = 0; i < velocityValues.Count; i++)
             {

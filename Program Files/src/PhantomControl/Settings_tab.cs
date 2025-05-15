@@ -144,7 +144,7 @@ namespace PhantomControl
                     UrSettings.horizontalMode[3] = Convert.ToDouble(dictionary["Horizontal Volt-speed relationship going down : y-intercept"]);
                     UrSettings.MaximumLinesInputFile6D = Convert.ToInt32(dictionary["Maximum of 6D input lines"]);
                 }
-                catch (Exception excep)
+                catch (Exception)
                 {
                     UpdateStatusBarMessage.ShowStatusMessage("Error loading settings from settings.txt");
                     Logger.addToLogFile("Error loading settings from settings.txt");
@@ -508,13 +508,13 @@ namespace PhantomControl
 
         }
 
-        private void textBox_1dSR_TextChanged(object sender, EventArgs e)
-        {
-            if (txtBox_time.Text != "" || txtBox_time.Text != "0")
-            {
-                int value;
-            }
-        }
+        //private void textBox_1dSR_TextChanged(object sender, EventArgs e)
+        //{
+        //    if (txtBox_time.Text != "" || txtBox_time.Text != "0")
+        //    {
+        //        int value;
+        //    }
+        //}
 
         bool expand = false;
 

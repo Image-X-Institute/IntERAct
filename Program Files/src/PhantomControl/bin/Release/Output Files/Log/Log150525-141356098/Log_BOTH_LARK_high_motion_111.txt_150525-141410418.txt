@@ -1,0 +1,7 @@
+[  15/05/25 14:14:10:419  ]    The 6D input file LARK_high_motion_111.txt has been selected - BOTH PLATFORMS
+[  15/05/25 14:14:10:439  ]    The sample rate from the input file is 0.2s.
+[  15/05/25 14:14:13:932  ]    The 1D input file LARK_high_motion_111_resp.txt has been selected - BOTH PLATFORMS
+[  15/05/25 14:15:30:234  ]    MODBUS connection via 192.168.94.11 established.
+[  15/05/25 14:15:30:247  ]    Start 6D motion
+[  15/05/25 14:15:30:270  ]    Start 1D motion
+[  15/05/25 14:15:30:386  ]    Opening IP address: 192.168.94.11

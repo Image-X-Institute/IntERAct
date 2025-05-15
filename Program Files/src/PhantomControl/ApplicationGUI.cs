@@ -252,7 +252,7 @@ namespace PhantomControl
         {
             string filename2 = filename.Substring(0, filename.Length - 4);
             wrireFile = new StreamWriter("Output Files/6DPlatform/" + filename2 + "_" + DateTime.Now.ToString("ddMMyy-HHmmssfff") + ".txt");
-            TextWriter.Synchronized(wrireFile).WriteLine("Time(s)" + " " + "x(mm)" + " " + "y(mm)" + " " + "z(mm)" + " " + "rx(deg)" + " " + "ry(deg)" + " " + "rz(deg)");
+            TextWriter.Synchronized(wrireFile).WriteLine("Time(ddMMyy_HHmmssfff format)" + " " + "Time(s)" + " "+ "x(mm)" + " " + "y(mm)" + " " + "z(mm)" + " " + "rx(deg)" + " " + "ry(deg)" + " " + "rz(deg)");
         }
 
         // ADD SOMETHING TO LOG
@@ -380,9 +380,9 @@ namespace PhantomControl
 
         }
 
-        public static void saveDataToFile(double time, double x, double y, double z, double Rx, double Ry, double Rz)
+        public static void saveDataToFile(string abs_time, double time, double x, double y, double z, double Rx, double Ry, double Rz)
         {
-            TextWriter.Synchronized(wrireFile).WriteLine(time + " " + x + " " + y + " " + z + " " + Rx + " " + Ry + " " + Rz);
+            TextWriter.Synchronized(wrireFile).WriteLine(abs_time + " " + time + " " + x + " " + y + " " + z + " " + Rx + " " + Ry + " " + Rz);
         }
 
         public static void closeSaveDataToFile()

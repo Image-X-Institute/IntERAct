@@ -207,7 +207,7 @@ namespace PhantomControl
                     IPAddress ipAddress = IPAddress.Parse(UrSettings.hostIPAddress);
                     db.Connect(ipAddress, PORT_29999);
                 }
-                catch (Exception excep)
+                catch (Exception)
                 {
                     UpdateStatusBarMessage.ShowStatusMessage("Error faild to connect on port " + PORT_29999.ToString());
                     Logger.addToLogFile("Error faild to connect on port " + PORT_29999.ToString());
@@ -301,7 +301,7 @@ namespace PhantomControl
                     IPAddress ipAddress = IPAddress.Parse(UrSettings.hostIPAddress);
                     s.Connect(ipAddress, PORT_30001);
                 }
-                catch (Exception excep)
+                catch (Exception)
                 {
                     UpdateStatusBarMessage.ShowStatusMessage("Error faild to connect on port " + PORT_30001.ToString());
                     Logger.addToLogFile("Error faild to connect on port " + PORT_30001.ToString());
