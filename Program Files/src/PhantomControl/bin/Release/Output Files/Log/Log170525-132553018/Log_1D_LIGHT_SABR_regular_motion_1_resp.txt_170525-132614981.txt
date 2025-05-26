@@ -1,0 +1,4 @@
+[  17/05/25 13:26:14:981  ]    The 1D input file LIGHT_SABR_regular_motion_1_resp.txt has been selected
+[  17/05/25 13:26:58:483  ]    Start 1D motion
+[  17/05/25 13:27:22:227  ]    Stop 1D motion
+[  17/05/25 13:27:23:185  ]    1D Robot to Home

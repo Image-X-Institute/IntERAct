@@ -925,8 +925,9 @@ namespace PhantomControl
 
             if (UrSettings.writeUrScriptFile == true)
             {
-                Thread saveUrScriptFiles = new Thread(saveUrScripts);
-                saveUrScriptFiles.Start();
+                //Thread saveUrScriptFiles = new Thread(saveUrScripts);
+                //saveUrScriptFiles.Start();
+                saveUrScripts();
             }
             else
             {
@@ -939,11 +940,24 @@ namespace PhantomControl
 
         private void saveUrScripts()
         {
-            foreach (string s in UrScriptProgram.urList)
-            {
-                Logger.addToUrScriptFile(s);
-            }
+            Invoke(new Action(() => { flatButton_PlayStopMotion.Enabled = false; }));
 
+            lock (UrScriptProgram.urList)
+            {
+
+                var urscriptlogger = new Logger();
+                int localcount = 0;
+                foreach (string s in UrScriptProgram.urList)
+                {
+                    localcount += 1;
+                    if (localcount >= 5980)
+                    {
+                        Console.WriteLine(s);
+                    }
+                    urscriptlogger.addToUrScriptFile(s);
+                }
+                urscriptlogger.closeLogger();
+            }
 
             Invoke(new Action(() =>
             {

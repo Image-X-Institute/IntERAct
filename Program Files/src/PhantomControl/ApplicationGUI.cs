@@ -129,7 +129,7 @@ namespace PhantomControl
         }
     }
 
-    public static class Logger
+    public class Logger
     {
         private static string logFilename = "/Log" + DateTime.Now.ToString("ddMMyy-HHmmssfff") + ".txt";
         private static string logFilePath = "Output Files/Log/Log" + DateTime.Now.ToString("ddMMyy-HHmmssfff");
@@ -280,17 +280,32 @@ namespace PhantomControl
             }
         }
 
-        public static void addToUrScriptFile(string text) 
+        FileStream _urscriptwriterstream = null;
+        StreamWriter _urscriptwriter = null;
+
+        public Logger()
+        {
+            initialiseLogger();
+            _urscriptwriterstream =new FileStream(urScriptFullPath,FileMode.Append,FileAccess.Write);
+            _urscriptwriter=new StreamWriter(_urscriptwriterstream);
+        }
+
+        public void closeLogger()
+        {
+            _urscriptwriter.Flush();
+            _urscriptwriter.Close();
+        }
+        public void addToUrScriptFile(string text) 
         {
             if (UrSettings.writeUrScriptFile == true)
             {
-                using (FileStream logFile = new FileStream(urScriptFullPath, FileMode.Append, FileAccess.Write))
+                //using (FileStream logFile = new FileStream(urScriptFullPath, FileMode.Append, FileAccess.Write))
 
-                using (StreamWriter _Log = new StreamWriter(logFile))
-                {
-                    _Log.WriteLine(text);
-                }
-
+                //using (StreamWriter _Log = new StreamWriter(logFile))
+                //{
+                //    _Log.WriteLine(text);
+                //}
+                _urscriptwriter.WriteLine(text);
                 //check log file size, if it is > 1 mb, start a new file
 
                 FileInfo fi = new FileInfo(urScriptFullPath);
@@ -301,6 +316,10 @@ namespace PhantomControl
                     urScriptName = "Log" + DateTime.Now.ToString("ddMMyy-HHmmssfff") + ".txt";
                     urScriptFullPath = urScriptPath + urScriptName;
                 }
+            }
+            else
+            {
+                Console.WriteLine("oops");
             }
 
         }

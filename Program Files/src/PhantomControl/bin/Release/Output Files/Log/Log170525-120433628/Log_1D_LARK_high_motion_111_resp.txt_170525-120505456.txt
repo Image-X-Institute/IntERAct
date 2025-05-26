@@ -1,0 +1,4 @@
+[  17/05/25 12:05:05:456  ]    The 1D input file LARK_high_motion_111_resp.txt has been selected
+[  17/05/25 12:05:33:801  ]    Start 1D motion
+[  17/05/25 12:08:07:043  ]    Stop 1D motion
+[  17/05/25 12:08:09:366  ]    1D Robot to Home

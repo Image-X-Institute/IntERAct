@@ -1,3 +1,0 @@
-[  13/05/25 15:33:29:934  ]    The 6D input file LARK_regular_motion_1_092.txt has been selected - BOTH PLATFORMS
-[  13/05/25 15:33:29:953  ]    The sample rate from the input file is 0.2s.
-[  13/05/25 15:33:35:523  ]    The 1D input file LARK_regular_motion_1_092_resp.txt has been selected - BOTH PLATFORMS

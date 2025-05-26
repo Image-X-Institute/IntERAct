@@ -1,0 +1,2 @@
+LARK_high_motion_111_resp.txt
+1D starting time : 11:23:45:742

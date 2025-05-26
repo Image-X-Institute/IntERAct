@@ -1,0 +1,4 @@
+LARK_regular_motion_1_092_resp.txt
+1D starting time : 12:43:58:512
+1D end time : 12:48:58:052
+

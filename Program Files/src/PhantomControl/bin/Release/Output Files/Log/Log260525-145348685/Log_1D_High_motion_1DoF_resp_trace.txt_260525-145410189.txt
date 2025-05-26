@@ -1,0 +1,3 @@
+[  26/05/25 14:54:10:194  ]    The 1D input file High_motion_1DoF_resp_trace.txt has been selected
+[  26/05/25 14:54:14:452  ]    Start 1D motion
+[  26/05/25 14:55:01:345  ]    Stop 1D motion

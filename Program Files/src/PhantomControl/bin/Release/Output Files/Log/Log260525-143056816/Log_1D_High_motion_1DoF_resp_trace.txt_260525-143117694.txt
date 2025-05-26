@@ -1,0 +1,4 @@
+[  26/05/25 14:31:17:699  ]    The 1D input file High_motion_1DoF_resp_trace.txt has been selected
+[  26/05/25 14:31:20:575  ]    Start 1D motion
+[  26/05/25 14:31:53:227  ]    Stop 1D motion
+[  26/05/25 14:31:54:208  ]    1D Robot to Home

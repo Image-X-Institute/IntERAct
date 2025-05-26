@@ -1,0 +1,9 @@
+[  17/05/25 11:06:32:435  ]    The 6D input file LARK_high_motion_111.txt has been selected
+[  17/05/25 11:06:32:454  ]    The sample rate from the input file is 0.2s.
+[  17/05/25 11:07:10:194  ]    MODBUS connection via 192.168.94.11 established.
+[  17/05/25 11:07:10:212  ]    Start 6D motion
+[  17/05/25 11:07:10:314  ]    Opening IP address: 192.168.94.11
+[  17/05/25 11:10:55:945  ]    Stop 6D motion
+[  17/05/25 11:10:56:059  ]    MODBUS disconected from controler
+[  17/05/25 11:10:56:816  ]    Opening IP address: 192.168.94.11
+[  17/05/25 11:10:57:829  ]    6D Robot to home
