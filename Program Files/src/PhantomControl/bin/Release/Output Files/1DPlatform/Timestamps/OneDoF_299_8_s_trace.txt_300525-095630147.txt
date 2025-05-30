@@ -1,0 +1,4 @@
+OneDoF_299_8_s_trace.txt
+1D starting time : 09:56:30:147
+1D end time : 10:01:29:878
+

@@ -252,7 +252,7 @@ namespace PhantomControl
         {
             string filename2 = filename.Substring(0, filename.Length - 4);
             wrireFile = new StreamWriter("Output Files/6DPlatform/" + filename2 + "_" + DateTime.Now.ToString("ddMMyy-HHmmssfff") + ".txt");
-            TextWriter.Synchronized(wrireFile).WriteLine("Time(ddMMyy_HHmmssfff format)" + " " + "Time(s)" + " "+ "x(mm)" + " " + "y(mm)" + " " + "z(mm)" + " " + "rx(deg)" + " " + "ry(deg)" + " " + "rz(deg)");
+            TextWriter.Synchronized(wrireFile).WriteLine("Time(ddMMyy_HHmmssfff)" + " " + "Time(s)" + " "+ "x(mm)" + " " + "y(mm)" + " " + "z(mm)" + " " + "rx(deg)" + " " + "ry(deg)" + " " + "rz(deg)");
         }
 
         // ADD SOMETHING TO LOG

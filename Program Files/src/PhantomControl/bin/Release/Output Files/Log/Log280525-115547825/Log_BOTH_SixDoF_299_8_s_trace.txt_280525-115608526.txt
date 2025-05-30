@@ -1,0 +1,11 @@
+[  28/05/25 11:56:08:526  ]    The 6D input file SixDoF_299_8_s_trace.txt has been selected - BOTH PLATFORMS
+[  28/05/25 11:56:08:547  ]    The sample rate from the input file is 0.2s.
+[  28/05/25 11:56:10:788  ]    The 1D input file OneDoF_299_8_s_trace.txt has been selected - BOTH PLATFORMS
+[  28/05/25 11:56:17:307  ]    MODBUS connection via 192.168.94.11 established.
+[  28/05/25 11:56:17:310  ]    Start 6D motion
+[  28/05/25 11:56:17:338  ]    Start 1D motion
+[  28/05/25 11:56:17:402  ]    Opening IP address: 192.168.94.11
+[  28/05/25 12:01:28:018  ]    1D trace is complete
+[  28/05/25 12:01:34:164  ]    1D Robot to Home
+[  28/05/25 12:01:34:178  ]    Opening IP address: 192.168.94.11
+[  28/05/25 12:01:35:212  ]    6D Robot to home

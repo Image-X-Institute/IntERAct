@@ -1,0 +1,30 @@
+[  30/05/25 09:51:17:825  ]    The 6D input file LARK_High_motion_6DoF_internal_trace.txt has been selected - BOTH PLATFORMS
+[  30/05/25 09:51:17:838  ]    The sample rate from the input file is 0.2s.
+[  30/05/25 09:51:20:706  ]    The 1D input file LARK_High_motion_1DoF_resp_trace.txt has been selected - BOTH PLATFORMS
+[  30/05/25 09:51:23:058  ]    MODBUS connection via 192.168.94.11 established.
+[  30/05/25 09:51:23:078  ]    Start 6D motion
+[  30/05/25 09:51:23:111  ]    Start 1D motion
+[  30/05/25 09:51:23:156  ]    Opening IP address: 192.168.94.11
+[  30/05/25 09:53:20:442  ]    Stop 1D motion
+[  30/05/25 09:53:20:465  ]    Stop 6D motion
+[  30/05/25 09:53:20:548  ]    MODBUS disconected from controler
+[  30/05/25 09:53:24:173  ]    MODBUS connection via 192.168.94.11 established.
+[  30/05/25 09:53:24:195  ]    Resume 6D motion time = 113.504s (sliced input file)
+[  30/05/25 09:53:24:213  ]    Resume 1D motion line n° 569 (sliced input file)
+[  30/05/25 09:53:24:234  ]    Opening IP address: 192.168.94.11
+[  30/05/25 09:54:02:169  ]    Stop 1D motion
+[  30/05/25 09:54:02:192  ]    Stop 6D motion
+[  30/05/25 09:54:02:252  ]    MODBUS disconected from controler
+[  30/05/25 09:54:07:139  ]    MODBUS connection via 192.168.94.11 established.
+[  30/05/25 09:54:07:153  ]    Resume 6D motion time = 35.88s (sliced input file)
+[  30/05/25 09:54:07:178  ]    Resume 1D motion line n° 181 (sliced input file)
+[  30/05/25 09:54:07:197  ]    Opening IP address: 192.168.94.11
+[  30/05/25 09:55:53:565  ]    Stop 1D motion
+[  30/05/25 09:55:53:597  ]    Stop 6D motion
+[  30/05/25 09:55:53:629  ]    MODBUS disconected from controler
+[  30/05/25 09:55:55:765  ]    1D Robot to Home
+[  30/05/25 09:55:55:797  ]    Opening IP address: 192.168.94.11
+[  30/05/25 09:55:56:846  ]    6D Robot to home
+[  30/05/25 09:55:59:074  ]    1D Robot to Home
+[  30/05/25 09:55:59:105  ]    Opening IP address: 192.168.94.11
+[  30/05/25 09:56:00:142  ]    6D Robot to home

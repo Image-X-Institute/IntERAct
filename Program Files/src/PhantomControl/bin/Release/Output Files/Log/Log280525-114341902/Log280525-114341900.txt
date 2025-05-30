@@ -1,0 +1,13 @@
+[  28/05/25 11:43:41:931  ]    Loading payloadMass from settings.txt = 0
+[  28/05/25 11:43:41:950  ]    User changed the payloadMass = 0
+[  28/05/25 11:43:41:996  ]    Loading payloadMass from settings.txt = 0
+[  28/05/25 11:43:42:010  ]    User changed the payloadMass = 0
+[  28/05/25 11:43:48:899  ]    CURRENT ROBOT SELECTED: BOTH
+[  28/05/25 11:43:48:926  ]    1D Robot Connected: Serial port ({portInput}) opened successfully.
+[  28/05/25 11:43:48:937  ]    Opening IP address: 192.168.94.11
+[  28/05/25 11:44:09:984  ]    Error faild to connect on port 30001
+[  28/05/25 11:44:11:046  ]    MODBUS connection attempt via 192.168.94.11 failed.
+[  28/05/25 11:46:17:927  ]    1D Robot to Home
+[  28/05/25 11:46:17:947  ]    Opening IP address: 192.168.94.11
+[  28/05/25 11:46:39:005  ]    Error faild to connect on port 30001
+[  28/05/25 11:46:39:014  ]    6D Robot to home
