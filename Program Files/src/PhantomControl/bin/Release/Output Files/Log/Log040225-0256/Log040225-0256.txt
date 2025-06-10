@@ -1,8 +1,0 @@
-[  04/02/25 02:56:30  ]    Loading payloadMass from settings.txt = 0
-[  04/02/25 02:56:30  ]    User changed the payloadMass = 0
-[  04/02/25 02:56:31  ]    Loading payloadMass from settings.txt = 0
-[  04/02/25 02:56:31  ]    User changed the payloadMass = 0
-[  04/02/25 02:56:59  ]    CURRENT ROBOT SELECTED: 6DOF
-[  04/02/25 02:56:59  ]    Opening IP address: 192.168.94.11
-[  04/02/25 02:57:20  ]    Error faild to connect on port 30001
-[  04/02/25 02:57:21  ]    MODBUS connection attempt via 192.168.94.11 failed.

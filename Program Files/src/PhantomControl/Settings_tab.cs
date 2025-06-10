@@ -41,7 +41,7 @@ namespace PhantomControl
                 motionTabPub = mct;
             }
         }
-
+        
 
         /// <summary>
         /// KM - added default motion types - movej & movel
@@ -100,13 +100,13 @@ namespace PhantomControl
            string settingsFilePath;
            int index = appDirectory.IndexOf(programFilesIndex);
            string baseProgramFilesPath = appDirectory.Substring(0, index + programFilesIndex.Length);
-           #if DEBUG
-               settingsFilePath = Path.Combine(baseProgramFilesPath, "src", "PhantomControl", "bin", "Debug", "settings.txt");
-           #else
-               settingsFilePath = Path.Combine(baseProgramFilesPath, "src", "PhantomControl", "bin", "Release", "settings.txt");
-           #endif
-
-           if (File.Exists(settingsFilePath)) //if that pathway does not work, put the complete file pathway in your local computer where the settings file have changed.
+            //#if DEBUG
+            //    settingsFilePath = Path.Combine(baseProgramFilesPath, "src", "PhantomControl", "bin", "Debug", "settings.txt");
+            //#else
+            //    settingsFilePath = Path.Combine(appDirectory, "\\settings.txt");
+            //#endif
+           settingsFilePath = Path.Combine(appDirectory, "settings.txt");
+            if (File.Exists(settingsFilePath)) //if that pathway does not work, put the complete file pathway in your local computer where the settings file have changed.
                {
                    try
                {
@@ -144,7 +144,7 @@ namespace PhantomControl
                     UrSettings.horizontalMode[3] = Convert.ToDouble(dictionary["Horizontal Volt-speed relationship going down : y-intercept"]);
                     UrSettings.MaximumLinesInputFile6D = Convert.ToInt32(dictionary["Maximum of 6D input lines"]);
                 }
-                catch (Exception excep)
+                catch (Exception)
                 {
                     UpdateStatusBarMessage.ShowStatusMessage("Error loading settings from settings.txt");
                     Logger.addToLogFile("Error loading settings from settings.txt");
@@ -157,6 +157,10 @@ namespace PhantomControl
             }
         }
 
+        public void txtBoxUpdate(string input) {
+            this.txtBox_time.Text = input;
+        
+        }
         public void SaveSettings()
         {
             string[] lines = new string[19];
@@ -504,13 +508,13 @@ namespace PhantomControl
 
         }
 
-        private void textBox_1dSR_TextChanged(object sender, EventArgs e)
-        {
-            if (txtBox_time.Text != "" || txtBox_time.Text != "0")
-            {
-                int value;
-            }
-        }
+        //private void textBox_1dSR_TextChanged(object sender, EventArgs e)
+        //{
+        //    if (txtBox_time.Text != "" || txtBox_time.Text != "0")
+        //    {
+        //        int value;
+        //    }
+        //}
 
         bool expand = false;
 

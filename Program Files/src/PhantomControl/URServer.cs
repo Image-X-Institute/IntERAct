@@ -151,44 +151,46 @@ namespace PhantomControl
          */
         public void generateUrScript(double time, double[] TCP, double mass)
         {
-            // Clears UrScriptProgram.urList if full, this is so you dont get multiple UrScript programs sent to the robot.
-            if (UrScriptProgram.urList.Count != 0)
+            lock (UrScriptProgram.urList)
             {
-                UrScriptProgram.urList.Clear();
-            }
-
-            // Runs the crossCalibration method.
-            crossCalibration();
-
-            // UrScriptProgram object is called, commands in the URScript language are placed as a string in the .urList variable as List<strings> datatype. 
-            UrScriptProgram.urList.Add("def moving():");
-
-            UrScriptProgram.urList.Add(setPayLoad(mass));
-            UrScriptProgram.urList.Add(setTPC(TCP));
-
-
-            /* UrSettings class is called to generate the selected motion type; movep, movej, or movel. TranslationList, and axisAngleList vectors which store the transformed and calibrated motion poses
-             * are converted into a string and converted into the UrScript move command format e.g. movej(x,y,z,Rx,Ry,Rz, velocity, accelration, time) --> Units (m,rad [Axis Angle]).
-             */
-
-            if (UrSettings.MotionType == "movej")
-            {
-                Console.WriteLine(MotionTraces.Size.ToString());
-                for (int i = 0; i < MotionTraces.Size; i++)
+                // Clears UrScriptProgram.urList if full, this is so you dont get multiple UrScript programs sent to the robot.
+                if (UrScriptProgram.urList.Count != 0)
                 {
-                    UrScriptProgram.urList.Add("movej(p[" + translationList[i].X.ToString() + ", " + translationList[i].Y.ToString() + ", " + translationList[i].Z.ToString() + ", " + axisAngleList[i].X.ToString() + ", " + axisAngleList[i].Y.ToString() + ", " + axisAngleList[i].Z.ToString() + "]" + ", " + "a = " + "0.2" + ", " + "v = " + "0.2" + ", " + "t = " + time.ToString() + ")");
+                    UrScriptProgram.urList.Clear();
                 }
-            }
-            if (UrSettings.MotionType == "movel")
-            {
-                for (int i = 0; i < MotionTraces.Size; i++)
+
+                // Runs the crossCalibration method.
+                crossCalibration();
+
+                // UrScriptProgram object is called, commands in the URScript language are placed as a string in the .urList variable as List<strings> datatype. 
+                UrScriptProgram.urList.Add("def moving():");
+
+                UrScriptProgram.urList.Add(setPayLoad(mass));
+                UrScriptProgram.urList.Add(setTPC(TCP));
+
+
+                /* UrSettings class is called to generate the selected motion type; movep, movej, or movel. TranslationList, and axisAngleList vectors which store the transformed and calibrated motion poses
+                 * are converted into a string and converted into the UrScript move command format e.g. movej(x,y,z,Rx,Ry,Rz, velocity, accelration, time) --> Units (m,rad [Axis Angle]).
+                 */
+
+                if (UrSettings.MotionType == "movej")
                 {
-                    UrScriptProgram.urList.Add("movel(p[" + translationList[i].X.ToString() + ", " + translationList[i].Y.ToString() + ", " + translationList[i].Z.ToString() + ", " + axisAngleList[i].X.ToString() + ", " + axisAngleList[i].Y.ToString() + ", " + axisAngleList[i].Z.ToString() + "]" + ", " + "a = " + "0.2" + ", " + "v = " + "0.2" + ", " + "t = " + time.ToString() + ")");
+                    Console.WriteLine(MotionTraces.Size.ToString());
+                    for (int i = 0; i < MotionTraces.Size; i++)
+                    {
+                        UrScriptProgram.urList.Add("movej(p[" + translationList[i].X.ToString() + ", " + translationList[i].Y.ToString() + ", " + translationList[i].Z.ToString() + ", " + axisAngleList[i].X.ToString() + ", " + axisAngleList[i].Y.ToString() + ", " + axisAngleList[i].Z.ToString() + "]" + ", " + "a = " + "0.2" + ", " + "v = " + "0.2" + ", " + "t = " + time.ToString() + ")");
+                    }
                 }
+                if (UrSettings.MotionType == "movel")
+                {
+                    for (int i = 0; i < MotionTraces.Size; i++)
+                    {
+                        UrScriptProgram.urList.Add("movel(p[" + translationList[i].X.ToString() + ", " + translationList[i].Y.ToString() + ", " + translationList[i].Z.ToString() + ", " + axisAngleList[i].X.ToString() + ", " + axisAngleList[i].Y.ToString() + ", " + axisAngleList[i].Z.ToString() + "]" + ", " + "a = " + "0.2" + ", " + "v = " + "0.2" + ", " + "t = " + time.ToString() + ")");
+                    }
+                }
+
+                UrScriptProgram.urList.Add("end");
             }
-
-            UrScriptProgram.urList.Add("end");
-
             return;
         }
 
@@ -207,7 +209,7 @@ namespace PhantomControl
                     IPAddress ipAddress = IPAddress.Parse(UrSettings.hostIPAddress);
                     db.Connect(ipAddress, PORT_29999);
                 }
-                catch (Exception excep)
+                catch (Exception)
                 {
                     UpdateStatusBarMessage.ShowStatusMessage("Error faild to connect on port " + PORT_29999.ToString());
                     Logger.addToLogFile("Error faild to connect on port " + PORT_29999.ToString());
@@ -301,7 +303,7 @@ namespace PhantomControl
                     IPAddress ipAddress = IPAddress.Parse(UrSettings.hostIPAddress);
                     s.Connect(ipAddress, PORT_30001);
                 }
-                catch (Exception excep)
+                catch (Exception)
                 {
                     UpdateStatusBarMessage.ShowStatusMessage("Error faild to connect on port " + PORT_30001.ToString());
                     Logger.addToLogFile("Error faild to connect on port " + PORT_30001.ToString());

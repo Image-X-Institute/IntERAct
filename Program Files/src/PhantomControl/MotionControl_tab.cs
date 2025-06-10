@@ -73,7 +73,7 @@ namespace PhantomControl
         //TestCS
 
         private string iconPath = "Resources\\Icons\\";
-
+        PhantomControl.Settings_tab settings_Tab;
         bool _keepMonitoring = false;
         bool _keep1D = false;
         bool _firstRun = true;
@@ -113,6 +113,33 @@ namespace PhantomControl
                 flatButton_ResumeMotions.Enabled = false;
 
             }
+        }
+        public MotionControl_tab(ref PhantomControl.Settings_tab settingstab)
+        {
+            if (!this.DesignMode)
+            {
+                InitializeComponent();
+
+                MotionTraces.setStartingPose();
+                maxXValue = 1;
+                initialseChart();
+
+
+
+
+                //Add Led Bulbs 
+                AddLedbulbs();
+
+                // Check which robot was selected and disable he necessary buttons
+
+                UpdateButtons();
+                flatButton_Home.Enabled = false;
+                flatButton_LoadTraces.Enabled = false;
+                flatButton_PlayStopMotion.Enabled = false;
+                flatButton_ResumeMotions.Enabled = false;
+
+            }
+            this.settings_Tab = settingstab;
         }
 
         private void UpdateButtons()
@@ -447,7 +474,7 @@ namespace PhantomControl
 
             for (int i = 0; i < MotionTraces.Size; i++)
             {
-                double t = MotionTraces.t[i];
+                double t = MotionTraces.t[i]-MotionTraces.t[0];
                 double x = MotionTraces.X[i] * 1000;
                 double y = MotionTraces.Y[i] * 1000;
                 double z = MotionTraces.Z[i] * 1000;
@@ -459,7 +486,7 @@ namespace PhantomControl
                 /*                foreach (var XAxis in cartesianChart_translation.AxisX)
                                 {
                                     XAxis.MinValue = 0;
-                                    XAxis.MaxValue = MotionTraces.t[i];
+                                    XAxis.MaxValue = MotionTraces.t[i]-MotionTraces.t[0];
                                     XAxis.SetRange(XAxis.MinValue, XAxis.MaxValue);
                                 }*/
                 rangeBar.Maximum = (int)MotionTraces.t.Max();
@@ -661,7 +688,7 @@ namespace PhantomControl
                 ColumnsCount = Array.ConvertAll(stream.ReadLine().Split(' '), Double.Parse).Length;
             }
 
-            catch (Exception excep)
+            catch (Exception)
             {
                 UpdateStatusBarMessage.ShowStatusMessage("Error: Invalid file format");
                 Logger.addToLogFile("Error: Invalid file format");
@@ -785,7 +812,9 @@ namespace PhantomControl
                             }
 
                             UrSettings.TimeKinematics = MotionTraces.t[1] - MotionTraces.t[0];           //Read the frequency from the input file 
-                            Settings_tab.txtBox_time.Text = Convert.ToString(UrSettings.TimeKinematics);
+                            
+
+                            settings_Tab.txtBox_time.Text = Convert.ToString(UrSettings.TimeKinematics);
                             Logger.addToLogFile("The sample rate from the input file is " + UrSettings.TimeKinematics + "s.");
                             MotionTraces.Size = counter;
                             if (MotionTraces.Size > UrSettings.maximumLinesInputFile6D)
@@ -896,8 +925,9 @@ namespace PhantomControl
 
             if (UrSettings.writeUrScriptFile == true)
             {
-                Thread saveUrScriptFiles = new Thread(saveUrScripts);
-                saveUrScriptFiles.Start();
+                //Thread saveUrScriptFiles = new Thread(saveUrScripts);
+                //saveUrScriptFiles.Start();
+                saveUrScripts();
             }
             else
             {
@@ -910,11 +940,24 @@ namespace PhantomControl
 
         private void saveUrScripts()
         {
-            foreach (string s in UrScriptProgram.urList)
-            {
-                Logger.addToUrScriptFile(s);
-            }
+            Invoke(new Action(() => { flatButton_PlayStopMotion.Enabled = false; }));
 
+            lock (UrScriptProgram.urList)
+            {
+
+                var urscriptlogger = new Logger();
+                int localcount = 0;
+                foreach (string s in UrScriptProgram.urList)
+                {
+                    localcount += 1;
+                    if (localcount >= 5980)
+                    {
+                        Console.WriteLine(s);
+                    }
+                    urscriptlogger.addToUrScriptFile(s);
+                }
+                urscriptlogger.closeLogger();
+            }
 
             Invoke(new Action(() =>
             {
@@ -1125,7 +1168,6 @@ namespace PhantomControl
 
         private void flatButton_PlayStopMotion_Click(object sender, EventArgs e)
         {
-
             bool selectedPlay = true;
             if (_playstopmotionclicked == true)
             {
@@ -1473,7 +1515,7 @@ namespace PhantomControl
             {
                 modbusClient.Connect();
             }
-            catch (Exception excep)
+            catch (Exception)
             {
                 UpdateStatusBarMessage.ShowStatusMessage("MODBUS connection attempt via " + UrSettings.hostIPAddress + " failed.");
                 Logger.addToLogFile("MODBUS connection attempt via " + UrSettings.hostIPAddress + " failed.");
@@ -1526,7 +1568,7 @@ namespace PhantomControl
                 UpdateStatusBarMessage.ShowStatusMessage("MODBUS connection via " + UrSettings.hostIPAddress + " established.");
                 Logger.addToLogFile("MODBUS connection via " + UrSettings.hostIPAddress + " established.");
             }
-            catch (Exception excep)
+            catch (Exception)
             {
                 UpdateStatusBarMessage.ShowStatusMessage("MODBUS connection attempt via " + UrSettings.hostIPAddress + " failed.");
                 Logger.addToLogFile("MODBUS connection attempt via " + UrSettings.hostIPAddress + " failed.");
@@ -1585,9 +1627,9 @@ namespace PhantomControl
             Console.WriteLine(MotionTraces.t.Count());
             for (int i = 0; i < MotionTraces.Size; i++)
             {
-                if ((Index6DMonitoring - MotionTraces.t[i]) < 0)
+                if ((Index6DMonitoring - (MotionTraces.t[i] - MotionTraces.t[0])) < 0)
                 {
-                    Index6DTimeTravel = (int)(1000 * Math.Round(-(Index6DMonitoring - MotionTraces.t[i]), 2));
+                    Index6DTimeTravel = (int)(1000 * Math.Round(-(Index6DMonitoring - (MotionTraces.t[i] - MotionTraces.t[0])), 2));
                     index = i;
                     break;
                 }
@@ -1621,6 +1663,7 @@ namespace PhantomControl
             double absoluteTime = 0;
             double currentTime = 0;
             double time = 0;
+            string abs_time = DateTime.Now.ToString("ddMMyy_HHmmssfff");
             double time_check_plot = 0;
             double time_check_display = 0;
 
@@ -1669,6 +1712,7 @@ namespace PhantomControl
                     }
                     currentTime = getTime(_holdingRegTime);
                     time = currentTime - absoluteTime;
+                    abs_time = DateTime.Now.ToString("ddMMyy_HHmmssfff");
                     if (!boolExceedMemory)
                     {
                         Index6DMonitoring = time;
@@ -1720,7 +1764,7 @@ namespace PhantomControl
 
                                 if (UrSettings.writeDataFile == true)
                                 {
-                                    Logger.saveDataToFile(time, sixParamArray[0], sixParamArray[1], sixParamArray[2], sixParamArray[3], sixParamArray[4], sixParamArray[5]);
+                                    Logger.saveDataToFile(abs_time, time, sixParamArray[0], sixParamArray[1], sixParamArray[2], sixParamArray[3], sixParamArray[4], sixParamArray[5]);
                                 }
 
                                 if (time == 0 || time > time_check_plot + 0.1)
@@ -1982,7 +2026,7 @@ namespace PhantomControl
             {
                 modbusClient.Connect();
             }
-            catch (Exception excep)
+            catch (Exception)
             {
                 UpdateStatusBarMessage.ShowStatusMessage("MODBUS connection attempt via " + UrSettings.hostIPAddress + " failed.");
                 Logger.addToLogFile("MODBUS connection attempt via " + UrSettings.hostIPAddress + " failed.");
@@ -2363,13 +2407,12 @@ namespace PhantomControl
             DateTime previous2 = DateTime.Now;
             DateTime playmotionTime = DateTime.Now;
 
-            Logger.Timestamps1DFullPath = "Output Files/1DPlatform/Timestamps/" + Path.GetFileName(_filePath1D) + "_" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
+            Logger.Timestamps1DFullPath = "Output Files/1DPlatform/Timestamps/" + Path.GetFileName(_filePath1D) + "_" + DateTime.Now.ToString("ddMMyy-HHmmssfff") + ".txt";
             Logger.addToTimestamps1DFile(Path.GetFileName(_filePath1D) + '\n' + "1D starting time : " + playmotionTime.ToString("HH:mm:ss:fff"));
-            Logger.ArduinoSendFullPath = "Output Files/1DPlatform/Arduino/Send/" + Path.GetFileName(_filePath1D) + "_" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
-            Logger.ArduinoGetFullPath = "Output Files/1DPlatform/Arduino/Get/" + Path.GetFileName(_filePath1D) + "_" + DateTime.Now.ToString("ddMMyy-hhmm") + ".txt";
+            Logger.ArduinoSendFullPath = "Output Files/1DPlatform/Arduino/Send/" + Path.GetFileName(_filePath1D) + "_" + DateTime.Now.ToString("ddMMyy-HHmmssfff") + ".txt";
+            Logger.ArduinoGetFullPath = "Output Files/1DPlatform/Arduino/Get/" + Path.GetFileName(_filePath1D) + "_" + DateTime.Now.ToString("ddMMyy-HHmmssfff") + ".txt";
 
             Stopwatch stopwatch = Stopwatch.StartNew();
-            string data;
 
             for (int i = 0; i < velocityValues.Count; i++)
             {
