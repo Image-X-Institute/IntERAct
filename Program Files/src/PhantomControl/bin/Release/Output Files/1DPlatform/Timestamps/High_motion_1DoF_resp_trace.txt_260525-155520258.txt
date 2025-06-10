@@ -1,4 +1,0 @@
-High_motion_1DoF_resp_trace.txt
-1D starting time : 15:55:20:258
-1D end time : 16:00:19:818
-

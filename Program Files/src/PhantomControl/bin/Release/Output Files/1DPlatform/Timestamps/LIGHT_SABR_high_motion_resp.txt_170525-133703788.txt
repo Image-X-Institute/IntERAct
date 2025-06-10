@@ -1,2 +1,0 @@
-LIGHT_SABR_high_motion_resp.txt
-1D starting time : 13:37:03:788

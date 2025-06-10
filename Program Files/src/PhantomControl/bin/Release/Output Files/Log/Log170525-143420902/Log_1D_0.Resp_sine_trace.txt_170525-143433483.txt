@@ -1,6 +1,0 @@
-[  17/05/25 14:34:33:483  ]    The 1D input file 0.Resp_sine_trace.txt has been selected
-[  17/05/25 14:34:41:614  ]    Start 1D motion
-[  17/05/25 14:37:14:864  ]    1D trace is complete
-[  17/05/25 14:37:15:715  ]    Stop 1D motion
-[  17/05/25 14:37:16:730  ]    1D Robot to Home
-[  17/05/25 14:44:42:133  ]    1D Robot to Home

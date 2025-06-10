@@ -1,4 +1,0 @@
-LIGHT_SABR_regular_motion_1_resp.txt
-1D starting time : 13:15:43:391
-1D end time : 13:20:40:753
-

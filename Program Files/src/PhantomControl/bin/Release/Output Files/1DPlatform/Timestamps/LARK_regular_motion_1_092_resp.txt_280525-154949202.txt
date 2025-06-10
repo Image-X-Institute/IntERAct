@@ -1,2 +1,0 @@
-LARK_regular_motion_1_092_resp.txt
-1D starting time : 15:49:49:202

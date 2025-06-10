@@ -1,4 +1,0 @@
-Large_spike_1DoF_resp_trace.txt
-1D starting time : 10:31:45:141
-1D end time : 10:36:44:694
-

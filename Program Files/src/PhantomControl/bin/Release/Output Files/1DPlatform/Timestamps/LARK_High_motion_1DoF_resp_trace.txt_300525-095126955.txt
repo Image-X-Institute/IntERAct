@@ -1,2 +1,0 @@
-LARK_High_motion_1DoF_resp_trace.txt
-1D starting time : 09:51:26:955

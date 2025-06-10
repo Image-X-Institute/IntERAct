@@ -1,4 +1,0 @@
-[  26/05/25 13:00:06:384  ]    The 6D input file SixDoF_20_min_trace.txt has been selected - BOTH PLATFORMS
-[  26/05/25 13:00:06:412  ]    The sample rate from the input file is 0.2s.
-[  26/05/25 13:00:06:434  ]    Warning: The number of lines from the input file exceeds the limit capacity. The 6DoF robot will stop and resume the motion after 5 minutes
-[  26/05/25 13:00:14:818  ]    The 1D input file OneDoF_20_min_trace.txt has been selected - BOTH PLATFORMS

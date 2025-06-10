@@ -1,4 +1,0 @@
-[  26/05/25 14:26:33:158  ]    The 1D input file OneDoF_299_8_s_trace.txt has been selected
-[  26/05/25 14:26:43:646  ]    Start 1D motion
-[  26/05/25 14:27:17:120  ]    Stop 1D motion
-[  26/05/25 14:27:17:919  ]    1D Robot to Home
