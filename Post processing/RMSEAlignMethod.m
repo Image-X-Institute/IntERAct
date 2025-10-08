@@ -55,9 +55,6 @@ set(gca, 'FontSize', 12, 'LineWidth', 1.5);
 
 hold off;
 
-
-
-
 function [timeShift, amplitudeShift, stats] = findOptimalShift(dataHexaTimestamps, dataHexaY, dataKIMTimestamps, dataKIMYCent)
     [uniqueHexaTimestamps, uniqueIndices] = unique(dataHexaTimestamps);
     uniqueHexaY = dataHexaY(uniqueIndices);
