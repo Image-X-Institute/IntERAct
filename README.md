@@ -57,6 +57,7 @@ The software was written and tested in C# using Visual Studio 2019 with .NET Fra
 
 - S. Alnaghy et al., Phys. Med. Biol. 64 105021 (2019), [doi:10.1088/1361-6560/ab1935](https://doi.org/10.1088/1361-6560/ab1935)
 - Shi K. et al., Med Phys. 47(12):6068-6076 (2020), [doi: 10.1002/mp.14502](https://aapm.onlinelibrary.wiley.com/doi/full/10.1002/mp.14502)
+- Kaczynska A., Kuban C. et al., Phys. Eng. Sci. Med. (2026) [doi: 10.1007/s13246-026-01710-w](https://link.springer.com/article/10.1007/s13246-026-01710-w)
 
 ## Clinical Trials
 
