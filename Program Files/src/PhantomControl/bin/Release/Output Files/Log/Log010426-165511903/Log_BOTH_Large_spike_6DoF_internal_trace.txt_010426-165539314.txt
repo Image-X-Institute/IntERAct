@@ -1,0 +1,16 @@
+[  01/04/26 16:55:39:314  ]    The 6D input file Large_spike_6DoF_internal_trace.txt has been selected - BOTH PLATFORMS
+[  01/04/26 16:55:39:314  ]    The sample rate from the input file is 0.2s.
+[  01/04/26 16:55:42:581  ]    The 1D input file Large_spike_1DoF_resp_trace.txt has been selected - BOTH PLATFORMS
+[  01/04/26 16:56:01:594  ]    MODBUS connection via 192.168.94.11 established.
+[  01/04/26 16:56:01:594  ]    Start 6D motion
+[  01/04/26 16:56:01:608  ]    Start 1D motion
+[  01/04/26 16:56:01:672  ]    Opening IP address: 192.168.94.11
+[  01/04/26 16:59:24:741  ]    Stop 1D motion
+[  01/04/26 16:59:24:741  ]    Stop 6D motion
+[  01/04/26 16:59:24:757  ]    MODBUS disconected from controler
+[  01/04/26 16:59:26:704  ]    1D Robot to Home
+[  01/04/26 16:59:26:704  ]    Opening IP address: 192.168.94.11
+[  01/04/26 16:59:27:728  ]    6D Robot to home
+[  01/04/26 16:59:30:469  ]    1D Robot to Home
+[  01/04/26 16:59:30:479  ]    Opening IP address: 192.168.94.11
+[  01/04/26 16:59:31:489  ]    6D Robot to home

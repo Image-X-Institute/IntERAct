@@ -1,0 +1,1 @@
+[  17/02/26 10:50:45:519  ]    The 1D input file Regular_motion_1_1DoF_resp_trace.txt has been selected

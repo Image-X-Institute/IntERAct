@@ -1,21 +1,45 @@
-addpath('PathFolder')
+addpath("C:\Users\akac0297\source\repos\IntERAct\Post processing\")
 which read1Dfile
 which read6Dfile.m
 which readDistFile.m
 which readTimeFile.m
 
-[tracesx, tracesy] = read1Dfile("1DInputPathFile");
+    % test 1
+    folder = 'Figure 5 - Table 2\LIGHT SABR Lung High Complexity\Test 1\';
+    traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20240530_134542.txt']), 0);
+    traces1DRealSenseDist1 = readDistFile(strcat([folder, 'dist_array1D20240530_134542.txt']), 0);
+
+    traces6DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20240530_134542.txt']), 0);
+    traces6DRealSenseDist1 = readDistFile(strcat([folder, 'dist_array6D20240530_134542.txt']), 0);
+    % test 2
+    % folder = 'Figure 5 - Table 2\LIGHT SABR Lung High Complexity\Test 2\';
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20240530_135234.txt']), 0);
+    % traces1DRealSenseDist1 = readDistFile(strcat([folder, 'dist_array1D20240530_135234.txt']), 0);
+    % 
+    % traces6DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20240530_135234.txt']), 0);
+    % traces6DRealSenseDist1 = readDistFile(strcat([folder, 'dist_array6D20240530_135234.txt']), 0);
+    % test 3
+    % folder = 'Figure 5 - Table 2\LIGHT SABR Lung High Complexity\Test 3\';
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20240530_135903.txt']), 0);
+    % traces1DRealSenseDist1 = readDistFile(strcat([folder, 'dist_array1D20240530_135903.txt']), 0);
+    % 
+    % traces6DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20240530_135903.txt']), 0);
+    % traces6DRealSenseDist1 = readDistFile(strcat([folder, 'dist_array6D20240530_135903.txt']), 0);
+
+[tracesx, tracesy] = read1Dfile('Figure 5 - Table 2\LIGHT SABR Lung High Complexity\4.High_Complexity_resp.txt');
 
 %The second parameter of these functions is set to shift by a constant
 %value t or y coordinates. 
 
-traces1DRealSenseTime1 = readTimeFile("1DTimestampsOutputPathFile", 0);
-traces1DRealSenseDist1 = readDistFile("1DisplacementOutputPathFile", 0);
+% folder = 'Figure 5 - Table 2\LIGHT SABR Lung High Complexity\Test 3\';
+% 
+% traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20240530_135903.txt']), 0);
+% traces1DRealSenseDist1 = readDistFile(strcat([folder, 'dist_array1D20240530_135903.txt']), 0);
+% 
+% traces6DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20240530_135903.txt']), 0);
+% traces6DRealSenseDist1 = readDistFile(strcat([folder, 'dist_array6D20240530_135903.txt']), 0);
 
-traces6DRealSenseTime1 = readTimeFile("6DTimestampsOutputPathFile", 0);
-traces6DRealSenseDist1 = readDistFile("6DDisplacementOututPathFile", 0);
-
-[traces6DTimeInput, traces6DAPInput] = read6Dfile('6DOutputPathFile.txt');
+[traces6DTimeInput, traces6DAPInput] = read6Dfile("Figure 5 - Table 2\LIGHT SABR Lung High Complexity\4.High_Complexity SI.txt",4);
 
 %Call findOptimalShift in order to get the optimal shift for 1D and 6D
 %motion traces. The algorithm minimises the RMSE between interpolated input

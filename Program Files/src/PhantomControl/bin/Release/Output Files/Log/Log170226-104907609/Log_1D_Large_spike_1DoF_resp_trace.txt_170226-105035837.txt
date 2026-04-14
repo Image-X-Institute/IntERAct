@@ -1,0 +1,1 @@
+[  17/02/26 10:50:35:837  ]    The 1D input file Large_spike_1DoF_resp_trace.txt has been selected

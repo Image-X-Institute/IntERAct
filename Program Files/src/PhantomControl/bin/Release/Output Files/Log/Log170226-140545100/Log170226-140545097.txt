@@ -1,0 +1,8 @@
+[  17/02/26 14:05:45:132  ]    Loading payloadMass from settings.txt = 0
+[  17/02/26 14:05:45:141  ]    User changed the payloadMass = 0
+[  17/02/26 14:05:45:164  ]    Loading payloadMass from settings.txt = 0
+[  17/02/26 14:05:45:180  ]    User changed the payloadMass = 0
+[  17/02/26 14:05:51:732  ]    CURRENT ROBOT SELECTED: 1D
+[  17/02/26 14:05:51:748  ]    1D Robot Connected: Serial port ({portInput}) opened successfully.
+[  17/02/26 14:05:56:017  ]    1D Robot to Home
+[  17/02/26 14:05:59:699  ]    Error: Invalid format, format needed: [t  Y]

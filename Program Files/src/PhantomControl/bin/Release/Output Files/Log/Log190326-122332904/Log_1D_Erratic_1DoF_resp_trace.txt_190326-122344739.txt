@@ -1,0 +1,6 @@
+[  19/03/26 12:23:44:740  ]    The 1D input file Erratic_1DoF_resp_trace.txt has been selected
+[  19/03/26 12:23:54:655  ]    Start 1D motion
+[  19/03/26 12:28:59:214  ]    1D trace is complete
+[  19/03/26 12:29:02:012  ]    Stop 1D motion
+[  19/03/26 12:29:02:691  ]    1D Robot to Home
+[  19/03/26 12:30:07:293  ]    1D Robot to Home

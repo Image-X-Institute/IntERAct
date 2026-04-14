@@ -1089,7 +1089,7 @@ namespace PhantomControl
         private async Task RestartingProcess6D()
         {
             Console.WriteLine("Exceed memory");
-            int MaxLines = 1501;
+            int MaxLines = UrSettings.maximumLinesInputFile6D;
             int CurrentLines = MotionTraces.Size;
             int NbRestart = (int)(CurrentLines / MaxLines);
             int remainder = CurrentLines - (NbRestart * MaxLines);

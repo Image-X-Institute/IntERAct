@@ -1,0 +1,9 @@
+[  05/03/26 13:54:43:095  ]    The 6D input file High_motion_6DoF_internal_trace.txt has been selected
+[  05/03/26 13:54:43:102  ]    The sample rate from the input file is 0.2s.
+[  05/03/26 13:54:50:224  ]    MODBUS connection via 192.168.94.11 established.
+[  05/03/26 13:54:50:230  ]    Start 6D motion
+[  05/03/26 13:54:50:328  ]    Opening IP address: 192.168.94.11
+[  05/03/26 13:56:22:330  ]    Stop 6D motion
+[  05/03/26 13:56:22:393  ]    MODBUS disconected from controler
+[  05/03/26 13:56:23:876  ]    Opening IP address: 192.168.94.11
+[  05/03/26 13:56:24:888  ]    6D Robot to home

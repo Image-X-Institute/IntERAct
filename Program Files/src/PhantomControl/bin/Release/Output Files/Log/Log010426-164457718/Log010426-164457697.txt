@@ -1,0 +1,15 @@
+[  01/04/26 16:44:57:747  ]    Loading payloadMass from settings.txt = 0
+[  01/04/26 16:44:57:752  ]    User changed the payloadMass = 0
+[  01/04/26 16:44:57:777  ]    Loading payloadMass from settings.txt = 0
+[  01/04/26 16:44:57:777  ]    User changed the payloadMass = 0
+[  01/04/26 16:48:10:751  ]    User changed the payloadMass = 0
+[  01/04/26 16:48:11:045  ]    User changed the payloadMass = 0.6
+[  01/04/26 16:48:11:128  ]    User changed the payloadMass = 0.6
+[  01/04/26 16:48:11:208  ]    User changed the payloadMass = 0.606
+[  01/04/26 16:48:23:531  ]    CURRENT ROBOT SELECTED: BOTH
+[  01/04/26 16:48:23:555  ]    1D Robot Connected: Serial port ({portInput}) opened successfully.
+[  01/04/26 16:48:23:555  ]    Opening IP address: 192.168.94.11
+[  01/04/26 16:48:24:443  ]    1D Robot to Home
+[  01/04/26 16:48:24:443  ]    Opening IP address: 192.168.94.11
+[  01/04/26 16:48:25:465  ]    6D Robot to home
+[  01/04/26 16:48:25:470  ]    Start Position Set To:  476.3 -21.1 225.1 -1.21 1.207 -1.216

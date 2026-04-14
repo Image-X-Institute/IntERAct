@@ -1,0 +1,5 @@
+[  24/02/26 10:46:07:572  ]    The 1D input file Regular_motion_2_1DoF_resp_trace.txt has been selected
+[  24/02/26 10:46:19:481  ]    Start 1D motion
+[  24/02/26 10:51:32:911  ]    1D trace is complete
+[  24/02/26 10:51:38:057  ]    Stop 1D motion
+[  24/02/26 10:51:38:832  ]    1D Robot to Home

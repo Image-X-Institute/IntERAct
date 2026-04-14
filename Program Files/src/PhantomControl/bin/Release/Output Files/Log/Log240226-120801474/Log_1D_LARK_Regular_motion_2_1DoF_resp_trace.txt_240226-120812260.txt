@@ -1,0 +1,2 @@
+[  24/02/26 12:08:12:260  ]    The 1D input file LARK_Regular_motion_2_1DoF_resp_trace.txt has been selected
+[  24/02/26 12:08:21:677  ]    Start 1D motion

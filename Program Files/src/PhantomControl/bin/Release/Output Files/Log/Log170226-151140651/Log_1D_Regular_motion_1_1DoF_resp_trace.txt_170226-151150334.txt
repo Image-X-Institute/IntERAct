@@ -1,0 +1,3 @@
+[  17/02/26 15:11:50:337  ]    The 1D input file Regular_motion_1_1DoF_resp_trace.txt has been selected
+[  17/02/26 15:12:10:936  ]    Start 1D motion
+[  17/02/26 15:17:17:561  ]    1D trace is complete

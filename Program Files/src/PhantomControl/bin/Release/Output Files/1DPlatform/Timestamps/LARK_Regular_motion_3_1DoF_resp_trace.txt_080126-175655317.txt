@@ -1,0 +1,2 @@
+LARK_Regular_motion_3_1DoF_resp_trace.txt
+1D starting time : 17:56:55:317

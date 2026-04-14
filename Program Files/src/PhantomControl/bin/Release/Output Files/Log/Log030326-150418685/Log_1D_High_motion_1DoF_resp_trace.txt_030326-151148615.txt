@@ -1,0 +1,5 @@
+[  03/03/26 15:11:48:615  ]    The 1D input file High_motion_1DoF_resp_trace.txt has been selected
+[  03/03/26 15:11:59:275  ]    Start 1D motion
+[  03/03/26 15:17:16:908  ]    Stop 1D motion
+[  03/03/26 15:17:17:541  ]    1D Robot to Home
+[  03/03/26 15:17:20:128  ]    1D trace is complete

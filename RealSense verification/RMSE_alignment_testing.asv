@@ -1,0 +1,531 @@
+clear; close all;
+
+addpath("C:\Users\akac0297\source\repos\IntERAct\Post processing\")
+which read1Dfile
+which read6Dfile.m
+which readDistFile.m
+which readTimeFile.m
+
+folder = 'C:\Users\akac0297\source\repos\IntERAct\RealSense verification\';
+scale_factor = 1.0;
+
+%% Third test - after reconnecting the power supply properly
+    % % LARK Regular motion 1
+    % trace = 'LARK regular 1';
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260107_140917.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260107_140917.txt']), 0)*scale_factor;
+    % [tracesx, tracesy] = read1Dfile('C:\Users\akac0297\OneDrive - The University of Sydney (Staff)\Documents\Traces for RTF IEC experiment\new LARK Traces - 6 Jan 26\LARK_Regular_motion_1_1DoF_resp_trace.txt');
+
+    % % LARK Regular motion 3
+    % trace = 'LARK regular 3';
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260107_141452.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260107_141452.txt']), 0)*scale_factor;
+    % [tracesx, tracesy] = read1Dfile('C:\Users\akac0297\OneDrive - The University of Sydney (Staff)\Documents\Traces for RTF IEC experiment\new LARK Traces - 6 Jan 26\LARK_Regular_motion_3_1DoF_resp_trace.txt');
+
+%% Second test set - updated 1DoF trace files
+    % % LARK Regular motion 1
+    % trace = 'LARK regular 1';
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260106_121752.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260106_121752.txt']), 0)*scale_factor;
+    % % traces1DRealSenseDist1(end-350:end)=[];
+    % % traces1DRealSenseTime1(end-350:end)=[];
+    % [tracesx, tracesy] = read1Dfile('C:\Users\akac0297\OneDrive - The University of Sydney (Staff)\Documents\Traces for RTF IEC experiment\new LARK Traces - 6 Jan 26\LARK_Regular_motion_1_1DoF_resp_trace.txt');
+
+    % % % LARK Regular motion 2
+    % trace = 'LARK regular 2';
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260106_122420.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260106_122420.txt']), 0)*scale_factor;
+    % % traces1DRealSenseDist1(end-350:end)=[];
+    % % traces1DRealSenseTime1(end-350:end)=[];
+    % [tracesx, tracesy] = read1Dfile('C:\Users\akac0297\OneDrive - The University of Sydney (Staff)\Documents\Traces for RTF IEC experiment\new LARK Traces - 6 Jan 26\LARK_Regular_motion_2_1DoF_resp_trace.txt');
+
+    % % LARK Regular motion 3
+    % trace = 'LARK regular 3';
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260106_123012.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260106_123012.txt']), 0)*scale_factor;
+    % [tracesx, tracesy] = read1Dfile('C:\Users\akac0297\OneDrive - The University of Sydney (Staff)\Documents\Traces for RTF IEC experiment\new LARK Traces - 6 Jan 26\LARK_Regular_motion_3_1DoF_resp_trace.txt');
+
+    % LIGHT SABR Regular motion 1
+    trace = 'LIGHT SABR Regular 1';
+    % % original
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260106_123620.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260106_123620.txt']), 0);
+    % repeat (different day)
+    traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260217_093536.txt']), 0);
+    traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260217_093536.txt']), 0);
+    % % repeat (definitely vertical mode)
+    traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260217_095249.txt']), 0); % 095249 %094340
+    traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260217_095249.txt']), 0); % This trace is the original Chris's trace (smaller magnitude)
+    % repeat (horizontal mode to check voltage influence)
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260217_100224.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260217_100224.txt']), 0);
+    % % Feb 24 2026 - no motion
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260224_092323.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260224_092323.txt']), 0);
+    % % Feb 24 2026 - Reg motion 1
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260224_093342.txt']), 0); % lots of buffer (two spikes initially) - didnt work as well
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260224_093342.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260224_094152.txt']), 0); % original trace - just one ramp at start. Worked well apart from RealSense drift
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260224_094152.txt']), 0);
+    % % Feb 24 - LS Large spike
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260224_095852.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260224_095852.txt']), 0);
+    % % Feb 24 - LS high motion
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260224_103422.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260224_103422.txt']), 0);
+    % % Feb 24 - LS erratic
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260224_104114.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260224_104114.txt']), 0);
+    % % Feb 24 - LS regular 2 (low correlation)
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260224_105136.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260224_105136.txt']), 0);
+    % % Feb 24 - LARK regular 1
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260224_105820.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260224_105820.txt']), 0);
+    % % Feb 24 - LARK regular 2
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260224_121817.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260224_121817.txt']), 0);
+    % % Feb 24 - LARK regular 3
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260224_122519.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260224_122519.txt']), 0);
+    % % Feb 24 - Post-testing static recording
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260224_125220.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260224_125220.txt']), 0);
+    % % Testing with L515 - short static trace
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260224_130903.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260224_130903.txt']), 0);
+    % % Testing with L515 - short static trace
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260224_133926.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260224_133926.txt']), 0);
+    % % Testing with L515 - 250 up
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260224_134102.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260224_134102.txt']), 0);
+    % % Testing with D415 (Mark's/new camera) - static test
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260224_144309.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260224_144309.txt']), 0);
+    % Testing with D415 (Mark's/new camera) - static test after 30 min to warm up camera
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260224_153139.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260224_153139.txt']), 0);
+    % % Testing with D415 (Mark's/new camera) - static test prior to all trace testing
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260226_083034.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260226_083034.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260226_085226.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260226_085226.txt']), 0);
+    % % % Feb 26 2026 - Reg motion 1
+    % % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260226_090043.txt']), 0); % original trace - just one ramp at start
+    % % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260226_090043.txt']), 0);
+    % % % % Feb 26 2026 - Reg motion 1 - new trace with buffer
+    % % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260226_091835.txt']), 0); % trace with large ramp (26 Feb folder)
+    % % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260226_091835.txt']), 0);
+    % % 
+    % % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260226_092815.txt']), 0); % short data acquisition (~1 min)
+    % % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260226_092815.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260226_093524.txt']), 0); % trace with buffer
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260226_093524.txt']), 0);
+    % % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260226_095231.txt']), 0); % old equations from visual inspection
+    % % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260226_095231.txt']), 0);
+    % 
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260226_124635.txt']), 0); % zigzag trace
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260226_124635.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_114253.txt']), 0); % testing drift on 2nd March
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_114253.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_115029.txt']), 0); % testing drift on 2nd March
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_115029.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_115201.txt']), 0); % 150 PWM zigzag
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_115201.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_115508.txt']), 0); % 150 PWM zigzag with pause
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_115508.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_115803.txt']), 0); % 150 PWM zigzag with pause #2
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_115803.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_115958.txt']), 0); % 150 PWM zigzag with pause #3
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_115958.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_120153.txt']), 0); % 150 PWM zigzag #2
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_120153.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_120343.txt']), 0); % 150 PWM zigzag #3
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_120343.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_121338.txt']), 0); % 125 PWM zigzag #1
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_121338.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_121530.txt']), 0); % 125 PWM zigzag #2
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_121530.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_121823.txt']), 0); % 125 PWM zigzag #3
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_121823.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_122100.txt']), 0); % 125 PWM zigzag with pause #1
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_122100.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_121823.txt']), 0); % 125 PWM zigzag with pause #2
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_121823.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_122331.txt']), 0); % 125 PWM zigzag with pause #3
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_122331.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_121338.txt']), 0); % 100 PWM zigzag #1
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_121338.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_122633.txt']), 0); % 100 PWM zigzag #2
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_122633.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_122815.txt']), 0); % 100 PWM zigzag #3
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_122815.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_123102.txt']), 0); % 100 PWM zigzag with pause #1
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_123102.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_123337.txt']), 0); % 100 PWM zigzag with pause #2
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_123337.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_123614.txt']), 0); % 100 PWM zigzag with pause #3
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_123614.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_121338.txt']), 0); % 75 PWM zigzag with pause #1
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_121338.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_124013.txt']), 0); % 75 PWM zigzag with pause #2
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_124013.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_124330.txt']), 0); % 75 PWM zigzag with pause #3
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_124330.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_124523.txt']), 0); % 75 PWM zigzag #1
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_124523.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_124714.txt']), 0); % 75 PWM zigzag #2
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_124714.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_124909.txt']), 0); % 75 PWM zigzag #3
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_124909.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_125244.txt']), 0); % 50 PWM zigzag #1
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_125244.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_130113.txt']), 0); % 50 PWM zigzag #2
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_130113.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_131218.txt']), 0); % 50 PWM zigzag #3
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_131218.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_130808.txt']), 0); % 50 PWM zigzag with pause #1
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_130808.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_131601.txt']), 0); % 50 PWM zigzag with pause #2
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_131601.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_131945.txt']), 0); % 50 PWM zigzag with pause #3
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_131945.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_132320.txt']), 0); % 175 PWM zigzag #1
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_132320.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_132422.txt']), 0); % 175 PWM zigzag #2
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_132422.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_132559.txt']), 0); % 175 PWM zigzag #3
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_132559.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_130808.txt']), 0); % 175 PWM zigzag with pause #1
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_130808.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_132754.txt']), 0); % 175 PWM zigzag with pause #2
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_132754.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_132953.txt']), 0); % 175 PWM zigzag with pause #3
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_132953.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_133554.txt']), 0); % 200 PWM zigzag #1
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_133554.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_133716.txt']), 0); % 200 PWM zigzag #2
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_133716.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_133901.txt']), 0); % 200 PWM zigzag #3
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_133901.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_134105.txt']), 0); % 200 PWM zigzag with pause #1
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_134105.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_134253.txt']), 0); % 200 PWM zigzag with pause #2
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_134253.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_134505.txt']), 0); % 200 PWM zigzag with pause #3
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_134505.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_134829.txt']), 0); % 225 PWM zigzag #1 --- 1s motion (previous were 1.5s)
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_134829.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_134951.txt']), 0); % 225 PWM zigzag #2
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_134951.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_135056.txt']), 0); % 225 PWM zigzag #3
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_135056.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_135230.txt']), 0); % 225 PWM zigzag with pause #1
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_135230.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_135402.txt']), 0); % 225 PWM zigzag with pause #2
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_135402.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_135537.txt']), 0); % 225 PWM zigzag with pause #3
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_135537.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_135725.txt']), 0); % 250 PWM zigzag #1 --- 1s motion
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_135725.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_140124.txt']), 0); % 250 PWM zigzag #2
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_140124.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_140240.txt']), 0); % 250 PWM zigzag #3
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_140240.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_140410.txt']), 0); % 250 PWM zigzag with pause #1
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_140410.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_140537.txt']), 0); % 250 PWM zigzag with pause #2
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_140537.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260302_140708.txt']), 0); % 250 PWM zigzag with pause #3
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260302_140708.txt']), 0);
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260303_143432.txt']), 0); % testing drift on 3rd March
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260303_143432.txt']), 0);
+    traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260303_144549.txt']), 0); % regular motion 1 - after zigzag calibration
+    traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260303_144549.txt']), 0);
+    traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260303_145448.txt']), 0); % regular motion 1 with double ramp - after zigzag calibration
+    traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260303_145448.txt']), 0);
+    traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260303_150136.txt']), 0); % large spike with zigzag calibration
+    traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260303_150136.txt']), 0);
+    traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260303_151012.txt']), 0); % large spike with ruler calibration
+    traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260303_151012.txt']), 0);
+    traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260303_151714.txt']), 0); % high motion with ruler calibration
+    traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260303_151714.txt']), 0);
+    traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260303_152343.txt']), 0); % erratic with ruler calibration
+    traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260303_152343.txt']), 0);
+    traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260303_153525.txt']), 0); % low correlation with ruler calibration
+    traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260303_153525.txt']), 0);
+    traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260303_154200.txt']), 0); % regular motion 1 with ruler calibration
+    traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260303_154200.txt']), 0);
+    traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260303_155542.txt']), 0); % LARK regular motion 1 with ruler calibration
+    traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260303_155542.txt']), 0);
+    traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260303_160205.txt']), 0); % LARK regular motion 2 with ruler calibration
+    traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260303_160205.txt']), 0);
+    traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260303_160938.txt']), 0); % LARK regular motion 3 with ruler calibration
+    traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260303_160938.txt']), 0);
+    traces1DRealSenseTime1(9100:end)=[];
+    traces1DRealSenseDist1(9100:end)=[];
+    % % repeat (with perspex). Note didn't home beforehand
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260217_105624.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260217_105624.txt']), 0);
+    % % % repeat (vertical mode, no perspex, after attempting to tighten the wiring)
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260217_134848.txt']), 0); %120710
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260217_134848.txt']), 0); %134848
+    % % repeat (vertical mode, no perspex, after attempting to tighten the wiring)
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260217_151728.txt']), 0); %140359 #141012 - just static, 141709 static
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260217_151728.txt']), 0); %134848 %151728 - still at zero but longer ramp %152614 - the +2 mm trace
+    [tracesx, tracesy] = read1Dfile('C:\Users\akac0297\OneDrive - The University of Sydney (Staff)\Documents\LARK - LIGHT SABR traces\Trace1\1.Mean_Motion_resp_shifted_rescaled_gradual_start.txt');
+    [tracesx, tracesy] = read1Dfile('C:\Users\akac0297\OneDrive - The University of Sydney (Staff)\Documents\Traces for RTF IEC experiment\new LIGHT SABR Traces - 6 Jan 26\Regular_motion_1_1DoF_resp_trace.txt');
+    % [tracesx, tracesy] = read1Dfile('C:\Users\akac0297\OneDrive - The University of Sydney (Staff)\Documents\Traces for RTF IEC experiment\new LIGHT SABR Traces - 6 Jan 26\Large_spike_1DoF_resp_trace.txt');
+    % [tracesx, tracesy] = read1Dfile('C:\Users\akac0297\OneDrive - The University of Sydney (Staff)\Documents\Traces for RTF IEC experiment\new LIGHT SABR Traces - 6 Jan 26\High_motion_1DoF_resp_trace.txt');
+    % [tracesx, tracesy] = read1Dfile('C:\Users\akac0297\OneDrive - The University of Sydney (Staff)\Documents\Traces for RTF IEC experiment\new LIGHT SABR Traces - 6 Jan 26\Erratic_1DoF_resp_trace.txt');
+    % [tracesx, tracesy] = read1Dfile('C:\Users\akac0297\OneDrive - The University of Sydney (Staff)\Documents\Traces for RTF IEC experiment\new LIGHT SABR Traces - 6 Jan 26\Regular_motion_2_1DoF_resp_trace.txt');
+    [tracesx, tracesy] = read1Dfile('C:\Users\akac0297\OneDrive - The University of Sydney (Staff)\Documents\Traces for RTF IEC experiment\new LARK Traces - 6 Jan 26\LARK_Regular_motion_1_1DoF_resp_trace.txt');
+    % [tracesx, tracesy] = read1Dfile('C:\Users\akac0297\OneDrive - The University of Sydney (Staff)\Documents\Traces for RTF IEC experiment\new LARK Traces - 6 Jan 26\LARK_Regular_motion_2_1DoF_resp_trace.txt');
+    [tracesx, tracesy] = read1Dfile('C:\Users\akac0297\OneDrive - The University of Sydney (Staff)\Documents\Traces for RTF IEC experiment\new LARK Traces - 6 Jan 26\LARK_Regular_motion_3_1DoF_resp_trace.txt');
+    % [tracesx, tracesy] = read1Dfile('C:\Users\akac0297\OneDrive - The University of Sydney (Staff)\Documents\Traces for RTF IEC experiment\new LIGHT SABR Traces - 17 Feb 26\Regular_motion_1_1DoF_resp_trace.txt');
+    % [tracesx, tracesy] = read1Dfile('C:\Users\akac0297\OneDrive - The University of Sydney (Staff)\Documents\Traces for RTF IEC experiment\new LIGHT SABR Traces - 26 Feb 26\Regular_motion_1_1DoF_resp_trace.txt');
+    % [tracesx, tracesy] = read1Dfile('C:\Users\akac0297\OneDrive - The University of Sydney (Staff)\Documents\Traces for RTF IEC experiment\new LIGHT SABR Traces - Feb 26\Regular_motion_1_1DoF_resp_trace.txt');
+    % tracesx=traces1DRealSenseTime1;
+    % tracesy=zeros(1,length(traces1DRealSenseDist1));
+    % trace=' Static test (new D415 camera)';
+
+    % % LIGHT SABR Regular motion 2
+    % trace = 'LIGHT SABR Regular 2';
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260106_124217.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260106_124217.txt']), 0);
+    % [og_tracex, og_tracey] = read1Dfile('C:\Users\akac0297\OneDrive - The University of Sydney (Staff)\Documents\LARK - LIGHT SABR traces\Trace2\2.Mean_Motion2_resp_shifted_rescaled_gradual_start.txt');
+    % [tracesx, tracesy] = read1Dfile('C:\Users\akac0297\OneDrive - The University of Sydney (Staff)\Documents\Traces for RTF IEC experiment\new LIGHT SABR Traces - 6 Jan 26\Regular_motion_2_1DoF_resp_trace.txt');
+
+    % % LIGHT SABR Erratic
+    % trace = 'LIGHT SABR Erratic';
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260106_124816.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260106_124816.txt']), 0);
+    % [tracesx, tracesy] = read1Dfile('C:\Users\akac0297\OneDrive - The University of Sydney (Staff)\Documents\Traces for RTF IEC experiment\new LIGHT SABR Traces - 6 Jan 26\Erratic_1DoF_resp_trace.txt');
+    % traces1DRealSenseDist1(end-200:end)=[];
+    % traces1DRealSenseTime1(end-200:end)=[];
+
+    % % LIGHT SABR High motion
+    % trace = 'LIGHT SABR High motion';
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260106_125438.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260106_125438.txt']), 0);
+    % [tracesx, tracesy] = read1Dfile('C:\Users\akac0297\OneDrive - The University of Sydney (Staff)\Documents\Traces for RTF IEC experiment\new LIGHT SABR Traces - 6 Jan 26\High_motion_1DoF_resp_trace.txt');
+   
+    % % LIGHT SABR Large spike
+    % trace = 'LIGHT SABR Large spike';
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20260106_130045.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20260106_130045.txt']), 0);
+    % [tracesx, tracesy] = read1Dfile('C:\Users\akac0297\OneDrive - The University of Sydney (Staff)\Documents\Traces for RTF IEC experiment\new LIGHT SABR Traces - 6 Jan 26\Large_spike_1DoF_resp_trace.txt');
+
+%% Initial tests - systematic error
+    % % LARK Regular motion 1
+    % trace = 'LARK regular 1';
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20251219_150617.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20251219_150617.txt']), 0);
+    % traces1DRealSenseDist1(end-350:end)=[];
+    % traces1DRealSenseTime1(end-350:end)=[];
+    % [tracesx, tracesy] = read1Dfile('C:\Users\akac0297\OneDrive - The University of Sydney (Staff)\Documents\Traces for RTF IEC experiment\new LARK Traces\LARK_Regular_motion_1_1DoF_resp_trace.txt');
+
+    % % LARK Regular motion 2
+    % trace = 'LARK regular 2';
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20251219_151228.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20251219_151228.txt']), 0);
+    % traces1DRealSenseDist1(end-350:end)=[];
+    % traces1DRealSenseTime1(end-350:end)=[];
+    % [tracesx, tracesy] = read1Dfile('C:\Users\akac0297\OneDrive - The University of Sydney (Staff)\Documents\Traces for RTF IEC experiment\new LARK Traces\LARK_Regular_motion_2_1DoF_resp_trace.txt');
+
+    % % LARK Regular motion 3
+    % trace = 'LARK regular 3';
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20251219_151830.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20251219_151830.txt']), 0);
+    % [tracesx, tracesy] = read1Dfile('C:\Users\akac0297\OneDrive - The University of Sydney (Staff)\Documents\Traces for RTF IEC experiment\new LARK Traces\LARK_Regular_motion_3_1DoF_resp_trace.txt');
+
+    % % LIGHT SABR Erratic
+    % trace = 'LIGHT SABR Erratic';
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20251219_152427.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20251219_152427.txt']), 0);
+    % [tracesx, tracesy] = read1Dfile('C:\Users\akac0297\OneDrive - The University of Sydney (Staff)\Documents\Traces for RTF IEC experiment\new LIGHT SABR Traces\Erratic_1DoF_resp_trace.txt');
+
+    % % LIGHT SABR High motion
+    % trace = 'LIGHT SABR High motion';
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20251219_153028.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20251219_153028.txt']), 0);
+    % [tracesx, tracesy] = read1Dfile('C:\Users\akac0297\OneDrive - The University of Sydney (Staff)\Documents\Traces for RTF IEC experiment\new LIGHT SABR Traces\High_motion_1DoF_resp_trace.txt');
+   
+    % % LIGHT SABR Large spike
+    % trace = 'LIGHT SABR Large spike';
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20251219_153625.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20251219_153625.txt']), 0);
+    % [tracesx, tracesy] = read1Dfile('C:\Users\akac0297\OneDrive - The University of Sydney (Staff)\Documents\Traces for RTF IEC experiment\new LIGHT SABR Traces\Large_spike_1DoF_resp_trace.txt');
+    
+    % % LIGHT SABR Regular motion 1
+    % trace = 'LIGHT SABR Regular 1';
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20251219_154207.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20251219_154207.txt']), 0);
+    % [tracesx, tracesy] = read1Dfile('C:\Users\akac0297\OneDrive - The University of Sydney (Staff)\Documents\Traces for RTF IEC experiment\new LIGHT SABR Traces\Regular_motion_1_1DoF_resp_trace.txt');
+
+    % % LIGHT SABR Regular motion 2
+    % trace = 'LIGHT SABR Regular 2';
+    % traces1DRealSenseTime1 = readTimeFile(strcat([folder, 'time_array20251219_154936.txt']), 0);
+    % traces1DRealSenseDist1 = -readDistFile(strcat([folder, 'dist_array20251219_154936.txt']), 0);
+    % [tracesx, tracesy] = read1Dfile('C:\Users\akac0297\OneDrive - The University of Sydney (Staff)\Documents\Traces for RTF IEC experiment\new LIGHT SABR Traces\Regular_motion_2_1DoF_resp_trace.txt');
+
+% The second parameter of these functions is set to shift by a constant
+% value t or y coordinates. 
+
+% Call findOptimalShift in order to get the optimal shift for 1D
+% motion traces. The algorithm minimises the RMSE between interpolated input
+% and output.
+
+% plot(traces1DRealSenseTime1-8,traces1DRealSenseDist1*1.1,tracesx,tracesy);
+
+[shift1D, shift1D_y, stats] = findOptimalShift(tracesx, tracesy,traces1DRealSenseTime1, traces1DRealSenseDist1, trace)
+
+interp_output = traces1DRealSenseDist1 - shift1D_y;
+
+% % Get unique x values and the indices of their first occurrence
+% [unique_interp_output, unique_indices] = unique(interp_output);
+% 
+% % Use the same indices to select the corresponding y values
+% unique_traces1DRealSenseTime1 = traces1DRealSenseTime1(unique_indices);
+% 
+% interp_output = interp1(unique_traces1DRealSenseTime1, unique_interp_output, tracesx);
+
+[input_pks, input_pk_locs] = findpeaks(tracesy);
+[output_pks, output_pk_locs] = findpeaks(interp_output);
+
+[input_trgs, input_trg_locs] = findpeaks(-tracesy);
+[output_trgs, output_trg_locs] = findpeaks(-interp_output);
+
+len = min(length(input_trgs), length(input_pks));
+input_trgs = input_trgs(1:len);
+input_pks = input_pks(1:len);
+input_trg_locs = input_trg_locs(1:len);
+input_pk_locs = input_pk_locs(1:len);
+input_diff = abs(input_pks - input_trgs);
+
+len = min(length(output_trgs), length(output_pks));
+output_trgs = output_trgs(1:len);
+output_pks = output_pks(1:len);
+output_trg_locs = output_trg_locs(1:len);
+output_pk_locs = output_pk_locs(1:len);
+output_diff = abs(output_pks - output_trgs);
+
+% figure;
+% plot(input_diff, output_diff);
+% title('Correlating input amplitude and output amplitude');
+% xlabel('Input difference (between peaks and troughs and vice versa)')
+% xlabel('Output difference (between peaks and troughs and vice versa)')
+
+figure;
+hold on;
+plot(tracesx, tracesy,'DisplayName', '1DoF platform input' );
+% plot(og_tracex, og_tracey, 'DisplayName', "Chris's original trace")
+%plot(tracesx(input_pk_locs), input_pks,'.',tracesx(input_trg_locs), -input_trgs,'.');
+scatter(traces1DRealSenseTime1 - shift1D, traces1DRealSenseDist1 - shift1D_y ,  'DisplayName', '1DoF platform output');
+%plot(traces1DRealSenseTime1(output_pk_locs) - shift1D, output_pks,'.',traces1DRealSenseTime1(output_trg_locs)-shift1D, -output_trgs,'.');
+xlabel('Time (s)');
+ylabel('Displacement (mm)');
+legend show;
+title(strcat('1DoF Platform Motion: ', trace));
+grid on;
+set(gca, 'FontSize', 12, 'LineWidth', 1.5);
+
+hold off;
+
+function [timeShift, amplitudeShift, stats] = findOptimalShift(dataHexaTimestamps, dataHexaY, dataKIMTimestamps, dataKIMYCent, trace)
+    [uniqueHexaTimestamps, uniqueIndices] = unique(dataHexaTimestamps);
+    uniqueHexaY = dataHexaY(uniqueIndices);
+    % Define the range of time shifts to test
+    timeShiftValues = -10:0.05:10;
+    numTimeShifts = length(timeShiftValues);
+    
+    % Initialize RMSE values for time and amplitude shifts
+    rmseValues = inf(numTimeShifts, 1);
+    optimalAmplitudeShifts = zeros(numTimeShifts, 1);
+    
+    % Initialize statistics
+    meanDiff = zeros(numTimeShifts, 1);
+    stdDiff = zeros(numTimeShifts, 1);
+    perc1Diff = zeros(numTimeShifts, 1);
+    perc99Diff = zeros(numTimeShifts, 1);
+    corrs = zeros(numTimeShifts, 1);
+    pvals = zeros(numTimeShifts, 1);
+
+    for i = 1:numTimeShifts
+        % Apply time shift
+        shiftedKIMTimestamps = dataKIMTimestamps - timeShiftValues(i);
+        validIndices = find(shiftedKIMTimestamps >= min(dataHexaTimestamps) & shiftedKIMTimestamps <= max(dataHexaTimestamps));
+        
+        if isempty(validIndices)
+            continue;
+        end
+        
+        shiftedKIMTimestamps = shiftedKIMTimestamps(validIndices);
+        shiftedKIMYCent = dataKIMYCent(validIndices);
+
+        % Interpolate dataHexaY at shiftedKIMTimestamps
+        interpHexaY = interp1(uniqueHexaTimestamps, uniqueHexaY, shiftedKIMTimestamps, 'linear', 'extrap');
+
+        % Find the optimal amplitude shift for this time shift
+        minAmplitudeShift = min(shiftedKIMYCent - interpHexaY);
+        maxAmplitudeShift = max(shiftedKIMYCent - interpHexaY);
+        amplitudeShiftRange = minAmplitudeShift:0.01:maxAmplitudeShift;
+
+        rmseAmplitude = inf;
+        for amplitudeShift = amplitudeShiftRange
+            adjustedKIMYCent = shiftedKIMYCent - amplitudeShift;
+            tempRmse = sqrt(mean((interpHexaY - adjustedKIMYCent).^2));
+            
+            if tempRmse < rmseAmplitude
+                rmseAmplitude = tempRmse;
+                optimalAmplitudeShifts(i) = amplitudeShift;
+            end
+        end
+        
+        % Store the minimum RMSE for this time shift
+        rmseValues(i) = rmseAmplitude;
+        
+        % Calculate statistics for the best amplitude shift at this time shift
+        bestAmplitudeShift = optimalAmplitudeShifts(i);
+        adjustedKIMYCent = shiftedKIMYCent - bestAmplitudeShift;
+        difference = adjustedKIMYCent - interpHexaY;
+        
+        meanDiff(i) = mean(difference);
+        stdDiff(i) = std(difference);
+        perc1Diff(i) = prctile(difference, 1);
+        perc99Diff(i) = prctile(difference, 99);
+        [corr_coef, pval] = corrcoef(adjustedKIMYCent, interpHexaY);
+        corrs(i) = abs(corr_coef(1,2));
+        pvals(i) = pval(1,2);
+    end
+
+    % Find the optimal time shift
+    [~, optimalIndex] = min(rmseValues);
+    timeShift = timeShiftValues(optimalIndex);
+    amplitudeShift = optimalAmplitudeShifts(optimalIndex);
+
+    % Output statistics for the optimal shift
+    stats.meanDiff = meanDiff(optimalIndex);
+    stats.stdDiff = stdDiff(optimalIndex);
+    stats.perc1Diff = perc1Diff(optimalIndex);
+    stats.perc99Diff = perc99Diff(optimalIndex);
+    stats.cor = corrs(optimalIndex);
+    stats.pval = pvals(optimalIndex);
+
+    % Display the results
+    disp(['Trace: ', trace]);
+    disp(['Optimal Time Shift: ', num2str(timeShift)]);
+    disp(['Optimal Amplitude Shift: ', num2str(amplitudeShift)]);
+    disp(['Mean Difference: ', num2str(stats.meanDiff)]);
+    disp(['Standard Deviation: ', num2str(stats.stdDiff)]);
+    disp(['1st Percentile Difference: ', num2str(stats.perc1Diff)]);
+    disp(['99th Percentile Difference: ', num2str(stats.perc99Diff)]);
+    disp(['Pearson Correlation Coefficient between 1DoF input and output: ', num2str(stats.cor)])
+    disp(['p-val for Pearson Correlation Coefficient: ', num2str(stats.pval)])
+end
+
+
+function result = rmse(x, y)
+    result = sqrt(sum((x - y) .^ 2) / length(x));
+end

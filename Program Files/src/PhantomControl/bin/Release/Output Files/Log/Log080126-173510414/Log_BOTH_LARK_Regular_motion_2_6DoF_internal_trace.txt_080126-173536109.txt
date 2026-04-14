@@ -1,0 +1,7 @@
+[  08/01/26 17:35:36:109  ]    The 6D input file LARK_Regular_motion_2_6DoF_internal_trace.txt has been selected - BOTH PLATFORMS
+[  08/01/26 17:35:36:117  ]    The sample rate from the input file is 0.2s.
+[  08/01/26 17:35:38:672  ]    The 1D input file LARK_Regular_motion_2_1DoF_resp_trace.txt has been selected - BOTH PLATFORMS
+[  08/01/26 17:39:43:121  ]    MODBUS connection via 192.168.94.11 established.
+[  08/01/26 17:39:43:137  ]    Start 6D motion
+[  08/01/26 17:39:43:147  ]    Start 1D motion
+[  08/01/26 17:39:43:257  ]    Opening IP address: 192.168.94.11

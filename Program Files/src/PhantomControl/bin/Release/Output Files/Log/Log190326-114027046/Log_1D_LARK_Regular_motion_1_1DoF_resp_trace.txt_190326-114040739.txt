@@ -1,0 +1,6 @@
+[  19/03/26 11:40:40:742  ]    The 1D input file LARK_Regular_motion_1_1DoF_resp_trace.txt has been selected
+[  19/03/26 11:40:53:878  ]    Start 1D motion
+[  19/03/26 11:46:00:277  ]    Stop 1D motion
+[  19/03/26 11:46:01:158  ]    1D Robot to Home
+[  19/03/26 11:48:53:985  ]    1D trace is complete
+[  19/03/26 11:48:55:944  ]    1D Robot to Home

@@ -1,0 +1,4 @@
+Erratic_1DoF_resp_trace.txt
+1D starting time : 12:23:54:663
+1D end time : 12:28:54:370
+

@@ -1,0 +1,4 @@
+from_flat,to_flat,delta_mm,direction
+1,2,0.2515869140625,up
+2,3,0.0806884765625,up
+3,4,5.0047607421875,up

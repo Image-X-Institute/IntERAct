@@ -1,0 +1,4 @@
+Regular_motion_1_1DoF_resp_trace.txt
+1D starting time : 09:28:39:512
+1D end time : 09:33:39:052
+

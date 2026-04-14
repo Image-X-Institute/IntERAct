@@ -1,0 +1,13 @@
+[  08/01/26 18:21:43:688  ]    The 6D input file High_motion_6DoF_internal_trace.txt has been selected - BOTH PLATFORMS
+[  08/01/26 18:21:43:692  ]    The sample rate from the input file is 0.2s.
+[  08/01/26 18:21:46:970  ]    The 1D input file High_motion_1DoF_resp_trace.txt has been selected - BOTH PLATFORMS
+[  08/01/26 18:26:08:846  ]    MODBUS connection via 192.168.94.11 established.
+[  08/01/26 18:26:08:846  ]    Start 6D motion
+[  08/01/26 18:26:08:856  ]    Start 1D motion
+[  08/01/26 18:26:08:924  ]    Opening IP address: 192.168.94.11
+[  08/01/26 18:28:14:676  ]    Stop 1D motion
+[  08/01/26 18:28:14:686  ]    Stop 6D motion
+[  08/01/26 18:28:14:692  ]    MODBUS disconected from controler
+[  08/01/26 18:28:15:665  ]    1D Robot to Home
+[  08/01/26 18:28:15:665  ]    Opening IP address: 192.168.94.11
+[  08/01/26 18:28:16:687  ]    6D Robot to home

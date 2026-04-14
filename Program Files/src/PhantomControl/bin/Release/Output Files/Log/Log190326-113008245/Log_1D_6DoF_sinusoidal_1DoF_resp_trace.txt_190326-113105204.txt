@@ -1,0 +1,9 @@
+[  19/03/26 11:31:05:207  ]    The 1D input file 6DoF_sinusoidal_1DoF_resp_trace.txt has been selected
+[  19/03/26 11:31:15:985  ]    Start 1D motion
+[  19/03/26 11:32:37:314  ]    Stop 1D motion
+[  19/03/26 11:32:37:901  ]    1D Robot to Home
+[  19/03/26 11:33:46:815  ]    Start 1D motion
+[  19/03/26 11:38:59:296  ]    Stop 1D motion
+[  19/03/26 11:39:00:401  ]    1D Robot to Home
+[  19/03/26 11:39:03:339  ]    1D trace is complete
+[  19/03/26 11:39:05:758  ]    1D Robot to Home

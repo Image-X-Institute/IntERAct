@@ -1,0 +1,6 @@
+[  26/02/26 11:21:05:240  ]    The 6D input file Regular_motion_1_6DoF_internal_trace.txt has been selected
+[  26/02/26 11:21:05:257  ]    The sample rate from the input file is 0.2s.
+[  26/02/26 11:22:03:289  ]    MODBUS connection attempt via 192.168.94.11 failed.
+[  26/02/26 11:22:03:289  ]    Start 6D motion
+[  26/02/26 11:22:03:378  ]    Opening IP address: 192.168.94.11
+[  26/02/26 11:22:32:546  ]    Error faild to connect on port 30001

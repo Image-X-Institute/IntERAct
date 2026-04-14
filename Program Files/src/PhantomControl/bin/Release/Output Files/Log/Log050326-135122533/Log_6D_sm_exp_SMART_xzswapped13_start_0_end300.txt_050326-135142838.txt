@@ -1,0 +1,9 @@
+[  05/03/26 13:51:42:838  ]    The 6D input file sm_exp_SMART_xzswapped13_start_0_end300.txt has been selected
+[  05/03/26 13:51:42:860  ]    The sample rate from the input file is 0.2s.
+[  05/03/26 13:51:55:880  ]    MODBUS connection via 192.168.94.11 established.
+[  05/03/26 13:51:55:887  ]    Start 6D motion
+[  05/03/26 13:51:55:982  ]    Opening IP address: 192.168.94.11
+[  05/03/26 13:54:06:681  ]    Stop 6D motion
+[  05/03/26 13:54:06:725  ]    MODBUS disconected from controler
+[  05/03/26 13:54:07:694  ]    Opening IP address: 192.168.94.11
+[  05/03/26 13:54:08:710  ]    6D Robot to home

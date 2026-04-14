@@ -1,0 +1,9 @@
+[  26/02/26 11:58:41:167  ]    The 6D input file Regular_motion_1_6DoF_internal_trace.txt has been selected
+[  26/02/26 11:58:41:184  ]    The sample rate from the input file is 0.2s.
+[  26/02/26 11:59:36:311  ]    MODBUS connection via 192.168.94.11 established.
+[  26/02/26 11:59:36:313  ]    Start 6D motion
+[  26/02/26 11:59:36:366  ]    Opening IP address: 192.168.94.11
+[  26/02/26 12:00:27:172  ]    Stop 6D motion
+[  26/02/26 12:00:27:178  ]    MODBUS disconected from controler
+[  26/02/26 12:00:36:826  ]    Opening IP address: 192.168.94.11
+[  26/02/26 12:00:37:842  ]    6D Robot to home

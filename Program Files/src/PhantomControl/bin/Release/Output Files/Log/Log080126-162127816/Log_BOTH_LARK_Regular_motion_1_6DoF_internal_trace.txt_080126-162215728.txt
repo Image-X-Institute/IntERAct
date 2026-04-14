@@ -1,0 +1,13 @@
+[  08/01/26 16:22:15:740  ]    The 6D input file LARK_Regular_motion_1_6DoF_internal_trace.txt has been selected - BOTH PLATFORMS
+[  08/01/26 16:22:15:740  ]    The sample rate from the input file is 0.2s.
+[  08/01/26 16:22:18:171  ]    The 1D input file LARK_Regular_motion_1_1DoF_resp_trace.txt has been selected - BOTH PLATFORMS
+[  08/01/26 16:22:35:348  ]    MODBUS connection via 192.168.94.11 established.
+[  08/01/26 16:22:35:348  ]    Start 6D motion
+[  08/01/26 16:22:35:364  ]    Start 1D motion
+[  08/01/26 16:22:35:458  ]    Opening IP address: 192.168.94.11
+[  08/01/26 16:25:34:187  ]    Stop 1D motion
+[  08/01/26 16:25:34:187  ]    Stop 6D motion
+[  08/01/26 16:25:34:211  ]    MODBUS disconected from controler
+[  08/01/26 16:25:36:151  ]    1D Robot to Home
+[  08/01/26 16:25:36:151  ]    Opening IP address: 192.168.94.11
+[  08/01/26 16:25:37:176  ]    6D Robot to home

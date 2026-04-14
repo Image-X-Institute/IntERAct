@@ -1,0 +1,4 @@
+6DoF_sinusoidal_1DoF_resp_trace.txt
+1D starting time : 16:12:50:608
+1D end time : 16:17:50:322
+

@@ -1,0 +1,13 @@
+[  08/01/26 18:14:15:180  ]    The 6D input file Erratic_6DoF_internal_trace.txt has been selected - BOTH PLATFORMS
+[  08/01/26 18:14:15:196  ]    The sample rate from the input file is 0.2s.
+[  08/01/26 18:14:17:689  ]    The 1D input file Erratic_1DoF_resp_trace.txt has been selected - BOTH PLATFORMS
+[  08/01/26 18:18:36:693  ]    MODBUS connection via 192.168.94.11 established.
+[  08/01/26 18:18:36:696  ]    Start 6D motion
+[  08/01/26 18:18:36:696  ]    Start 1D motion
+[  08/01/26 18:18:36:789  ]    Opening IP address: 192.168.94.11
+[  08/01/26 18:20:39:380  ]    Stop 1D motion
+[  08/01/26 18:20:39:380  ]    Stop 6D motion
+[  08/01/26 18:20:39:475  ]    MODBUS disconected from controler
+[  08/01/26 18:20:40:433  ]    1D Robot to Home
+[  08/01/26 18:20:40:433  ]    Opening IP address: 192.168.94.11
+[  08/01/26 18:20:41:447  ]    6D Robot to home

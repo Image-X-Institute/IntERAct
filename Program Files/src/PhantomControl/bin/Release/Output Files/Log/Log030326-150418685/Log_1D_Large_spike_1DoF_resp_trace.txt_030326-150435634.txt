@@ -1,0 +1,5 @@
+[  03/03/26 15:04:35:650  ]    The 1D input file Large_spike_1DoF_resp_trace.txt has been selected
+[  03/03/26 15:04:44:057  ]    Start 1D motion
+[  03/03/26 15:10:13:486  ]    1D trace is complete
+[  03/03/26 15:10:15:607  ]    Stop 1D motion
+[  03/03/26 15:10:16:188  ]    1D Robot to Home
