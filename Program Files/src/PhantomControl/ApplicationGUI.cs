@@ -313,7 +313,7 @@ namespace PhantomControl
 
                 if (filesize > 1 * 1024 * 1024)
                 {
-                    urScriptName = "Log" + DateTime.Now.ToString("ddMMyy-HHmmssfff") + ".txt";
+                    urScriptName = "/Log" + DateTime.Now.ToString("ddMMyy-HHmmssfff") + ".txt";
                     urScriptFullPath = urScriptPath + urScriptName;
                 }
             }
