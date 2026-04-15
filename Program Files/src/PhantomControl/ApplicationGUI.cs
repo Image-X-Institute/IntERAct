@@ -295,34 +295,60 @@ namespace PhantomControl
             _urscriptwriter.Flush();
             _urscriptwriter.Close();
         }
-        public void addToUrScriptFile(string text) 
+        //public void addToUrScriptFile(string text) 
+        //{
+        //    if (UrSettings.writeUrScriptFile == true)
+        //    {
+        //        //using (FileStream logFile = new FileStream(urScriptFullPath, FileMode.Append, FileAccess.Write))
+
+        //        //using (StreamWriter _Log = new StreamWriter(logFile))
+        //        //{
+        //        //    _Log.WriteLine(text);
+        //        //}
+        //        _urscriptwriter.WriteLine(text);
+        //        //check log file size, if it is > 1 mb, start a new file
+
+        //        _urscriptwriter.Flush();
+        //        FileInfo fi = new FileInfo(urScriptFullPath);
+        //        var filesize = fi.Length;
+
+        //        if (filesize > 1 * 1024 * 1024)
+        //        {
+        //            urScriptName = "/Log" + DateTime.Now.ToString("ddMMyy-HHmmssfff") + ".txt";
+        //            urScriptFullPath = urScriptPath + urScriptName;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("oops");
+        //    }
+
+        //}
+        public void addToUrScriptFile(string text)
         {
             if (UrSettings.writeUrScriptFile == true)
             {
-                //using (FileStream logFile = new FileStream(urScriptFullPath, FileMode.Append, FileAccess.Write))
-
-                //using (StreamWriter _Log = new StreamWriter(logFile))
-                //{
-                //    _Log.WriteLine(text);
-                //}
                 _urscriptwriter.WriteLine(text);
-                //check log file size, if it is > 1 mb, start a new file
 
                 _urscriptwriter.Flush();
-                FileInfo fi = new FileInfo(urScriptFullPath);
-                var filesize = fi.Length;
 
-                if (filesize > 1 * 1024 * 1024)
+                // use the stream directly instead of FileInfo
+                if (_urscriptwriterstream.Length > 1 * 1024 * 1024)
                 {
+                    _urscriptwriter.Close();
+                    _urscriptwriterstream.Close();
+
                     urScriptName = "/Log" + DateTime.Now.ToString("ddMMyy-HHmmssfff") + ".txt";
                     urScriptFullPath = urScriptPath + urScriptName;
+
+                    _urscriptwriterstream = new FileStream(urScriptFullPath, FileMode.Append, FileAccess.Write);
+                    _urscriptwriter = new StreamWriter(_urscriptwriterstream);
                 }
             }
             else
             {
                 Console.WriteLine("oops");
             }
-
         }
 
         public static void addToTimestamps1DFile(string text)
