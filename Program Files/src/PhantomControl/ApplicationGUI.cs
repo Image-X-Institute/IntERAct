@@ -308,6 +308,7 @@ namespace PhantomControl
                 _urscriptwriter.WriteLine(text);
                 //check log file size, if it is > 1 mb, start a new file
 
+                _urscriptwriter.Flush();
                 FileInfo fi = new FileInfo(urScriptFullPath);
                 var filesize = fi.Length;
 
