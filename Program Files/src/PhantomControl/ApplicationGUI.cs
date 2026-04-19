@@ -320,7 +320,7 @@ namespace PhantomControl
         //    }
         //    else
         //    {
-        //        Console.WriteLine("oops");
+        //        Console.WriteLine("oops");if (line.Contains("Maximum of 6D input lines"))
         //    }
 
         //}

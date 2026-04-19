@@ -142,7 +142,8 @@ namespace PhantomControl
                     UrSettings.horizontalMode[1] = Convert.ToDouble(dictionary["Horizontal Volt-speed relationship going up : y-intercept"]);
                     UrSettings.horizontalMode[2] = Convert.ToDouble(dictionary["Horizontal Volt-speed relationship going down : slope"]);
                     UrSettings.horizontalMode[3] = Convert.ToDouble(dictionary["Horizontal Volt-speed relationship going down : y-intercept"]);
-                    UrSettings.MaximumLinesInputFile6D = Convert.ToInt32(dictionary["Maximum of 6D input lines"]);
+                    //UrSettings.MaximumLinesInputFile6D = Convert.ToInt32(dictionary["Maximum of 6D input lines"]);
+                    UrSettings.SegmentDurationSeconds = Convert.ToDouble(dictionary["Segment Duration [min]"]) * 60.0;
                 }
                 catch (Exception)
                 {
@@ -163,7 +164,7 @@ namespace PhantomControl
         }
         public void SaveSettings()
         {
-            string[] lines = new string[19];
+            string[] lines = new string[28];
 
             lines[0] = "IP Address = " + UrSettings.hostIPAddress.ToString();
             lines[1] = "Phantom Weight [Kg] = " + UrSettings.payLoadMass.ToString();
@@ -184,7 +185,15 @@ namespace PhantomControl
             lines[16] = "Aligned PositionRx [rad] = " + UrSettings.alingedPos[3].ToString();
             lines[17] = "Aligned PositionRy [rad] = " + UrSettings.alingedPos[4].ToString();
             lines[18] = "Aligned PositionRz [rad] = " + UrSettings.alingedPos[5].ToString();
-
+            lines[19] = "Vertical Volt-speed relationship going up : slope = " + UrSettings.verticalMode[0].ToString();
+            lines[20] = "Vertical Volt-speed relationship going up : y-intercept = " + UrSettings.verticalMode[1].ToString();
+            lines[21] = "Vertical Volt-speed relationship going down : slope = " + UrSettings.verticalMode[2].ToString();
+            lines[22] = "Vertical Volt-speed relationship going down : y-intercept = " + UrSettings.verticalMode[3].ToString();
+            lines[23] = "Horizontal Volt-speed relationship going up : slope = " + UrSettings.horizontalMode[0].ToString();
+            lines[24] = "Horizontal Volt-speed relationship going up : y-intercept = " + UrSettings.horizontalMode[1].ToString();
+            lines[25] = "Horizontal Volt-speed relationship going down : slope = " + UrSettings.horizontalMode[2].ToString();
+            lines[26] = "Horizontal Volt-speed relationship going down : y-intercept = " + UrSettings.horizontalMode[3].ToString();
+            lines[27] = "Segment Duration [min] = " + (UrSettings.SegmentDurationSeconds / 60.0).ToString();
 
             using (StreamWriter outputFile = new StreamWriter("settings.txt"))
             {

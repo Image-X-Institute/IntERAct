@@ -30,7 +30,6 @@ namespace PhantomControl
         private bool _playstopmotionclicked = false;
         public static double chartRange = 0;
         static SerialPort serialPort;
-        double currentTime = 0.2;
 
         public int maxXValue;
 
@@ -75,7 +74,6 @@ namespace PhantomControl
         private string iconPath = "Resources\\Icons\\";
         PhantomControl.Settings_tab settings_Tab;
         bool _keepMonitoring = false;
-        bool _keep1D = false;
         bool _firstRun = true;
 
         private object monitorDataLock = new object();
@@ -501,7 +499,7 @@ namespace PhantomControl
             for (double i = 0; i < displacementValues.Count; i++)
             {
                 TimeList.Add(currentValue);
-                currentValue += 0.2;
+                currentValue += UrSettings.TimeKinematics;
 
             }
 
@@ -641,7 +639,7 @@ namespace PhantomControl
                     series.Values.Clear();
                 }
             }
-            if (value == "output")
+            else if (value == "output")
             {
                 cartesianChart_translation.Series.ElementAt(3).Values.Clear();
                 cartesianChart_translation.Series.ElementAt(4).Values.Clear();
@@ -651,7 +649,7 @@ namespace PhantomControl
                 cartesianChart_rotation.Series.ElementAt(4).Values.Clear();
                 cartesianChart_rotation.Series.ElementAt(5).Values.Clear();
             }
-            if (value == "input")
+            else if (value == "input")
             {
                 cartesianChart_translation.Series.ElementAt(0).Values.Clear();
                 cartesianChart_translation.Series.ElementAt(1).Values.Clear();
@@ -705,7 +703,6 @@ namespace PhantomControl
 
         private void flatButton_LoadTraces_Click(object sender, EventArgs e)
         {
-            int MaximumInputLines = UrSettings.maximumLinesInputFile6D;
             double timeKinematics_temp = UrSettings.TimeKinematics;
             if (_homebuttonclicked != true)
             {
@@ -714,7 +711,7 @@ namespace PhantomControl
                 return;
             }
             _homebuttonclicked = false;
-
+            boolExceedMemory = false;
 
             using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Text Documents|*.txt", ValidateNames = true, Multiselect = false })
             {
@@ -723,7 +720,7 @@ namespace PhantomControl
                 {
                     flatButton_PlayStopMotion.Enabled = false;
 
-                    MotionTraces.X.Clear();
+                    MotionTraces.t.Clear();
                     MotionTraces.X.Clear();
                     MotionTraces.Y.Clear();
                     MotionTraces.Z.Clear();
@@ -817,17 +814,25 @@ namespace PhantomControl
                             settings_Tab.txtBox_time.Text = Convert.ToString(UrSettings.TimeKinematics);
                             Logger.addToLogFile("The sample rate from the input file is " + UrSettings.TimeKinematics + "s.");
                             MotionTraces.Size = counter;
-                            if (MotionTraces.Size > UrSettings.maximumLinesInputFile6D)
+
+                            int maxLinesFromFrequency = (int)(UrSettings.SegmentDurationSeconds / UrSettings.TimeKinematics);
+
+                            if (MotionTraces.Size > maxLinesFromFrequency)
                             {
                                 boolExceedMemory = true;
-                                UpdateStatusBarMessage.ShowStatusMessage("Warning: The number of lines from the input file exceeds the limit capacity. The 6DoF robot will stop and resume the motion after 5 minutes");
-                                Logger.addToLogFile("Warning: The number of lines from the input file exceeds the limit capacity. The 6DoF robot will stop and resume the motion after 5 minutes");
-                                System.Windows.MessageBox.Show("Warning: The number of lines from the input file exceeds the limit capacity. The 6DoF robot will stop and resume the motion after 5 minutes");
+                                UpdateStatusBarMessage.ShowStatusMessage(
+                                    $"Warning: Trace exceeds segment duration ({UrSettings.SegmentDurationSeconds}s). " +
+                                    $"Motion will pause and resume every {UrSettings.SegmentDurationSeconds / 60:F1} min.");
+                                Logger.addToLogFile(
+                                    $"Warning: Trace length ({MotionTraces.Size} samples at {1.0 / UrSettings.TimeKinematics:F0}Hz) " +
+                                    $"exceeds segment size of {maxLinesFromFrequency} samples.");
+                                System.Windows.MessageBox.Show(
+                                    $"Warning: The trace exceeds the segment duration of {UrSettings.SegmentDurationSeconds / 60:F1} minutes. " +
+                                    $"The 6DoF robot will pause and resume every {UrSettings.SegmentDurationSeconds / 60:F1} minutes.");
                                 drawInputTrace();
                             }
                             else
                             {
-                                Console.WriteLine("else");
                                 drawInputTrace();
                             }
                         }
@@ -839,12 +844,12 @@ namespace PhantomControl
                             System.Windows.MessageBox.Show("Error: Invalid input file format, format needed: [t  X  Y  Z  Rx  Ry  Rz] or [t  X  Y  Z]");
                         }
 
-                        if (UrSettings.TimeKinematics < 0.2)
+                        if (UrSettings.TimeKinematics < 0.005)
                         {
                             _playstopmotionclicked = false;
-                            UpdateStatusBarMessage.ShowStatusMessage("Warning: Sampling rate in the input file is lower than 0.2s");
-                            Logger.addToLogFile("Warning: Sampling rate in the input file is lower than 0.2s");
-                            System.Windows.MessageBox.Show("Warning: The sample rate in the input file is lower than 0.2s");
+                            UpdateStatusBarMessage.ShowStatusMessage("Warning: Sampling rate in the input file is extremely high (>200Hz)");
+                            Logger.addToLogFile("Warning: Sampling rate in the input file is extremely high (>200Hz)");
+                            System.Windows.MessageBox.Show("Warning: The sample rate in the input file exceeds 200Hz");
 
                         }
 
@@ -855,7 +860,12 @@ namespace PhantomControl
                             Logger.addToLogFile("Warning: Sampling rates in the input file and in the settings file are not the same");
                             System.Windows.MessageBox.Show("Warning: The sample rates in the input file and in the settings are different");
                         }
-                        if (UrSettings.TimeKinematics == Math.Abs(MotionTraces.t[1] - MotionTraces.t[2]))
+                        //if (UrSettings.TimeKinematics == Math.Abs(MotionTraces.t[1] - MotionTraces.t[2]))
+                        //{
+                        //    _playstopmotionclicked = true;
+                        //}
+
+                        if (UrSettings.TimeKinematics == Math.Abs(MotionTraces.t[1] - MotionTraces.t[0]))
                         {
                             _playstopmotionclicked = true;
                         }
@@ -1089,7 +1099,8 @@ namespace PhantomControl
         private async Task RestartingProcess6D()
         {
             Console.WriteLine("Exceed memory");
-            int MaxLines = UrSettings.maximumLinesInputFile6D;
+            //int MaxLines = UrSettings.maximumLinesInputFile6D;
+            int MaxLines = (int)(UrSettings.SegmentDurationSeconds / UrSettings.TimeKinematics);
             int CurrentLines = MotionTraces.Size;
             int NbRestart = (int)(CurrentLines / MaxLines);
             int remainder = CurrentLines - (NbRestart * MaxLines);
@@ -1464,9 +1475,9 @@ namespace PhantomControl
             AllocConsole();
             if (serialPort.IsOpen == true)
             {
-                string voltageString2 = $"{voltage2},{1},{200}";
+                string voltageString2 = $"{voltage2},{1},{(long)(UrSettings.TimeKinematics * 1000)}";
                 serialPort.WriteLine(voltageString2);
-                serialPort.WriteLine($"{0},{1},{200}");
+                serialPort.WriteLine($"{0},{1},{(long)(UrSettings.TimeKinematics * 1000)}");
                 return;
             }
 
@@ -1503,6 +1514,8 @@ namespace PhantomControl
             flatButton_SetStartPos.Enabled = false;
             flatButton_Home.Enabled = true;
             flatButton_LoadTraces.Enabled = true;
+            _firstRun = true;
+            Index6DMonitoring = 0;
         }
 
         /* This function runs the motion. MODBUS connection is setup and another thread is created to listen to the robot and stream data back into the software. TCP/IP connection is called from URServer class and 
@@ -1798,7 +1811,9 @@ namespace PhantomControl
 
                                 }
 
-                                if ((sixParamArray[0] > ((maxx * 10000) + 5)) || (sixParamArray[0] < -((maxx * 10000) + 5)) || (sixParamArray[1] > ((maxy * 1000) + 5)) || (sixParamArray[1] < -((maxy * 1000) + 5)) || (sixParamArray[2] > ((maxz * 1000) + 5)) || (sixParamArray[2] < -((maxz * 1000) + 5)))
+                                if ((sixParamArray[0] > ((maxx * 1000) + 5)) || (sixParamArray[0] < -((maxx * 1000) + 5)) ||
+                                    (sixParamArray[1] > ((maxy * 1000) + 5)) || (sixParamArray[1] < -((maxy * 1000) + 5)) ||
+                                    (sixParamArray[2] > ((maxz * 1000) + 5)) || (sixParamArray[2] < -((maxz * 1000) + 5)))
                                 {
                                     UpdateStatusBarMessage.ShowStatusMessage("Safety stop: The motion has exceeded 5 mm more than the maximum input motion");
                                     Logger.addToLogFile("Safety stop: The motion has exceeded 5 mm more than the maximum input motion");
@@ -1820,7 +1835,7 @@ namespace PhantomControl
                                 //{
                                 //    progressbar_Motion.Value = _t;
                                 //}
-                                int progressbar_max = (int)(MotionTraces.Size * UrSettings.timeKinematics);
+                                int progressbar_max = (int)(MotionTraces.Size * UrSettings.TimeKinematics);
 
                                 double _test = ((time) / ((double)progressbar_max) * 100.0);
                                 int _test1 = Convert.ToInt32(_test);
@@ -1844,7 +1859,7 @@ namespace PhantomControl
 
                                 }
                             }
-                            if (falseCount >= threshold & UrSettings.motionPlay == true)
+                            if (falseCount >= threshold && UrSettings.motionPlay == true)
                             {
                                 _keepMonitoring = false;
                                 Console.WriteLine("monitor over");
@@ -2136,6 +2151,7 @@ namespace PhantomControl
                         flatButton_LoadTraces1D.Enabled = true;
                         flatButton_Home.Enabled = true;
                         isConnectedAlready = true;
+                        break;
                     }
                     catch
                     {
@@ -2403,8 +2419,8 @@ namespace PhantomControl
         {
 
             AllocConsole();
-            DateTime previous = DateTime.Now;
-            DateTime previous2 = DateTime.Now;
+            //DateTime previous = DateTime.Now;
+            //DateTime previous2 = DateTime.Now;
             DateTime playmotionTime = DateTime.Now;
 
             Logger.Timestamps1DFullPath = "Output Files/1DPlatform/Timestamps/" + Path.GetFileName(_filePath1D) + "_" + DateTime.Now.ToString("ddMMyy-HHmmssfff") + ".txt";
@@ -2421,7 +2437,7 @@ namespace PhantomControl
                     StopIndex = i;
                     return;
                 }
-                var timeThreshold = i * 200;
+                var timeThreshold = (long)(i * UrSettings.TimeKinematics * 1000);
                 while (stopwatch.ElapsedMilliseconds < timeThreshold)
                 {
                     string tempdata = "";
@@ -2450,23 +2466,24 @@ namespace PhantomControl
                     if (serialPort.IsOpen == true)
                     {
                         DateTime now = DateTime.Now;
-                        DateTime now2 = DateTime.Now;
+                        //DateTime now2 = DateTime.Now;
                         var result = CalculateVoltagePair(velocityValues[i]);
                         var delayResult = CalculateDelayValue(result.voltageValue, velocityValues[i]);
                         double newVoltage = (result.voltageValue < 45 && result.voltageValue != 0) ? 60 : result.voltageValue;
                         string voltageSend = newVoltage.ToString("0.0");
-                        string delaySend = delayResult.ToString("0.0");
+                        //string delaySend = delayResult.ToString("0.0");
                         string voltageString = $"{voltageSend},{result.isGoingUp},{delayResult}";
                         Logger.addToArduinoSendFile($"{result.voltageValue},{result.isGoingUp},{delayResult}");
-                        var teststring = voltageString + "," + displacementValues[i + 1];
+                        //var teststring = voltageString + "," + displacementValues[i + 1];
+                        double nextDisplacement = (i + 1 < displacementValues.Count) ? displacementValues[i + 1] : 0.0;
+                        var teststring = voltageString + "," + nextDisplacement;
                         serialPort.WriteLine(teststring);
                         Console.WriteLine("total time: " + stopwatch.ElapsedMilliseconds + " " + teststring);
-                        currentTime += (now - previous).Milliseconds * 0.001;
-                        //if (Settings_tab.oneSelected)
-                            //progresstext_Motion.Text = ((finalTimeInSeconds / ((i + 1) * 0.2)) * 100).ToString() + "%";
+                        if (Settings_tab.oneSelected)
+                            progresstext_Motion.Text = (((i + 1) * UrSettings.TimeKinematics) / finalTimeInSeconds * 100).ToString("F0") + "%";
 
 
-                        if (serialPort != null || serialPort.IsOpen == true)
+                        if (serialPort != null && serialPort.IsOpen == true)
                         {
                         }
                         else
@@ -2507,7 +2524,7 @@ namespace PhantomControl
 
 
             Stopwatch stopwatchLast = Stopwatch.StartNew();
-            while (stopwatchLast.ElapsedMilliseconds < 300)
+            while (stopwatchLast.ElapsedMilliseconds < (long)(UrSettings.TimeKinematics * 1500))
             {
 
                 try
@@ -2527,13 +2544,12 @@ namespace PhantomControl
             }
 
             stopwatchLast.Stop();
-            currentTime = 0;
             string finalString = $"{0},{false},{2000}";
             serialPort.WriteLine(finalString);
             DateTime endTime = DateTime.Now;
             Logger.addToTimestamps1DFile("1D end time : " + endTime.ToString("HH:mm:ss:fff") + '\n');
             System.Windows.MessageBox.Show("Trace is Complete");
-            //motionPlay1D = false;
+            motionPlay1D = false;
             Logger.addToLogFile("1D trace is complete");
         }
 
@@ -2541,7 +2557,7 @@ namespace PhantomControl
         // This function will send a "Home" string to the Arduino in order to move the motor back to base position
         public void Home1DPlatform()
         {
-            if (serialPort != null || serialPort.IsOpen == true)
+            if (serialPort != null && serialPort.IsOpen == true)
             {
                 serialPort.WriteLine("Home");
                 Logger.addToLogFile("1D Robot to Home");
@@ -2564,12 +2580,12 @@ namespace PhantomControl
         // This function will calculate the necessary time to move the motor in case the voltage is too low to make the motor move. e.g. if the voltage to move the motor is less that ~50mV, the motor wont move as expected. This function simply adjusts the voltage to an amount that will guarantee movement but adjust the time needed to move to achieve the same displacement
         static double CalculateDelayValue(double voltage2, double speed)
         {
-            double delayValue = 200;
-            double displacement = Math.Abs(speed) * 0.2;
+            double delayValue = UrSettings.TimeKinematics * 1000;
+            double displacement = Math.Abs(speed) * UrSettings.TimeKinematics;
             double Voltage = 60;
             if (voltage2 > 45)
             {
-                delayValue = 200;
+                delayValue = UrSettings.TimeKinematics * 1000;
 
             }
             else if (voltage2 < 45)
@@ -2592,7 +2608,7 @@ namespace PhantomControl
 
                 if (speed == 0)
                 {
-                    delayValue = 200;
+                    delayValue = UrSettings.TimeKinematics * 1000;
                 }
                 if (speed < 0)
                 {
@@ -2609,7 +2625,7 @@ namespace PhantomControl
 
                 }
             }
-            if (delayValue > 200)
+            if (delayValue > UrSettings.TimeKinematics * 1000)
             {
                 Console.WriteLine("delay:" + delayValue + " displacement:" + displacement + " speed: " + speed);
             }
@@ -2691,7 +2707,7 @@ namespace PhantomControl
             }
             for (int i = 0; i < processedPosition.Count - 1; i++)
             {
-                velocityValues.Add((processedPosition[i + 1] - processedPosition[i]) / (increment * 0.2));
+                velocityValues.Add((processedPosition[i + 1] - processedPosition[i]) / (increment * UrSettings.TimeKinematics));
             }
             //string path = "C:\\Users\\Robot\\Documents\\Processed Traces\\trace.txt";
             //File.WriteAllLines(path, processedPosition.Select(d => d.ToString()));
@@ -2747,7 +2763,8 @@ namespace PhantomControl
             public static bool movementToLarge = false;
             public static double[] verticalMode = { 0, 0, 0, 0 };
             public static double[] horizontalMode = { 0, 0, 0, 0 };
-            public static int maximumLinesInputFile6D = 0;
+            //public static int maximumLinesInputFile6D = 0;
+            public static double segmentDurationSeconds = 300.0; // default 5 min, user-configurable
 
             public static bool IsConnected
             {
@@ -2809,10 +2826,16 @@ namespace PhantomControl
                 set { verticalMode = value; }
             }
 
-            public static int MaximumLinesInputFile6D
+            //public static int MaximumLinesInputFile6D
+            //{
+            //    get { return maximumLinesInputFile6D; }
+            //    set { maximumLinesInputFile6D = value; }
+            //}
+
+            public static double SegmentDurationSeconds
             {
-                get { return maximumLinesInputFile6D; }
-                set { maximumLinesInputFile6D = value; }
+                get { return segmentDurationSeconds; }
+                set { segmentDurationSeconds = value; }
             }
 
             public static double[] HorizontalMode
@@ -2835,19 +2858,19 @@ namespace PhantomControl
 
             public static bool WriteTimestamp1DFile
             {
-                get { return WriteTimestamp1DFile; }
-                set { WriteTimestamp1DFile = value; }
+                get { return writeTimestamps1DFile; }
+                set { writeTimestamps1DFile = value; }
             }
 
             public static bool WriteArduinoGetFile
             {
-                get { return WriteArduinoGetFile; }
-                set { WriteArduinoGetFile = value; }
+                get { return writeArduinoGetFile; }
+                set { writeArduinoGetFile = value; }
             }
             public static bool WriteArduinoSendFile
             {
-                get { return WriteArduinoSendFile; }
-                set { WriteArduinoSendFile = value; }
+                get { return writeArduinoSendFile; }
+                set { writeArduinoSendFile = value; }
             }
 
             public static bool WriteUrScriptFile
@@ -2885,76 +2908,6 @@ namespace PhantomControl
             {
                 get { return sizeValue; }
                 set { sizeValue = value; }
-            }
-
-            public static IEnumerable<double> _T
-            {
-                get { return _T.AsEnumerable(); }
-            }
-
-            public static IEnumerable<double> _X
-            {
-                get { return _X.AsEnumerable(); }
-            }
-
-            public static IEnumerable<double> _Y
-            {
-                get { return _Y.AsEnumerable(); }
-            }
-
-            public static IEnumerable<double> _Z
-            {
-                get { return _Z.AsEnumerable(); }
-            }
-
-            public static IEnumerable<double> _Rx
-            {
-                get { return _Rx.AsEnumerable(); }
-            }
-
-            public static IEnumerable<double> _Ry
-            {
-                get { return _Ry.AsEnumerable(); }
-            }
-
-            public static IEnumerable<double> _Rz
-            {
-                get { return _Rz.AsEnumerable(); }
-            }
-
-            public static void AddValue_T(double item)
-            {
-                t.Add(item);
-            }
-
-            public static void AddValue_X(double item)
-            {
-                X.Add(item);
-            }
-
-            public static void AddValue_Y(double item)
-            {
-                Y.Add(item);
-            }
-
-            public static void AddValue_Z(double item)
-            {
-                Z.Add(item);
-            }
-
-            public static void AddValue_Rx(double item)
-            {
-                Rx.Add(item);
-            }
-
-            public static void AddValue_Ry(double item)
-            {
-                Ry.Add(item);
-            }
-
-            public static void AddValue_Rz(double item)
-            {
-                Rz.Add(item);
             }
 
             public static void setStartingPose()
