@@ -468,30 +468,22 @@ namespace PhantomControl
 
         private void drawInputTrace()
         {
-
+            rangeBar.Maximum = (int)MotionTraces.t.Max();
 
             for (int i = 0; i < MotionTraces.Size; i++)
             {
-                double t = MotionTraces.t[i]-MotionTraces.t[0];
+                double t = MotionTraces.t[i] - MotionTraces.t[0];
                 double x = MotionTraces.X[i] * 1000;
                 double y = MotionTraces.Y[i] * 1000;
                 double z = MotionTraces.Z[i] * 1000;
-
                 double Rx = MotionTraces.Rx[i] * (180 / Math.PI);
                 double Ry = MotionTraces.Ry[i] * (180 / Math.PI);
                 double Rz = MotionTraces.Rz[i] * (180 / Math.PI);
 
-                /*                foreach (var XAxis in cartesianChart_translation.AxisX)
-                                {
-                                    XAxis.MinValue = 0;
-                                    XAxis.MaxValue = MotionTraces.t[i]-MotionTraces.t[0];
-                                    XAxis.SetRange(XAxis.MinValue, XAxis.MaxValue);
-                                }*/
-                rangeBar.Maximum = (int)MotionTraces.t.Max();
                 plotInputData(t, x, y, z, Rx, Ry, Rz);
             }
-
         }
+
         private void drawInputTrace1D(List<double> displacementValues)
         {
             List<double> TimeList = new List<double>();
@@ -706,7 +698,6 @@ namespace PhantomControl
             double timeKinematics_temp = UrSettings.TimeKinematics;
             if (_homebuttonclicked != true)
             {
-
                 System.Windows.MessageBox.Show("Please click the home button first");
                 return;
             }
@@ -715,10 +706,10 @@ namespace PhantomControl
 
             using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Text Documents|*.txt", ValidateNames = true, Multiselect = false })
             {
-
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
                     flatButton_PlayStopMotion.Enabled = false;
+                    flatButton_LoadTraces.Enabled = false;
 
                     MotionTraces.t.Clear();
                     MotionTraces.X.Clear();
@@ -734,7 +725,6 @@ namespace PhantomControl
                         _filePath6D = textBox_filename.Text;
                         Logger.RenameLogFile("6D", textBox_filename.Text);
                         Logger.addToLogFile("The 6D input file " + textBox_filename.Text + " has been selected");
-
                         clearPlot("all");
                     }
 
@@ -742,7 +732,6 @@ namespace PhantomControl
                     {
                         textBox_filename.Text = System.IO.Path.GetFileName(ofd.FileName);
                         _filePath6D = textBox_filename.Text;
-
 
                         if (Logger.LogFileNameBOTHBool)
                         {
@@ -752,16 +741,11 @@ namespace PhantomControl
                         {
                             Logger.RenameLogFileBOTH("BOTH", textBox_filename.Text);
                             Logger.addToLogFile("The 6D input file " + textBox_filename.Text + " has been selected - BOTH PLATFORMS");
-
                         }
                     }
 
-
-                    //char filename = OpenFileDialog.SafeFileName;
                     var FileName = System.IO.Path.GetFileName(ofd.FileName);
-
                     textBox_filename.Text = System.IO.Path.GetFileName(ofd.FileName);
-
                     _filePath6D = textBox_filename.Text;
 
                     int columnNum = getColNumber(ofd);
@@ -775,19 +759,17 @@ namespace PhantomControl
                             while ((line = sr.ReadLine()) != null)
                             {
                                 string[] arr = line.Split(' ');
-
                                 MotionTraces.X.Add(double.Parse(arr[0]) / 1000);
                                 MotionTraces.Y.Add(double.Parse(arr[1]) / 1000);
                                 MotionTraces.Z.Add(double.Parse(arr[2]) / 1000);
-
                                 MotionTraces.Rx.Add(double.Parse(arr[3]) * (Math.PI / 180));
                                 MotionTraces.Ry.Add(double.Parse(arr[4]) * (Math.PI / 180));
                                 MotionTraces.Rz.Add(double.Parse(arr[5]) * (Math.PI / 180));
-
                                 counter++;
                             }
                             MotionTraces.Size = counter;
                         }
+
                         if (columnNum == 7)
                         {
                             string line;
@@ -795,22 +777,17 @@ namespace PhantomControl
                             while ((line = sr.ReadLine()) != null)
                             {
                                 string[] arr = line.Split(' ');
-
                                 MotionTraces.t.Add(double.Parse(arr[0]));
                                 MotionTraces.X.Add(double.Parse(arr[1]) / 1000);
                                 MotionTraces.Y.Add(double.Parse(arr[2]) / 1000);
                                 MotionTraces.Z.Add(double.Parse(arr[3]) / 1000);
-
                                 MotionTraces.Rx.Add(double.Parse(arr[4]) * (Math.PI / 180));
                                 MotionTraces.Ry.Add(double.Parse(arr[5]) * (Math.PI / 180));
                                 MotionTraces.Rz.Add(double.Parse(arr[6]) * (Math.PI / 180));
-
                                 counter++;
                             }
 
-                            UrSettings.TimeKinematics = MotionTraces.t[1] - MotionTraces.t[0];           //Read the frequency from the input file 
-                            
-
+                            UrSettings.TimeKinematics = MotionTraces.t[1] - MotionTraces.t[0];
                             settings_Tab.txtBox_time.Text = Convert.ToString(UrSettings.TimeKinematics);
                             Logger.addToLogFile("The sample rate from the input file is " + UrSettings.TimeKinematics + "s.");
                             MotionTraces.Size = counter;
@@ -829,11 +806,6 @@ namespace PhantomControl
                                 System.Windows.MessageBox.Show(
                                     $"Warning: The trace exceeds the segment duration of {UrSettings.SegmentDurationSeconds / 60:F1} minutes. " +
                                     $"The 6DoF robot will pause and resume every {UrSettings.SegmentDurationSeconds / 60:F1} minutes.");
-                                drawInputTrace();
-                            }
-                            else
-                            {
-                                drawInputTrace();
                             }
                         }
 
@@ -842,6 +814,7 @@ namespace PhantomControl
                             UpdateStatusBarMessage.ShowStatusMessage("Error: Invalid format, format needed: [t  X  Y  Z  Rx  Ry  Rz] or [t  X  Y  Z]");
                             Logger.addToLogFile("Error: Invalid format, format needed: [t  X  Y  Z  Rx  Ry  Rz] or [t  X  Y  Z]");
                             System.Windows.MessageBox.Show("Error: Invalid input file format, format needed: [t  X  Y  Z  Rx  Ry  Rz] or [t  X  Y  Z]");
+                            return;
                         }
 
                         if (UrSettings.TimeKinematics < 0.005)
@@ -850,50 +823,31 @@ namespace PhantomControl
                             UpdateStatusBarMessage.ShowStatusMessage("Warning: Sampling rate in the input file is extremely high (>200Hz)");
                             Logger.addToLogFile("Warning: Sampling rate in the input file is extremely high (>200Hz)");
                             System.Windows.MessageBox.Show("Warning: The sample rate in the input file exceeds 200Hz");
-
+                            return;
                         }
 
                         if (UrSettings.TimeKinematics != timeKinematics_temp)
                         {
-                            _playstopmotionclicked = false;
                             UpdateStatusBarMessage.ShowStatusMessage("Warning: Sampling rates in the input file and in the settings file are not the same");
                             Logger.addToLogFile("Warning: Sampling rates in the input file and in the settings file are not the same");
                             System.Windows.MessageBox.Show("Warning: The sample rates in the input file and in the settings are different");
                         }
-                        //if (UrSettings.TimeKinematics == Math.Abs(MotionTraces.t[1] - MotionTraces.t[2]))
-                        //{
-                        //    _playstopmotionclicked = true;
-                        //}
 
                         if (UrSettings.TimeKinematics == Math.Abs(MotionTraces.t[1] - MotionTraces.t[0]))
                         {
                             _playstopmotionclicked = true;
                         }
 
-                        //Finds the maximum value 
                         double maxx = 0;
                         double maxy = 0;
                         double maxz = 0;
 
                         for (int i = 1; i < MotionTraces.Size; i++)
                         {
-                            if (MotionTraces.X[i] > maxx)
-                            {
-                                maxx = MotionTraces.X[i];
-                            }
-
-                            if (MotionTraces.Y[i] > maxy)
-                            {
-                                maxy = MotionTraces.Y[i];
-                            }
-
-                            if (MotionTraces.Z[i] > maxz)
-                            {
-                                maxz = MotionTraces.Z[i];
-                            }
+                            if (MotionTraces.X[i] > maxx) maxx = MotionTraces.X[i];
+                            if (MotionTraces.Y[i] > maxy) maxy = MotionTraces.Y[i];
+                            if (MotionTraces.Z[i] > maxz) maxz = MotionTraces.Z[i];
                         }
-
-
                     }
                 }
                 else
@@ -909,10 +863,8 @@ namespace PhantomControl
             {
                 ledBulb_Ready.Color = Color.LightPink;
                 ledBulb_Ready.On = true;
-
                 UpdateStatusBarMessage.ShowStatusMessage("Safety error: Large translation or rotation motion detected, may cause collision");
                 Logger.addToLogFile("Safety error: Large translation or rotation motion detected, may cause collision");
-
                 flatButton_LoadTraces.Enabled = true;
                 flatButton_SetStartPos.Enabled = false;
                 return;
@@ -932,26 +884,40 @@ namespace PhantomControl
                 ledBulb_Ready.On = true;
             }
 
+            // Draw input trace and save URscript on background thread,
+            // only enabling Play button once everything is complete
+            UpdateStatusBarMessage.ShowStatusMessage("Loading trace, please wait...");
+            flatButton_PlayStopMotion.Enabled = false;
 
-            if (UrSettings.writeUrScriptFile == true)
+            Task.Run(() =>
             {
-                //Thread saveUrScriptFiles = new Thread(saveUrScripts);
-                //saveUrScriptFiles.Start();
-                saveUrScripts();
-            }
-            else
-            {
-                flatButton_PlayStopMotion.Enabled = true;
-                flatButton_LoadTraces.Enabled = true;
-            }
+                // Wait until urList is fully generated (generateUrScript runs on UI thread before this)
+                while (UrScriptProgram.urList.Count == 0)
+                {
+                    Thread.Sleep(100);
+                }
+
+                this.Invoke((MethodInvoker)delegate { drawInputTrace(); });
+
+                if (UrSettings.writeUrScriptFile == true)
+                {
+                    saveUrScripts();
+                }
+
+                this.Invoke((MethodInvoker)delegate
+                {
+                    flatButton_PlayStopMotion.Enabled = true;
+                    flatButton_LoadTraces.Enabled = true;
+                    UpdateStatusBarMessage.ShowStatusMessage("Trace loaded and ready - click Play Motion to start.");
+                    Logger.addToLogFile("Trace loaded and ready.");
+                });
+            });
         }
 
         // Saves URscript program based on lodaed motion traces as a txt file
 
         private void saveUrScripts()
         {
-            Invoke(new Action(() => { flatButton_PlayStopMotion.Enabled = false; }));
-
             lock (UrScriptProgram.urList)
             {
 
@@ -968,11 +934,6 @@ namespace PhantomControl
                 }
                 urscriptlogger.closeLogger();
             }
-
-            Invoke(new Action(() =>
-            {
-                flatButton_PlayStopMotion.Enabled = true;
-            }));
         }
 
         //true -> 1D platform setup is vertical. 
@@ -1099,7 +1060,6 @@ namespace PhantomControl
         private async Task RestartingProcess6D()
         {
             Console.WriteLine("Exceed memory");
-            //int MaxLines = UrSettings.maximumLinesInputFile6D;
             int MaxLines = (int)(UrSettings.SegmentDurationSeconds / UrSettings.TimeKinematics);
             int CurrentLines = MotionTraces.Size;
             int NbRestart = (int)(CurrentLines / MaxLines);
@@ -1146,19 +1106,37 @@ namespace PhantomControl
                 MotionTraces.Ry = RyTemp.GetRange(first_index, MotionTracesSlicedSize);
                 MotionTraces.Rz = RzTemp.GetRange(first_index, MotionTracesSlicedSize);
                 MotionTraces.Size = MotionTracesSlicedSize;
-                drawInputTrace();
-                urServer.generateUrScript(UrSettings.TimeKinematics, UrSettings.TCP, UrSettings.PayLoad);
 
-                await runMotionAsync(first_index);
+                // Draw input trace and generate URscript on background, let UI process, THEN start motion
+                await Task.Run(() =>
+                {
+                    this.Invoke((MethodInvoker)delegate { drawInputTrace(); });
+                    urServer.generateUrScript(UrSettings.TimeKinematics, UrSettings.TCP, UrSettings.PayLoad);
+                }).ConfigureAwait(false);
+
+                // Give UI a moment to finish any pending paint operations before MODBUS starts hammering it
+                await Task.Delay(500).ConfigureAwait(false);
+
+                await runMotionAsync(first_index).ConfigureAwait(false);
 
                 if (UrSettings.MotionPlay == false)
                 {
                     return;
                 }
 
-                clearPlot("all");
-                Console.WriteLine("next 10min");
+                // Reset state for next segment
+                _firstRun = true;
+                Array.Clear(poseSpeedArray, 0, poseSpeedArray.Length);
+                Array.Clear(poseArray, 0, poseArray.Length);
+
+                await Task.Run(() =>
+                {
+                    this.Invoke((MethodInvoker)delegate { clearPlot("all"); });
+                }).ConfigureAwait(false);
+
+                Console.WriteLine("next segment");
             }
+
             MotionTraces.X = XTemp.GetRange(NbRestart * MaxLines, remainder);
             for (int k = 0; k < MotionTraces.X.Count; k++)
             {
@@ -1170,11 +1148,17 @@ namespace PhantomControl
             MotionTraces.Ry = RyTemp.GetRange(NbRestart * MaxLines, remainder);
             MotionTraces.Rz = RzTemp.GetRange(NbRestart * MaxLines, remainder);
             MotionTraces.Size = remainder;
-            drawInputTrace();
-            boolExceedMemory = false;
-            urServer.generateUrScript(UrSettings.TimeKinematics, UrSettings.TCP, UrSettings.PayLoad);
-            runMotion();
 
+            await Task.Run(() =>
+            {
+                this.Invoke((MethodInvoker)delegate { drawInputTrace(); });
+                urServer.generateUrScript(UrSettings.TimeKinematics, UrSettings.TCP, UrSettings.PayLoad);
+            }).ConfigureAwait(false);
+
+            await Task.Delay(500).ConfigureAwait(false);
+
+            boolExceedMemory = false;
+            runMotion();
         }
 
         private void flatButton_PlayStopMotion_Click(object sender, EventArgs e)
@@ -1566,15 +1550,10 @@ namespace PhantomControl
 
         }
 
-        /* This function runs the motion. The definition of this function is based on the runMotion() function but enables the restarting motion after 10min for very long traces. It has to be an async task because we need to wait until the motion is over to run the next 10min motion without blocking the application */
         private async Task runMotionAsync(int first_index)
         {
-            while (Index6DMonitoring < first_index)
-            {
-                Thread.Sleep(10);
-            }
             modbusClient = new ModbusClient(UrSettings.hostIPAddress, 502);
-            
+
             try
             {
                 modbusClient.Connect();
@@ -1585,7 +1564,7 @@ namespace PhantomControl
             {
                 UpdateStatusBarMessage.ShowStatusMessage("MODBUS connection attempt via " + UrSettings.hostIPAddress + " failed.");
                 Logger.addToLogFile("MODBUS connection attempt via " + UrSettings.hostIPAddress + " failed.");
-                return; // Quitter si la connexion échoue
+                return;
             }
 
             if (string.IsNullOrWhiteSpace(UrSettings.hostIPAddress))
@@ -1606,32 +1585,19 @@ namespace PhantomControl
                 Logger.addToLogFile("Resume 6D motion time = " + Index6DMonitoring + "s (sliced input file)");
             }
 
-            try
-            {
-                var getDataTask = Task.Run(() => monitorData());
-                var tcpServerRunTask = Task.Run(() => tcpServerRun());
+            // Start monitorData on its own dedicated thread - matches runMotion() exactly
+            Thread monitorThread = new Thread(monitorData);
+            monitorThread.Start();
 
-                // Await both tasks to complete
-                Console.WriteLine("test");
-                await Task.WhenAll(getDataTask, tcpServerRunTask);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("An error occurred: " + ex.Message);
-                Logger.addToLogFile("An error occurred: " + ex.Message);
-            }
-            finally
-            {
-                Console.WriteLine("test1"); // Cette ligne s'affiche lorsque toutes les tâches sont terminées
-            }
+            // Run TCP on a task and await it - this signals segment completion
+            await Task.Run(() => tcpServerRun()).ConfigureAwait(false);
+
+            // Wait for monitorData to finish after TCP is done
+            monitorThread.Join();
         }
-
-
-
 
         //This event is initalize to sync the 1D and the 6D platforms. Once the code received the first data from the robot controller, the 1D is triggered to move. 
         static AutoResetEvent eventSync1D6D = new AutoResetEvent(false);
-
 
         //this function finds the new first position to reach when the user wants to start the 6D robot from where it stops (click on "Stop motion" during trace). 
         public static int findNext6DPosition()
@@ -1672,7 +1638,7 @@ namespace PhantomControl
         {
             int falseCount = 0;
             int threshold = 800;
-            int sampleRate = 10;// (int)(UrSettings.timeKinematics * 1000) - 10;
+            int sampleRate = 10;
             double absoluteTime = 0;
             double currentTime = 0;
             double time = 0;
@@ -1687,9 +1653,6 @@ namespace PhantomControl
 
             while (_keepMonitoring)
             {
-                ledBulb_Connected.Color = Color.LimeGreen;
-                ledBulb_Connected.On = true;
-
                 int[] readHoldingRegPose = { };
                 int[] readHoldingRegTCPSpeed = { };
                 int[] readHoldingRegTime = { };
@@ -1721,7 +1684,6 @@ namespace PhantomControl
                         eventSync1D6D.Set();
                         absoluteTime = getTime(_holdingRegTime);
                         _firstRun = false;
-
                     }
                     currentTime = getTime(_holdingRegTime);
                     time = currentTime - absoluteTime;
@@ -1732,186 +1694,131 @@ namespace PhantomControl
                     }
                 }
 
-                if (this.InvokeRequired)
+                // --- HEAVY WORK ON BACKGROUND THREAD ---
+                double poseValue = 0.0;
+                double poseSpeed = 0.0;
+                for (int i = 0; i < readHoldingRegPose.Length; i++)
                 {
-                    this.Invoke((MethodInvoker)delegate
+                    if (i < 3)
+                        poseValue = convert16BitToDouble(readHoldingRegPose[i], true);
+                    else
+                        poseValue = convert16BitToDouble(readHoldingRegPose[i], false);
+
+                    poseSpeed = convert16BitToDouble(readHoldingRegTCPSpeed[i], true);
+
+                    poseArray[i] = poseValue;
+                    poseSpeedArray[i] = poseSpeed;
+                }
+
+                if (!isMoving())
+                {
+                    // Only start counting as "done" if robot has already moved at least once
+                    if (boolExceedMemory && _firstRun == false)
                     {
-                        lock (monitorDataLock)
+                        falseCount++;
+                    }
+                    if (falseCount >= threshold && UrSettings.motionPlay == true)
+                    {
+                        _keepMonitoring = false;
+                        Console.WriteLine("monitor over");
+                        Logger.addToLogFile("6D trace is complete");
+                    }
+
+                    Thread.Sleep(sampleRate);
+                    continue;
+                }
+
+                if (boolExceedMemory)
+                {
+                    falseCount = 0;
+                }
+
+                if (isResumed6D)
+                {
+                    Thread.Sleep(Index6DTimeTravel);
+                }
+                isResumed6D = false;
+
+                Matrix<double> absPose = coordTransform.getAbsoultePose(poseArray, MotionTraces.startingPose);
+                double[] sixParamArray = coordTransform.getSixParameterPose(absPose);
+
+                if (UrSettings.writeDataFile == true)
+                {
+                    Logger.saveDataToFile(abs_time, time, sixParamArray[0], sixParamArray[1], sixParamArray[2], sixParamArray[3], sixParamArray[4], sixParamArray[5]);
+                }
+
+                // Safety check (runs on background thread)
+                double maxx = 0, maxy = 0, maxz = 0;
+                for (int i = 1; i < MotionTraces.Size; i++)
+                {
+                    if (Math.Abs(MotionTraces.X[i]) > maxx) maxx = Math.Abs(MotionTraces.X[i]);
+                    if (Math.Abs(MotionTraces.Y[i]) > maxy) maxy = Math.Abs(MotionTraces.Y[i]);
+                    if (Math.Abs(MotionTraces.Z[i]) > maxz) maxz = Math.Abs(MotionTraces.Z[i]);
+                }
+
+                if ((sixParamArray[0] > ((maxx * 1000) + 5)) || (sixParamArray[0] < -((maxx * 1000) + 5)) ||
+                    (sixParamArray[1] > ((maxy * 1000) + 5)) || (sixParamArray[1] < -((maxy * 1000) + 5)) ||
+                    (sixParamArray[2] > ((maxz * 1000) + 5)) || (sixParamArray[2] < -((maxz * 1000) + 5)))
+                {
+                    UpdateStatusBarMessage.ShowStatusMessage("Safety stop: The motion has exceeded 5 mm more than the maximum input motion");
+                    Logger.addToLogFile("Safety stop: The motion has exceeded 5 mm more than the maximum input motion");
+                    _keepMonitoring = false;
+                    break;
+                }
+
+                // --- UI WORK: only the minimum on the UI thread ---
+                bool shouldPlot = (time == 0 || time > time_check_plot + 0.25);
+                bool shouldDisplay = (time == 0 || time > time_check_display + 0.5);
+                double timeCopy = time;
+                double[] sixParamCopy = (double[])sixParamArray.Clone();
+                int progressbar_max = (int)(MotionTraces.Size * UrSettings.TimeKinematics);
+                int progressValue = Convert.ToInt32((timeCopy / (double)progressbar_max) * 100.0);
+
+                if (shouldPlot) time_check_plot = time;
+                if (shouldDisplay) time_check_display = time;
+
+                try
+                {
+                    this.BeginInvoke((MethodInvoker)delegate
+                    {
+                        if (!ledBulb_Connected.On)
                         {
-                            //UPDATE UI (PLOT DATA)                            
-                            double poseValue = 0.0;
-                            double poseSpeed = 0.0;
-
-                            for (int i = 0; i < _holdingRegPoseLock.Length; i++)
-                            {
-                                if (i < 3)
-                                {
-                                    poseValue = convert16BitToDouble(_holdingRegPoseLock[i], true);
-                                }
-                                else
-                                {
-                                    poseValue = convert16BitToDouble(_holdingRegPoseLock[i], false);
-                                }
-
-                                poseSpeed = convert16BitToDouble(_holdingRegTCPSpeedLock[i], true);
-
-                                poseArray[i] = poseValue;
-                                poseSpeedArray[i] = poseSpeed;
-                            }
-
-                            if (isMoving())
-                            {
-                                if (boolExceedMemory)
-                                {
-                                    falseCount = 0;
-                                }
-
-                                if (isResumed6D)
-                                {
-                                    Thread.Sleep(Index6DTimeTravel);
-                                }
-                                isResumed6D = false;
-                                //Matrix absPose = coordTransform.getAbsoultePose(poseArray, MotionTraces.startingPose);
-                                Matrix<double> absPose = coordTransform.getAbsoultePose(poseArray, MotionTraces.startingPose);
-                                double[] sixParamArray = coordTransform.getSixParameterPose(absPose);
-
-                                if (UrSettings.writeDataFile == true)
-                                {
-                                    Logger.saveDataToFile(abs_time, time, sixParamArray[0], sixParamArray[1], sixParamArray[2], sixParamArray[3], sixParamArray[4], sixParamArray[5]);
-                                }
-
-                                if (time == 0 || time > time_check_plot + 0.1)
-                                {
-                                    time_check_plot = time;
-                                    plotData(time, sixParamArray[0], sixParamArray[1], sixParamArray[2], sixParamArray[3], sixParamArray[4], sixParamArray[5]);
-
-                                }
-
-                                //To make that the robot does not go above 5 mm limit from its maximum/minimum magnitude.
-                                double maxx = 0;
-                                double maxy = 0;
-                                double maxz = 0;
-
-                                for (int i = 1; i < MotionTraces.Size; i++)
-                                {
-                                    if (Math.Abs(MotionTraces.X[i]) > Math.Abs(maxx))
-                                    {
-                                        maxx = Math.Abs(MotionTraces.X[i]);
-                                    }
-
-                                    if (Math.Abs(MotionTraces.Y[i]) > Math.Abs(maxy))
-                                    {
-                                        maxy = Math.Abs(MotionTraces.Y[i]);
-                                    }
-
-                                    if (Math.Abs(MotionTraces.Z[i]) > Math.Abs(maxz))
-                                    {
-                                        maxz = Math.Abs(MotionTraces.Z[i]);
-                                    }
-
-                                }
-
-                                if ((sixParamArray[0] > ((maxx * 1000) + 5)) || (sixParamArray[0] < -((maxx * 1000) + 5)) ||
-                                    (sixParamArray[1] > ((maxy * 1000) + 5)) || (sixParamArray[1] < -((maxy * 1000) + 5)) ||
-                                    (sixParamArray[2] > ((maxz * 1000) + 5)) || (sixParamArray[2] < -((maxz * 1000) + 5)))
-                                {
-                                    UpdateStatusBarMessage.ShowStatusMessage("Safety stop: The motion has exceeded 5 mm more than the maximum input motion");
-                                    Logger.addToLogFile("Safety stop: The motion has exceeded 5 mm more than the maximum input motion");
-                                    System.Windows.MessageBox.Show("Safety stop: The motion has exceeded 5 mm more than the maximum input motion");
-                                    return;
-
-                                }
-
-
-                                if (time == 0 || time > time_check_display + 0.5)
-                                {
-                                    time_check_display = time;
-                                    displayValues(sixParamArray);
-                                }
-
-                                int _t = (int)Math.Floor(time);
-
-                                //if (_t <= progressbar_Motion.MaxValue)
-                                //{
-                                //    progressbar_Motion.Value = _t;
-                                //}
-                                int progressbar_max = (int)(MotionTraces.Size * UrSettings.TimeKinematics);
-
-                                double _test = ((time) / ((double)progressbar_max) * 100.0);
-                                int _test1 = Convert.ToInt32(_test);
-                                //if (_test1 <= progressbar_Motion.Maximum)
-
-                                if (_test1 <= 100)
-                                {
-                                    updateRange6D(time);
-                                    //changing _t to _test
-                                    progressbar_Motion.Value = _test1;
-                                    progresstext_Motion.Text = progressbar_Motion.Value.ToString() + "%";
-
-                                }
-
-                            }
-                            else
-                            {
-                                if (boolExceedMemory)
-                                {
-                                    falseCount++;
-
-                                }
-                            }
-                            if (falseCount >= threshold && UrSettings.motionPlay == true)
-                            {
-                                _keepMonitoring = false;
-                                Console.WriteLine("monitor over");
-                                Logger.addToLogFile("6D trace is complete");
-                            }
-
+                            ledBulb_Connected.Color = Color.LimeGreen;
+                            ledBulb_Connected.On = true;
                         }
 
+                        if (shouldPlot)
+                        {
+                            plotData(timeCopy, sixParamCopy[0], sixParamCopy[1], sixParamCopy[2], sixParamCopy[3], sixParamCopy[4], sixParamCopy[5]);
+                        }
+
+                        if (shouldDisplay)
+                        {
+                            displayValues(sixParamCopy);
+                        }
+
+                        if (progressValue <= 100)
+                        {
+                            updateRange6D(timeCopy);
+                            progressbar_Motion.Value = progressValue;
+                            progresstext_Motion.Text = progressbar_Motion.Value.ToString() + "%";
+                        }
                     });
                 }
-                else
+                catch (InvalidOperationException)
                 {
-
-                    lock (monitorDataLock)
-                    {
-
-                    }
+                    // Control disposed or handle not created, skip this update
                 }
 
-                /*if (isMoving() == false && _firstRun == false) 
-                {
-                    if (time != 0)
-                    {
-                        if (this.InvokeRequired)
-                        {
-                            this.Invoke((MethodInvoker)delegate
-                            {
-                                 resetRun();
-                                 return;
-                            });
-                        }
-                    }                 
-                }*/
-
-                if (isMoving() == true && _firstRun == false)
-                {
-                    Thread.Sleep(sampleRate);
-                }
-                //if (progressbar_Motion.Value == 100)
-                //{
-                //    Logger.addToLogFile("6D trace is complete");
-                //}
-
-                //while (list_Progress.Count>list_Progress_Count)
-                //{
-                //    list_Progress_Count = list_Progress.Count;
-                //}
-                //Console.WriteLine("egale");
+                Thread.Sleep(sampleRate);
             }
 
             disconnectModbus();
-            ledBulb_Connected.On = false;
+            try
+            {
+                this.BeginInvoke((MethodInvoker)delegate { ledBulb_Connected.On = false; });
+            }
+            catch { }
         }
 
         private void updateRange6D(double time)

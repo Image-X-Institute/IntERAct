@@ -1,0 +1,7 @@
+[  20/04/26 13:14:36:846  ]    The 6D input file 6DoF_sinusoidal_50Hz_5min_6DoF_internal_trace.txt has been selected
+[  20/04/26 13:14:36:862  ]    The sample rate from the input file is 0.02s.
+[  20/04/26 13:14:40:860  ]    Trace loaded and ready.
+[  20/04/26 13:14:44:912  ]    MODBUS connection via 192.168.94.11 established.
+[  20/04/26 13:14:44:912  ]    Start 6D motion
+[  20/04/26 13:14:56:178  ]    Opening IP address: 192.168.94.11
+[  20/04/26 13:19:53:352  ]    MODBUS disconected from controler

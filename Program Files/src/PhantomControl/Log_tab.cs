@@ -23,13 +23,18 @@ namespace PhantomControl
 
         public void UpdateStatusBarMessage_OnNewStatusMessage(string strMessage)
         {
-            Func<int> del = delegate()
+            if (!IsHandleCreated) return;  // ← skip if control not yet ready
+
+            Func<int> del = delegate ()
             {
                 textbox_Log.AppendText(strMessage + System.Environment.NewLine);
                 return 0;
             };
 
-            Invoke(del);
+            if (InvokeRequired)
+                Invoke(del);
+            else
+                del();
         }
 
         private void textbox_Log_TextChanged(object sender, EventArgs e)
@@ -54,7 +59,7 @@ namespace PhantomControl
             if (mainwin != null && mainwin.InvokeRequired)                                                                      // we are in a different thread to the main window
                 mainwin.Invoke(new AddStatusMessageDelegate(ThreadSafeStatusMessage), new object[] { strMessage });             // call self from main thread
             else
-                OnNewStatusMessage(strMessage);
+                OnNewStatusMessage?.Invoke(strMessage);  // ← null-conditional to avoid NullReferenceException
         }
     }
 }

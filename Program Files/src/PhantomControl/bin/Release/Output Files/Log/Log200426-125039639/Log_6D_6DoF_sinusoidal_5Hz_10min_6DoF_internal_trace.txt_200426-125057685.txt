@@ -1,0 +1,12 @@
+[  20/04/26 12:50:57:689  ]    The 6D input file 6DoF_sinusoidal_5Hz_10min_6DoF_internal_trace.txt has been selected
+[  20/04/26 12:50:57:697  ]    The sample rate from the input file is 0.2s.
+[  20/04/26 12:50:57:698  ]    Warning: Trace length (3001 samples at 5Hz) exceeds segment size of 1501 samples.
+[  20/04/26 12:50:59:213  ]    Trace loaded and ready.
+[  20/04/26 12:51:01:940  ]    MODBUS connection via 192.168.94.11 established.
+[  20/04/26 12:51:01:941  ]    Start 6D motion
+[  20/04/26 12:51:02:019  ]    Opening IP address: 192.168.94.11
+[  20/04/26 12:56:19:693  ]    6D trace is complete
+[  20/04/26 12:56:19:710  ]    MODBUS disconected from controler
+[  20/04/26 12:58:08:608  ]    Stop 6D motion
+[  20/04/26 12:58:10:760  ]    Opening IP address: 192.168.94.11
+[  20/04/26 12:58:11:769  ]    6D Robot to home

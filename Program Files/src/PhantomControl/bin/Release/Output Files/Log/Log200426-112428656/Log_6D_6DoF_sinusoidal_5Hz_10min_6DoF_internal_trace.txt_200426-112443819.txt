@@ -1,0 +1,4 @@
+[  20/04/26 11:24:43:819  ]    The 6D input file 6DoF_sinusoidal_5Hz_10min_6DoF_internal_trace.txt has been selected
+[  20/04/26 11:24:43:835  ]    The sample rate from the input file is 0.1s.
+[  20/04/26 11:24:43:840  ]    Warning: Trace length (6001 samples at 10Hz) exceeds segment size of 601 samples.
+[  20/04/26 11:24:45:542  ]    Warning: Sampling rates in the input file and in the settings file are not the same

@@ -113,3 +113,4 @@ C:\Users\akac0297\source\repos\IntERAct\Program Files\src\PhantomControl\obj\Deb
 C:\Users\akac0297\source\repos\IntERAct\Program Files\src\PhantomControl\obj\Debug\PhantomC.C5EBFB6D.Up2Date
 C:\Users\akac0297\source\repos\IntERAct\Program Files\src\PhantomControl\obj\Debug\PhantomControl.exe
 C:\Users\akac0297\source\repos\IntERAct\Program Files\src\PhantomControl\obj\Debug\PhantomControl.pdb
+C:\Users\akac0297\source\repos\IntERAct\Program Files\src\PhantomControl\obj\Debug\PhantomControl.exe.config

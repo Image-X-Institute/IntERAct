@@ -1,0 +1,4 @@
+[  20/04/26 11:21:03:298  ]    The 6D input file 6DoF_sinusoidal_50Hz_5min_6DoF_internal_trace.txt has been selected
+[  20/04/26 11:21:03:315  ]    The sample rate from the input file is 0.02s.
+[  20/04/26 11:21:11:135  ]    Error faild to connect on port 30001
+[  20/04/26 11:21:11:180  ]    Start Position Set To:  367.3 -113.4 273.8 -1.155 1.264 -1.201
