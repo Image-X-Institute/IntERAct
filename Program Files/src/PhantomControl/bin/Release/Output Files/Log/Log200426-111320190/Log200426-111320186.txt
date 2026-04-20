@@ -1,0 +1,9 @@
+[  20/04/26 11:13:20:219  ]    Loading payloadMass from settings.txt = 0
+[  20/04/26 11:13:20:221  ]    User changed the payloadMass = 0
+[  20/04/26 11:13:20:250  ]    Loading payloadMass from settings.txt = 0
+[  20/04/26 11:13:20:251  ]    User changed the payloadMass = 0
+[  20/04/26 11:13:30:391  ]    CURRENT ROBOT SELECTED: 6DOF
+[  20/04/26 11:13:30:404  ]    Opening IP address: 192.168.94.11
+[  20/04/26 11:13:31:430  ]    Start Position Set To:  367.3 -113.4 273.8 -1.155 1.264 -1.201
+[  20/04/26 11:13:31:826  ]    Opening IP address: 192.168.94.11
+[  20/04/26 11:13:32:842  ]    6D Robot to home

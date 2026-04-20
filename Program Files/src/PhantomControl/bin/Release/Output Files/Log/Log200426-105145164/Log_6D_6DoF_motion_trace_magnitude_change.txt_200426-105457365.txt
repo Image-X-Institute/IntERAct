@@ -1,0 +1,2 @@
+[  20/04/26 10:54:57:365  ]    The 6D input file 6DoF_motion_trace_magnitude_change.txt has been selected
+[  20/04/26 10:54:57:374  ]    Error: Invalid format, format needed: [t  X  Y  Z  Rx  Ry  Rz] or [t  X  Y  Z]

@@ -815,7 +815,7 @@ namespace PhantomControl
                             Logger.addToLogFile("The sample rate from the input file is " + UrSettings.TimeKinematics + "s.");
                             MotionTraces.Size = counter;
 
-                            int maxLinesFromFrequency = (int)(UrSettings.SegmentDurationSeconds / UrSettings.TimeKinematics);
+                            int maxLinesFromFrequency = (int)(UrSettings.SegmentDurationSeconds / UrSettings.TimeKinematics) + 1;
 
                             if (MotionTraces.Size > maxLinesFromFrequency)
                             {
